@@ -55,9 +55,9 @@ export type Project = {
   scope?: Localized;
   architect?: string;
   /**
-   * The photographer, credited on the facts strip. Interiors photography is
-   * authored work and the archive credits it by name on every shoot; a screen
-   * that shows the pictures should credit them too.
+   * Which shoot an image came from. Archival provenance for the studio, NOT
+   * rendered on the screen — the facts strip deliberately does not carry a
+   * photography credit.
    */
   photographer?: string;
   /** Max ~60 words. Not a case study. */

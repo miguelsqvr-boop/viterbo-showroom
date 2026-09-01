@@ -90,6 +90,7 @@ Not yet reviewed.
 
 ## 10. Hotel Albatroz — Cascais — Francisco Almeida Dias, 2019
 
+
 - **Hero — 06.** The striped stair hall over an azulejo dado, arched windows
   above. Portrait, and unmistakably Portuguese without a caption saying so.
 - **Gallery — 07, 08, 03, 09.** The bar framed by its doorway over a
@@ -104,7 +105,17 @@ Not yet reviewed.
 
 ## 12. Tuscany Estate — José Manuel Ferrão, 2022
 
-Not yet reviewed.
+The richest set in the archive so far, and the only one with real landscape.
+
+- **Hero — 05.** The arched stone entry, iron gate open onto cypresses.
+  Portrait, and it is the whole estate in one frame.
+- **Gallery — 06, 10, 12, 19.** The living room under its stone arch; the
+  brick-vaulted dining room; the hand-painted green kitchen; the four-poster.
+- **Attract — 03.** Wheat and cypresses, portrait. Says Tuscany from across
+  the room without a caption, which is exactly the job. (04, the estate seen
+  small across the hay field, is the landscape alternative.)
+- **Note.** Frame 01 is Gracinha and Miguel carrying baskets in the courtyard —
+  another Studio candidate, and the warmest of them.
 
 ## 13. Cabana Sass — Algarve — Francisco Almeida Dias, 2026
 

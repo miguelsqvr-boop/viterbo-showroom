@@ -22,7 +22,6 @@ export const UI = {
   area: { en: 'Area', pt: 'Área' },
   scopeLabel: { en: 'Scope', pt: 'Âmbito' },
   architect: { en: 'Architect', pt: 'Arquitetura' },
-  photography: { en: 'Photography', pt: 'Fotografia' },
   locationLabel: { en: 'Location', pt: 'Localização' },
   where: { en: 'Where we have worked', pt: 'Onde trabalhámos' },
   collaborations: { en: 'Collaborations', pt: 'Colaborações' },

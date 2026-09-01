@@ -59,9 +59,6 @@ export function ProjectView({ project }: { project: Project }) {
     ...(project.area ? [[t('area'), project.area] as [string, string]] : []),
     ...(project.scope ? [[t('scopeLabel'), s(project.scope)] as [string, string]] : []),
     ...(project.architect ? [[t('architect'), project.architect] as [string, string]] : []),
-    // Interiors photography is authored work; the archive credits it by name
-    // on every shoot, so the screen showing the pictures credits it too.
-    ...(project.photographer ? [[t('photography'), project.photographer] as [string, string]] : []),
   ];
 
   return (
