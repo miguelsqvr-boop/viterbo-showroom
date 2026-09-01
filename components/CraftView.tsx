@@ -37,15 +37,15 @@ export function CraftView() {
               className="h-full w-full"
             />
           </Mounted>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/55 via-black/15 to-black/75" />
+          <div className="media-scrim absolute inset-0" />
 
           <div className="absolute inset-x-0 px-14" style={{ top: '26%' }}>
-            <p className="text-caption tracking-[0.3em] text-ink-faint">
+            <p className="text-caption tracking-[0.3em] text-on-media/70">
               {String(stage.index).padStart(2, '0')} / {String(CRAFT_STAGES.length).padStart(2, '0')}
             </p>
-            <h2 className="mt-5 text-hero">{s(stage.title)}</h2>
+            <h2 className="mt-5 text-hero text-on-media">{s(stage.title)}</h2>
             {/* One line of text. No paragraphs. */}
-            <p className="mt-6 max-w-[860px] text-body text-ink">{s(stage.line)}</p>
+            <p className="mt-6 max-w-[860px] text-body text-on-media">{s(stage.line)}</p>
           </div>
         </section>
       ))}

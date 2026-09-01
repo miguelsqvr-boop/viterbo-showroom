@@ -19,7 +19,7 @@ async function svg(url: string) {
     type: 'svg',
     errorCorrectionLevel: 'M',
     margin: 0,
-    color: { dark: '#F2EEE7', light: '#00000000' },
+    color: { dark: '#1A1815', light: '#00000000' },
   });
   return raw.replace(/\n/g, '').replace(/'/g, "\\'");
 }

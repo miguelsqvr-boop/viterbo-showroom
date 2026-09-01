@@ -16,11 +16,27 @@ project's **Root Directory** set to `viterbo-showroom`, and it gets its own URL.
 npm install
 npm run dev            # http://localhost:3000
 npm run build && npm start
+npm run verify         # acceptance harness — see below
 ```
 
 Look at it in a 1080 × 1920 window, not a desktop one. Better: look at it on the
 panel. Add `?overlay=1` to any route to draw the reach-zone bands, the frame
 rate, and a live audit of every tap target's position and size.
+
+**`npm run verify` is the gate.** It renders 25 screen states — every route,
+every beat of a project, every stage of Craft, the contact form in both keyboard
+modes, the full view — at 1080 × 1920, in **both languages**, and fails on:
+
+- a tap target outside 28%–72% of screen height,
+- a tap target under 120px on its shortest side,
+- text rendered below 24px,
+- anything overflowing the pinned 1080 space,
+- **text painted underneath the navigation bar**, which is what catches a
+  narrative, a figures line or a city list growing into the chrome.
+
+Portuguese is checked because Portuguese runs longer than English almost
+everywhere, and a label that fits in one language is not evidence. Run it after
+any content or type change — a longer project name is a layout change.
 
 ## 2. Phase 0 — measure before you design
 
@@ -126,21 +142,47 @@ scheduling, remote admin over the LAN, and no browser chrome.
 
 | Criterion | Status |
 |---|---|
-| Every interactive element between 28% and 72% of screen height | Enforced. `PRIME` is the intersection of §3 (13–55%) and §15 (28–72%), and `?overlay=1` audits every on-screen tap target live. |
+| Every interactive element between 28% and 72% of screen height | Enforced. `PRIME` is the intersection of §3 (13–55%) and §15 (28–72%); `npm run verify` fails the build on any breach, and `?overlay=1` shows it live on the panel. |
 | Touch targets ≥ 96px (120px if IR) | Enforced by `TapTarget`; keyboard keys are 122px, which is why its rows wrap at eight rather than ten. |
-| No text below 24px | `--text-caption: 24px` is the floor in the scale; nothing smaller is defined. |
+| No text below 24px | `--text-caption: 24px` is the floor in the scale, and `npm run verify` fails on any rendered text below it. |
 | Renders at 2160 × 3840 whatever CSS viewport Android reports | Viewport pinned to `width=1080`. |
 | ≤ 8 decoded images in memory | `Mounted` unmounts off-screen cards; Embla renders a five-slide window. **Verify over ADB on the panel** — this cannot be verified on a desktop. |
 | Survives Wi-Fi disconnection indefinitely | Serwist: precache + cache-first images + navigation fallback. |
 | Picks up a new deploy within one reload | Worker updates on a 15-minute heartbeat, on reconnect, and on the five-tap gesture. |
 | 90s idle → attract loop, state cleared | `IdleProvider`: router home, scroll containers reset. |
-| Language toggle flips every visible string | All copy is `{ en, pt }`. |
+| Language toggle flips every visible string | All copy is `{ en, pt }`, and every screen is verified in both. |
 | Gallery at a steady 60fps on the panel's SoC | **Unverified — Phase 0/2 on the panel.** |
 | No browser chrome, scrollbars, cursor, selection, context menu | Kiosk reset in `app/globals.css`, plus Fully Kiosk settings above. |
 | Relaunch within 5s of a kill | Fully Kiosk setting. |
 | Readable and reachable from 60cm | **Unverified — needs a person standing at the panel.** |
 
-## 8. Decisions worth knowing about
+## 8. Look
+
+Warm off-white ground (`#FAF8F3`), near-black warm ink, **Cormorant Garamond**
+set light at display sizes and at 500 on the 24px floor.
+
+The typeface is self-hosted from npm and bundled into the app, not fetched from
+Google Fonts — a kiosk that loses Wi-Fi must not lose its typography. This also
+fixes a bug that was invisible from a desktop: the previous Optima/Palatino
+stack does not exist on Android, so the panel had been falling back to Noto
+Serif the whole time.
+
+Two consequences of a light ground worth knowing:
+
+- **Type over photography stays light.** Full-bleed heroes, the Craft stages and
+  the attract loop set their type in `--color-on-media` over `.media-scrim`. A
+  light-ground app still puts light type on a photograph, because it is the only
+  thing that reads over an image whose tone nobody controls.
+- **The navigation bar is frosted, not solid.** On the light ground it is
+  invisible; over a full-bleed photograph at 45% an opaque band would cut the
+  image in half.
+
+One thing to watch on site: the panel is glossy at 300–350 nits, and a light
+screen is the state most likely to mirror the showroom back at the visitor. The
+off-white keeps almost all the brightness with less bloom, but position the
+totem away from the window wall regardless, and budget €60 for anti-glare film.
+
+## 9. Decisions worth knowing about
 
 **The reach envelope is 28%–55%, not 13%–55%.** §3 and §15 of the brief give
 different numbers. This build uses the intersection so both are satisfied
@@ -164,23 +206,34 @@ costs one flick.
 measure is 38% of the panel. Any looser and the bar at 45% cuts three cities out
 of the middle of a list whose whole point is an uninterrupted sweep.
 
+**The contact form advances rather than letting you pick a field.** Two tappable
+field rows plus a 120px keyboard plus an actions row is 1010px of content in the
+845px the reach envelope allows. Something had to give, and it should not be key
+size on an IR panel — so the fields are display, and one forward button moves
+name → email → send. With two fields in an obvious order this costs nothing and
+buys back 240px.
+
 **Craft is reached from the end of the collection,** not from the nav. The brief
 allows three nav items and Craft is not one of them, so it closes the stack —
 the reward for scrolling to the bottom.
 
-## 9. Open — needs the studio or the panel
+## 10. Open — needs the studio or the panel
 
-1. **Brand tokens are provisional.** `config/brand.ts` carries the brief's own
-   direction (deep warm neutral, one serif, sentence case) because
-   viterbointeriordesign.com is not reachable from the build environment. Read
-   the live site's computed `font-family` and colours, drop the webfont into
-   `public/fonts/`, and replace that one file.
+1. **The palette is close, not sourced.** viterbointeriordesign.com is not
+   reachable from the build environment, so the ground and ink were matched to a
+   reference rather than sampled from the live site. If the studio licenses its
+   own face, drop the files in `public/fonts/`, add the @font-face rules, and
+   change `typeface.stack` in `config/brand.ts` — nothing else in the app names
+   a typeface or a colour.
 2. **All copy is draft.** Structure is final; the words have not been through
    the studio.
 3. **All imagery is placeholder.** See §4.
-4. **Phase 0 is not done.** Touch type, CSS viewport, frame rate, codec choice
-   and the mounting height are all still assumptions.
-5. **Glare and plinth.** The panel is glossy at 300–350 nits and ships as a
-   black signage totem on visible castors. Neither affects this code, and both
-   are cheaper to plan before the screen is standing next to the cabinet of
-   curiosities.
+4. **Phase 0 confirms rather than decides.** The app is built to the brief's
+   figures and `npm run verify` holds it to them. `/panel-diagnostics.html`
+   still exists to check them against the real panel — frame rate and the
+   AVIF/WebP choice in particular can only be answered by the SoC — and any
+   figure it contradicts is a one-line edit in `config/panel.ts` or
+   `config/layout.ts` followed by one command.
+5. **The plinth.** The unit ships as a black signage totem on visible castors.
+   It does not affect this code, and it is cheaper to plan before the screen is
+   standing next to the cabinet of curiosities.

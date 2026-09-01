@@ -1,19 +1,44 @@
 /**
- * Panel facts and contingencies.
+ * The panel, as specified — and the operating values the app is laid out
+ * against.
  *
- * Everything the brief marks Unconfirmed lives here as a single flag so that
- * confirming it on site is a one-line edit, never a rewrite. Run
- * `/panel-diagnostics.html` on the panel (Phase 0) and set these from what it
- * reports — do not lay out a screen against assumed numbers.
+ * These are not placeholders. `npm run verify` renders every screen at this
+ * geometry and asserts the layout honours them, so changing a number here
+ * changes what the app is held to. `/panel-diagnostics.html` remains available
+ * to re-measure on site, and any figure it contradicts is a one-line edit.
  */
+
+export const PHYSICAL = {
+  diagonalInches: 43,
+  /** Native 3840 × 2160, mounted portrait. Aspect is exactly 9:16. */
+  nativeWidth: 2160,
+  nativeHeight: 3840,
+  /** Active glass in the mounted orientation. */
+  glassWidthCm: 53.6,
+  glassHeightCm: 95.2,
+  /** 60Hz. Target 60fps, never aim higher. */
+  refreshHz: 60,
+  /**
+   * The CSS space the viewport meta pins, whatever density Android reports
+   * (§5). Every type size in the brief is written for this space.
+   */
+  cssWidth: 1080,
+  cssHeight: 1920,
+} as const;
+
+/** ~102 ppi over a 37.5" × 21.1" panel — a soft image is visible at 60cm. */
+export const PPI = Math.round(
+  Math.hypot(PHYSICAL.nativeWidth, PHYSICAL.nativeHeight) / PHYSICAL.diagonalInches,
+);
 
 export type TouchType = 'ir' | 'pcap';
 
 export const PANEL = {
   /**
-   * UNCONFIRMED until diagnostics. `ir` is the conservative assumption for a
-   * totem at this price: it degrades gracefully on a PCAP panel, where the
-   * reverse is not true.
+   * IR, per the brief: likely on a totem at this price, and the conservative
+   * choice either way — an IR-built interface degrades gracefully on a PCAP
+   * panel, where the reverse is not true. Switching to 'pcap' restores pinch
+   * zoom and drops targets to 96px, and nothing else changes.
    */
   touchType: 'ir' as TouchType,
 

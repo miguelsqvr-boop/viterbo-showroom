@@ -10,9 +10,11 @@
     "typecheck": "tsc --noEmit",
     "media:placeholders": "tsx scripts/generate-placeholders.ts",
     "media:process": "tsx scripts/process-images.ts",
-    "media:qr": "tsx scripts/generate-qr.ts"
+    "media:qr": "tsx scripts/generate-qr.ts",
+    "verify": "tsx scripts/verify-panel.ts"
   },
   "dependencies": {
+    "@fontsource-variable/cormorant-garamond": "^5.3.0",
     "embla-carousel-react": "^8.5.2",
     "framer-motion": "^11.15.0",
     "next": "^15.1.6",
@@ -26,6 +28,7 @@
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
+    "playwright": "^1.62.1",
     "qrcode": "^1.5.4",
     "serwist": "^9.0.11",
     "sharp": "^0.33.5",

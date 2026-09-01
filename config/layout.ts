@@ -1,17 +1,17 @@
 /**
  * The reach zone (§3) — the governing constraint of this build.
  *
- * The unit is a 181cm floor-standing totem; the 95.2cm panel spans roughly
- * 82cm to 177cm off the floor. Comfortable touch is 100–165cm, comfortable
- * gaze is 125–177cm, and the overlap is 125–165cm — which on this panel is
- * 13% to 55% down from the top.
+ * The unit is a 181cm floor-standing totem; the 95.2cm panel spans 82cm to
+ * 177cm off the floor. Comfortable touch is 100–165cm, comfortable gaze is
+ * 125–177cm, and the overlap is 125–165cm — which on this panel is 13% to 55%
+ * down from the top.
  *
- * MEASURE ON ARRIVAL. Floor to the bottom of the active glass settles it. If
- * SCREEN_BOTTOM_CM differs by more than 5cm from the derived value, change the
- * two constants below and every band in the app recomputes.
+ * The whole geometry hangs off the two numbers below. Change either and every
+ * band in the app recomputes; `npm run verify` then re-checks every screen
+ * against the new bands, so a re-measurement on site is a one-line edit
+ * followed by one command.
  */
 
-/** Derived from the chassis drawing — confirm with a tape measure (Phase 0). */
 export const SCREEN_BOTTOM_CM = 82;
 export const SCREEN_TOP_CM = 177;
 const SCREEN_SPAN_CM = SCREEN_TOP_CM - SCREEN_BOTTOM_CM;
@@ -44,7 +44,7 @@ export const PRIME = {
 } as const;
 
 /**
- * Fixed chrome (nav bar, back affordance) — §7 puts the bar at roughly 45%
+ * Fixed chrome (nav bar) — §7 puts the bar at roughly 45%
  * from the top, inside the prime band rather than pinned to the bottom edge.
  * On a 181cm totem a bottom-pinned bar lands at 85cm off the floor.
  */

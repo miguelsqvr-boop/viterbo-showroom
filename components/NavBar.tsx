@@ -27,9 +27,16 @@ export function NavBar() {
   ];
 
   return (
+    /*
+     * Frosted rather than solid. On a light ground the bar is invisible, which
+     * is the point — but on the Craft stages and portrait heroes it crosses a
+     * full-bleed photograph at 45%, and an opaque band there cuts the image in
+     * half. Blur keeps the type legible over any tone without the chrome
+     * becoming the thing you look at.
+     */
     <nav
       data-chrome
-      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/85 px-12 backdrop-blur-[2px]"
+      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-12 backdrop-blur-[18px]"
       style={{ top: `${CHROME.barTop}%`, height: `${CHROME.barHeight}%` }}
     >
       {/*

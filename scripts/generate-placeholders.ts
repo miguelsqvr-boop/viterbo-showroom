@@ -26,14 +26,18 @@ const DIMS = {
   square: [2160, 2160],
 } as const;
 
-/** Warm interior-ish palettes, cycled so consecutive plates read differently. */
+/**
+ * Warm interior-ish palettes, cycled so consecutive plates read differently.
+ * Pitched light: these sit on a warm off-white ground, and dark plates would
+ * misrepresent how real photography will weigh on the page.
+ */
 const PALETTES: Array<[string, string, string]> = [
-  ['#2b241c', '#6b5844', '#c8b394'],
-  ['#1d2220', '#4a5a55', '#a8bdb2'],
-  ['#2a1f1f', '#7a5248', '#d0a892'],
-  ['#232532', '#4f5570', '#a9b0cb'],
-  ['#2d2820', '#7b6c4a', '#ddc99a'],
-  ['#211c1e', '#5c4a55', '#b6a0ad'],
+  ['#8d7a63', '#c3b096', '#efe6d6'],
+  ['#6f817a', '#a9bcb2', '#e2ece5'],
+  ['#9a7466', '#cfa895', '#f3e2d6'],
+  ['#6f7690', '#a8b0c8', '#e4e7f0'],
+  ['#8f8058', '#ccbb8c', '#f2ead2'],
+  ['#7d6a76', '#b6a2ae', '#ece2e8'],
 ];
 
 function plateSvg(w: number, h: number, i: number, label: string) {
@@ -49,15 +53,15 @@ function plateSvg(w: number, h: number, i: number, label: string) {
     </linearGradient>
     <radialGradient id="v" cx="50%" cy="42%" r="78%">
       <stop offset="55%" stop-color="#000" stop-opacity="0"/>
-      <stop offset="100%" stop-color="#000" stop-opacity="0.45"/>
+      <stop offset="100%" stop-color="#000" stop-opacity="0.22"/>
     </radialGradient>
   </defs>
   <rect width="${w}" height="${h}" fill="url(#g)"/>
-  <rect x="${w * 0.08}" y="${h * 0.12}" width="${w * 0.34}" height="${h * 0.62}" fill="#000" opacity="0.10"/>
-  <rect x="${w * 0.52}" y="${h * 0.3}" width="${w * 0.4}" height="${h * 0.5}" fill="#fff" opacity="0.06"/>
+  <rect x="${w * 0.08}" y="${h * 0.12}" width="${w * 0.34}" height="${h * 0.62}" fill="#000" opacity="0.07"/>
+  <rect x="${w * 0.52}" y="${h * 0.3}" width="${w * 0.4}" height="${h * 0.5}" fill="#fff" opacity="0.16"/>
   <rect width="${w}" height="${h}" fill="url(#v)"/>
   <text x="${w * 0.06}" y="${h - h * 0.06}" font-family="Helvetica, Arial, sans-serif"
-        font-size="${fs}" fill="#fff" fill-opacity="0.5" letter-spacing="${fs * 0.12}">
+        font-size="${fs}" fill="#1a1815" fill-opacity="0.4" letter-spacing="${fs * 0.12}">
     PLACEHOLDER · ${label.toUpperCase()}
   </text>
 </svg>`;

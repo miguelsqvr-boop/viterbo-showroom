@@ -77,7 +77,7 @@ function Key({
       data-tap-target
       aria-label={label}
       onPointerUp={press}
-      className="press flex items-center justify-center rounded-[6px] bg-ground-raised text-meta text-ink"
+      className="press flex items-center justify-center rounded-[6px] border border-hairline bg-ground-raised text-meta text-ink"
       style={{ width: KEY * span + GAP * (span - 1), height: Math.max(KEY, PANEL.minTouchTarget) }}
     >
       {label}

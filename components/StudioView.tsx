@@ -23,9 +23,14 @@ export function StudioView() {
         <MediaFrame media={STUDIO.image} mode="band" priority className="h-full w-full" />
       </div>
 
-      <div className="absolute inset-x-0 px-14" style={{ top: '27%' }}>
+      {/*
+        * 24%, not 27%: the figures line has to clear the bar at 45% with the
+        * longer of the two languages set in it. Portuguese is the binding
+        * constraint here, as it usually is.
+        */}
+      <div className="absolute inset-x-0 px-14" style={{ top: '24%' }}>
         <p className="max-w-[900px] text-body text-ink">{s(STUDIO.body)}</p>
-        <p className="mt-8 text-body text-ink-muted">{s(STUDIO.figures)}</p>
+        <p className="mt-6 text-body text-ink-muted">{s(STUDIO.figures)}</p>
       </div>
 
       {/*

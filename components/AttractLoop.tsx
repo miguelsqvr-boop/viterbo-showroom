@@ -117,7 +117,7 @@ export function AttractLoop() {
           >
             <MediaFrame media={frame.media} mode="bleed" priority className="h-full w-full" />
           </motion.div>
-          <div className="absolute inset-0 bg-gradient-to-b from-black/10 via-transparent to-black/55" />
+          <div className="media-scrim absolute inset-0" />
         </motion.div>
       </AnimatePresence>
 
@@ -127,7 +127,7 @@ export function AttractLoop() {
         style={{ top: `${PRIME.top}%`, height: `${PRIME.bottom - PRIME.top}%` }}
       >
         <motion.span
-          className="text-body tracking-[0.24em] text-ink/85"
+          className="text-body tracking-[0.24em] text-on-media"
           animate={{ opacity: [0.45, 0.95, 0.45] }}
           transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
         >
@@ -140,7 +140,7 @@ export function AttractLoop() {
         <AnimatePresence mode="wait">
           <motion.p
             key={frame.place}
-            className="px-14 text-section text-ink"
+            className="px-14 text-section text-on-media"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}

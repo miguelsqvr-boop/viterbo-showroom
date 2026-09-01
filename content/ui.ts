@@ -34,6 +34,7 @@ export const UI = {
   name: { en: 'Name', pt: 'Nome' },
   email: { en: 'Email', pt: 'Email' },
   send: { en: 'Send', pt: 'Enviar' },
+  next: { en: 'Next', pt: 'Seguinte' },
   sending: { en: 'Sending', pt: 'A enviar' },
   sent: { en: 'Thank you. The studio will be in touch.', pt: 'Obrigado. O estúdio entrará em contacto.' },
   queued: { en: 'Saved. It will send when the screen is back online.', pt: 'Guardado. Será enviado quando o ecrã voltar a estar online.' },

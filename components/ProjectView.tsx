@@ -77,7 +77,7 @@ export function ProjectView({ project }: { project: Project }) {
               <div className="absolute inset-0">
                 <MediaFrame media={project.hero} mode="bleed" priority className="h-full w-full" />
               </div>
-              <div className="absolute inset-0 bg-gradient-to-b from-black/45 via-black/10 to-black/70" />
+              <div className="media-scrim absolute inset-0" />
             </>
           ) : (
             /*
@@ -92,9 +92,17 @@ export function ProjectView({ project }: { project: Project }) {
             </div>
           )}
 
+          {/*
+           * A full-bleed hero carries its own scrim, so its type is light —
+           * a light-ground app still sets light type on a photograph, because
+           * it is the only thing that reads over an image whose tone nobody
+           * controls. A banded hero sits on the ground and takes ink.
+           */}
           <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '29%' : '32%' }}>
-            <h1 className="text-hero">{s(project.name)}</h1>
-            <p className="mt-4 text-meta text-ink-muted">
+            <h1 className={`text-hero ${heroIsPortrait ? 'text-on-media' : 'text-ink'}`}>
+              {s(project.name)}
+            </h1>
+            <p className={`mt-4 text-meta ${heroIsPortrait ? 'text-on-media/80' : 'text-ink-muted'}`}>
               {s(project.location)} · {s(project.typology)}
               {project.year ? ` · ${project.year}` : ''}
             </p>

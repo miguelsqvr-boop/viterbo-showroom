@@ -9,6 +9,7 @@ import { PRIME } from '@/config/layout';
 import { useDoubleTap } from '@/lib/tap';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
+import { TapTarget } from './TapTarget';
 
 /**
  * Full view (§8) — full bleed on black, swipe left/right, tap to close.
@@ -93,29 +94,40 @@ export function FullView({
         </div>
       </div>
 
-      {/* Counter and the zoom hint, kept inside the band so they are legible standing. */}
+      {/*
+       * Counter, hint and a real close button, all inside the reach envelope.
+       * Tapping the image closes too, but a gesture nobody is told about is
+       * not an affordance — and the label it replaced was 16px and invisible.
+       */}
       <div
-        className="pointer-events-none absolute inset-x-0 flex items-end justify-between px-14"
-        style={{ top: `${PRIME.bottom + 10}%` }}
+        className="absolute inset-x-0 flex items-center justify-between px-14"
+        style={{ top: `${PRIME.bottom + 3}%` }}
       >
         <span className="text-caption text-white/60">
           {selected + 1} / {items.length}
         </span>
-        <AnimatePresence>
-          {!PANEL.enablePinchZoom && !zoomed ? (
-            <motion.span
-              className="text-caption text-white/45"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-            >
-              {t('zoomHint')}
-            </motion.span>
-          ) : null}
-        </AnimatePresence>
+        <div className="flex items-center gap-10">
+          <AnimatePresence>
+            {!PANEL.enablePinchZoom && !zoomed ? (
+              <motion.span
+                className="text-caption text-white/45"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+              >
+                {t('zoomHint')}
+              </motion.span>
+            ) : null}
+          </AnimatePresence>
+          <TapTarget
+            label={t('close')}
+            onTap={onClose}
+            className="justify-center rounded-[6px] border border-white/25 px-10"
+          >
+            <span className="text-caption text-white/80">{t('close')}</span>
+          </TapTarget>
+        </div>
       </div>
-
-      <span className="sr-only">{t('close')}</span>
     </motion.div>
   );
 }

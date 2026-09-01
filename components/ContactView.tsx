@@ -125,40 +125,40 @@ function ContactForm({ onClose }: { onClose: () => void }) {
         </div>
       ) : (
         <>
-          <div className="absolute inset-x-0 px-14" style={{ top: '16%' }}>
+          {/*
+           * The fields are display, not targets.
+           *
+           * Two tappable field rows plus a 120px keyboard plus an actions row
+           * is 1010px of content in the 845px the reach envelope allows, so
+           * something had to give — and it should not be the key size on an IR
+           * panel. Advancing with one forward button instead of letting the
+           * visitor pick a field costs nothing here (there are two fields, in
+           * an obvious order) and buys back 240px.
+           */}
+          <div className="absolute inset-x-0 px-14" style={{ top: '15%' }}>
             {(['name', 'email'] as const).map((key) => (
-              <TapTarget
+              <div
                 key={key}
-                full
-                label={t(key)}
-                onTap={() => setField(key)}
-                className="border-b px-0"
+                className="flex w-full items-baseline gap-6 py-5"
+                style={{
+                  borderBottom:
+                    field === key
+                      ? '2px solid var(--color-accent)'
+                      : '1px solid var(--color-hairline)',
+                }}
               >
-                <div
-                  className="flex w-full items-baseline gap-6 py-4"
-                  style={{
-                    borderBottom:
-                      field === key ? '2px solid var(--color-accent)' : '1px solid var(--color-hairline)',
-                  }}
-                >
-                  <span className="w-[180px] text-caption text-ink-faint">{t(key)}</span>
-                  <span className="text-body text-ink">
-                    {values[key]}
-                    {field === key ? <Caret /> : null}
-                  </span>
-                </div>
-              </TapTarget>
+                <span className="w-[180px] text-caption text-ink-faint">{t(key)}</span>
+                <span className="text-body text-ink">
+                  {values[key]}
+                  {field === key ? <Caret /> : null}
+                </span>
+              </div>
             ))}
             {state === 'invalid' ? (
               <p className="mt-4 text-caption text-accent">{t('formInvalid')}</p>
             ) : null}
           </div>
 
-          {/*
-           * Fields, keys and actions all sit between 16% and 71%: the keyboard
-           * is a modal, so it may use the top of the band that the nav bar
-           * occupies elsewhere, and nothing in it falls past the 72% floor.
-           */}
           <div className="absolute inset-x-0" style={{ top: '30%' }}>
             <Keyboard
               mode={field === 'email' ? 'email' : 'text'}
@@ -174,15 +174,28 @@ function ContactForm({ onClose }: { onClose: () => void }) {
             <TapTarget label={t('close')} onTap={onClose} className="px-8">
               <span className="text-meta text-ink-faint">{t('close')}</span>
             </TapTarget>
-            <TapTarget
-              label={t('send')}
-              onTap={() => void send()}
-              className="justify-center rounded-[6px] border border-hairline px-12"
-            >
-              <span className="text-meta" style={{ color: valid ? 'var(--color-ink)' : 'var(--color-ink-faint)' }}>
-                {state === 'sending' ? t('sending') : t('send')}
-              </span>
-            </TapTarget>
+            <div className="flex items-center gap-6">
+              {field === 'email' ? (
+                <TapTarget label={t('back')} onTap={() => setField('name')} className="px-8">
+                  <span className="text-meta text-ink-faint">{t('back')}</span>
+                </TapTarget>
+              ) : null}
+              <TapTarget
+                label={field === 'name' ? t('next') : t('send')}
+                onTap={() => (field === 'name' ? setField('email') : void send())}
+                className="justify-center rounded-[6px] border border-hairline px-12"
+              >
+                <span
+                  className="text-meta"
+                  style={{
+                    color:
+                      field === 'name' || valid ? 'var(--color-ink)' : 'var(--color-ink-faint)',
+                  }}
+                >
+                  {state === 'sending' ? t('sending') : field === 'name' ? t('next') : t('send')}
+                </span>
+              </TapTarget>
+            </div>
           </div>
         </>
       )}
