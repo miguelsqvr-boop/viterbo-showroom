@@ -6,7 +6,7 @@ import { plate } from './generated/placeholder-media';
 export const STUDIO = {
   body: {
     en: 'Viterbo has worked from Cascais since 1979, and is now in its second generation: Miguel Vieira da Rocha on strategy and management, Gracinha Viterbo on creative direction. The studio takes a project from master planning through interior architecture to interior design, and does not hand it over in between.',
-    pt: 'A Viterbo trabalha desde Cascais desde 1979 e está na sua segunda geração: Miguel Vieira da Rocha na estratégia e gestão, Gracinha Viterbo na direção criativa. O estúdio acompanha um projeto do plano geral à arquitetura de interiores e ao design de interiores, sem o entregar a meio.',
+    pt: 'A Viterbo trabalha a partir de Cascais desde 1979 e está na sua segunda geração: Miguel Vieira da Rocha na estratégia e gestão, Gracinha Viterbo na direção criativa. O estúdio acompanha um projeto do plano geral à arquitetura de interiores e ao design de interiores, sem o entregar a meio.',
   } satisfies Localized,
 
   /**

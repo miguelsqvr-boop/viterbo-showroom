@@ -1,6 +1,7 @@
 'use client';
 
 import { PANEL } from '@/config/panel';
+import { useLocale } from '@/lib/locale';
 import { useTap } from '@/lib/tap';
 
 /**
@@ -31,6 +32,7 @@ export function Keyboard({
   onSpace: () => void;
   mode: 'text' | 'email';
 }) {
+  const { t } = useLocale();
   return (
     <div className="select-none" style={{ paddingInline: 24 }}>
       {ROWS.map((row) => (
@@ -44,7 +46,7 @@ export function Keyboard({
       <div className="flex justify-center" style={{ gap: GAP, marginBottom: GAP }}>
         <Key label="n" onPress={() => onKey('n')} />
         <Key label="m" onPress={() => onKey('m')} />
-        <Key label="space" onPress={onSpace} span={2} />
+        <Key label={t('spaceKey')} onPress={onSpace} span={2} />
         <Key label="⌫" onPress={onBackspace} span={2} />
       </div>
 

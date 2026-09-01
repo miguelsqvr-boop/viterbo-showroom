@@ -30,9 +30,13 @@ import { spawn, type ChildProcess } from 'node:child_process';
 import { PANEL, PHYSICAL } from '../config/panel';
 import { CHROME, PRIME } from '../config/layout';
 import { COLLECTION } from '../config/layout';
-import { LOCALES, type Locale } from '../content/types';
+import { LOCALES, type Locale, type Localized } from '../content/types';
 import { PROJECTS_IN_ORDER } from '../content/projects';
-import { CRAFT_STAGES } from '../content/craft';
+import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '../content/craft';
+import { STUDIO } from '../content/studio';
+import { CONTACT } from '../content/contact';
+import { UI } from '../content/ui';
+import { BRAND } from '../config/brand';
 
 /** Chromium ships with the image; Playwright's own download is disabled. */
 const EXECUTABLE = process.env.CHROMIUM_PATH ?? '/opt/pw-browsers/chromium-1194/chrome-linux/chrome';
@@ -41,6 +45,55 @@ const ENVELOPE = { top: 28, bottom: 72 } as const;
 const TYPE_FLOOR = 24;
 
 type Violation = { view: string; locale: Locale; rule: string; detail: string };
+
+/**
+ * Strings that are legitimately the same in both languages.
+ *
+ * Derived from the content model rather than hand-listed: any Localized field
+ * whose two halves are already identical is, by definition, meant to be. Add
+ * proper nouns — cities, collaborators, publication marks — and everything
+ * left over that renders identically in EN and PT is a string that never went
+ * through the locale layer.
+ */
+function identicalByDesign(): Set<string> {
+  const allowed = new Set<string>();
+  const consider = (value: Localized) => {
+    if (value.en === value.pt) allowed.add(value.en);
+  };
+
+  Object.values(UI).forEach(consider);
+  PROJECTS_IN_ORDER.forEach((project) => {
+    [project.name, project.location, project.typology, project.narrative].forEach(consider);
+    if (project.scope) consider(project.scope);
+    if (project.area) allowed.add(project.area);
+    if (project.architect) allowed.add(project.architect);
+  });
+  CRAFT_STAGES.forEach((stage) => {
+    consider(stage.title);
+    consider(stage.line);
+  });
+  consider(STUDIO.body);
+  consider(STUDIO.figures);
+  STUDIO.awards.forEach((award) => {
+    allowed.add(award.mark);
+    consider(award.note);
+  });
+  CITIES.forEach((city) => allowed.add(city));
+  COLLABORATIONS.forEach((collaboration) => {
+    allowed.add(collaboration.name);
+    consider(collaboration.note);
+  });
+  CONTACT.address.forEach((line) => allowed.add(line));
+  [CONTACT.phone, CONTACT.email, BRAND.wordmark, 'EN', 'PT'].forEach((value) =>
+    allowed.add(value),
+  );
+  return allowed;
+}
+
+/** Text that carries no language: keys, counters, years, separators. */
+function languageless(text: string): boolean {
+  return text.length <= 4 || /^[\d\s/·—–-]+$/.test(text);
+}
 
 type View = {
   name: string;
@@ -112,10 +165,17 @@ async function tap(page: Page, text?: RegExp, selector = '[data-tap-target]') {
   await page.waitForTimeout(350);
 }
 
-async function audit(page: Page): Promise<Array<{ rule: string; detail: string }>> {
+type AuditResult = {
+  violations: Array<{ rule: string; detail: string }>;
+  /** Every string rendered on this view, for the cross-locale comparison. */
+  texts: string[];
+};
+
+async function audit(page: Page): Promise<AuditResult> {
   return page.evaluate(
     ({ envelope, typeFloor, minTarget, cssWidth, chrome }) => {
       const found: Array<{ rule: string; detail: string }> = [];
+      const texts: string[] = [];
       const height = window.innerHeight;
       const visible = (box: DOMRect) =>
         box.width > 0 && box.height > 0 && box.bottom > 0 && box.top < height;
@@ -155,6 +215,8 @@ async function audit(page: Page): Promise<Array<{ rule: string; detail: string }
         const box = el.getBoundingClientRect();
         if (!visible(box)) return;
 
+        texts.push(ownText);
+
         const size = parseFloat(style.fontSize);
         if (size < typeFloor - 0.01) {
           found.push({ rule: 'type floor', detail: `${size}px on "${ownText.slice(0, 40)}"` });
@@ -185,7 +247,7 @@ async function audit(page: Page): Promise<Array<{ rule: string; detail: string }
         found.push({ rule: 'viewport', detail: `expected width=${cssWidth}, got "${meta}"` });
       }
 
-      return found;
+      return { violations: found, texts };
     },
     {
       envelope: ENVELOPE,
@@ -197,7 +259,12 @@ async function audit(page: Page): Promise<Array<{ rule: string; detail: string }
   );
 }
 
-async function run(browser: Browser, base: string, view: View, locale: Locale): Promise<Violation[]> {
+async function run(
+  browser: Browser,
+  base: string,
+  view: View,
+  locale: Locale,
+): Promise<{ violations: Violation[]; texts: string[] }> {
   const context = await browser.newContext({
     viewport: { width: PHYSICAL.cssWidth, height: PHYSICAL.cssHeight },
     deviceScaleFactor: PHYSICAL.nativeWidth / PHYSICAL.cssWidth,
@@ -247,10 +314,18 @@ async function run(browser: Browser, base: string, view: View, locale: Locale): 
     if (view.prepare) await view.prepare(page);
     await page.waitForTimeout(300);
 
-    const found = await audit(page);
-    return found.map((item) => ({ view: view.name, locale, ...item }));
+    const result = await audit(page);
+    return {
+      violations: result.violations.map((item) => ({ view: view.name, locale, ...item })),
+      texts: result.texts,
+    };
   } catch (error) {
-    return [{ view: view.name, locale, rule: 'crashed', detail: String(error).slice(0, 200) }];
+    return {
+      violations: [
+        { view: view.name, locale, rule: 'crashed', detail: String(error).slice(0, 200) },
+      ],
+      texts: [],
+    };
   } finally {
     await context.close();
   }
@@ -289,15 +364,46 @@ async function main() {
         `(${PHYSICAL.nativeWidth}×${PHYSICAL.nativeHeight} physical, ${PANEL.touchType}, ` +
         `${PANEL.minTouchTarget}px targets, prime ${PRIME.top}–${PRIME.bottom}%)\n\n`,
     );
+    const allowed = identicalByDesign();
     for (const view of views()) {
+      const rendered = new Map<Locale, string[]>();
+      let breaches = 0;
       for (const locale of LOCALES) {
-        const found = await run(browser, base, view, locale);
-        violations.push(...found);
-        process.stdout.write(
-          `  ${found.length === 0 ? '·' : '✗'} ${view.name} [${locale}]` +
-            `${found.length ? ` — ${found.length}` : ''}\n`,
-        );
+        const result = await run(browser, base, view, locale);
+        violations.push(...result.violations);
+        breaches += result.violations.length;
+        rendered.set(locale, result.texts);
       }
+
+      /*
+       * Anything rendered identically in both languages that the content model
+       * does not say is meant to be identical is a string that never went
+       * through the locale layer. This is what catches a hardcoded English
+       * label — the one failure mode a screenshot in a single language can
+       * never show you.
+       */
+      const pt = new Set(rendered.get('pt') ?? []);
+      const untranslated = new Set<string>();
+      (rendered.get('en') ?? []).forEach((text) => {
+        if (!pt.has(text)) return;
+        const parts = text.split('·').map((part) => part.trim()).filter(Boolean);
+        parts.forEach((part) => {
+          if (!languageless(part) && !allowed.has(part)) untranslated.add(part);
+        });
+      });
+      untranslated.forEach((text) => {
+        violations.push({
+          view: view.name,
+          locale: 'pt',
+          rule: 'untranslated',
+          detail: `"${text}" renders identically in both languages`,
+        });
+        breaches += 1;
+      });
+
+      process.stdout.write(
+        `  ${breaches === 0 ? '·' : '✗'} ${view.name}${breaches ? ` — ${breaches}` : ''}\n`,
+      );
     }
   } finally {
     await browser.close();
