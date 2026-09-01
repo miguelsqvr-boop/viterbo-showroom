@@ -71,9 +71,15 @@ Built around a collection of Warhol's *Endangered Species* prints.
   when the high-res is pulled; if it falls short, say so rather than ship a
   soft hero on a 102 ppi panel viewed from 60cm.
 
-## 6. Seafront Apartment — Rio de Janeiro, 2014
+## 6. Seafront Apartment — Rio de Janeiro — Fran Parente, 2014
 
-Not yet reviewed. Same vintage as Singapore — check resolution.
+Seven frames only. Brazilian modernism read through a Portuguese eye: Wishbone
+chairs, paper pendants, a red painting, the beach through the glass.
+
+- **Hero — 02.** The living room with the beach and palms through full-height
+  glass. Landscape, so it takes the band.
+- **Gallery — 03, 01, 05, 06.**
+- **Attract — 02.** The beachfront is what says Rio.
 
 ## 7. Porto Villa — José Manuel Ferrão, 2023
 
@@ -129,7 +135,17 @@ The richest set in the archive so far, and the only one with real landscape.
 
 ## 13. Cabana Sass — Algarve — Francisco Almeida Dias, 2026
 
-Not yet reviewed.
+**Not a beach house — a beach restaurant.** The folder holds `Restaurante` and
+`Retratos` subfolders, and the typology in content/projects.ts has been
+corrected accordingly. Timber, rattan and dried palm throughout, with the
+Atlantic along one whole side.
+
+- **Hero — 03.** A dried-palm installation filling a timber doorway. Portrait,
+  and the most striking single frame in the whole archive so far.
+- **Gallery — 04, 08, 07, 10.** The dining room under rattan pendants open to
+  the sea; the open kitchen counter in earthenware; pampas and dried palm on a
+  table; the long room running to the water.
+- **Attract — 04.**
 
 ---
 

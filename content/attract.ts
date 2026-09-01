@@ -18,14 +18,14 @@ const img = (key: string, en: string, pt: string): Media =>
 export const ATTRACT: AttractFrame[] = [
   { media: img('castilho-203/hero', 'An indoor pool lined in travertine, Lisboa', 'Uma piscina interior revestida a travertino, Lisboa'), place: 'Lisboa', country: 'PT' },
   { media: img('chelsea/attract', 'A white stucco townhouse behind area railings, London', 'Uma casa de estuque branco atrás de gradeamento, Londres'), place: 'London', country: 'GB' },
-  { media: asMedia(plate('cabana-sass-hero')), place: 'Algarve', country: 'PT' },
+  { media: img('cabana-sass/attract', 'A beach restaurant open to the Atlantic, Algarve', 'Um restaurante de praia aberto ao Atlântico, Algarve'), place: 'Algarve', country: 'PT' },
   { media: img('singapore-penthouse/03', 'A living room against the city skyline, Singapore', 'Uma sala de estar contra a linha da cidade, Singapura'), place: 'Singapore', country: 'SG' },
   { media: img('hotel-albatroz/hero', 'A striped stair hall above an azulejo dado, Cascais', 'Uma escadaria às riscas sobre um lambril de azulejo, Cascais'), place: 'Cascais', country: 'PT' },
   { media: asMedia(plate('bangkok-estate-hero')), place: 'Bangkok', country: 'TH' },
   { media: asMedia(plate('porto-villa-hero')), place: 'Porto', country: 'PT' },
   { media: img('tuscany-estate/attract', 'Wheat and cypresses on the estate, Tuscany', 'Trigo e ciprestes na propriedade, Toscana'), place: 'Tuscany', country: 'IT' },
   { media: asMedia(plate('estoril-estate-hero')), place: 'Estoril', country: 'PT' },
-  { media: asMedia(plate('rio-de-janeiro-hero')), place: 'Rio de Janeiro', country: 'BR' },
+  { media: img('rio-de-janeiro/hero', 'A living room with the beach beyond, Rio de Janeiro', 'Uma sala de estar com a praia ao fundo, Rio de Janeiro'), place: 'Rio de Janeiro', country: 'BR' },
 ];
 
 /** Dev guard: two frames from the same country must never sit next to each other. */
