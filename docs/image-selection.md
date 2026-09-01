@@ -87,8 +87,18 @@ Not yet reviewed.
 
 ## 8. Bangkok Estate — Sean Myers, 2016
 
-Not yet reviewed. Three folders (public areas, penthouse 1, penthouse 2) are
-one project and should be selected across all three.
+Public areas reviewed (13 frames); the two penthouse folders are still to
+look at and may add to the gallery. Gilded, double-height, brass and gold leaf.
+
+- **Hero — 02.** The double-height public room. Landscape, so it takes the
+  band, but it is the frame that conveys the scale — which is the whole point
+  of this project on this screen.
+- **Gallery — 03, 07, 10, 12.** A corridor in brass and onyx; a red lacquer
+  cabinet against a blossom mural; a wall of curiosities in brass frames; the
+  long room with leather chesterfields.
+- **Attract — 02.**
+- **Note.** Frame 10 is literally a cabinet-of-curiosities wall, which rhymes
+  with the cabinet the totem stands beside in the showroom.
 
 ## 9. Lisbon Palace — Francisco Nogueira, 2020
 
@@ -117,7 +127,15 @@ one project and should be selected across all three.
 
 ## 11. Estoril Estate — Francisco Nogueira, 2022
 
-Not yet reviewed.
+**Not classic.** The photography is emphatic: hot pink against teal, cobalt
+against yellow, a different decision in every room. Style corrected to
+contemporary-with-a-twist and moved to order 7 in the sweep; Porto Villa takes
+the classic slot it vacated.
+
+- **Hero — 08.** The hot pink dressing room under a brass birdcage mobile.
+  Portrait, and the boldest frame in the archive.
+- **Gallery — 01, 02, 09, 07.**
+- **Attract — 08.**
 
 ## 12. Tuscany Estate — José Manuel Ferrão, 2022
 
