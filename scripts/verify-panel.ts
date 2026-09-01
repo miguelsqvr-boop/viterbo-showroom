@@ -67,6 +67,9 @@ function identicalByDesign(): Set<string> {
     if (project.scope) consider(project.scope);
     if (project.area) allowed.add(project.area);
     if (project.architect) allowed.add(project.architect);
+    // Photographer names are proper nouns — Francisco Nogueira is Francisco
+    // Nogueira in both languages, and that is not a missing translation.
+    if (project.photographer) allowed.add(project.photographer);
   });
   CRAFT_STAGES.forEach((stage) => {
     consider(stage.title);

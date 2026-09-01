@@ -78,9 +78,10 @@ async function main() {
 
   const plates: Plate[] = [];
   const PROJECTS = [
-    'restelo', 'bela-vista', 'comporta-dunes', 'monaco-terrace', 'principe-real',
-    'bangkok-house', 'tuscan-farmhouse', 'london-mews', 'sao-paulo-penthouse',
-    'algarve-cliff', 'madrid-classic', 'singapore-tower',
+    'castilho-203', 'av-republica', 'cascais-seafront', 'chelsea',
+    'singapore-penthouse', 'rio-de-janeiro', 'porto-villa', 'bangkok-estate',
+    'lisbon-palace', 'hotel-albatroz', 'estoril-estate', 'tuscany-estate',
+    'cabana-sass',
   ];
   PROJECTS.forEach((slug, i) => {
     // A handful of heroes genuinely have vertical composition (§4).

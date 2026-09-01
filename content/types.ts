@@ -54,6 +54,12 @@ export type Project = {
   area?: string;
   scope?: Localized;
   architect?: string;
+  /**
+   * The photographer, credited on the facts strip. Interiors photography is
+   * authored work and the archive credits it by name on every shoot; a screen
+   * that shows the pictures should credit them too.
+   */
+  photographer?: string;
   /** Max ~60 words. Not a case study. */
   narrative: Localized;
   hero: Media;
