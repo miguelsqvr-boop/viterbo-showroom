@@ -18,6 +18,7 @@
 export type Brand = {
   id: 'viterbo' | 'indigo';
   wordmark: string;
+  logo: string;
   color: {
     /**
      * Warm off-white rather than pure white. The panel is glossy at 300–350
@@ -51,6 +52,11 @@ export type Brand = {
 export const VITERBO: Brand = {
   id: 'viterbo',
   wordmark: 'Viterbo',
+  /**
+   * The studio's actual mark, from the brand folder in the archive. Charcoal
+   * for the light ground; gold and white are alongside it for other surfaces.
+   */
+  logo: '/brand/viterbo_logo_charcoal.png',
   color: {
     ground: '#faf8f3',
     groundRaised: '#f1ede4',
@@ -58,7 +64,8 @@ export const VITERBO: Brand = {
     inkMuted: 'rgba(26, 24, 21, 0.66)',
     inkFaint: 'rgba(26, 24, 21, 0.44)',
     hairline: 'rgba(26, 24, 21, 0.14)',
-    accent: '#8a7048',
+    /** Sampled from the studio's own logo (public/brand/viterbo_logo_gold.png). */
+    accent: '#b8963e',
     onMedia: '#faf8f3',
   },
   typeface: {
@@ -77,6 +84,7 @@ export const INDIGO: Brand = {
   ...VITERBO,
   id: 'indigo',
   wordmark: 'Indigo',
+  logo: '/brand/viterbo_logo_charcoal.png',
   color: {
     ...VITERBO.color,
     ground: '#f4f6f8',
