@@ -86,7 +86,17 @@ one project and should be selected across all three.
 
 ## 9. Lisbon Palace — Francisco Nogueira, 2020
 
-Not yet reviewed.
+- **Hero — 06.** A pair of lit arched niches lined with hand-painted
+  chinoiserie against a deep grey-green wall. Portrait, and the signature of
+  the place.
+- **Gallery — 05, 03, 09, 17.** The curved velvet sofa in front of those
+  panels; the azulejo-framed bathroom; the yellow-and-blue striped curtains at
+  the window; the floral bedroom.
+- **⚠ Naming.** The folder says "Lisbon Palace" but every file is named
+  `ViterboIvens`, and the shoot is overwhelmingly bedrooms and bathrooms —
+  more guest rooms than private apartment. The studio should confirm what this
+  project is called on the screen before it goes live; the app currently shows
+  "Lisbon Palace", which may be wrong.
 
 ## 10. Hotel Albatroz — Cascais — Francisco Almeida Dias, 2019
 
