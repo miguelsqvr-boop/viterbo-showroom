@@ -81,9 +81,28 @@ chairs, paper pendants, a red painting, the beach through the glass.
 - **Gallery — 03, 01, 05, 06.**
 - **Attract — 02.** The beachfront is what says Rio.
 
-## 7. Porto Villa — José Manuel Ferrão, 2023
+## 7. Porto Villa ("Settes House") — José Manuel Ferrão, 2023
 
-Not yet reviewed.
+**Not classic either.** Pale throughout — cream, oak, white marble — with a
+spiral stair cut through the middle. Style corrected to contemporary and moved
+to order 2.
+
+- **Hero — 03.** The living room in cream and oak with gold pouffes.
+- **Gallery — 02, 06, 08, 09.** The pale sectional under built-in shelving;
+  the spiral stair from above; an abstract panel over a dark console; the
+  marble bathroom.
+- **Attract — 03.**
+- **Note.** Frames 13 and 14 are more Gracinha and Miguel portraits.
+
+### The pattern
+
+Three of the projects reviewed so far were misdescribed by their folder name:
+Cabana Sass (a restaurant, filed as a beach house), Estoril (maximalist, filed
+as classic) and Porto (contemporary, filed as classic). The style sequence in
+content/projects.ts has been rebuilt from what the photography actually shows,
+and now reads contemporary → contemporary with a twist → classic → beach and
+countryside across Lisboa, Porto, Cascais, Lisboa, London, Singapore, Rio,
+Estoril, Bangkok, Lisboa, Cascais, Tuscany, Algarve.
 
 ## 8. Bangkok Estate — Sean Myers, 2016
 

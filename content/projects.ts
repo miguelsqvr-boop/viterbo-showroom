@@ -62,7 +62,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'av-republica',
-    order: 2,
+    order: 4,
     style: 'contemporary',
     name: { en: 'Avenida da República', pt: 'Avenida da República' },
     location: { en: 'Lisboa', pt: 'Lisboa' },
@@ -94,7 +94,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'chelsea',
-    order: 4,
+    order: 5,
     style: 'contemporary-twist',
     name: { en: 'Chelsea', pt: 'Chelsea' },
     location: { en: 'London', pt: 'Londres' },
@@ -116,7 +116,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'singapore-penthouse',
-    order: 5,
+    order: 6,
     style: 'contemporary-twist',
     name: { en: 'Singapore Penthouse', pt: 'Cobertura em Singapura' },
     location: { en: 'Singapore', pt: 'Singapura' },
@@ -138,7 +138,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'rio-de-janeiro',
-    order: 6,
+    order: 7,
     style: 'contemporary-twist',
     name: { en: 'Seafront Apartment', pt: 'Apartamento à Beira-Mar' },
     location: { en: 'Rio de Janeiro', pt: 'Rio de Janeiro' },
@@ -159,23 +159,28 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'porto-villa',
-    order: 11,
-    style: 'classic',
+    order: 2,
+    style: 'contemporary',
     name: { en: 'Porto Villa', pt: 'Villa no Porto' },
     location: { en: 'Porto', pt: 'Porto' },
     typology: { en: 'Private house', pt: 'Casa privada' },
     year: 2023,
     photographer: 'José Manuel Ferrão',
     narrative: {
-      en: 'A house in the north, where the light is different and the rooms were drawn to hold it longer.',
-      pt: 'Uma casa no norte, onde a luz é outra e as divisões foram desenhadas para a reter mais tempo.',
+      en: 'Pale throughout — cream, oak, white marble — with a spiral stair cut through the middle of it. The light in the north is different, and the rooms were drawn to hold it longer.',
+      pt: 'Clara em toda a parte — creme, carvalho, mármore branco — com uma escada em espiral a atravessá-la ao meio. A luz no norte é outra, e as divisões foram desenhadas para a reter mais tempo.',
     },
-    hero: hero('porto-villa'),
-    gallery: gallery('porto-villa'),
+    hero: img('porto-villa/hero', 'The living room in cream and oak, with gold pouffes', 'A sala de estar em creme e carvalho, com pufes dourados'),
+    gallery: [
+      img('porto-villa/01', 'A pale sectional under a run of built-in shelving', 'Um sofá modular claro sob uma estante embutida'),
+      img('porto-villa/02', 'The spiral stair seen from above, in timber and white', 'A escada em espiral vista de cima, em madeira e branco'),
+      img('porto-villa/03', 'An abstract panel above a dark console', 'Um painel abstrato sobre uma consola escura'),
+      img('porto-villa/04', 'The marble bathroom', 'A casa de banho em mármore'),
+    ],
   },
   {
     slug: 'bangkok-estate',
-    order: 8,
+    order: 9,
     style: 'classic',
     name: { en: 'Bangkok Estate', pt: 'Propriedade em Banguecoque' },
     location: { en: 'Bangkok', pt: 'Banguecoque' },
@@ -201,7 +206,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'lisbon-palace',
-    order: 9,
+    order: 10,
     style: 'classic',
     name: { en: 'Lisbon Palace', pt: 'Palácio de Lisboa' },
     location: { en: 'Lisboa', pt: 'Lisboa' },
@@ -222,7 +227,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'hotel-albatroz',
-    order: 10,
+    order: 11,
     style: 'classic',
     name: { en: 'Hotel Albatroz', pt: 'Hotel Albatroz' },
     location: { en: 'Cascais', pt: 'Cascais' },
@@ -244,7 +249,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'estoril-estate',
-    order: 7,
+    order: 8,
     style: 'contemporary-twist',
     name: { en: 'Estoril Estate', pt: 'Propriedade no Estoril' },
     location: { en: 'Estoril', pt: 'Estoril' },
