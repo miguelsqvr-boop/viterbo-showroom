@@ -1,0 +1,138 @@
+@import 'tailwindcss';
+
+/*
+ * Type scale (§4) is written for the pinned 1080 CSS space. The viewport meta
+ * in app/layout.tsx forces that space whatever density Android reports, so
+ * these are absolute values on purpose — the panel upsamples to 2160 physical
+ * pixels and text renders at a true 2x.
+ *
+ * Every VERTICAL dimension in this app is a percentage or vh. Horizontal
+ * dimensions live in the 1080 space.
+ */
+@theme {
+  --color-ground: #14120f;
+  --color-ground-raised: #1c1915;
+  --color-ink: #f2eee7;
+  --color-ink-muted: rgba(242, 238, 231, 0.68);
+  --color-ink-faint: rgba(242, 238, 231, 0.42);
+  --color-hairline: rgba(242, 238, 231, 0.16);
+  --color-accent: #b9a489;
+
+  --font-display: 'Viterbo Display', 'Optima', 'Palatino', 'Palatino Linotype', Georgia, serif;
+
+  --text-hero: 88px;
+  --text-hero--line-height: 0.98;
+  --text-section: 56px;
+  --text-section--line-height: 1.06;
+  --text-body: 32px;
+  --text-body--line-height: 1.42;
+  --text-meta: 28px;
+  --text-meta--line-height: 1.3;
+  --text-caption: 24px; /* absolute floor — nothing smaller ships */
+  --text-caption--line-height: 1.35;
+}
+
+:root {
+  color-scheme: dark;
+}
+
+/*
+ * ---- Kiosk reset (§12) ------------------------------------------------
+ *
+ * Layered on purpose. Unlayered CSS outranks every Tailwind layer, so an
+ * unlayered `button { padding: 0 }` silently beats `px-14` on every button in
+ * the app — the kind of bug you do not want to meet for the first time on a
+ * panel in a showroom.
+ */
+@layer base {
+  html,
+  body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    background: var(--color-ground);
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    overflow: hidden;
+    overscroll-behavior: none;
+    /* No pull-to-refresh, no rubber-band on the document itself. */
+    position: fixed;
+    inset: 0;
+  }
+
+  * {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    user-select: none;
+    box-sizing: border-box;
+  }
+
+  /* A showroom panel has no mouse. Any cursor that appears is a bug. */
+  body,
+  button,
+  a {
+    cursor: none;
+  }
+
+  ::-webkit-scrollbar {
+    width: 0;
+    height: 0;
+    display: none;
+  }
+
+  button {
+    appearance: none;
+    background: none;
+    border: 0;
+    color: inherit;
+    font: inherit;
+    touch-action: manipulation;
+  }
+
+  img {
+    -webkit-user-drag: none;
+  }
+
+  /*
+   * §5 — at ~102 ppi and 60cm viewing distance a soft image is immediately
+   * visible. Never let the browser get clever about scaling.
+   */
+  img,
+  video {
+    image-rendering: auto;
+  }
+}
+
+@layer components {
+  .no-scrollbar {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+
+  /*
+   * Touch latency on this panel is unpublished; assume 60–120ms and mask it.
+   * A press must register in the same frame the finger lands, before any
+   * navigation or network work begins.
+   */
+  .press {
+    transition: opacity 90ms linear, transform 90ms linear;
+  }
+  .press:active {
+    opacity: 0.62;
+    transform: scale(0.985);
+  }
+
+  .snap-y-page {
+    scroll-snap-type: y mandatory;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior-y: contain;
+    touch-action: pan-y;
+  }
+
+  .snap-start-page {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+}

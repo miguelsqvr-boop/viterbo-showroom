@@ -1,0 +1,273 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<!-- Deliberately NOT pinned to 1080: this page must report what Android
+     actually gives a page that does not fight it. -->
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Viterbo panel diagnostics — Phase 0</title>
+<style>
+  :root { color-scheme: dark; }
+  * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+  body { margin: 0; background: #14120F; color: #F2EEE7;
+         font: 15px/1.45 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 20px 20px 80px; }
+  h1 { font-size: 22px; margin: 0 0 4px; letter-spacing: .02em; }
+  h2 { font-size: 16px; margin: 26px 0 8px; color: #B9A489; letter-spacing: .12em; text-transform: uppercase; }
+  p.note { color: rgba(242,238,231,.55); margin: 0 0 16px; }
+  table { width: 100%; border-collapse: collapse; }
+  td { padding: 7px 0; border-bottom: 1px solid rgba(242,238,231,.12); vertical-align: top; }
+  td:first-child { color: rgba(242,238,231,.55); width: 46%; }
+  td:last-child { text-align: right; }
+  .verdict { color: #8dff9f; }
+  .warn { color: #ffd76b; }
+  .bad { color: #ff8080; }
+  button { font: inherit; background: #1C1915; color: #F2EEE7; border: 1px solid rgba(242,238,231,.2);
+           border-radius: 6px; padding: 16px 20px; margin: 6px 6px 6px 0; min-height: 56px; }
+  #pad { height: 260px; background: #1C1915; border: 1px solid rgba(242,238,231,.16);
+         border-radius: 6px; position: relative; touch-action: none; overflow: hidden; margin-top: 8px; }
+  .blob { position: absolute; border-radius: 50%; border: 2px solid #B9A489; transform: translate(-50%,-50%);
+          pointer-events: none; display: grid; place-items: center; font-size: 12px; color: #B9A489; }
+  #lagdot { position: absolute; width: 26px; height: 26px; border-radius: 50%; background: #6bff9a;
+            transform: translate(-50%,-50%); pointer-events: none; }
+  #out { width: 100%; height: 220px; background: #0d0c0a; color: #9ae6a8; border: 1px solid rgba(242,238,231,.16);
+         border-radius: 6px; padding: 10px; font: 12px/1.4 ui-monospace, monospace; }
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  input { font: inherit; width: 100%; background: #1C1915; color: #F2EEE7; border: 1px solid rgba(242,238,231,.2);
+          border-radius: 6px; padding: 12px; min-height: 52px; }
+</style>
+</head>
+<body>
+
+<h1>Panel diagnostics</h1>
+<p class="note">
+  Phase 0. Run this on the panel, in Fully Kiosk, in the mounted orientation, before a single
+  screen is laid out. Fill in §1 of the brief from what it reports — nothing downstream is
+  allowed to be designed against an assumption this page can settle.
+</p>
+
+<h2>Viewport and density</h2>
+<table id="viewport"></table>
+
+<h2>Touch</h2>
+<p class="note">
+  Put five fingers on the pad, then two, then drag one slowly. IR panels report no contact
+  radius and no pressure, register a touch a few millimetres before the glass, and go jittery
+  on multi-touch. PCAP reports real radii. This is the answer that decides pinch vs double-tap
+  and 96px vs 120px targets.
+</p>
+<div id="pad"><div id="lagdot" style="display:none"></div></div>
+<table id="touch"></table>
+
+<h2>Frame rate</h2>
+<p class="note">Under a deliberately expensive composite. Anything below 58 is the SoC telling you something.</p>
+<table id="fps"></table>
+<button id="stress">Run 10s stress test</button>
+
+<h2>Image decode — AVIF vs WebP</h2>
+<p class="note">
+  Same 2160×3840 source in both formats. AVIF is smaller on the wire and more expensive to
+  decode; on a weak SoC a larger WebP can render faster. Do not assume — pick the one that
+  holds 60fps on this panel, even if the files are bigger.
+</p>
+<button id="decode">Decode 6× each</button>
+<table id="codec"></table>
+
+<h2>Memory</h2>
+<table id="memory"></table>
+
+<h2>Measured by hand</h2>
+<p class="note">One tape measure, floor to the bottom of the active glass. If it differs from 82cm by more than 5cm, recompute the reach percentages in config/layout.ts before Phase 2.</p>
+<div class="grid">
+  <input id="mBottom" placeholder="Screen bottom off floor (cm)" inputmode="decimal">
+  <input id="mTop" placeholder="Screen top off floor (cm)" inputmode="decimal">
+  <input id="mWidth" placeholder="Active glass width (cm)" inputmode="decimal">
+  <input id="mHeight" placeholder="Active glass height (cm)" inputmode="decimal">
+</div>
+
+<h2>Result</h2>
+<button id="collect">Collect everything</button>
+<textarea id="out" readonly placeholder="Tap collect, then copy this into §1 of the brief."></textarea>
+
+<script>
+(function () {
+  var rows = function (id, pairs) {
+    document.getElementById(id).innerHTML = pairs
+      .map(function (p) { return '<tr><td>' + p[0] + '</td><td class="' + (p[2] || '') + '">' + p[1] + '</td></tr>'; })
+      .join('');
+  };
+  var state = {};
+
+  // ---- viewport ---------------------------------------------------------
+  function viewport() {
+    var iw = window.innerWidth, ih = window.innerHeight, dpr = window.devicePixelRatio;
+    state.cssViewport = iw + 'x' + ih;
+    state.dpr = dpr;
+    state.physical = Math.round(iw * dpr) + 'x' + Math.round(ih * dpr);
+    var expected = (Math.round(iw * dpr) === 2160 && Math.round(ih * dpr) === 3840);
+    rows('viewport', [
+      ['innerWidth × innerHeight', iw + ' × ' + ih],
+      ['devicePixelRatio', dpr],
+      ['CSS × dpr (should be 2160 × 3840)', state.physical, expected ? 'verdict' : 'warn'],
+      ['screen.width × height', screen.width + ' × ' + screen.height],
+      ['orientation', (screen.orientation && screen.orientation.type) || 'unknown'],
+      ['aspect', (ih / iw).toFixed(4) + ' (9:16 = 1.7778)'],
+      ['Pin viewport to', 'width=1080, initial-scale=1'],
+      ['User agent', navigator.userAgent]
+    ]);
+  }
+  viewport();
+  window.addEventListener('resize', viewport);
+
+  // ---- touch ------------------------------------------------------------
+  var pad = document.getElementById('pad');
+  var lagdot = document.getElementById('lagdot');
+  var maxPoints = 0, sawRadius = false, sawForce = false, queueDelays = [];
+
+  function render(list) {
+    Array.prototype.slice.call(pad.querySelectorAll('.blob')).forEach(function (b) { b.remove(); });
+    for (var i = 0; i < list.length; i++) {
+      var t = list[i];
+      var rx = t.radiusX || 0, ry = t.radiusY || 0;
+      if (rx > 1 || ry > 1) sawRadius = true;
+      if (t.force && t.force > 0) sawForce = true;
+      var d = Math.max(44, Math.max(rx, ry) * 2);
+      var el = document.createElement('div');
+      el.className = 'blob';
+      el.style.left = (t.clientX - pad.getBoundingClientRect().left) + 'px';
+      el.style.top = (t.clientY - pad.getBoundingClientRect().top) + 'px';
+      el.style.width = d + 'px'; el.style.height = d + 'px';
+      el.textContent = i + 1;
+      pad.appendChild(el);
+    }
+    maxPoints = Math.max(maxPoints, list.length);
+    touchTable();
+  }
+
+  pad.addEventListener('touchstart', function (e) {
+    queueDelays.push(performance.now() - e.timeStamp);
+    render(e.touches); e.preventDefault();
+  }, { passive: false });
+  pad.addEventListener('touchmove', function (e) {
+    render(e.touches);
+    var r = pad.getBoundingClientRect();
+    lagdot.style.display = 'block';
+    lagdot.style.left = (e.touches[0].clientX - r.left) + 'px';
+    lagdot.style.top = (e.touches[0].clientY - r.top) + 'px';
+    e.preventDefault();
+  }, { passive: false });
+  pad.addEventListener('touchend', function (e) { render(e.touches); }, { passive: false });
+
+  function touchTable() {
+    var avgQueue = queueDelays.length
+      ? (queueDelays.reduce(function (a, b) { return a + b; }, 0) / queueDelays.length).toFixed(1) + ' ms'
+      : '—';
+    var guess = maxPoints === 0 ? 'touch the pad'
+      : (sawRadius || sawForce) ? 'PCAP — flush capacitive glass'
+      : 'IR — no contact radius, no pressure';
+    state.maxTouchPoints = navigator.maxTouchPoints;
+    state.simultaneous = maxPoints;
+    state.touchGuess = guess;
+    state.inputQueueDelay = avgQueue;
+    rows('touch', [
+      ['navigator.maxTouchPoints', navigator.maxTouchPoints],
+      ['Simultaneous points seen', maxPoints],
+      ['Reports contact radius', sawRadius ? 'yes' : 'no'],
+      ['Reports pressure', sawForce ? 'yes' : 'no'],
+      ['Event → JS delay (not full latency)', avgQueue],
+      ['Verdict', guess, (sawRadius || sawForce) ? 'verdict' : 'warn'],
+      ['Therefore', (sawRadius || sawForce)
+        ? 'touchType: pcap · 96px targets · pinch zoom on'
+        : 'touchType: ir · 120px targets · double-tap zoom, 60ms debounce']
+    ]);
+  }
+  touchTable();
+
+  // ---- fps --------------------------------------------------------------
+  var frames = 0, last = performance.now(), fps = 0, lowest = 999, stressing = false;
+  var stressEl = document.createElement('div');
+  stressEl.style.cssText = 'position:fixed;inset:0;pointer-events:none;opacity:0;background:linear-gradient(45deg,#333,#ccc);will-change:transform,filter';
+  document.body.appendChild(stressEl);
+  (function tick(now) {
+    frames++;
+    if (now - last >= 500) {
+      fps = Math.round(frames * 1000 / (now - last));
+      if (stressing) lowest = Math.min(lowest, fps);
+      frames = 0; last = now;
+      state.fps = fps; state.fpsLowStress = lowest === 999 ? '—' : lowest;
+      rows('fps', [
+        ['Now', fps + ' fps', fps >= 58 ? 'verdict' : fps >= 45 ? 'warn' : 'bad'],
+        ['Lowest under stress', lowest === 999 ? '—' : lowest + ' fps',
+          lowest === 999 ? '' : lowest >= 58 ? 'verdict' : 'bad'],
+        ['Target', '60 — the panel is 60Hz, never aim higher']
+      ]);
+    }
+    if (stressing) {
+      stressEl.style.transform = 'scale(' + (1 + Math.sin(now / 400) * 0.05) + ') rotate(' + (now / 60) + 'deg)';
+      stressEl.style.filter = 'blur(' + (2 + Math.sin(now / 300) * 2) + 'px)';
+    }
+    requestAnimationFrame(tick);
+  })(performance.now());
+
+  document.getElementById('stress').addEventListener('click', function () {
+    stressing = true; lowest = 999; stressEl.style.opacity = '0.9';
+    setTimeout(function () { stressing = false; stressEl.style.opacity = '0'; }, 10000);
+  });
+
+  // ---- codec ------------------------------------------------------------
+  document.getElementById('decode').addEventListener('click', function () {
+    rows('codec', [['Running', '…']]);
+    var run = function (url, n) {
+      var times = [];
+      var step = function (i, done) {
+        if (i === n) return done(times);
+        var t0 = performance.now();
+        fetch(url + '?cb=' + Math.random(), { cache: 'no-store' })
+          .then(function (r) { return r.blob(); })
+          .then(function (b) { state[url + '.bytes'] = b.size; return createImageBitmap(b); })
+          .then(function (bmp) { times.push(performance.now() - t0); bmp.close && bmp.close(); step(i + 1, done); })
+          .catch(function () { times.push(NaN); step(i + 1, done); });
+      };
+      return new Promise(function (res) { step(0, res); });
+    };
+    var mean = function (a) { var v = a.filter(function (x) { return !isNaN(x); });
+      return v.length ? (v.reduce(function (x, y) { return x + y; }, 0) / v.length) : NaN; };
+    run('/media/diagnostics/sample.avif', 6).then(function (avif) {
+      run('/media/diagnostics/sample.webp', 6).then(function (webp) {
+        var a = mean(avif), w = mean(webp);
+        state.avifMs = a.toFixed(0); state.webpMs = w.toFixed(0);
+        state.codecPick = isNaN(a) ? 'webp (avif unsupported)' : a <= w ? 'avif' : 'webp';
+        rows('codec', [
+          ['AVIF fetch + decode', a.toFixed(0) + ' ms · ' + Math.round((state['/media/diagnostics/sample.avif.bytes'] || 0) / 1024) + ' KB'],
+          ['WebP fetch + decode', w.toFixed(0) + ' ms · ' + Math.round((state['/media/diagnostics/sample.webp.bytes'] || 0) / 1024) + ' KB'],
+          ['Ship', state.codecPick, 'verdict']
+        ]);
+      });
+    });
+  });
+
+  // ---- memory -----------------------------------------------------------
+  (function () {
+    var m = performance.memory;
+    var dm = navigator.deviceMemory;
+    state.deviceMemoryGB = dm || 'not reported';
+    state.jsHeapLimitMB = m ? Math.round(m.jsHeapSizeLimit / 1048576) : 'not reported';
+    rows('memory', [
+      ['navigator.deviceMemory', (dm ? dm + ' GB' : 'not reported'), dm && dm <= 2 ? 'warn' : ''],
+      ['JS heap limit', m ? Math.round(m.jsHeapSizeLimit / 1048576) + ' MB' : 'not reported'],
+      ['JS heap used', m ? Math.round(m.usedJSHeapSize / 1048576) + ' MB' : 'not reported'],
+      ['Reminder', 'one decoded 2160×3840 bitmap ≈ 33 MB; ceiling is eight']
+    ]);
+  })();
+
+  // ---- collect ----------------------------------------------------------
+  document.getElementById('collect').addEventListener('click', function () {
+    ['mBottom', 'mTop', 'mWidth', 'mHeight'].forEach(function (id) {
+      state[id] = document.getElementById(id).value || null;
+    });
+    state.collectedAt = new Date().toISOString();
+    document.getElementById('out').value = JSON.stringify(state, null, 2);
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+  "name": "Viterbo Showroom",
+  "short_name": "Viterbo",
+  "start_url": "/",
+  "display": "fullscreen",
+  "orientation": "portrait",
+  "background_color": "#14120F",
+  "theme_color": "#14120F",
+  "icons": []
+}

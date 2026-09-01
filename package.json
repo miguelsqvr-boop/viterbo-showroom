@@ -1,0 +1,36 @@
+{
+  "name": "viterbo-showroom",
+  "version": "2.0.0",
+  "private": true,
+  "description": "Viterbo showroom touchscreen — portrait kiosk app for a 43\" 2160x3840 totem.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "typecheck": "tsc --noEmit",
+    "media:placeholders": "tsx scripts/generate-placeholders.ts",
+    "media:process": "tsx scripts/process-images.ts",
+    "media:qr": "tsx scripts/generate-qr.ts"
+  },
+  "dependencies": {
+    "embla-carousel-react": "^8.5.2",
+    "framer-motion": "^11.15.0",
+    "next": "^15.1.6",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  },
+  "devDependencies": {
+    "@serwist/next": "^9.0.11",
+    "@tailwindcss/postcss": "^4.0.0",
+    "@types/node": "^22.10.5",
+    "@types/qrcode": "^1.5.6",
+    "@types/react": "^19.0.7",
+    "@types/react-dom": "^19.0.3",
+    "qrcode": "^1.5.4",
+    "serwist": "^9.0.11",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^4.0.0",
+    "tsx": "^4.19.2",
+    "typescript": "^5.7.3"
+  }
+}

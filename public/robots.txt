@@ -1,0 +1,3 @@
+# This screen lives on a totem in a showroom. It should never appear in search.
+User-agent: *
+Disallow: /
