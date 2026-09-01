@@ -38,6 +38,27 @@ export function mediaPoster(media: Media): Image {
 }
 
 /**
+ * Whether an image may take the full frame.
+ *
+ * A full-bleed portrait hero covers 2160 × 3840 physical pixels. At ~102 ppi
+ * and 60cm, upscaling a 1600px source to fill that is visible immediately —
+ * §5 is explicit that a soft image is the one thing you cannot hide on this
+ * panel. So the layout adapts to the resolution it actually has: an image that
+ * cannot fill the frame is shown in a band, where it is asked to cover a
+ * quarter of the height and comfortably can.
+ *
+ * This is not a placeholder for better sources. It is the correct behaviour
+ * even once every master is 4K, because the archive will always contain the
+ * occasional older shoot.
+ */
+export const FULL_BLEED_MIN_WIDTH = 2160;
+
+export function canFullBleed(media: Media): boolean {
+  const poster = mediaPoster(media);
+  return poster.aspect === 'portrait' && poster.width >= FULL_BLEED_MIN_WIDTH;
+}
+
+/**
  * Style is the sequencing logic for the collection, not a filter (§7).
  * A visitor scrolling from contemporary to classic to beach house understands
  * the range without ever touching a control.

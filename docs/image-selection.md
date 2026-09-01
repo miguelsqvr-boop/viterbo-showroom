@@ -140,6 +140,36 @@ Castilho frames 05/06/07, Chelsea frame 21 — which is a better Studio image
 than a posed portrait against a backdrop. There is also a dedicated
 "Miguel and Gracinha" folder to review alongside them.
 
+## ⚠ Resolution: the 10 MB ceiling
+
+The archive holds two sets: `_LOW-RES PREVIEWS` at **1600px** on the long edge,
+and full masters at **8–24 MB** each.
+
+The Drive connector this session reads through refuses any file over **10 MB**,
+and almost every master is above it — Tuscany's chosen frames are 12, 12, 23,
+12, 21 and 10 MB. So the masters cannot be pulled through this route at all,
+and every image currently wired into the app comes from the 1600px preview set.
+
+What that costs, precisely: a full-bleed portrait hero covers 2160 × 3840
+physical pixels, and 1600px upscaled to fill that is visibly soft at 60cm on a
+102 ppi panel. A collection band (2160 × ~1000) and a gallery slide (~920 wide)
+are comfortably served by 1600px.
+
+So the app now adapts rather than pretending: `canFullBleed()` in
+content/types.ts grants the full frame only to a portrait image of at least
+2160px, and anything short of that gets the band treatment, which it can
+actually fill. Nothing on the screen is upscaled beyond what it can carry.
+
+**To lift it**, any one of these works:
+- export a ~2560px set alongside the previews, which clears both the 10 MB cap
+  and the 2160 requirement with room to spare;
+- or run `npm run media:process` locally against the real masters — the
+  pipeline is already written for exactly this and needs no changes;
+- or hand the repo a `media-src/` folder with the chosen frames at full size.
+
+Until then the layout is correct and honest, and the heroes are banded rather
+than soft.
+
 ## Craft — the gap
 
 The Craft journey is five stages: the Cascais atelier, the workshops, the

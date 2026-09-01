@@ -1,7 +1,7 @@
 /** Studio (§8) — one screen, no scroll, 90 words maximum. */
 import type { Localized } from './types';
 import { asMedia } from './types';
-import { plate } from './generated/placeholder-media';
+import { media } from './generated/media';
 
 export const STUDIO = {
   body: {
@@ -29,5 +29,16 @@ export const STUDIO = {
     { id: 'singapore', mark: 'SIDA Singapore', note: { en: 'Award-winning', pt: 'Premiado' } },
   ],
 
-  image: asMedia(plate('craft-cascais')),
+  /**
+   * Gracinha and Miguel photographed inside their own work rather than against
+   * a backdrop — the brief asks for one image and not a team grid, and a
+   * portrait taken on site says more about the studio than a studio portrait.
+   */
+  image: asMedia({
+    ...media('studio/gracinha-miguel'),
+    alt: {
+      en: 'Gracinha Viterbo and Miguel Vieira da Rocha at the Tuscan estate',
+      pt: 'Gracinha Viterbo e Miguel Vieira da Rocha na propriedade na Toscana',
+    },
+  }),
 } as const;

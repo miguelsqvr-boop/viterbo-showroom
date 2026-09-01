@@ -18,10 +18,22 @@
  * control. Geography is left to emerge: Lisboa, Lisboa, Cascais, London,
  * Singapore, Rio, Porto, Bangkok, Lisboa, Cascais, Estoril, Tuscany, Algarve.
  */
-import type { Project } from './types';
+import type { Media, Project } from './types';
 import { asMedia } from './types';
 import { plate } from './generated/placeholder-media';
+import { media } from './generated/media';
 
+/**
+ * A real photograph, with its alt text.
+ *
+ * The pipeline emits dimensions, aspect and a blur placeholder but leaves alt
+ * empty on purpose — alt text is copy, not metadata, and belongs next to the
+ * project it describes.
+ */
+const img = (key: string, en: string, pt: string): Media =>
+  asMedia({ ...media(key), alt: { en, pt } });
+
+/** Placeholder plates, still standing in for the projects not yet selected. */
 const gallery = (slug: string) => [1, 2, 3].map((n) => asMedia(plate(`${slug}-${n}`)));
 const hero = (slug: string) => asMedia(plate(`${slug}-hero`));
 
@@ -39,8 +51,13 @@ export const PROJECTS: Project[] = [
       en: 'The shared floors of a Lisbon building, treated with the care usually reserved for a private apartment. Ribbed timber, travertine and a still indoor pool; the lobby seats you rather than moves you through.',
       pt: 'Os pisos comuns de um edifício em Lisboa, tratados com o cuidado normalmente reservado a um apartamento privado. Madeira ripada, travertino e uma piscina interior serena; o átrio convida a ficar em vez de atravessar.',
     },
-    hero: hero('castilho-203'),
-    gallery: gallery('castilho-203'),
+    hero: img('castilho-203/hero', 'The indoor pool, lined in travertine', 'A piscina interior, revestida a travertino'),
+    gallery: [
+      img('castilho-203/01', 'A dried-flower installation over a brass console', 'Uma instalação de flores secas sobre uma consola de latão'),
+      img('castilho-203/02', 'A curved sofa against ribbed timber, under copper pendants', 'Um sofá curvo contra madeira ripada, sob suspensões de cobre'),
+      img('castilho-203/03', 'The pool seen through full-height curtains', 'A piscina vista através de cortinados de pé-direito'),
+      img('castilho-203/04', 'A treatment room in the spa', 'Uma sala de tratamentos no spa'),
+    ],
     featuredInAttract: true,
   },
   {
@@ -88,8 +105,13 @@ export const PROJECTS: Project[] = [
       en: 'A London townhouse layered rather than decorated. Hand-painted chinoiserie in the dining room, contemporary art in the halls, a walled garden read through glass from the table — each room holding a different century without any of them arguing.',
       pt: 'Uma casa londrina em camadas, não decorada. Chinoiserie pintada à mão na sala de jantar, arte contemporânea nos corredores, um jardim murado visto da mesa através do vidro — cada divisão com um século diferente, sem que nenhum discuta com o outro.',
     },
-    hero: hero('chelsea'),
-    gallery: gallery('chelsea'),
+    hero: img('chelsea/hero', 'Hand-painted chinoiserie above a green banquette in the dining room', 'Chinoiserie pintada à mão sobre um banco verde na sala de jantar'),
+    gallery: [
+      img('chelsea/01', 'The dining room reading through glass to the walled garden', 'A sala de jantar vista, através do vidro, para o jardim murado'),
+      img('chelsea/02', 'Teal velvet seating beneath a large painting', 'Assentos em veludo azul-petróleo sob uma pintura de grandes dimensões'),
+      img('chelsea/03', 'The library, with armchairs drawn up to the fireplace', 'A biblioteca, com poltronas junto à lareira'),
+      img('chelsea/04', 'The principal bedroom, in dark green', 'O quarto principal, em verde escuro'),
+    ],
     featuredInAttract: true,
   },
   {
@@ -105,8 +127,13 @@ export const PROJECTS: Project[] = [
       en: 'Built around a collection of Warhol’s Endangered Species prints. The rooms were kept pale and the furniture low, because a wall of Warhols does not need help.',
       pt: 'Construída em torno de uma coleção das gravuras Endangered Species de Warhol. As divisões mantiveram-se claras e o mobiliário baixo, porque uma parede de Warhols não precisa de ajuda.',
     },
-    hero: hero('singapore-penthouse'),
-    gallery: gallery('singapore-penthouse'),
+    hero: img('singapore-penthouse/hero', 'Warhol’s Endangered Species prints on the gallery wall', 'As gravuras Endangered Species de Warhol na parede-galeria'),
+    gallery: [
+      img('singapore-penthouse/01', 'The long wall of prints above a patterned rug', 'A longa parede de gravuras sobre um tapete padronizado'),
+      img('singapore-penthouse/02', 'A mirrored screen above the curved banquette', 'Um biombo espelhado sobre o banco curvo'),
+      img('singapore-penthouse/03', 'The living room against the city', 'A sala de estar contra a cidade'),
+      img('singapore-penthouse/04', 'More of the collection, beside a folding screen', 'Mais da coleção, junto a um biombo'),
+    ],
     featuredInAttract: true,
   },
   {
@@ -175,8 +202,13 @@ export const PROJECTS: Project[] = [
       en: 'A palace restored rather than reinterpreted, and then lived in.',
       pt: 'Um palácio restaurado e não reinterpretado — e depois habitado.',
     },
-    hero: hero('lisbon-palace'),
-    gallery: gallery('lisbon-palace'),
+    hero: img('lisbon-palace/hero', 'Lit arched niches lined with hand-painted chinoiserie', 'Nichos em arco, iluminados e forrados a chinoiserie pintada à mão'),
+    gallery: [
+      img('lisbon-palace/01', 'A curved velvet sofa in front of the painted panels', 'Um sofá curvo de veludo diante dos painéis pintados'),
+      img('lisbon-palace/02', 'A bathroom framed in azulejo', 'Uma casa de banho emoldurada a azulejo'),
+      img('lisbon-palace/03', 'Striped curtains at the window', 'Cortinados às riscas na janela'),
+      img('lisbon-palace/04', 'A bedroom in floral paper', 'Um quarto em papel floral'),
+    ],
   },
   {
     slug: 'hotel-albatroz',
@@ -191,8 +223,13 @@ export const PROJECTS: Project[] = [
       en: 'A clifftop hotel in Cascais, worked room by room so that no two repeat and none of them forgets the sea below.',
       pt: 'Um hotel sobre a arriba em Cascais, trabalhado quarto a quarto para que nenhum se repita e nenhum esqueça o mar por baixo.',
     },
-    hero: hero('hotel-albatroz'),
-    gallery: gallery('hotel-albatroz'),
+    hero: img('hotel-albatroz/hero', 'The striped stair hall above an azulejo dado', 'A escadaria às riscas sobre um lambril de azulejo'),
+    gallery: [
+      img('hotel-albatroz/01', 'The bar, framed by its doorway over a chequerboard floor', 'O bar, emoldurado pela porta sobre um chão em xadrez'),
+      img('hotel-albatroz/02', 'The restaurant, in rattan and blue', 'O restaurante, em rattan e azul'),
+      img('hotel-albatroz/03', 'A gilded screen of cranes above a blue banquette', 'Um biombo dourado de grous sobre um banco azul'),
+      img('hotel-albatroz/04', 'A bedroom, in teal with a gilded headboard', 'Um quarto, em azul-petróleo com cabeceira dourada'),
+    ],
     featuredInAttract: true,
   },
   {
@@ -224,8 +261,13 @@ export const PROJECTS: Project[] = [
       en: 'A working estate kept working. Stone left unlined, the kitchen given the largest room, and the soft surfaces made in linen that is expected to fade.',
       pt: 'Uma propriedade agrícola que continua a sê-lo. A pedra sem revestimento, a cozinha na maior divisão, e os têxteis em linho que se espera que desbote.',
     },
-    hero: hero('tuscany-estate'),
-    gallery: gallery('tuscany-estate'),
+    hero: img('tuscany-estate/hero', 'The arched stone entry, its iron gate open onto cypresses', 'A entrada de pedra em arco, com o portão de ferro aberto sobre os ciprestes'),
+    gallery: [
+      img('tuscany-estate/01', 'The living room under its stone arch', 'A sala de estar sob o seu arco de pedra'),
+      img('tuscany-estate/02', 'The dining room beneath a brick vault', 'A sala de jantar sob uma abóbada de tijolo'),
+      img('tuscany-estate/03', 'The hand-painted kitchen, in green', 'A cozinha pintada à mão, em verde'),
+      img('tuscany-estate/04', 'A four-poster bed under beamed ceilings', 'Uma cama de dossel sob tetos de vigas'),
+    ],
     featuredInAttract: true,
   },
   {

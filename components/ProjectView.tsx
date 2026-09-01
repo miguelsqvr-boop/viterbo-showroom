@@ -4,7 +4,7 @@ import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { useEffect, useRef, useState } from 'react';
 import type { Project } from '@/content/types';
-import { mediaPoster } from '@/content/types';
+import { canFullBleed } from '@/content/types';
 import { useLocale } from '@/lib/locale';
 import { FullView } from './FullView';
 import { Gallery } from './Gallery';
@@ -26,8 +26,12 @@ export function ProjectView({ project }: { project: Project }) {
   const router = useRouter();
   const { s, t } = useLocale();
   const [openAt, setOpenAt] = useState<number | null>(null);
-  const heroPoster = mediaPoster(project.hero);
-  const heroIsPortrait = heroPoster.aspect === 'portrait';
+  /*
+   * Full bleed is earned by composition AND resolution — see canFullBleed.
+   * A vertical frame from an older shoot still gets the band treatment rather
+   * than being stretched across 3840 physical pixels.
+   */
+  const heroIsPortrait = canFullBleed(project.hero);
   const scrollerRef = useRef<HTMLDivElement | null>(null);
 
   // Edge-swipe from the left as a shortcut back — never the only route back.
