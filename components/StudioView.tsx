@@ -20,7 +20,13 @@ export function StudioView() {
     <div className="relative h-full w-full overflow-hidden">
       {/* One image. Not a team grid, not a world map. */}
       <div className="absolute inset-x-0 top-0 w-full" style={{ height: '24vh' }}>
-        <MediaFrame media={STUDIO.image} mode="band" priority className="h-full w-full" />
+        {/*
+          * focus 15, not the 50 default: Gracinha and Miguel stand about a
+          * quarter of the way down a portrait source, so a centred crop of a
+          * 24vh band cuts both their heads off and a top-anchored one fills
+          * the band with the ceiling. 15 puts their faces in the band.
+          */}
+        <MediaFrame media={STUDIO.image} mode="band" focus={15} priority className="h-full w-full" />
       </div>
 
       {/*

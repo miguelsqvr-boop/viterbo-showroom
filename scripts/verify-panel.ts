@@ -372,8 +372,11 @@ async function main() {
       locale: 'en',
       rule: 'unverified content',
       detail:
-        'CONTACT.verified is false — phone, address, email and both QR targets are ' +
-        'unconfirmed placeholders. Check them against what the studio uses, then set it true.',
+        'CONTACT.verified is false. Address, phone, email and the Instagram handle now ' +
+        'carry the studio\'s published details, but two things are still open: primaryUrl ' +
+        'points at a /showroom landing page that does not exist yet, and the screen shows ' +
+        'the Cascais studio address while the panel stands in the Estoril shop. Settle both, ' +
+        'confirm the fields, then set it true.',
     });
   }
 

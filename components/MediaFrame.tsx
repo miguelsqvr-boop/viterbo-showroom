@@ -27,6 +27,7 @@ const SIZES: Record<MediaMode, string> = {
 export function MediaFrame({
   media,
   mode,
+  focus = 50,
   priority = false,
   active = true,
   className = '',
@@ -34,6 +35,15 @@ export function MediaFrame({
 }: {
   media: Media;
   mode: MediaMode;
+  /**
+   * Vertical focal point of the crop, as a percentage down the source.
+   *
+   * A band is far wider than a portrait source, so `cover` throws most of the
+   * height away. Centred (the 50% default) that cuts the heads off a
+   * photograph of people, and `top` overshoots into the ceiling — the subject
+   * is usually neither, so this takes a number rather than three keywords.
+   */
+  focus?: number;
   priority?: boolean;
   /** Videos play only when they are the active item; everything else is a poster. */
   active?: boolean;
@@ -59,6 +69,7 @@ export function MediaFrame({
   }, [active, media]);
 
   const fit = mode === 'contain' ? 'object-contain' : 'object-cover';
+  const objectPosition = `50% ${focus}%`;
 
   /*
    * The frame is ALWAYS `relative` — `fill` images need a positioned ancestor,
@@ -79,7 +90,8 @@ export function MediaFrame({
             placeholder="blur"
             blurDataURL={poster.blurDataURL}
             priority={priority}
-            className={`${fit} object-center`}
+            className={fit}
+            style={{ objectPosition }}
           />
           <video
             ref={videoRef}
@@ -88,8 +100,8 @@ export function MediaFrame({
             playsInline
             preload="none"
             poster={poster.src}
-            className={`absolute inset-0 h-full w-full ${fit} object-center transition-opacity duration-500`}
-            style={{ opacity: active ? 1 : 0 }}
+            className={`absolute inset-0 h-full w-full ${fit} transition-opacity duration-500`}
+            style={{ opacity: active ? 1 : 0, objectPosition }}
           >
             {active ? <source src={media.src.webm} type="video/webm" /> : null}
           </video>
@@ -103,7 +115,8 @@ export function MediaFrame({
           placeholder="blur"
           blurDataURL={media.blurDataURL}
           priority={priority}
-          className={`${fit} object-center`}
+          className={fit}
+          style={{ objectPosition }}
         />
       )}
     </div>
