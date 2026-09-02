@@ -4,9 +4,8 @@ A portrait kiosk app for a 43" floor-standing totem in the Cascais showroom.
 Next.js 15 on Vercel, displayed by Fully Kiosk Browser on the panel's own
 Android, with a service worker so a Wi-Fi outage is invisible.
 
-This is a self-contained app. It lives in a subdirectory of this repository but
-shares nothing with the code at the repo root — deploy it with the Vercel
-project's **Root Directory** set to `viterbo-showroom`, and it gets its own URL.
+This is a self-contained app at the root of its own repository, with its own
+Vercel project and its own URL. It shares nothing with any other Viterbo code.
 
 ---
 
@@ -109,7 +108,8 @@ plays at a time; everything else shows a poster frame.
 
 ## 5. Deploy
 
-1. New Vercel project from this repo, **Root Directory** `viterbo-showroom`.
+1. New Vercel project from this repo. The app is at the repository root, so
+   leave **Root Directory** empty and take the detected Next.js defaults.
 2. Add the domain — `showroom.viterbo.pt` or a subdomain of the studio's live
    domain. `X-Robots-Tag: noindex` is already set on every route, and
    `/robots.txt` disallows everything.
