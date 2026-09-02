@@ -78,7 +78,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'cascais-seafront',
-    order: 9,
+    order: 10,
     style: 'contemporary-twist',
     name: { en: 'Seafront Pied-à-Terre', pt: 'Pied-à-Terre à Beira-Mar' },
     location: { en: 'Cascais', pt: 'Cascais' },
@@ -98,8 +98,29 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
+    slug: 'birre-villa',
+    order: 4,
+    style: 'contemporary',
+    name: { en: 'Birre Villa', pt: 'Villa em Birre' },
+    location: { en: 'Birre, Cascais', pt: 'Birre, Cascais' },
+    typology: { en: 'Private house', pt: 'Casa privada' },
+    year: 2025,
+    photographer: 'Francisco Nogueira',
+    narrative: {
+      en: 'Almost no colour, and no need for any. The house is drawn in arches and curves — a rounded sofa in an arched opening, ribbed walnut in the dressing room, brass caught at the edges — and the light off the Atlantic does the rest.',
+      pt: 'Quase sem cor, e sem precisar dela. A casa é desenhada em arcos e curvas — um sofá redondo num vão em arco, nogueira canelada no vestidor, latão apanhado nas arestas — e a luz do Atlântico faz o resto.',
+    },
+    hero: img('birre-villa/hero', 'A dining room seen past a brass half-moon door pull', 'Uma sala de jantar vista para lá de um puxador de latão em meia-lua'),
+    gallery: [
+      img('birre-villa/01', 'A dressing room lined in ribbed walnut', 'Um vestidor forrado a nogueira canelada'),
+      img('birre-villa/02', 'A black kitchen with brass fittings and a marble counter', 'Uma cozinha preta com ferragens de latão e bancada de mármore'),
+      img('birre-villa/03', 'A pale bedroom, linen and a paper shade', 'Um quarto claro, em linho e com um abajur de papel'),
+      img('birre-villa/04', 'The entrance hall, flowers on a round table below the stair', 'O hall de entrada, flores numa mesa redonda sob a escada'),
+    ],
+  },
+  {
     slug: 'chelsea',
-    order: 5,
+    order: 6,
     style: 'contemporary-twist',
     name: { en: 'Chelsea', pt: 'Chelsea' },
     location: { en: 'London', pt: 'Londres' },
@@ -121,7 +142,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'singapore-penthouse',
-    order: 6,
+    order: 7,
     style: 'contemporary-twist',
     name: { en: 'Singapore Penthouse', pt: 'Cobertura em Singapura' },
     location: { en: 'Singapore', pt: 'Singapura' },
@@ -143,7 +164,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'rio-de-janeiro',
-    order: 7,
+    order: 8,
     style: 'contemporary-twist',
     name: { en: 'Seafront Apartment', pt: 'Apartamento à Beira-Mar' },
     location: { en: 'Rio de Janeiro', pt: 'Rio de Janeiro' },
@@ -185,7 +206,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'birre-house',
-    order: 10,
+    order: 11,
     style: 'contemporary-twist',
     name: { en: 'Birre House', pt: 'Casa em Birre' },
     location: { en: 'Birre, Cascais', pt: 'Birre, Cascais' },
@@ -206,7 +227,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'quinta-do-lago',
-    order: 4,
+    order: 5,
     style: 'contemporary',
     name: { en: 'Quinta do Lago', pt: 'Quinta do Lago' },
     location: { en: 'Algarve', pt: 'Algarve' },
@@ -224,7 +245,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'cascais-estate',
-    order: 11,
+    order: 12,
     style: 'contemporary-twist',
     name: { en: 'Cascais Estate', pt: 'Quinta em Cascais' },
     location: { en: 'Cascais', pt: 'Cascais' },
@@ -245,7 +266,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'lisbon-pied-a-terre',
-    order: 12,
+    order: 13,
     style: 'contemporary-twist',
     name: { en: 'Lisbon Pied-à-Terre', pt: 'Pied-à-Terre em Lisboa' },
     location: { en: 'Lisboa', pt: 'Lisboa' },
@@ -266,7 +287,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'bangkok-estate',
-    order: 13,
+    order: 14,
     style: 'classic',
     name: { en: 'Bangkok Estate', pt: 'Propriedade em Banguecoque' },
     location: { en: 'Bangkok', pt: 'Banguecoque' },
@@ -292,7 +313,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'lisbon-palace',
-    order: 14,
+    order: 15,
     style: 'classic',
     name: { en: 'Lisbon Palace', pt: 'Palácio de Lisboa' },
     location: { en: 'Lisboa', pt: 'Lisboa' },
@@ -313,7 +334,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'hotel-albatroz',
-    order: 15,
+    order: 16,
     style: 'classic',
     name: { en: 'Hotel Albatroz', pt: 'Hotel Albatroz' },
     location: { en: 'Cascais', pt: 'Cascais' },
@@ -335,7 +356,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'estoril-estate',
-    order: 8,
+    order: 9,
     style: 'contemporary-twist',
     name: { en: 'Estoril Estate', pt: 'Propriedade no Estoril' },
     location: { en: 'Estoril', pt: 'Estoril' },
@@ -356,7 +377,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'ivens',
-    order: 16,
+    order: 17,
     style: 'classic',
     name: { en: 'Ivens', pt: 'Ivens' },
     location: { en: 'Lisboa', pt: 'Lisboa' },
@@ -377,7 +398,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'pasteis-de-belem',
-    order: 17,
+    order: 18,
     style: 'iconic',
     name: { en: 'Pastéis de Belém', pt: 'Pastéis de Belém' },
     location: { en: 'Belém, Lisboa', pt: 'Belém, Lisboa' },
@@ -398,7 +419,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'tuscany-estate',
-    order: 18,
+    order: 19,
     style: 'beach-countryside',
     name: { en: 'Tuscany Estate', pt: 'Propriedade na Toscana' },
     location: { en: 'Tuscany', pt: 'Toscana' },
@@ -420,7 +441,7 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'cabana-sass',
-    order: 19,
+    order: 20,
     style: 'beach-countryside',
     name: { en: 'Cabana Sass', pt: 'Cabana Sass' },
     location: { en: 'Algarve', pt: 'Algarve' },

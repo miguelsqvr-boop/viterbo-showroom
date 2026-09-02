@@ -300,8 +300,12 @@ cannot read it and cannot unzip. Loose files under 10 MB each and it goes
 straight in — the photography is by José Manuel Ferrão, who shot Porto
 Villa and Tuscany, so it will hold up.
 
-*Bruna, Birre, 2025.* No previews folder, and the master files are past
-the size limit. Same fix as Barry.
+*Bruna, Birre, 2025.* ~~No previews folder.~~ Found: the shared folder holds
+only a desktop.ini, but the photography sits in a `final` subfolder of a
+separate "Bruna- Birre" folder elsewhere in the studio's Drive, thirty
+frames, all readable. Shipping as **Birre Villa**. Two frames carry a
+figure and were left out — every other project on the screen is unpeopled
+rooms, and one lifestyle shot in the run would read as a different book.
 
 ## Names taken from filenames, not from the studio
 
@@ -310,5 +314,8 @@ rather than the client the folder is named after, matching how Castilho
 203 and Avenida da República are named. Each is a guess worth a minute of
 the studio's time: **Lisbon Palace**, **Ivens** (folder: Sonia Regina),
 **Birre House** (folder: Birger e Jeni), **Cascais Estate** (folder:
-RMCAS). Client names should not be on a showroom screen, so the question
-is only whether these are the right places.
+RMCAS), **Birre Villa** (folder: Bruna). Client names should not be on a
+showroom screen, so the question is only whether these are the right
+places — and Birre House and Birre Villa are both genuinely in Birre, told
+apart on screen only by their year. If the studio knows the two streets,
+those are better names than these.

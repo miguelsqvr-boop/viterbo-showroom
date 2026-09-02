@@ -319,7 +319,12 @@ async function blankSlides(page: Page): Promise<{ rule: string; detail: string }
      * Gallery slides only. The collection's cards carry the same tap-target
      * attribute, and one of them — Craft — is imageless on purpose, so a
      * broader selector reports a design decision as a defect.
+     *
+     * And nothing at all while the full view is up. That overlay is opaque
+     * and covers the rail completely, so a slide behind it is invisible
+     * rather than empty — reporting it describes a viewport, not a visitor.
      */
+    if (document.querySelector('[data-overlay="full-view"]')) return [];
     const slots = Array.from(document.querySelectorAll('[data-slide]'));
     return slots
       .filter((element) => {

@@ -62,6 +62,8 @@ export function FullView({
   return (
     <motion.div
       className="fixed inset-0 z-[60] bg-black"
+      /* The harness skips the gallery rail while this is up — it is opaque. */
+      data-overlay="full-view"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
