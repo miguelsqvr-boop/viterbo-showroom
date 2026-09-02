@@ -238,7 +238,7 @@ the reward for scrolling to the bottom.
    other change. It is the studio's strongest argument and the one section the
    screen cannot currently make.
 2. **Images are the 1600px preview set.** The Drive connector this was built
-   through refuses files over 10 MB and the masters are 8–24 MB. See
+   through refuses files over 6 MB and the masters are 8–24 MB. See
    `docs/image-selection.md`; `canFullBleed()` keeps under-resolution images
    out of the full-bleed treatment, so nothing on screen is upscaled — but a
    ~2560px export would let the portrait heroes take the whole frame.

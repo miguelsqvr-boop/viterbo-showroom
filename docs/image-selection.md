@@ -295,10 +295,12 @@ one screen a visitor swipes past. If the studio wants the fair on the
 panel it belongs in Craft's collaborations strand, with a frame shot for
 the purpose.
 
-*Barry Pied-à-Terre, Lisbon, 2023.* Only a 71 MB zip exists. The connector
-cannot read it and cannot unzip. Loose files under 10 MB each and it goes
-straight in — the photography is by José Manuel Ferrão, who shot Porto
-Villa and Tuscany, so it will hold up.
+*Barry Pied-à-Terre, Lisbon, 2023.* The 71 MB zip is a dead end, but the
+photography itself is loose in a "Barry" folder in the studio's own project
+archive — 25 frames by José Manuel Ferrão. Only one could be read: the
+others are 8-24 MB and the connector refuses them. That one frame is a
+still life, a cake dome and a biscuit jar, so it cannot carry a project or
+an attract frame on its own. Barry ships when smaller files exist.
 
 *Bruna, Birre, 2025.* ~~No previews folder.~~ Found: the shared folder holds
 only a desktop.ini, but the photography sits in a `final` subfolder of a
@@ -319,3 +321,25 @@ showroom screen, so the question is only whether these are the right
 places — and Birre House and Birre Villa are both genuinely in Birre, told
 apart on screen only by their year. If the studio knows the two streets,
 those are better names than these.
+
+## The transfer limit is about 6 MB, not 10
+
+Worth stating plainly because the earlier guidance in this file was wrong,
+and acting on it would produce another batch of files that still cannot be
+read.
+
+Measured across one session: a 5.95 MB file transferred. Files at 8.12,
+8.31, 8.82, 9.61, 9.68 and 9.84 MB all failed, the 8.12 MB one on three
+separate attempts an hour apart, while ordinary searches against the same
+folder kept working. So the ceiling sits somewhere between 6 and 8 MB, and
+6 MB is the number to design to.
+
+That does not cost any resolution worth having. The one master that came
+through is 2337x3500 at 5.68 MB — already past the 2160px threshold the
+panel wants, so it would render full-bleed rather than in a band. A JPEG
+around 2560px on the short edge at quality 80 lands near 2-4 MB, which
+clears the limit with room and still doubles what the screen has today.
+
+The practical recipe, then: **~2560px on the short edge, JPEG quality 80,
+loose files, one folder per project.** Not the "under 10 MB" this file
+asked for before.
