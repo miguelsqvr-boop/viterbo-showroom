@@ -268,3 +268,47 @@ studio's strongest argument and it cannot be assembled from room photography.
 
 Pastéis de Belém and the Lisbon Arts & Antiques Fair are both in the archive
 and belong to the Collaborations strand that closes Craft.
+
+## Every folder in the archive, accounted for
+
+Thirteen projects shipped first, from twenty-four folders, and nothing
+recorded why the rest were missing. That was the mistake — not the
+curation, which is arguable, but making the cut silently. Nineteen
+projects ship now, and every folder below is either used or excluded for a
+stated reason.
+
+**Used.** Castilho 203, Porto Villa (filed as "Settes House"), Avenida da
+República, Quinta do Lago, Chelsea, Singapore Penthouse, Rio de Janeiro,
+Estoril Estate (filed as "Patino"), Cascais Seafront, Birre House (filed
+as "Birger e Jeni"), Cascais Estate (filed as "RMCAS"), Lisbon
+Pied-à-Terre, Bangkok Estate (three folders — Penthouse 1, Penthouse 2,
+Public Areas — one project), Lisbon Palace, Hotel Albatroz, Ivens (filed
+as "Sonia Regina"), Pastéis de Belém, Tuscany Estate, Cabana Sass (two
+folders, one project). Plus "Miguel and Gracinha" for the Studio portrait.
+
+**Excluded, with reasons.**
+
+*Lisbon Arts & Antiques Fair 2025.* A stand, not a commission, and the
+photography is six near-identical views of one small room under a heavy
+pink cast — the weakest set in the archive by a distance. It would be the
+one screen a visitor swipes past. If the studio wants the fair on the
+panel it belongs in Craft's collaborations strand, with a frame shot for
+the purpose.
+
+*Barry Pied-à-Terre, Lisbon, 2023.* Only a 71 MB zip exists. The connector
+cannot read it and cannot unzip. Loose files under 10 MB each and it goes
+straight in — the photography is by José Manuel Ferrão, who shot Porto
+Villa and Tuscany, so it will hold up.
+
+*Bruna, Birre, 2025.* No previews folder, and the master files are past
+the size limit. Same fix as Barry.
+
+## Names taken from filenames, not from the studio
+
+Four projects are named for a place found in the folder or filenames
+rather than the client the folder is named after, matching how Castilho
+203 and Avenida da República are named. Each is a guess worth a minute of
+the studio's time: **Lisbon Palace**, **Ivens** (folder: Sonia Regina),
+**Birre House** (folder: Birger e Jeni), **Cascais Estate** (folder:
+RMCAS). Client names should not be on a showroom screen, so the question
+is only whether these are the right places.
