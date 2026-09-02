@@ -20,7 +20,6 @@
  */
 import type { Media, Project } from './types';
 import { asMedia } from './types';
-import { plate } from './generated/placeholder-media';
 import { media } from './generated/media';
 
 /**
@@ -32,10 +31,6 @@ import { media } from './generated/media';
  */
 const img = (key: string, en: string, pt: string): Media =>
   asMedia({ ...media(key), alt: { en, pt } });
-
-/** Placeholder plates, still standing in for the projects not yet selected. */
-const gallery = (slug: string) => [1, 2, 3].map((n) => asMedia(plate(`${slug}-${n}`)));
-const hero = (slug: string) => asMedia(plate(`${slug}-hero`));
 
 export const PROJECTS: Project[] = [
   {

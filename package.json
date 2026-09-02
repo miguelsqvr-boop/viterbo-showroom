@@ -8,7 +8,6 @@
     "build": "next build",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "media:placeholders": "tsx scripts/generate-placeholders.ts",
     "media:process": "tsx scripts/process-images.ts",
     "media:qr": "tsx scripts/generate-qr.ts",
     "verify": "tsx scripts/verify-panel.ts"

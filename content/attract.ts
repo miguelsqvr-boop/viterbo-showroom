@@ -9,7 +9,6 @@
  */
 import type { AttractFrame, Media } from './types';
 import { asMedia } from './types';
-import { plate } from './generated/placeholder-media';
 import { media } from './generated/media';
 
 const img = (key: string, en: string, pt: string): Media =>

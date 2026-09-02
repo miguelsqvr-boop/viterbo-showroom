@@ -70,9 +70,7 @@ async function main() {
     process.stdout.write(
       `No originals found.\n\n` +
         `  Create media-src/<project-slug>/ and drop the full-resolution files in.\n` +
-        `  Example: media-src/casa-do-restelo/hero.jpg\n\n` +
-        `  Until then the app runs on the placeholder plates from\n` +
-        `  scripts/generate-placeholders.ts, which are review scaffolding only.\n`,
+        `  Example: media-src/casa-do-restelo/hero.jpg\n`,
     );
     return;
   }
