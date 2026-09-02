@@ -239,6 +239,24 @@ actually fill. Nothing on the screen is upscaled beyond what it can carry.
 Until then the layout is correct and honest, and the heroes are banded rather
 than soft.
 
+## Craft — searched, and genuinely absent
+
+Beyond the shared archive, the wider Drive was searched for atelier, oficina,
+armazém, estofos, carpintaria, workshop and making-of material. What exists is
+`VITERBO CARPINTARIA` (a PDF of carpentry drawings), `Armazem Birre` and
+`Making Off Montras` from 2014–17, and `DESENHOS CARPINTARIAS_Exemplos` — all
+drawings and old material, none of it photography of the five stages.
+
+Nothing from outside the shared `05 - Project images` folder has been wired
+into the app. Publishing material from elsewhere in a personal Drive onto a
+client-facing screen is not a call to make unilaterally: rights, confidentiality
+and relevance are all unknown from a folder name.
+
+So Craft needs a shoot. Five photographs: the Cascais atelier, one of the
+workshops, the Port of Lisbon warehouse, crates in transit, and an installation
+on site. Until they exist the section renders as typography, which is honest
+and reads well, but it cannot make the argument the brief is built around.
+
 ## Craft — the gap
 
 The Craft journey is five stages: the Cascais atelier, the workshops, the

@@ -93,8 +93,12 @@ npm run media:process -- --variants  # also emit 1080/1620/2160 in AVIF and WebP
 `next/image` is configured to emit exactly 1080 / 1620 / 2160 and nothing else,
 so a collection thumbnail can never be handed a 2160px file.
 
-Until real photography exists the app runs on generated placeholder plates
-(`npm run media:placeholders`). They are labelled `PLACEHOLDER` on purpose.
+All thirteen projects, all ten attract frames and the Studio portrait now run
+on the studio's own photography, pulled from the Drive archive and selected
+frame by frame — see `docs/image-selection.md` for what was chosen and why.
+The placeholder generator (`npm run media:placeholders`) still exists for
+sections that have no photography yet; its plates are labelled `PLACEHOLDER`
+on purpose, and Craft deliberately renders type instead of using them.
 
 **Video** is supported in the content model (`Media` union) but no clips ship
 yet. The rules are strict: silent with no audio track at all, 8–20s seamless
@@ -219,21 +223,38 @@ the reward for scrolling to the bottom.
 
 ## 10. Open — needs the studio or the panel
 
-1. **The palette is close, not sourced.** viterbointeriordesign.com is not
-   reachable from the build environment, so the ground and ink were matched to a
-   reference rather than sampled from the live site. If the studio licenses its
-   own face, drop the files in `public/fonts/`, add the @font-face rules, and
-   change `typeface.stack` in `config/brand.ts` — nothing else in the app names
-   a typeface or a colour.
-2. **All copy is draft.** Structure is final; the words have not been through
-   the studio.
-3. **All imagery is placeholder.** See §4.
-4. **Phase 0 confirms rather than decides.** The app is built to the brief's
+1. **Craft has no photography.** Its five stages — the Cascais atelier, the
+   workshops, the 2,000 m² Port of Lisbon warehouse, crates in transit, an
+   installation on site — do not exist anywhere in the archive, and searching
+   the wider Drive turns up only carpentry drawings and material from 2014–17.
+   This needs a shoot, not a search. Until then each stage renders as
+   typography on the ground rather than a placeholder plate; adding `media` to
+   a stage in `content/craft.ts` restores the full-bleed treatment with no
+   other change. It is the studio's strongest argument and the one section the
+   screen cannot currently make.
+2. **Images are the 1600px preview set.** The Drive connector this was built
+   through refuses files over 10 MB and the masters are 8–24 MB. See
+   `docs/image-selection.md`; `canFullBleed()` keeps under-resolution images
+   out of the full-bleed treatment, so nothing on screen is upscaled — but a
+   ~2560px export would let the portrait heroes take the whole frame.
+3. **Copy is draft.** Narratives were written from the photography and are
+   deliberately unspecific where the archive does not support a claim. `area`
+   and `scope` are absent on almost every project on purpose. The words have
+   not been through the studio.
+4. **One project name is unconfirmed.** The folder says "Lisbon Palace" but
+   every file is named `ViterboIvens` and the shoot is guest rooms. See
+   `docs/image-selection.md`.
+5. **The palette is matched, not sampled.** The accent gold is taken from the
+   studio's own logo, but viterbointeriordesign.com is unreachable from the
+   build environment, so ground and ink were matched to a reference. If the
+   studio licenses its own face, drop the files in `public/fonts/`, add the
+   @font-face rules, and change `typeface.stack` in `config/brand.ts`.
+6. **Phase 0 confirms rather than decides.** The app is built to the brief's
    figures and `npm run verify` holds it to them. `/panel-diagnostics.html`
    still exists to check them against the real panel — frame rate and the
    AVIF/WebP choice in particular can only be answered by the SoC — and any
    figure it contradicts is a one-line edit in `config/panel.ts` or
    `config/layout.ts` followed by one command.
-5. **The plinth.** The unit ships as a black signage totem on visible castors.
+7. **The plinth.** The unit ships as a black signage totem on visible castors.
    It does not affect this code, and it is cheaper to plan before the screen is
    standing next to the cabinet of curiosities.
