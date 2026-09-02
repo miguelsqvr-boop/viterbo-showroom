@@ -26,11 +26,13 @@
  * almost everywhere, and a label that fits in one language is not evidence.
  */
 import { chromium, type Browser, type Page } from 'playwright';
+import sharp from 'sharp';
+import path from 'node:path';
 import { spawn, type ChildProcess } from 'node:child_process';
 import { PANEL, PHYSICAL } from '../config/panel';
 import { CHROME, PRIME } from '../config/layout';
 import { COLLECTION } from '../config/layout';
-import { LOCALES, type Locale, type Localized } from '../content/types';
+import { LOCALES, mediaPoster, type Locale, type Localized } from '../content/types';
 import { PROJECTS_IN_ORDER } from '../content/projects';
 import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '../content/craft';
 import { STUDIO } from '../content/studio';
@@ -108,7 +110,39 @@ type View = {
   prepare?: (page: Page) => Promise<void>;
 };
 
-function views(): View[] {
+/**
+ * The palest gallery frame in the archive, and which slide it is.
+ *
+ * The full view lays white type straight onto a photograph, so whether that
+ * type is legible depends entirely on which photograph. Testing one arbitrary
+ * slide proves nothing — the first landscape project's first slide happens to
+ * be dark, and passes whether or not the scrim behind the controls exists.
+ * Sampling the actual files instead means the worst case is always the one
+ * under test, and stays that way as the photography is replaced.
+ */
+async function palestSlide(): Promise<{ slug: string; index: number }> {
+  let worst = { slug: PROJECTS_IN_ORDER[1].slug, index: 1, mean: -1 };
+  for (const project of PROJECTS_IN_ORDER) {
+    for (const [i, item] of project.gallery.entries()) {
+      const file = path.join(process.cwd(), 'public', mediaPoster(item).src);
+      const { data, info } = await sharp(file)
+        .resize({ width: 64 })
+        .raw()
+        .toBuffer({ resolveWithObject: true });
+      let sum = 0;
+      let count = 0;
+      for (let px = 0; px < data.length; px += info.channels) {
+        sum += 0.2126 * data[px] + 0.7152 * data[px + 1] + 0.0722 * data[px + 2];
+        count += 1;
+      }
+      const mean = sum / count;
+      if (mean > worst.mean) worst = { slug: project.slug, index: i + 1, mean };
+    }
+  }
+  return { slug: worst.slug, index: worst.index };
+}
+
+async function views(): Promise<View[]> {
   const portrait = PROJECTS_IN_ORDER[0].slug;
   const landscape = PROJECTS_IN_ORDER[1].slug;
   const list: View[] = [
@@ -151,6 +185,13 @@ function views(): View[] {
     // The first gallery slide, by its counter label — not the first tap target
     // on the page, which is the navigation bar.
     prepare: (page) => tap(page, undefined, '[data-tap-target][aria-label="1"]'),
+  });
+  const pale = await palestSlide();
+  list.push({
+    name: `full view · palest frame (${pale.slug} ${pale.index})`,
+    path: `/projects/${pale.slug}`,
+    section: 2,
+    prepare: (page) => tap(page, undefined, `[data-tap-target][aria-label="${pale.index}"]`),
   });
   return list;
 }
@@ -302,6 +343,79 @@ async function blankSlides(page: Page): Promise<{ rule: string; detail: string }
     : [];
 }
 
+/**
+ * Light type laid on a photograph that happens to be pale.
+ *
+ * A caption at 45% white over a cream sofa measures about 1.3:1 — not a dim
+ * label but an invisible one, and when it is the close button the visitor is
+ * stuck until the idle timeout. It cannot be caught by reading the CSS,
+ * because whether it fails depends on the photograph behind it, so this
+ * samples what was actually painted underneath.
+ */
+async function lowContrastOnMedia(page: Page): Promise<{ rule: string; detail: string }[]> {
+  const shot = await page.screenshot();
+  const suspects = await page.evaluate(() => {
+    const out: { text: string; x: number; y: number; w: number; h: number; alpha: number }[] = [];
+    for (const element of Array.from(document.querySelectorAll('span, p, button'))) {
+      const text = (element.textContent ?? '').trim();
+      if (!text || text.length > 40) continue;
+      const style = getComputedStyle(element);
+      /*
+       * Resolve the colour by painting it, rather than parsing it. Tailwind v4
+       * emits `oklab(0.99 … / 0.7)`, and every generation of CSS adds another
+       * colour syntax — a canvas converts whatever it is given to sRGB, so this
+       * keeps working when the next one arrives.
+       */
+      const canvas = document.createElement('canvas');
+      canvas.width = 1;
+      canvas.height = 1;
+      const context = canvas.getContext('2d');
+      if (!context) continue;
+      context.clearRect(0, 0, 1, 1);
+      context.fillStyle = style.color;
+      context.fillRect(0, 0, 1, 1);
+      const [r, g, b, a] = context.getImageData(0, 0, 1, 1).data;
+      const light = r > 180 && g > 180 && b > 180 && a > 60;
+      if (!light) continue;
+      const box = element.getBoundingClientRect();
+      if (box.width < 20 || box.height < 10) continue;
+      if (box.y < 0 || box.y > window.innerHeight) continue;
+      out.push({ text, x: box.x, y: box.y, w: box.width, h: box.height, alpha: a / 255 });
+    }
+    return out;
+  });
+  if (suspects.length === 0) return [];
+
+  const scale = PHYSICAL.nativeWidth / PHYSICAL.cssWidth;
+  const image = sharp(shot);
+  const meta = await image.metadata();
+  const found: { rule: string; detail: string }[] = [];
+  for (const s of suspects) {
+    const left = Math.max(0, Math.round(s.x * scale));
+    const top = Math.max(0, Math.round(s.y * scale));
+    const width = Math.min(Math.round(s.w * scale), (meta.width ?? 0) - left);
+    const height = Math.min(Math.round(s.h * scale), (meta.height ?? 0) - top);
+    if (width < 4 || height < 4) continue;
+    const raw = await sharp(shot).extract({ left, top, width, height }).raw().toBuffer();
+    let sum = 0;
+    let count = 0;
+    for (let i = 0; i < raw.length; i += 3) {
+      sum += 0.2126 * raw[i] + 0.7152 * raw[i + 1] + 0.0722 * raw[i + 2];
+      count += 1;
+    }
+    const mean = sum / count;
+    // The painted mean already includes the type itself, which is light and
+    // lifts the average — so a region that still reads dark is safe, and only
+    // a bright one is worth reporting.
+    if (mean < 150) continue;
+    found.push({
+      rule: 'contrast on media',
+      detail: `"${s.text}" sits on a background painting at luminance ${mean.toFixed(0)}/255 — light type there is close to invisible`,
+    });
+  }
+  return found;
+}
+
 async function run(
   browser: Browser,
   base: string,
@@ -359,8 +473,9 @@ async function run(
 
     const result = await audit(page);
     const blanks = await blankSlides(page);
+    const faint = await lowContrastOnMedia(page);
     return {
-      violations: [...result.violations, ...blanks].map((item) => ({
+      violations: [...result.violations, ...blanks, ...faint].map((item) => ({
         view: view.name,
         locale,
         ...item,
@@ -433,7 +548,7 @@ async function main() {
         `${PANEL.minTouchTarget}px targets, prime ${PRIME.top}–${PRIME.bottom}%)\n\n`,
     );
     const allowed = identicalByDesign();
-    for (const view of views()) {
+    for (const view of await views()) {
       const rendered = new Map<Locale, string[]>();
       let breaches = 0;
       for (const locale of LOCALES) {

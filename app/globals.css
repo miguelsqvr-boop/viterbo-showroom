@@ -172,6 +172,27 @@
    * The scrim under type that sits on a photograph. Strong enough to carry
    * 88px at 300 weight over an image whose tone nobody controls.
    */
+  /*
+   * A soft band behind the full view's controls.
+   *
+   * They are white type laid directly on the photograph, and a pale interior
+   * — a cream sofa, a marble floor — takes the contrast down to about 1.3:1,
+   * which is not a dim label but an invisible one. On a kiosk that means the
+   * close button disappears and the visitor waits out the idle timeout.
+   *
+   * Only a band, not the whole frame: the point of the full view is the
+   * photograph, and dimming all of it to caption a corner is the wrong trade.
+   */
+  .control-scrim {
+    background: linear-gradient(
+      to bottom,
+      rgba(12, 10, 8, 0) 0%,
+      rgba(12, 10, 8, 0.55) 38%,
+      rgba(12, 10, 8, 0.55) 62%,
+      rgba(12, 10, 8, 0) 100%
+    );
+  }
+
   .media-scrim {
     background: linear-gradient(
       to bottom,

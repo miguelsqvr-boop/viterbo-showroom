@@ -99,18 +99,20 @@ export function FullView({
        * Tapping the image closes too, but a gesture nobody is told about is
        * not an affordance — and the label it replaced was 16px and invisible.
        */}
-      <div
-        className="absolute inset-x-0 flex items-center justify-between px-14"
-        style={{ top: `${PRIME.bottom + 3}%` }}
-      >
-        <span className="text-caption text-white/60">
+      <div className="absolute inset-x-0" style={{ top: `${PRIME.bottom + 3}%` }}>
+        <div
+          className="control-scrim pointer-events-none absolute inset-x-0 -top-20 -bottom-20"
+          aria-hidden
+        />
+        <div className="relative flex items-center justify-between px-14">
+        <span className="text-caption text-white/75">
           {selected + 1} / {items.length}
         </span>
         <div className="flex items-center gap-10">
           <AnimatePresence>
             {!PANEL.enablePinchZoom && !zoomed ? (
               <motion.span
-                className="text-caption text-white/45"
+                className="text-caption text-white/70"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
@@ -122,10 +124,11 @@ export function FullView({
           <TapTarget
             label={t('close')}
             onTap={onClose}
-            className="justify-center rounded-[6px] border border-white/25 px-10"
+            className="justify-center rounded-[6px] border border-white/45 px-10"
           >
-            <span className="text-caption text-white/80">{t('close')}</span>
+            <span className="text-caption text-white/95">{t('close')}</span>
           </TapTarget>
+        </div>
         </div>
       </div>
     </motion.div>
