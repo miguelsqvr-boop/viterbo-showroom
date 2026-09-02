@@ -334,6 +334,13 @@ separate attempts an hour apart, while ordinary searches against the same
 folder kept working. So the ceiling sits somewhere between 6 and 8 MB, and
 6 MB is the number to design to.
 
+The error it gives is misleading, which is what made this take three
+attempts to be sure of: an oversized download reports **"MCP server session
+expired"**, not a size error. Searches against the same folder keep working
+in the same breath, and a fresh session after a container restart fails
+identically on the same file. So if a transfer fails with that message, the
+file is too big — do not wait for the connector to come back.
+
 That does not cost any resolution worth having. The one master that came
 through is 2337x3500 at 5.68 MB — already past the 2160px threshold the
 panel wants, so it would render full-bleed rather than in a band. A JPEG
