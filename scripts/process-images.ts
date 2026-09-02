@@ -37,6 +37,25 @@ const SIZES = [
 ] as const;
 
 const MASTER_LONG_EDGE = 2160;
+
+/**
+ * Frames stored rotated, with no EXIF orientation tag to say so.
+ *
+ * `.rotate()` below auto-orients from EXIF, which handles the normal case. But
+ * a handful of files in the archive were flattened to disk already turned and
+ * carry no tag at all, so nothing downstream can detect it — they simply come
+ * out sideways on the panel. The correction has to be stated, and it belongs
+ * here rather than in the source files: media-src is re-harvested from Drive,
+ * and a fix applied to the pixels there would be silently lost the next time.
+ *
+ * Degrees clockwise, keyed by "<group>/<name>".
+ */
+const ROTATIONS: Record<string, number> = {
+  'porto-villa/hero': 90,
+  'porto-villa/attract': 90,
+  'porto-villa/02': 90,
+  'porto-villa/03': 90,
+};
 const EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp']);
 
 type Entry = { key: string; src: string; width: number; height: number; aspect: string; blur: string };
@@ -87,7 +106,29 @@ async function main() {
     for (const file of files.sort()) {
       const name = path.basename(file, path.extname(file));
       const absolute = path.join(SRC, group, file);
-      const original = sharp(absolute, { failOn: 'none' }).rotate(); // honour EXIF, then drop it
+      /*
+       * Two passes, deliberately, because sharp does not compose rotations:
+       * `.rotate().rotate(90)` is not "auto-orient, then turn 90" — the second
+       * call replaces the first and the image comes out untouched. So the EXIF
+       * pass is materialised before the correction is applied. The intermediate
+       * is PNG so the extra encode is lossless, and it only happens for the
+       * handful of files that need correcting.
+       */
+      const correction = ROTATIONS[`${group}/${name}`] ?? 0;
+      let source: string | Buffer = absolute;
+      if (correction) {
+        const oriented = await sharp(absolute, { failOn: 'none' }).rotate().png().toBuffer();
+        source = await sharp(oriented).rotate(correction).png().toBuffer();
+      }
+      const original =
+        correction === 0 ? sharp(source, { failOn: 'none' }).rotate() : sharp(source);
+
+      /*
+       * Read dimensions off the corrected image, not the file. `metadata()`
+       * reports the INPUT's dimensions and ignores queued operations, so asking
+       * a rotating pipeline for its size returns the pre-rotation answer — which
+       * would pick the wrong resize axis for every corrected frame.
+       */
       const meta = await original.metadata();
       const sourceWidth = meta.width ?? 0;
       const sourceHeight = meta.height ?? 0;
