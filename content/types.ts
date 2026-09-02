@@ -89,13 +89,26 @@ export type Project = {
   order: number;
 };
 
-/** A single stage of the Craft journey (§8). One line of text, one piece of media. */
+/**
+ * A single stage of the Craft journey (§8): one line of text, one image.
+ *
+ * `media` is optional, and that is deliberate. The studio's archive currently
+ * holds no photography of the atelier, the workshops, the Port of Lisbon
+ * warehouse, the crates or an installation — the five things this section
+ * exists to show. A stage without its image renders as typography on the
+ * ground rather than as a stand-in picture: the screen would rather say less
+ * than show a placeholder, and the cities list two screens later proves the
+ * type can carry a screen on its own.
+ *
+ * Add `media` and the stage becomes full-bleed with a scrim. Nothing else
+ * needs to change.
+ */
 export type CraftStage = {
   id: string;
   index: number;
   title: Localized;
   line: Localized;
-  media: Media;
+  media?: Media;
 };
 
 export type Collaboration = { name: string; note: Localized };

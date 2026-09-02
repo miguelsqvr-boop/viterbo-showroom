@@ -1,13 +1,16 @@
 /**
  * The art of craft (§8) — a journey, not a gallery.
  *
- * Five stages, each one screenful, one image and one line. The sequence is the
- * argument: designed in Cascais, made in our own workshops, inspected at the
+ * Five stages, each one screenful, one line of text, and — when the studio has
+ * it — one image. None of the five has photography in the archive yet, so each
+ * stage currently renders as type on the ground. That is an honest empty state,
+ * not a broken one: the section still reads, and it stops the screen showing a
+ * placeholder plate where a workshop bench should be.
+ *
+ * The sequence is the argument: designed in Cascais, made in our own workshops, inspected at the
  * Port of Lisbon, installed by our own people anywhere in the world.
  */
 import type { CraftStage, Collaboration } from './types';
-import { asMedia } from './types';
-import { plate } from './generated/placeholder-media';
 
 export const CRAFT_STAGES: CraftStage[] = [
   {
@@ -15,7 +18,6 @@ export const CRAFT_STAGES: CraftStage[] = [
     index: 1,
     title: { en: 'Cascais', pt: 'Cascais' },
     line: { en: 'The atelier. Where it is drawn.', pt: 'O atelier. Onde se desenha.' },
-    media: asMedia(plate('craft-cascais')),
   },
   {
     id: 'workshops',
@@ -25,7 +27,6 @@ export const CRAFT_STAGES: CraftStage[] = [
       en: 'Upholstery, curtains, carpentry, and an artistic team. Where it is made.',
       pt: 'Estofos, cortinados, carpintaria e uma equipa artística. Onde se faz.',
     },
-    media: asMedia(plate('craft-workshops')),
   },
   {
     id: 'port-of-lisbon',
@@ -35,14 +36,12 @@ export const CRAFT_STAGES: CraftStage[] = [
       en: '2,000 m². Where every piece is inspected before it leaves.',
       pt: '2000 m². Onde cada peça é inspecionada antes de partir.',
     },
-    media: asMedia(plate('craft-port-of-lisbon')),
   },
   {
     id: 'in-transit',
     index: 4,
     title: { en: 'In transit', pt: 'Em trânsito' },
     line: { en: 'Crates, travertine, four continents.', pt: 'Grades, travertino, quatro continentes.' },
-    media: asMedia(plate('craft-in-transit')),
   },
   {
     id: 'on-site',
@@ -52,7 +51,6 @@ export const CRAFT_STAGES: CraftStage[] = [
       en: 'Monaco, Bangkok, London. Our own people, installing.',
       pt: 'Mónaco, Banguecoque, Londres. A nossa equipa, a instalar.',
     },
-    media: asMedia(plate('craft-on-site')),
   },
 ];
 

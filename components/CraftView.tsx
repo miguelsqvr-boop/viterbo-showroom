@@ -28,24 +28,46 @@ export function CraftView() {
     >
       {CRAFT_STAGES.map((stage, i) => (
         <section key={stage.id} className="snap-start-page relative h-full w-full">
-          <Mounted className="absolute inset-0" rootMargin="100% 0px">
-            <MediaFrame
-              media={stage.media}
-              mode="bleed"
-              priority={i === 0}
-              active={i === 0}
-              className="h-full w-full"
-            />
-          </Mounted>
-          <div className="media-scrim absolute inset-0" />
+          {/*
+           * A stage with photography takes the full frame behind a scrim. A
+           * stage without it is set as type on the ground — see CraftStage in
+           * content/types.ts. The screen would rather say less than stand a
+           * placeholder where a workshop bench belongs.
+           */}
+          {stage.media ? (
+            <>
+              <Mounted className="absolute inset-0" rootMargin="100% 0px">
+                <MediaFrame
+                  media={stage.media}
+                  mode="bleed"
+                  priority={i === 0}
+                  active={i === 0}
+                  className="h-full w-full"
+                />
+              </Mounted>
+              <div className="media-scrim absolute inset-0" />
+            </>
+          ) : null}
 
           <div className="absolute inset-x-0 px-14" style={{ top: '26%' }}>
-            <p className="text-caption tracking-[0.3em] text-on-media/70">
+            <p
+              className={`text-caption tracking-[0.3em] ${
+                stage.media ? 'text-on-media/70' : 'text-ink-faint'
+              }`}
+            >
               {String(stage.index).padStart(2, '0')} / {String(CRAFT_STAGES.length).padStart(2, '0')}
             </p>
-            <h2 className="mt-5 text-hero text-on-media">{s(stage.title)}</h2>
+            <h2 className={`mt-5 text-hero ${stage.media ? 'text-on-media' : 'text-ink'}`}>
+              {s(stage.title)}
+            </h2>
             {/* One line of text. No paragraphs. */}
-            <p className="mt-6 max-w-[860px] text-body text-on-media">{s(stage.line)}</p>
+            <p
+              className={`mt-6 max-w-[860px] text-body ${
+                stage.media ? 'text-on-media' : 'text-ink-muted'
+              }`}
+            >
+              {s(stage.line)}
+            </p>
           </div>
         </section>
       ))}
