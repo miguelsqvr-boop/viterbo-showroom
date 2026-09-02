@@ -37,11 +37,27 @@ pool, gym — treated with the care usually given to a private one.
 
 ## 2. Avenida da República — Lisboa — Francisco Nogueira, 2022
 
-Not yet reviewed.
+A nineteenth-century envelope with contemporary contents: stucco ceilings,
+panelled walls, the original pine left orange underfoot.
+
+- **Hero — 02.** A boucle chair at a tall window, under rattan wall pieces.
+- **Gallery — 08, 01, 07, 11.** The dining room under a spoked pendant; the
+  living room beneath its stucco ceiling; the kitchen through a steel-framed
+  screen; a caned sideboard with a pair of lamps.
 
 ## 3. Seafront Pied-à-Terre — Cascais — Francisco Nogueira, 2021
 
-Not yet reviewed.
+**Pattern everywhere** — ikat papers, a hand-painted botanical mural, a palm
+border running the cornice. The draft narrative had assumed a quiet apartment
+letting the sea do the talking; it is the opposite, and the copy has been
+rewritten. Style moved to contemporary-with-a-twist, order 8.
+
+- **Hero — 06.** A bed against the hand-painted botanical mural.
+- **Gallery — 12, 08, 10, 03.**
+- **Note.** Frame 01 is Gracinha in red against ikat — the best single portrait
+  of her in the archive. The Studio screen still uses the Tuscany frame because
+  the brief wants both principals in one image; this is the alternative if the
+  studio would rather show her alone.
 
 ## 4. Chelsea — London — Simon Upton, 2025
 
