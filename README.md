@@ -113,10 +113,15 @@ plays at a time; everything else shows a poster frame.
 2. Add the domain — `showroom.viterbo.pt` or a subdomain of the studio's live
    domain. `X-Robots-Tag: noindex` is already set on every route, and
    `/robots.txt` disallows everything.
-3. Set `CONTACT_WEBHOOK_URL` (see `.env.example`) **or** set
+3. **Check the contact details.** `content/contact.ts` ships with placeholders —
+   the phone number is a literal dummy, and the address, email and both QR
+   targets are unconfirmed. Correct them, confirm the two URLs resolve, then set
+   `CONTACT.verified = true`. `npm run verify` fails until you do; `next build`
+   does not, so this will not block a deploy on its own.
+4. Set `CONTACT_WEBHOOK_URL` (see `.env.example`) **or** set
    `CONTACT.formEnabled = false` in `content/contact.ts`. With neither, the form
    deliberately fails loudly rather than swallowing a lead.
-4. Point Fully Kiosk at the URL.
+5. Point Fully Kiosk at the URL.
 
 Updates: push to `main`. The panel picks the deploy up on its next
 revalidation. To force it in the room, **tap the Viterbo wordmark five times

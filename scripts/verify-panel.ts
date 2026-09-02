@@ -360,6 +360,23 @@ async function main() {
   const browser = await chromium.launch({ executablePath: EXECUTABLE });
   const violations: Violation[] = [];
 
+  /*
+   * Geometry is not the only way to ship a broken kiosk. Contact is the one
+   * screen a visitor acts on, and placeholder details there fail silently —
+   * the layout is perfect and the number does not ring. So the run fails while
+   * the studio has not confirmed them.
+   */
+  if (!CONTACT.verified) {
+    violations.push({
+      view: 'contact',
+      locale: 'en',
+      rule: 'unverified content',
+      detail:
+        'CONTACT.verified is false — phone, address, email and both QR targets are ' +
+        'unconfirmed placeholders. Check them against what the studio uses, then set it true.',
+    });
+  }
+
   try {
     await waitForServer(base);
     process.stdout.write(
