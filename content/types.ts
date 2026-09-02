@@ -63,7 +63,12 @@ export function canFullBleed(media: Media): boolean {
  * A visitor scrolling from contemporary to classic to beach house understands
  * the range without ever touching a control.
  */
-export type Style = 'contemporary' | 'contemporary-twist' | 'classic' | 'beach-countryside';
+export type Style =
+  | 'contemporary'
+  | 'contemporary-twist'
+  | 'classic'
+  | 'iconic'
+  | 'beach-countryside';
 
 export type Project = {
   slug: string;
