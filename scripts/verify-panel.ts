@@ -262,6 +262,46 @@ async function audit(page: Page): Promise<AuditResult> {
   );
 }
 
+/**
+ * A slide that is on screen but has nothing in it.
+ *
+ * The gallery rail unmounts distant slides to stay inside the decoded-bitmap
+ * ceiling, which is right — but the mounted window and the number of slides
+ * actually visible are two different quantities, and when the window is the
+ * smaller of the two the visitor gets an empty box where a photograph should
+ * be. It renders perfectly and passes every geometry check, so only a test
+ * that opens the rail and looks inside each visible slot will catch it.
+ */
+async function blankSlides(page: Page): Promise<{ rule: string; detail: string }[]> {
+  const empty = await page.evaluate(() => {
+    /*
+     * Gallery slides only. The collection's cards carry the same tap-target
+     * attribute, and one of them — Craft — is imageless on purpose, so a
+     * broader selector reports a design decision as a defect.
+     */
+    const slots = Array.from(document.querySelectorAll('[data-slide]'));
+    return slots
+      .filter((element) => {
+        const box = element.getBoundingClientRect();
+        const onScreen =
+          box.x < window.innerWidth && box.x + box.width > 0 &&
+          box.y < window.innerHeight && box.y + box.height > 0;
+        if (!onScreen) return false;
+        const image = element.querySelector('img');
+        return !image || image.naturalWidth === 0;
+      })
+      .map((element) => element.getAttribute('data-slide') ?? '?');
+  });
+  return empty.length
+    ? [
+        {
+          rule: 'blank slide',
+          detail: `slide ${empty.join(', ')} is on screen with no image — the mounted window is narrower than what fits`,
+        },
+      ]
+    : [];
+}
+
 async function run(
   browser: Browser,
   base: string,
@@ -318,8 +358,13 @@ async function run(
     await page.waitForTimeout(300);
 
     const result = await audit(page);
+    const blanks = await blankSlides(page);
     return {
-      violations: result.violations.map((item) => ({ view: view.name, locale, ...item })),
+      violations: [...result.violations, ...blanks].map((item) => ({
+        view: view.name,
+        locale,
+        ...item,
+      })),
       texts: result.texts,
     };
   } catch (error) {

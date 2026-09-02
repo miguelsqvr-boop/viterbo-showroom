@@ -10,12 +10,20 @@ import { MediaFrame } from './MediaFrame';
 /**
  * The horizontal swipe rail (§8), positioned inside the reach zone.
  *
- * Embla is told to keep a five-slide window mounted (§13): the current slide,
- * one either side, and one further out to preload into. Everything beyond that
+ * A fixed number of consecutive slides stay mounted (§13); everything beyond
  * renders as its blur placeholder, so the decoded-bitmap count stays inside
  * the eight-image ceiling however long the gallery is.
+ *
+ * Six, and the window slides rather than centring on the selection. Slides are
+ * sized by height, so the narrowest one — a 2:3 portrait at 15vh on a 1080px
+ * panel — is about 213px wide with its padding, and just over five of those
+ * fit on screen at once. A window centred on the selection truncates at the
+ * ends: at slide 0 a symmetric ±2 mounts three slides while the visitor can
+ * see five, and the rest sit there as empty boxes. Clamping a fixed-width
+ * window to the ends instead keeps every visible slide mounted wherever the
+ * rail is scrolled to. Six plus the hero is seven, inside the ceiling.
  */
-const WINDOW = 2;
+const MOUNTED = 6;
 
 export function Gallery({
   items,
@@ -69,7 +77,11 @@ export function Gallery({
       <div className="overflow-hidden" ref={emblaRef}>
         <div className="flex touch-pan-y" style={{ height: `${heightVh}vh` }}>
           {items.map((media, index) => {
-            const near = Math.abs(index - selected) <= WINDOW;
+            const start = Math.min(
+              Math.max(0, selected - 1),
+              Math.max(0, items.length - MOUNTED),
+            );
+            const near = index >= start && index < start + MOUNTED;
             const poster = mediaPoster(media);
             /*
              * Slides are sized by height, not by a share of the width. A
@@ -85,6 +97,8 @@ export function Gallery({
                 className="relative shrink-0 grow-0 px-3"
                 onPointerUp={() => onOpen(index)}
                 data-tap-target
+                /* The acceptance harness looks inside these for empty slots. */
+                data-slide={index + 1}
                 aria-label={`${index + 1}`}
               >
                 {near ? (
