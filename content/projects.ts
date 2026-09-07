@@ -102,9 +102,15 @@ export const PROJECTS: Project[] = [
     hero: img('cascais-seafront/hero', 'A bed set against a hand-painted botanical mural', 'Uma cama contra um mural botânico pintado à mão'),
     gallery: [
       img('cascais-seafront/01', 'A console against teal ikat, under a grid of prints', 'Uma consola contra ikat azul-petróleo, sob uma grelha de gravuras'),
-      img('cascais-seafront/02', 'A bedroom in yellow ikat under a timber ceiling', 'Um quarto em ikat amarelo sob um teto de madeira'),
+      img('cascais-seafront/05', 'The living room under its open rafters, sofas facing across a green hide', 'A sala sob as asnas à vista, sofás frente a frente sobre uma pele verde'),
+      img('cascais-seafront/06', 'The living room seen through a doorway cut into the ikat paper', 'A sala vista através de um vão aberto no papel ikat'),
+      img('cascais-seafront/07', 'The dining table in blue glass, ringed by pale green chairs', 'A mesa de jantar em vidro azul, rodeada de cadeiras verde-claro'),
+      img('cascais-seafront/08', 'The snug, papered wall to wall beneath a pine ceiling', 'O snug, forrado de parede a parede sob um teto de pinho'),
       img('cascais-seafront/03', 'The corridor, with a painted palm border at the cornice', 'O corredor, com uma cercadura de palmeiras pintada na sanca'),
+      img('cascais-seafront/09', 'The attic room, its line-drawn menagerie running up over the ceiling', 'O quarto do sótão, com a menagerie desenhada a correr pelo teto'),
+      img('cascais-seafront/02', 'A bedroom in yellow ikat under a timber ceiling', 'Um quarto em ikat amarelo sob um teto de madeira'),
       img('cascais-seafront/04', 'Shells and stone on a pair of dark side tables', 'Conchas e pedra sobre um par de mesas de apoio escuras'),
+      img('cascais-seafront/10', 'The roof terrace, a long table under festoon lights above the bay', 'O terraço, uma mesa comprida sob grinaldas de luzes sobre a baía'),
     ],
   },
   {
