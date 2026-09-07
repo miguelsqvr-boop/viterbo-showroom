@@ -1,8 +1,8 @@
 /**
  * The collection.
  *
- * Names, locations, years, typologies and photographer credits are REAL — read
- * from the studio's own archive. Narratives are DRAFT: written from the
+ * Names, locations, years and typologies are REAL — read from the studio's own
+ * archive. Narratives are DRAFT: written from the
  * photography where I have seen it, deliberately unspecific where I have not,
  * and making no claim about area, budget or scope that the archive does not
  * support. They are placeholders for the studio's own words, not a substitute
@@ -41,7 +41,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Lisboa', pt: 'Lisboa' },
     typology: { en: 'Residents’ floors', pt: 'Pisos comuns' },
     year: 2021,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'The shared floors of a Lisbon building, treated with the care usually reserved for a private apartment. Ribbed timber, travertine and a still indoor pool; the lobby seats you rather than moves you through.',
       pt: 'Os pisos comuns de um edifício em Lisboa, tratados com o cuidado normalmente reservado a um apartamento privado. Madeira ripada, travertino e uma piscina interior serena; o átrio convida a ficar em vez de atravessar.',
@@ -63,7 +62,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Lisboa', pt: 'Lisboa' },
     typology: { en: 'Apartment', pt: 'Apartamento' },
     year: 2022,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'A nineteenth-century apartment kept in its own proportions — stucco ceilings, panelled walls, the original pine left orange underfoot — and then furnished entirely of its own century.',
       pt: 'Um apartamento oitocentista mantido nas suas proporções — tetos de estuque, paredes almofadadas, o pinho original deixado alaranjado no chão — e depois mobilado inteiramente com o seu próprio século.',
@@ -84,7 +82,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Cascais', pt: 'Cascais' },
     typology: { en: 'Apartment', pt: 'Apartamento' },
     year: 2021,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'Small, and patterned throughout: ikat papers, a hand-painted botanical mural, a palm border running the cornice. A pied-à-terre is used in short bursts, which is exactly when pattern is a pleasure rather than a commitment.',
       pt: 'Pequeno e padronizado por inteiro: papéis ikat, um mural botânico pintado à mão, uma cercadura de palmeiras a correr a sanca. Um pied-à-terre usa-se em períodos curtos — que é precisamente quando o padrão é um prazer e não um compromisso.',
@@ -105,7 +102,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Birre, Cascais', pt: 'Birre, Cascais' },
     typology: { en: 'Private house', pt: 'Casa privada' },
     year: 2025,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'Almost no colour, and no need for any. The house is drawn in arches and curves — a rounded sofa in an arched opening, ribbed walnut in the dressing room, brass caught at the edges — and the light off the Atlantic does the rest.',
       pt: 'Quase sem cor, e sem precisar dela. A casa é desenhada em arcos e curvas — um sofá redondo num vão em arco, nogueira canelada no vestidor, latão apanhado nas arestas — e a luz do Atlântico faz o resto.',
@@ -126,7 +122,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'London', pt: 'Londres' },
     typology: { en: 'Townhouse', pt: 'Casa urbana' },
     year: 2025,
-    photographer: 'Simon Upton',
     narrative: {
       en: 'A London townhouse layered rather than decorated. Hand-painted chinoiserie in the dining room, contemporary art in the halls, a walled garden read through glass from the table — each room holding a different century without any of them arguing.',
       pt: 'Uma casa londrina em camadas, não decorada. Chinoiserie pintada à mão na sala de jantar, arte contemporânea nos corredores, um jardim murado visto da mesa através do vidro — cada divisão com um século diferente, sem que nenhum discuta com o outro.',
@@ -148,7 +143,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Singapore', pt: 'Singapura' },
     typology: { en: 'Penthouse', pt: 'Cobertura' },
     year: 2013,
-    photographer: 'Massimo Listri',
     narrative: {
       en: 'Built around a collection of Warhol’s Endangered Species prints. The rooms were kept pale and the furniture low, because a wall of Warhols does not need help.',
       pt: 'Construída em torno de uma coleção das gravuras Endangered Species de Warhol. As divisões mantiveram-se claras e o mobiliário baixo, porque uma parede de Warhols não precisa de ajuda.',
@@ -191,7 +185,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Porto', pt: 'Porto' },
     typology: { en: 'Private house', pt: 'Casa privada' },
     year: 2023,
-    photographer: 'José Manuel Ferrão',
     narrative: {
       en: 'Pale throughout — cream, oak, white marble — with a spiral stair cut through the middle of it. The light in the north is different, and the rooms were drawn to hold it longer.',
       pt: 'Clara em toda a parte — creme, carvalho, mármore branco — com uma escada em espiral a atravessá-la ao meio. A luz no norte é outra, e as divisões foram desenhadas para a reter mais tempo.',
@@ -212,7 +205,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Birre, Cascais', pt: 'Birre, Cascais' },
     typology: { en: 'Private house', pt: 'Casa privada' },
     year: 2026,
-    photographer: 'Francisco Almeida Dias',
     narrative: {
       en: 'Pattern used as material rather than decoration — checkerboard tile run floor to ceiling, botanical paper behind a mirror, a convex glass over an arched brass console. Nothing is quiet and nothing shouts over anything else.',
       pt: 'O padrão usado como material e não como decoração — azulejo em xadrez do chão ao tecto, papel botânico atrás de um espelho, um vidro convexo sobre uma consola de latão em arco. Nada é discreto e nada se sobrepõe ao resto.',
@@ -251,7 +243,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Cascais', pt: 'Cascais' },
     typology: { en: 'Private house', pt: 'Casa privada' },
     year: 2022,
-    photographer: 'José Manuel Ferrão',
     narrative: {
       en: 'A master floor built around one commissioned piece — a brass line drawing that runs across the wall above the bed and sets the temperature for everything under it: teal, sand, smoked glass, and a gym behind a dark screen.',
       pt: 'Um piso principal construído à volta de uma peça feita por encomenda — um desenho em latão que atravessa a parede sobre a cama e define a temperatura de tudo o resto: azul-petróleo, areia, vidro fumado e um ginásio atrás de um biombo escuro.',
@@ -272,7 +263,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Lisboa', pt: 'Lisboa' },
     typology: { en: 'City apartment', pt: 'Apartamento na cidade' },
     year: 2026,
-    photographer: 'Francisco Almeida Dias',
     narrative: {
       en: 'A small apartment that refuses to behave like one. Colour is painted straight onto the walls and ceilings — a mural down the hall, stripes overhead, a scalloped headboard drawn on the plaster — so the rooms feel larger than their plan.',
       pt: 'Um apartamento pequeno que se recusa a comportar-se como tal. A cor é pintada directamente nas paredes e nos tectos — um mural no corredor, riscas por cima, uma cabeceira recortada desenhada no reboco — e as divisões parecem maiores do que a planta.',
@@ -293,7 +283,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Bangkok', pt: 'Banguecoque' },
     typology: { en: 'Private estate', pt: 'Propriedade privada' },
     year: 2016,
-    photographer: 'Sean Myers',
     scope: {
       en: 'Interior architecture and interior design, public areas and penthouses',
       pt: 'Arquitetura e design de interiores, áreas comuns e coberturas',
@@ -319,7 +308,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Lisboa', pt: 'Lisboa' },
     typology: { en: 'Palace', pt: 'Palácio' },
     year: 2020,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'A palace restored rather than reinterpreted, and then lived in.',
       pt: 'Um palácio restaurado e não reinterpretado — e depois habitado.',
@@ -340,7 +328,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Cascais', pt: 'Cascais' },
     typology: { en: 'Hotel', pt: 'Hotel' },
     year: 2019,
-    photographer: 'Francisco Almeida Dias',
     narrative: {
       en: 'A clifftop hotel in Cascais, worked room by room so that no two repeat and none of them forgets the sea below.',
       pt: 'Um hotel sobre a arriba em Cascais, trabalhado quarto a quarto para que nenhum se repita e nenhum esqueça o mar por baixo.',
@@ -362,7 +349,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Estoril', pt: 'Estoril' },
     typology: { en: 'Private house', pt: 'Casa privada' },
     year: 2022,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'Colour used without apology: hot pink against teal, cobalt against yellow, a different decision in every room. The bones of the house are calm, which is the only reason it holds.',
       pt: 'Cor usada sem pedir desculpa: rosa vivo contra azul-petróleo, cobalto contra amarelo, uma decisão diferente em cada divisão. A estrutura da casa é serena — é a única razão por que aguenta.',
@@ -383,7 +369,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Lisboa', pt: 'Lisboa' },
     typology: { en: 'Private apartment', pt: 'Apartamento privado' },
     year: 2024,
-    photographer: 'Francisco Nogueira',
     narrative: {
       en: 'Hand-painted arches lit from behind, a blue lacquered hall over an azulejo dado, and bedrooms in toile. The building is old Lisbon and the apartment does not argue with it — every intervention is joinery, colour and cloth rather than structure.',
       pt: 'Arcos pintados à mão iluminados por trás, um hall em laca azul sobre um lambril de azulejo e quartos em toile. O edifício é da Lisboa antiga e o apartamento não discute com ele — tudo se faz em marcenaria, cor e tecido, e não em estrutura.',
@@ -404,7 +389,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Belém, Lisboa', pt: 'Belém, Lisboa' },
     typology: { en: 'Landmark restaurant', pt: 'Restaurante histórico' },
     year: 2026,
-    photographer: 'Francisco Almeida Dias',
     narrative: {
       en: 'The oldest pastry house in Lisbon, working since 1837, and a room most of the city has stood in. The brief was not to make it new — it was to make the repairs invisible and let the azulejo, the oak and the checkerboard floor read as they always have.',
       pt: 'A mais antiga casa de pastéis de Lisboa, aberta desde 1837, e uma sala onde quase toda a cidade já esteve. O trabalho não era torná-la nova — era tornar o restauro invisível e deixar o azulejo, o carvalho e o chão de xadrez lerem-se como sempre se leram.',
@@ -425,7 +409,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Tuscany', pt: 'Toscana' },
     typology: { en: 'Country estate', pt: 'Propriedade rural' },
     year: 2022,
-    photographer: 'José Manuel Ferrão',
     narrative: {
       en: 'A working estate kept working. Stone left unlined, the kitchen given the largest room, and the soft surfaces made in linen that is expected to fade.',
       pt: 'Uma propriedade agrícola que continua a sê-lo. A pedra sem revestimento, a cozinha na maior divisão, e os têxteis em linho que se espera que desbote.',
@@ -447,7 +430,6 @@ export const PROJECTS: Project[] = [
     location: { en: 'Algarve', pt: 'Algarve' },
     typology: { en: 'Restaurant', pt: 'Restaurante' },
     year: 2026,
-    photographer: 'Francisco Almeida Dias',
     narrative: {
       en: 'A beach restaurant built almost entirely of timber, rattan and dried palm, with the Atlantic along one whole side. Sand comes in and is allowed to.',
       pt: 'Um restaurante de praia feito quase inteiramente de madeira, rattan e palma seca, com o Atlântico ao longo de todo um lado. A areia entra e é bem-vinda.',

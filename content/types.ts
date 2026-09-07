@@ -80,12 +80,6 @@ export type Project = {
   area?: string;
   scope?: Localized;
   architect?: string;
-  /**
-   * Which shoot an image came from. Archival provenance for the studio, NOT
-   * rendered on the screen — the facts strip deliberately does not carry a
-   * photography credit.
-   */
-  photographer?: string;
   /** Max ~60 words. Not a case study. */
   narrative: Localized;
   hero: Media;

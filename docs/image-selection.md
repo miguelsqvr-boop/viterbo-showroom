@@ -23,7 +23,7 @@ window.
 
 ---
 
-## 1. Castilho 203 — Lisboa — Francisco Nogueira, 2021
+## 1. Castilho 203 — Lisboa, 2021
 
 Not an apartment: the shared floors of a Lisbon building — lobby, spa, indoor
 pool, gym — treated with the care usually given to a private one.
@@ -35,7 +35,7 @@ pool, gym — treated with the care usually given to a private one.
   spa room.
 - **Attract — 11.**
 
-## 2. Avenida da República — Lisboa — Francisco Nogueira, 2022
+## 2. Avenida da República — Lisboa, 2022
 
 A nineteenth-century envelope with contemporary contents: stucco ceilings,
 panelled walls, the original pine left orange underfoot.
@@ -45,7 +45,7 @@ panelled walls, the original pine left orange underfoot.
   living room beneath its stucco ceiling; the kitchen through a steel-framed
   screen; a caned sideboard with a pair of lamps.
 
-## 3. Seafront Pied-à-Terre — Cascais — Francisco Nogueira, 2021
+## 3. Seafront Pied-à-Terre — Cascais, 2021
 
 **Pattern everywhere** — ikat papers, a hand-painted botanical mural, a palm
 border running the cornice. The draft narrative had assumed a quiet apartment
@@ -59,7 +59,7 @@ rewritten. Style moved to contemporary-with-a-twist, order 8.
   the brief wants both principals in one image; this is the alternative if the
   studio would rather show her alone.
 
-## 4. Chelsea — London — Simon Upton, 2025
+## 4. Chelsea — London, 2025
 
 - **Hero — 01, DiningRm1.** Portrait composition, so it takes the full frame.
   Hand-painted chinoiserie behind a green banquette: the picture that says what
@@ -73,7 +73,7 @@ rewritten. Style moved to contemporary-with-a-twist, order 8.
   names as a collaborator — this project can carry a link into Collaborations.
 - **Note.** Frame 21 is Gracinha and Miguel photographed in this house.
 
-## 5. Singapore Penthouse — Massimo Listri, 2013
+## 5. Singapore Penthouse, 2013
 
 Built around a collection of Warhol's *Endangered Species* prints.
 
@@ -87,7 +87,7 @@ Built around a collection of Warhol's *Endangered Species* prints.
   when the high-res is pulled; if it falls short, say so rather than ship a
   soft hero on a 102 ppi panel viewed from 60cm.
 
-## 6. Seafront Apartment — Rio de Janeiro — Fran Parente, 2014
+## 6. Seafront Apartment — Rio de Janeiro, 2014
 
 Seven frames only. Brazilian modernism read through a Portuguese eye: Wishbone
 chairs, paper pendants, a red painting, the beach through the glass.
@@ -97,7 +97,7 @@ chairs, paper pendants, a red painting, the beach through the glass.
 - **Gallery — 03, 01, 05, 06.**
 - **Attract — 02.** The beachfront is what says Rio.
 
-## 7. Porto Villa ("Settes House") — José Manuel Ferrão, 2023
+## 7. Porto Villa ("Settes House"), 2023
 
 **Not classic either.** Pale throughout — cream, oak, white marble — with a
 spiral stair cut through the middle. Style corrected to contemporary and moved
@@ -120,7 +120,7 @@ and now reads contemporary → contemporary with a twist → classic → beach a
 countryside across Lisboa, Porto, Cascais, Lisboa, London, Singapore, Rio,
 Estoril, Bangkok, Lisboa, Cascais, Tuscany, Algarve.
 
-## 8. Bangkok Estate — Sean Myers, 2016
+## 8. Bangkok Estate, 2016
 
 Public areas reviewed (13 frames); the two penthouse folders are still to
 look at and may add to the gallery. Gilded, double-height, brass and gold leaf.
@@ -135,7 +135,7 @@ look at and may add to the gallery. Gilded, double-height, brass and gold leaf.
 - **Note.** Frame 10 is literally a cabinet-of-curiosities wall, which rhymes
   with the cabinet the totem stands beside in the showroom.
 
-## 9. Lisbon Palace — Francisco Nogueira, 2020
+## 9. Lisbon Palace, 2020
 
 - **Hero — 06.** A pair of lit arched niches lined with hand-painted
   chinoiserie against a deep grey-green wall. Portrait, and the signature of
@@ -149,7 +149,7 @@ look at and may add to the gallery. Gilded, double-height, brass and gold leaf.
   project is called on the screen before it goes live; the app currently shows
   "Lisbon Palace", which may be wrong.
 
-## 10. Hotel Albatroz — Cascais — Francisco Almeida Dias, 2019
+## 10. Hotel Albatroz — Cascais, 2019
 
 
 - **Hero — 06.** The striped stair hall over an azulejo dado, arched windows
@@ -160,7 +160,7 @@ look at and may add to the gallery. Gilded, double-height, brass and gold leaf.
 - **Attract — 06.**
 - **Alternative hero — 05,** the BAR door between azulejo panels, also portrait.
 
-## 11. Estoril Estate — Francisco Nogueira, 2022
+## 11. Estoril Estate, 2022
 
 **Not classic.** The photography is emphatic: hot pink against teal, cobalt
 against yellow, a different decision in every room. Style corrected to
@@ -172,7 +172,7 @@ the classic slot it vacated.
 - **Gallery — 01, 02, 09, 07.**
 - **Attract — 08.**
 
-## 12. Tuscany Estate — José Manuel Ferrão, 2022
+## 12. Tuscany Estate, 2022
 
 The richest set in the archive so far, and the only one with real landscape.
 
@@ -186,7 +186,7 @@ The richest set in the archive so far, and the only one with real landscape.
 - **Note.** Frame 01 is Gracinha and Miguel carrying baskets in the courtyard —
   another Studio candidate, and the warmest of them.
 
-## 13. Cabana Sass — Algarve — Francisco Almeida Dias, 2026
+## 13. Cabana Sass — Algarve, 2026
 
 **Not a beach house — a beach restaurant.** The folder holds `Restaurante` and
 `Retratos` subfolders, and the typology in content/projects.ts has been
@@ -209,34 +209,37 @@ Castilho frames 05/06/07, Chelsea frame 21 — which is a better Studio image
 than a posed portrait against a backdrop. There is also a dedicated
 "Miguel and Gracinha" folder to review alongside them.
 
-## ⚠ Resolution: the 10 MB ceiling
+## Resolution: what the panel gets, and why
 
-The archive holds two sets: `_LOW-RES PREVIEWS` at **1600px** on the long edge,
-and full masters at **8–24 MB** each.
+The archive holds three sets, not two: `_LOW-RES PREVIEWS` at **1600px** on the
+long edge, an intermediate export sitting in the studio's own project folders
+for some shoots, and full masters at **8–29 MB**.
 
-The Drive connector this session reads through refuses any file over **10 MB**,
-and almost every master is above it — Tuscany's chosen frames are 12, 12, 23,
-12, 21 and 10 MB. So the masters cannot be pulled through this route at all,
-and every image currently wired into the app comes from the 1600px preview set.
+The connector refuses anything over about 6 MB, so the masters are unreachable
+through this route. The first build used only the previews. A later sweep found
+the intermediate tier and pulled it where it existed — see **The resolution
+sweep** below for the per-project result. 41 of 112 frames improved; the rest
+are listed in `frames-to-re-export.md` and need an export from the studio.
 
-What that costs, precisely: a full-bleed portrait hero covers 2160 × 3840
-physical pixels, and 1600px upscaled to fill that is visibly soft at 60cm on a
+What resolution costs, precisely: a full-bleed portrait hero covers 2160 × 3840
+physical pixels, and 1600px stretched to fill that is visibly soft at 60cm on a
 102 ppi panel. A collection band (2160 × ~1000) and a gallery slide (~920 wide)
 are comfortably served by 1600px.
 
-So the app now adapts rather than pretending: `canFullBleed()` in
-content/types.ts grants the full frame only to a portrait image of at least
-2160px, and anything short of that gets the band treatment, which it can
-actually fill. Nothing on the screen is upscaled beyond what it can carry.
+So the app adapts rather than pretending: `canFullBleed()` in content/types.ts
+grants the full frame only to a portrait image of at least 2160px, and anything
+short of that gets the band treatment, which it can actually fill. Nothing on
+the screen is upscaled beyond what it can carry. Today exactly one frame clears
+that gate — Singapore Penthouse's hero, at 2881 × 3840.
 
-**To lift it**, any one of these works:
-- export a ~2560px set alongside the previews, which clears both the 10 MB cap
-  and the 2160 requirement with room to spare;
+**To lift the rest**, any one of these works:
+- export a ~2560px set alongside the previews, which clears both the transfer
+  limit and the 2160 requirement with room to spare;
 - or run `npm run media:process` locally against the real masters — the
   pipeline is already written for exactly this and needs no changes;
 - or hand the repo a `media-src/` folder with the chosen frames at full size.
 
-Until then the layout is correct and honest, and the heroes are banded rather
+Until then the layout is correct and honest, and most heroes are banded rather
 than soft.
 
 ## Craft — searched, and genuinely absent
@@ -297,7 +300,7 @@ the purpose.
 
 *Barry Pied-à-Terre, Lisbon, 2023.* The 71 MB zip is a dead end, but the
 photography itself is loose in a "Barry" folder in the studio's own project
-archive — 25 frames by José Manuel Ferrão. Only one could be read: the
+archive — 25 frames. Only one could be read: the
 others are 8-24 MB and the connector refuses them. That one frame is a
 still life, a cake dome and a biscuit jar, so it cannot carry a project or
 an attract frame on its own. Barry ships when smaller files exist.
