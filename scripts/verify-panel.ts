@@ -57,6 +57,16 @@ type Violation = { view: string; locale: Locale; rule: string; detail: string };
  * left over that renders identically in EN and PT is a string that never went
  * through the locale layer.
  */
+/**
+ * Mirrors RecognitionView: marks are grouped where they repeat, then paged
+ * twelve groups at a time. Derived rather than hard-coded so the suite follows
+ * the content instead of going stale next to it.
+ */
+const RECOGNITION_PAGES = Math.ceil(
+  STUDIO.awards.filter((award, i) => i === 0 || STUDIO.awards[i - 1].mark !== award.mark).length /
+    12,
+);
+
 function identicalByDesign(): Set<string> {
   const allowed = new Set<string>();
   const consider = (value: Localized) => {
@@ -161,6 +171,14 @@ async function views(): Promise<View[]> {
   list.push({ name: 'craft · cities', path: '/craft', section: CRAFT_STAGES.length });
   list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length + 1 });
   list.push({ name: 'studio', path: '/studio' });
+  /*
+   * Both pages, because the second is the one that can silently break: it
+   * carries whatever is left after the first twelve, so adding a recognition
+   * changes its length without changing anything visible on page one.
+   */
+  for (let i = 0; i < RECOGNITION_PAGES; i += 1) {
+    list.push({ name: `recognition · page ${i + 1}`, path: '/recognition', section: i });
+  }
   list.push({ name: 'contact', path: '/contact' });
   list.push({
     name: 'contact · form, text keys',

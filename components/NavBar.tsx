@@ -12,7 +12,9 @@ import { Wordmark } from './Wordmark';
  *
  * This is unusual and it is correct: on a 181cm totem a bottom-pinned bar
  * lands at 85cm off the floor, below both the natural gaze line and
- * comfortable reach. Three items only, plus the language toggle. No
+ * comfortable reach. Four items and the language toggle — Recognition was
+ * added on request, and four is the ceiling: a fifth will not clear the 120px
+ * IR touch floor across the bar with the Portuguese labels set in it. No
  * hamburger, no dropdowns, no breadcrumbs.
  */
 export function NavBar() {
@@ -23,6 +25,11 @@ export function NavBar() {
   const items = [
     { href: '/', label: t('projects'), match: (p: string) => p === '/' || p.startsWith('/projects') },
     { href: '/studio', label: t('studio'), match: (p: string) => p.startsWith('/studio') },
+    {
+      href: '/recognition',
+      label: t('awards'),
+      match: (p: string) => p.startsWith('/recognition'),
+    },
     { href: '/contact', label: t('contact'), match: (p: string) => p.startsWith('/contact') },
   ];
 
