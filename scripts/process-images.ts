@@ -62,6 +62,16 @@ const ROTATIONS: Record<string, number> = {
    * the file says which way is up.
    */
   'porto-villa/04': 90,
+  /*
+   * The rest of the same shoot, added when the gallery went to ten. Every
+   * frame from this job except 01 and 05 is stored turned; both exceptions
+   * were checked by rendering, not assumed.
+   */
+  'porto-villa/06': 90,
+  'porto-villa/07': 90,
+  'porto-villa/08': 90,
+  'porto-villa/09': 90,
+  'porto-villa/10': 90,
 };
 const EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp']);
 

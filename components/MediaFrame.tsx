@@ -29,6 +29,7 @@ export function MediaFrame({
   mode,
   focus = 50,
   priority = false,
+  eager = false,
   active = true,
   className = '',
   style,
@@ -45,6 +46,17 @@ export function MediaFrame({
    */
   focus?: number;
   priority?: boolean;
+  /**
+   * Load as soon as the element exists, rather than waiting for the browser's
+   * own lazy-loading margin.
+   *
+   * For anything wrapped in `Mounted`, laziness is not only redundant but
+   * harmful: `Mounted` has already decided the frame is within a screen of the
+   * viewport, and the browser then waits again before fetching. On the project
+   * stack that showed up as a photograph you had scrolled to still being blank
+   * — caught by the blank-slide check, which is exactly what it is for.
+   */
+  eager?: boolean;
   /** Videos play only when they are the active item; everything else is a poster. */
   active?: boolean;
   className?: string;
@@ -90,6 +102,7 @@ export function MediaFrame({
             placeholder="blur"
             blurDataURL={poster.blurDataURL}
             priority={priority}
+            loading={priority ? undefined : eager ? 'eager' : undefined}
             className={fit}
             style={{ objectPosition }}
           />
@@ -115,6 +128,7 @@ export function MediaFrame({
           placeholder="blur"
           blurDataURL={media.blurDataURL}
           priority={priority}
+          loading={priority ? undefined : eager ? 'eager' : undefined}
           className={fit}
           style={{ objectPosition }}
         />

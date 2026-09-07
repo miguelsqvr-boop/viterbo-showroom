@@ -455,6 +455,40 @@ through the house rather than as the shoot was filed.
   media folder are gone; nothing was left behind for a later pass to trip over.
   The Q Hub shoot and the Concierge job folder are still in the Drive if it is
   ever wanted back.
+- **Castilho 203** — 4 → 10. The building from the terrace with the pool cut
+  into it (the only exterior and the strongest single frame), the timber
+  passage to a lit stone niche, the lobby with its string of glass globes, the
+  black marble washroom, curtains falling to the water in the travertine bay,
+  brass against black marble. Not used: three portraits of the principals (not
+  rooms), two further views of the pearl chandelier and one of the copper
+  pendants already wired, the gym.
+- **Ivens** — 4 → 10. The enfilade of doorways, three more bedrooms, a
+  washstand between paired sconces, the glazed passage. Closes on the azulejo
+  bathroom. Not used: near-repeats of the pink bedroom and the yellow-curtained
+  window seat already wired.
+- **Tuscany Estate** — 4 → 10. Opens on the valley, cut and baled, because on
+  this project the land is half the brief. Then the library arch, the white
+  sofa against bare plaster with an olive in an urn, the long kitchen table,
+  a bedroom onto the fields, and the stone washstand under a gilt mirror. Not
+  used: two further landscapes weaker than the one chosen, a second view of the
+  painted kitchen, three more bedrooms too close to each other, a curtain
+  detail.
+- **Estoril Estate** — 4 → 10. Opens on the white barrel-vaulted corridor,
+  which is the one quiet moment in the house and makes everything after it
+  louder. Then the yellow-tiled kitchen, the teal enfilade with its yellow
+  floor line, two bedrooms, and the blue cloakroom. Not used: a headboard
+  detail, a dark doorway, and a third view of the teal bathroom.
+- **Avenida da República** — 4 → 10. The console with branches, the far end of
+  the living room under the arched window, the kitchen island, the neon-lettered
+  bedroom, the bed built above a daybed, the desk under framed charts. Not used:
+  a second view of the dining room already wired, and two near-identical
+  still lifes.
+- **Porto Villa** — 4 → 10. The terrace laid for lunch, a curved sofa turned to
+  the window, the dining room's black and white panel, the steel-framed study,
+  the scalloped headboard, and brass and stone on a patterned ground. Five of
+  the six are stored turned and needed ROTATIONS entries; each was checked by
+  rendering it rotated and looking, not assumed — 05 is the one that did not
+  need it. Not used: two portraits of the owners.
 - **Pastéis de Belém** — 4 → 10, from the twenty-frame Francisco Almeida Dias
   shoot. Added the name cut into stone, the nested oak doorways, the long
   counter, the serving hall under its full azulejo ceiling, a vitrine of tins

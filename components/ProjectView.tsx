@@ -180,7 +180,7 @@ export function ProjectView({ project }: { project: Project }) {
               rootMargin="100% 0px"
               style={{ height: panelVh(frameHeight(frame)) }}
             >
-              <MediaFrame media={frame} mode="band" active className="h-full w-full" />
+              <MediaFrame media={frame} mode="band" eager active className="h-full w-full" />
             </Mounted>
           </section>
         ))}
