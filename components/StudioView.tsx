@@ -13,6 +13,8 @@ import { MediaFrame } from './MediaFrame';
  * rather than cities, and a number invites the one question you don't want a
  * visitor asking. The list itself lives in Craft and does the work better.
  */
+const MARKS_ON_STUDIO = 8;
+
 export function StudioView() {
   const { s, t } = useLocale();
 
@@ -46,23 +48,24 @@ export function StudioView() {
        */}
       <div className="absolute inset-x-0 px-14" style={{ top: '58%' }}>
         <p className="mb-7 text-caption uppercase tracking-[0.2em] text-ink-faint">{t('awards')}</p>
-        <div className="flex flex-wrap gap-x-8 gap-y-3">
+        <div className="flex flex-wrap gap-x-12 gap-y-6">
           {/*
-           * One line per mark, not per recognition. CNN and Condé Nast each
-           * recognised two hotels, and repeating a name to say so reads as
-           * padding rather than as twice the credit.
+           * Eight, not all twenty-two. The full list has its own screen now,
+           * so this one is back to doing what it did best: a handful of marks
+           * a visitor recognises without reading, at the display size they
+           * were meant to be set in. Taken from the head of the awards array,
+           * which is ordered strongest-first, so adding a recognition later
+           * does not quietly change what the Studio screen leads with.
            *
-           * Body weight rather than the 56px section size the six-mark version
-           * used: twenty-two marks at 56px run 92px past the bottom of the
-           * screen and the tail is silently clipped by the overflow. At 32px
-           * they all fit above the fold and are still ~16mm tall on the panel,
-           * which reads at three metres.
+           * Deduped because CNN and Conde Nast each appear twice in the data.
            */}
-          {Array.from(new Set(STUDIO.awards.map((award) => award.mark))).map((mark) => (
-            <span key={mark} className="text-body text-ink-muted">
-              {mark}
-            </span>
-          ))}
+          {Array.from(new Set(STUDIO.awards.map((award) => award.mark)))
+            .slice(0, MARKS_ON_STUDIO)
+            .map((mark) => (
+              <span key={mark} className="text-section text-ink-muted">
+                {mark}
+              </span>
+            ))}
         </div>
       </div>
     </div>
