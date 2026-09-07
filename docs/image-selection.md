@@ -565,3 +565,20 @@ through the house rather than as the shoot was filed.
   across ten images is proportionate rather than padding. This project cannot
   reach ten gallery frames without photography that does not exist; it needs an
   eleventh frame from the studio, not a better selection.
+- **Rio de Janeiro** — attempted, reverted, stays at 4. The project folder holds
+  seven frames, five of them wired. The rest of the shoot does exist: an
+  SEO-named folder (`1WMDOvaNkr8gNYl1o8VSxpjUhaUAen87L`, files called
+  "decoraçao de interiores contemporanea NN.jpg") holds another twenty-six
+  frames of the same apartment. They were harvested and looked at, and six were
+  chosen — the entrance with three oval mirrors, the open shelves with the
+  soft-outlined table, the main bedroom built into a timber wall, the bedroom
+  whose curtain is printed with the line of a hill, the yellow-half-wall
+  bedroom, and the desk with the surfboard.
+  They were then taken back out. Every frame in that folder decodes at
+  **667×1000**. The panel is 2160px across at DPR 2, so those would have
+  rendered at roughly a quarter of the resolution of the four 1600px frames
+  sitting beside them, and the difference would be plain on a 43-inch screen.
+  The Drive has only two tiers for this shoot — these thumbnails, and 12–18 MB
+  masters in `1iOTkbMvmf2AsYTVmOt4GKHTOJ55ygViE` that are twice the connector
+  ceiling. There is nothing in between. Rio needs a re-export, not a better
+  selection; the six frames are named in docs/frames-to-re-export.md.

@@ -214,6 +214,25 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - **"Seafront Apartment" is the Rio de Janeiro project** (`rio-de-janeiro`). Not to
   be confused with **Seafront Pied-à-Terre** in Cascais (`cascais-seafront`), which
   was fully upgraded and needs nothing.
+
+- **Rio de Janeiro cannot be deepened without six more exports.** It is stuck at
+  four gallery frames. The rest of the shoot is in the Drive, under
+  SEO filenames in `1WMDOvaNkr8gNYl1o8VSxpjUhaUAen87L`, but every file there is
+  **667×1000** — a web thumbnail, a quarter the resolution of the frames already
+  on the panel, and visibly so at 43 inches. The masters beside them are 12–18 MB.
+  Six frames were chosen from that folder and would go straight in at ~2560px:
+
+  | Slot | Drive filename |
+  |---|---|
+  | 05 | `decoraçao de interiores contemporanea 7.jpg` (entrance, three oval mirrors) |
+  | 06 | `decoraçao de interiores contemporanea 4a.jpg` (open shelves, soft-outlined table) |
+  | 07 | `decoraçao de interiores contemporanea 20.jpg` (main bedroom in a timber wall) |
+  | 08 | `decoraçao de interiores contemporanea 14.jpg` (curtain printed with a hill) |
+  | 09 | `140320_VITERBO_047_Fran_Parente_8876.jpg` (bedroom, yellow half-wall) |
+  | 10 | `decoraçao de interiores contemporanea 24.jpg` (desk and surfboard) |
+
+  These are additions, so the filenames above are the source, not the slot — name
+  the exports whatever is convenient and the table says where each one goes.
 - **Lisbon Pied-à-Terre** frame `(3)` already sits at 5.83 MB and is readable, but
   it is not one of the six frames chosen for that project. If you would rather swap
   a frame than re-export, that one is free.
