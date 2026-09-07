@@ -305,6 +305,17 @@ others are 8-24 MB and the connector refuses them. That one frame is a
 still life, a cake dome and a biscuit jar, so it cannot carry a project or
 an attract frame on its own. Barry ships when smaller files exist.
 
+*The Cabinet, 7 Sept 2026.* A folder of 86 phone photographs of the shop and
+its stock — shelves of homeware, cushions, lamps, tableware, a stockroom of
+folded textiles, price tags still on some of the pieces. Twenty were harvested
+and looked at before ruling it out. It is a stock record rather than
+photography: 1536x2048 off a phone, and it would sit on the panel next to
+work by Nogueira, Upton and Listri. It is also the wrong subject for Craft,
+which needs the atelier, the workshops, the warehouse, crates in transit and
+an installation on site. If the Cabinet belongs on the panel it needs a
+section of its own and photography shot for it — a different question from
+this one. Folder id 1nss4SH1zPsEFNx5y8bwXjKKa6cBVvRvM.
+
 *Bruna, Birre, 2025.* ~~No previews folder.~~ Found: the shared folder holds
 only a desktop.ini, but the photography sits in a `final` subfolder of a
 separate "Bruna- Birre" folder elsewhere in the studio's Drive, thirty
