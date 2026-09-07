@@ -293,6 +293,24 @@ Public Areas — one project), Lisbon Palace, Hotel Albatroz, Ivens (filed
 as "Sonia Regina"), Pastéis de Belém, Tuscany Estate, Cabana Sass (two
 folders, one project). Plus "Miguel and Gracinha" for the Studio portrait.
 
+**Lisbon Palace is the Ivens apartment.** Found on 7 September while deepening
+the galleries, and not yet resolved.
+
+Four of Lisbon Palace's five images are pixel-identical to Ivens frames — the
+hero, and three of the four gallery frames — and two of them are byte-identical
+files. The panel is showing one apartment as two projects under two names.
+
+It is not a wiring slip that can be corrected from the Drive, because the Drive
+says the same thing: the folder "2020 Lisbon Palace - Photos Francisco
+Nogueira" (1fvq7JOrSa1McekX0Jczi-runN-eg4_yt) contains seventy-odd files and
+every one of them is named `ViterboIvens####.jpg`. There is no Lisbon Palace
+photography in the shared folder at all.
+
+So Lisbon Palace has been left at four frames rather than deepened: adding six
+more from that folder would put the same apartment on the panel twice, at
+length. It needs Miguel: either the real photography for the project, or the
+project comes off the panel, or the two are the same job and one entry goes.
+
 **Excluded, with reasons.**
 
 *Quinta do Lago Q Hub, 2020.* Used, then withdrawn. It shipped as "Hospitality
