@@ -127,11 +127,23 @@ export const PROJECTS: Project[] = [
       pt: 'Uma casa londrina em camadas, não decorada. Chinoiserie pintada à mão na sala de jantar, arte contemporânea nos corredores, um jardim murado visto da mesa através do vidro — cada divisão com um século diferente, sem que nenhum discuta com o outro.',
     },
     hero: img('chelsea/hero', 'Hand-painted chinoiserie above a green banquette in the dining room', 'Chinoiserie pintada à mão sobre um banco verde na sala de jantar'),
+    /*
+     * Ordered as a walk through the house rather than as the shoot was filed:
+     * in at the hall, through to the dining room and the garden beyond it, the
+     * kitchen, the two reception rooms, up the stairs, and then the private
+     * rooms. On a panel the visitor scrolls this in one direction, so the
+     * sequence is doing the work a floor plan would do on paper.
+     */
     gallery: [
+      img('chelsea/05', 'The entrance hall, a painted mural running its full length', 'O hall de entrada, com um mural pintado a toda a sua extensão'),
       img('chelsea/01', 'The dining room reading through glass to the walled garden', 'A sala de jantar vista, através do vidro, para o jardim murado'),
+      img('chelsea/06', 'The kitchen, dark cabinetry around a pale island', 'A cozinha, com marcenaria escura em torno de uma ilha clara'),
       img('chelsea/02', 'Teal velvet seating beneath a large painting', 'Assentos em veludo azul-petróleo sob uma pintura de grandes dimensões'),
       img('chelsea/03', 'The library, with armchairs drawn up to the fireplace', 'A biblioteca, com poltronas junto à lareira'),
+      img('chelsea/07', 'The stair, in a black and white striped runner', 'A escada, com passadeira às riscas a preto e branco'),
       img('chelsea/04', 'The principal bedroom, in dark green', 'O quarto principal, em verde escuro'),
+      img('chelsea/08', 'The principal bathroom, a blue bath on a striped rug', 'A casa de banho principal, com banheira azul sobre um tapete às riscas'),
+      img('chelsea/09', 'The cloakroom, lined in red floral paper around a marble basin', 'O lavabo, forrado a papel floral vermelho em torno de um lavatório em mármore'),
     ],
     featuredInAttract: true,
   },

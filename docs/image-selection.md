@@ -408,3 +408,34 @@ Two near misses worth knowing about, in case the studio would rather move a
 frame than re-export: Quinta do Lago's two remaining frames sit at 7.06 and
 7.24 MB, and Lisbon Pied-à-Terre's masters are 6.6–11.8 MB except frame (3)
 at 5.83 MB, which is readable but is not one of the six currently chosen.
+
+## Deepening the galleries
+
+Miguel asked for "at least 8 to 10 images for each project". Every project
+shipped with four gallery frames and a hero, because that is what the first
+pass selected — not because that is what exists. The shoot folders under
+_LOW-RES PREVIEWS hold far more: Chelsea alone has around sixty-eight frames,
+all comfortably under the transfer ceiling.
+
+The work is one project at a time, and it is a looking job, not a copying job.
+Harvest the shoot, contact-sheet it, look at every frame, and add only what
+earns a whole screen of a 43" panel: no near-duplicate of a frame already
+wired, nothing weak, nothing repetitive, no watermarks. A gallery of six
+strong frames is better than ten of which four are filler, and a project whose
+shoot cannot honestly give more should be left at four and said so.
+
+The order of the array is the order the visitor scrolls, so it is set as a walk
+through the house rather than as the shoot was filed.
+
+**Done.**
+
+- **Chelsea** — 4 → 9. Added the entrance hall with its full-length mural, the
+  kitchen, the striped stair, the principal bathroom and the cloakroom.
+  Re-ordered as a walk: hall, dining room and garden, kitchen, drawing room,
+  library, stair, bedroom, bathroom, cloakroom. Not used: the portrait of the
+  clients (not a room), Garden3 (the same fire bowl and daybed already read
+  through the glass in frame 01), Library9 and Drawing8 (too close to the
+  library and drawing room already wired), Office1 and DressRm1 (quiet frames
+  that would dilute a strong set).
+- **Quinta do Lago Concierge** — 2 → 3, which is all five photographs the Q Hub
+  shoot contains. Nothing further exists.
