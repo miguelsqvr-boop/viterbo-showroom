@@ -1,72 +1,72 @@
-project,slug,slot,drive_filename,current_px,photographer
-"Bangkok Estate",bangkok-estate,01,"Viterbo_15_04_197085-finals Edit.jpg",1068x1600,"Sean Myers"
-"Bangkok Estate",bangkok-estate,02,"Viterbo_16_04_197251-finals edit.jpg",1600x1191,"Sean Myers"
-"Bangkok Estate",bangkok-estate,03,"Viterbo_16_04_197350-finals.jpg",1600x1068,"Sean Myers"
-"Bangkok Estate",bangkok-estate,04,"Viterbo_16_04_197572-finals.jpg",1600x1068,"Sean Myers"
-"Bangkok Estate",bangkok-estate,attract,"Viterbo_15_04_197039-finals Edit.jpg",1600x1068,"Sean Myers"
-"Bangkok Estate",bangkok-estate,hero,"Viterbo_15_04_197039-finals Edit.jpg",1600x1068,"Sean Myers"
-"Birre House",birre-house,01,"FAD-ViD-2603__(048)__17--PRESS--HiResEdit.jpg",1221x1600,"Francisco Almeida Dias"
-"Birre House",birre-house,02,"FAD-ViD-2603__(040)__17--PRESS--HiResEdit.jpg",1280x1600,"Francisco Almeida Dias"
-"Birre House",birre-house,03,"FAD-ViD-2603__(057)__18--PRESS--HiResEdit.jpg",1229x1600,"Francisco Almeida Dias"
-"Birre House",birre-house,04,"FAD-ViD-2603__(071)__17--PRESS--HiResEdit.jpg",1222x1600,"Francisco Almeida Dias"
-"Birre House",birre-house,attract,"FAD-ViD-2603__(051)__18--PRESS--HiResEdit.jpg",1222x1600,"Francisco Almeida Dias"
-"Birre House",birre-house,hero,"FAD-ViD-2603__(061)__18--PRESS--HiResEdit.jpg",1222x1600,"Francisco Almeida Dias"
-"Birre Villa",birre-villa,01,"GracinhaViterboBirre0324.jpg",2048x2560,"Francisco Nogueira"
-"Birre Villa",birre-villa,02,"GracinhaViterboBirre0501.jpg",2048x2048,"Francisco Nogueira"
-"Birre Villa",birre-villa,03,"GracinhaViterboBirre0170.jpg",2048x2868,"Francisco Nogueira"
-"Birre Villa",birre-villa,04,"GracinhaViterboBirre1098.jpg",2048x2868,"Francisco Nogueira"
-"Birre Villa",birre-villa,attract,"GracinhaViterboBirre0203.jpg",2048x2868,"Francisco Nogueira"
-"Birre Villa",birre-villa,hero,"GracinhaViterboBirre0438.jpg",2048x1366,"Francisco Nogueira"
-"Cabana Sass",cabana-sass,01,"FAD-VID-250929__(017)__HiRes(LARGE)-Press.jpg",1222x1600,"Francisco Almeida Dias"
-"Cabana Sass",cabana-sass,02,"FAD-VID-250929__(027)__HiRes(LARGE)-Press.jpg",1223x1600,"Francisco Almeida Dias"
-"Cabana Sass",cabana-sass,03,"FAD-VID-250929__(022)__HiRes(LARGE)-Press.jpg",1110x1600,"Francisco Almeida Dias"
-"Cabana Sass",cabana-sass,04,"FAD-VID-250929__(031)__HiRes(LARGE)-Press.jpg",1600x1046,"Francisco Almeida Dias"
-"Cabana Sass",cabana-sass,attract,"FAD-VID-250929__(017)__HiRes(LARGE)-Press.jpg",1222x1600,"Francisco Almeida Dias"
-"Cabana Sass",cabana-sass,hero,"FAD-VID-250929__(013)__HiRes(LARGE)-Press.jpg",1284x1600,"Francisco Almeida Dias"
-"Cascais Estate",cascais-estate,01,"JoseManuelFerrão2022_043.jpg",1600x1064,"José Manuel Ferrão"
-"Cascais Estate",cascais-estate,02,"JoseManuelFerrão2022_049.jpg",1600x1065,"José Manuel Ferrão"
-"Cascais Estate",cascais-estate,03,"JoseManuelFerrão2022_051.jpg",1066x1600,"José Manuel Ferrão"
-"Cascais Estate",cascais-estate,04,"JoseManuelFerrão2022_052.jpg",1068x1600,"José Manuel Ferrão"
-"Cascais Estate",cascais-estate,attract,"JoseManuelFerrão2022_048.jpg",1066x1600,"José Manuel Ferrão"
-"Cascais Estate",cascais-estate,hero,"JoseManuelFerrão2022_045.jpg",1600x1065,"José Manuel Ferrão"
-"Hotel Albatroz",hotel-albatroz,02,"FAD-GV.1909__#049__17-HRL.jpg",1600x1134,"Francisco Almeida Dias"
-"Ivens",ivens,01,"ViterboIvens1538.jpg",1600x1600,"Francisco Nogueira"
-"Ivens",ivens,02,"ViterboIvens1688.jpg",1600x1067,"Francisco Nogueira"
-"Ivens",ivens,03,"ViterboIvens1811.jpg",1500x1000,"Francisco Nogueira"
-"Ivens",ivens,hero,"ViterboIvens1601.jpg",1600x1600,"Francisco Nogueira"
-"Lisbon Palace",lisbon-palace,01,"ViterboIvens1572.jpg",1600x1600,"Francisco Nogueira"
-"Lisbon Palace",lisbon-palace,03,"ViterboIvens1688.jpg",1600x1067,"Francisco Nogueira"
-"Lisbon Palace",lisbon-palace,04,"ViterboIvens1891.jpg",1500x1000,"Francisco Nogueira"
-"Lisbon Palace",lisbon-palace,hero,"ViterboIvens1601.jpg",1600x1600,"Francisco Nogueira"
-"Lisbon Pied-à-Terre",lisbon-pied-a-terre,01,"2026 Lisbon Interior Design pied a terre (6).jpg",1600x1259,"Francisco Almeida Dias"
-"Lisbon Pied-à-Terre",lisbon-pied-a-terre,02,"2026 Lisbon Interior Design pied a terre (4).jpg",1222x1600,"Francisco Almeida Dias"
-"Lisbon Pied-à-Terre",lisbon-pied-a-terre,03,"2026 Lisbon Interior Design pied a terre (8).jpg",1223x1600,"Francisco Almeida Dias"
-"Lisbon Pied-à-Terre",lisbon-pied-a-terre,04,"2026 Lisbon Interior Design pied a terre (2).jpg",1223x1600,"Francisco Almeida Dias"
-"Lisbon Pied-à-Terre",lisbon-pied-a-terre,attract,"2026 Lisbon Interior Design pied a terre (1).jpg",1280x1600,"Francisco Almeida Dias"
-"Lisbon Pied-à-Terre",lisbon-pied-a-terre,hero,"2026 Lisbon Interior Design pied a terre (7).jpg",1222x1600,"Francisco Almeida Dias"
-"Pastéis de Belém",pasteis-de-belem,01,"FAD-VID-250530__(020)__HiRes(LARGE)-Press.jpg",1245x1600,"Francisco Almeida Dias"
-"Pastéis de Belém",pasteis-de-belem,02,"FAD-VID-250530__(007)__HiRes(LARGE)-Press.jpg",1600x1162,"Francisco Almeida Dias"
-"Pastéis de Belém",pasteis-de-belem,03,"FAD-VID-250530__(024)__HiRes(LARGE)-Press.jpg",1141x1600,"Francisco Almeida Dias"
-"Pastéis de Belém",pasteis-de-belem,04,"FAD-VID-250530__(008)__HiRes(LARGE)-Press.jpg",1223x1600,"Francisco Almeida Dias"
-"Pastéis de Belém",pasteis-de-belem,attract,"FAD-VID-250530__(006)__HiRes(LARGE)-Press.jpg",1227x1600,"Francisco Almeida Dias"
-"Pastéis de Belém",pasteis-de-belem,hero,"FAD-VID-250530__(003)__HiRes(LARGE)-Press.jpg",1600x1012,"Francisco Almeida Dias"
-"Porto Villa",porto-villa,01,"Viterbo Interior Design-Settes House_0066.jpg",1600x1067,"José Manuel Ferrão"
-"Porto Villa",porto-villa,02,"Viterbo Interior Design-Settes House_0081.jpg",1600x1059,"José Manuel Ferrão"
-"Porto Villa",porto-villa,03,"Viterbo Interior Design-Settes House_0087.jpg",1600x1065,"José Manuel Ferrão"
-"Porto Villa",porto-villa,04,"Viterbo Interior Design-Settes House_0090.jpg",1065x1600,"José Manuel Ferrão"
-"Porto Villa",porto-villa,attract,"Viterbo Interior Design-Settes House_0070.jpg",1065x1600,"José Manuel Ferrão"
-"Porto Villa",porto-villa,hero,"Viterbo Interior Design-Settes House_0070.jpg",1065x1600,"José Manuel Ferrão"
-"Quinta do Lago",quinta-do-lago,01,"CDQ Office - Print-21.jpg",1600x900,""
-"Quinta do Lago",quinta-do-lago,02,"CDQ Office - Print-37.jpg",1600x900,""
-"Seafront Apartment",rio-de-janeiro,01,"140320_VITERBO_027_Fran_Parente_8823.jpg",1600x1067,""
-"Seafront Apartment",rio-de-janeiro,02,"140320_VITERBO_003_Fran_Parente_8697.jpg",1600x1067,""
-"Seafront Apartment",rio-de-janeiro,03,"140320_VITERBO_040_Fran_Parente_8849.jpg",1067x1600,""
-"Seafront Apartment",rio-de-janeiro,04,"140320_VITERBO_044_Fran_Parente_8864.jpg",1067x1600,""
-"Seafront Apartment",rio-de-janeiro,hero,"140320_VITERBO_008_Fran_Parente_8716.jpg",1600x1066,""
-"Studio portrait",studio,gracinha-miguel,"Gracinha and Miguel Tuscany (3).jpg",1067x1600,""
-"Tuscany Estate",tuscany-estate,01,"ViterboID- Tuscany (22).jpg",1600x1066,"José Manuel Ferrão"
-"Tuscany Estate",tuscany-estate,02,"ViterboID- Tuscany (38).jpg",1065x1600,"José Manuel Ferrão"
-"Tuscany Estate",tuscany-estate,03,"ViterboID- Tuscany (46).jpg",1070x1600,"José Manuel Ferrão"
-"Tuscany Estate",tuscany-estate,04,"ViterboID- Tuscany (70).jpg",1049x1600,"José Manuel Ferrão"
-"Tuscany Estate",tuscany-estate,attract,"ViterboID- Tuscany (10).jpg",1067x1600,"José Manuel Ferrão"
-"Tuscany Estate",tuscany-estate,hero,"ViterboID- Tuscany (18).jpg",1066x1600,"José Manuel Ferrão"
+project,slug,slot,drive_filename,current_px
+"Bangkok Estate",bangkok-estate,01,"Viterbo_15_04_197085-finals Edit.jpg",1068x1600
+"Bangkok Estate",bangkok-estate,02,"Viterbo_16_04_197251-finals edit.jpg",1600x1191
+"Bangkok Estate",bangkok-estate,03,"Viterbo_16_04_197350-finals.jpg",1600x1068
+"Bangkok Estate",bangkok-estate,04,"Viterbo_16_04_197572-finals.jpg",1600x1068
+"Bangkok Estate",bangkok-estate,attract,"Viterbo_15_04_197039-finals Edit.jpg",1600x1068
+"Bangkok Estate",bangkok-estate,hero,"Viterbo_15_04_197039-finals Edit.jpg",1600x1068
+"Birre House",birre-house,01,"FAD-ViD-2603__(048)__17--PRESS--HiResEdit.jpg",1221x1600
+"Birre House",birre-house,02,"FAD-ViD-2603__(040)__17--PRESS--HiResEdit.jpg",1280x1600
+"Birre House",birre-house,03,"FAD-ViD-2603__(057)__18--PRESS--HiResEdit.jpg",1229x1600
+"Birre House",birre-house,04,"FAD-ViD-2603__(071)__17--PRESS--HiResEdit.jpg",1222x1600
+"Birre House",birre-house,attract,"FAD-ViD-2603__(051)__18--PRESS--HiResEdit.jpg",1222x1600
+"Birre House",birre-house,hero,"FAD-ViD-2603__(061)__18--PRESS--HiResEdit.jpg",1222x1600
+"Birre Villa",birre-villa,01,"GracinhaViterboBirre0324.jpg",2048x2560
+"Birre Villa",birre-villa,02,"GracinhaViterboBirre0501.jpg",2048x2048
+"Birre Villa",birre-villa,03,"GracinhaViterboBirre0170.jpg",2048x2868
+"Birre Villa",birre-villa,04,"GracinhaViterboBirre1098.jpg",2048x2868
+"Birre Villa",birre-villa,attract,"GracinhaViterboBirre0203.jpg",2048x2868
+"Birre Villa",birre-villa,hero,"GracinhaViterboBirre0438.jpg",2048x1366
+"Cabana Sass",cabana-sass,01,"FAD-VID-250929__(017)__HiRes(LARGE)-Press.jpg",1222x1600
+"Cabana Sass",cabana-sass,02,"FAD-VID-250929__(027)__HiRes(LARGE)-Press.jpg",1223x1600
+"Cabana Sass",cabana-sass,03,"FAD-VID-250929__(022)__HiRes(LARGE)-Press.jpg",1110x1600
+"Cabana Sass",cabana-sass,04,"FAD-VID-250929__(031)__HiRes(LARGE)-Press.jpg",1600x1046
+"Cabana Sass",cabana-sass,attract,"FAD-VID-250929__(017)__HiRes(LARGE)-Press.jpg",1222x1600
+"Cabana Sass",cabana-sass,hero,"FAD-VID-250929__(013)__HiRes(LARGE)-Press.jpg",1284x1600
+"Cascais Estate",cascais-estate,01,"JoseManuelFerrão2022_043.jpg",1600x1064
+"Cascais Estate",cascais-estate,02,"JoseManuelFerrão2022_049.jpg",1600x1065
+"Cascais Estate",cascais-estate,03,"JoseManuelFerrão2022_051.jpg",1066x1600
+"Cascais Estate",cascais-estate,04,"JoseManuelFerrão2022_052.jpg",1068x1600
+"Cascais Estate",cascais-estate,attract,"JoseManuelFerrão2022_048.jpg",1066x1600
+"Cascais Estate",cascais-estate,hero,"JoseManuelFerrão2022_045.jpg",1600x1065
+"Hotel Albatroz",hotel-albatroz,02,"FAD-GV.1909__#049__17-HRL.jpg",1600x1134
+"Ivens",ivens,01,"ViterboIvens1538.jpg",1600x1600
+"Ivens",ivens,02,"ViterboIvens1688.jpg",1600x1067
+"Ivens",ivens,03,"ViterboIvens1811.jpg",1500x1000
+"Ivens",ivens,hero,"ViterboIvens1601.jpg",1600x1600
+"Lisbon Palace",lisbon-palace,01,"ViterboIvens1572.jpg",1600x1600
+"Lisbon Palace",lisbon-palace,03,"ViterboIvens1688.jpg",1600x1067
+"Lisbon Palace",lisbon-palace,04,"ViterboIvens1891.jpg",1500x1000
+"Lisbon Palace",lisbon-palace,hero,"ViterboIvens1601.jpg",1600x1600
+"Lisbon Pied-à-Terre",lisbon-pied-a-terre,01,"2026 Lisbon Interior Design pied a terre (6).jpg",1600x1259
+"Lisbon Pied-à-Terre",lisbon-pied-a-terre,02,"2026 Lisbon Interior Design pied a terre (4).jpg",1222x1600
+"Lisbon Pied-à-Terre",lisbon-pied-a-terre,03,"2026 Lisbon Interior Design pied a terre (8).jpg",1223x1600
+"Lisbon Pied-à-Terre",lisbon-pied-a-terre,04,"2026 Lisbon Interior Design pied a terre (2).jpg",1223x1600
+"Lisbon Pied-à-Terre",lisbon-pied-a-terre,attract,"2026 Lisbon Interior Design pied a terre (1).jpg",1280x1600
+"Lisbon Pied-à-Terre",lisbon-pied-a-terre,hero,"2026 Lisbon Interior Design pied a terre (7).jpg",1222x1600
+"Pastéis de Belém",pasteis-de-belem,01,"FAD-VID-250530__(020)__HiRes(LARGE)-Press.jpg",1245x1600
+"Pastéis de Belém",pasteis-de-belem,02,"FAD-VID-250530__(007)__HiRes(LARGE)-Press.jpg",1600x1162
+"Pastéis de Belém",pasteis-de-belem,03,"FAD-VID-250530__(024)__HiRes(LARGE)-Press.jpg",1141x1600
+"Pastéis de Belém",pasteis-de-belem,04,"FAD-VID-250530__(008)__HiRes(LARGE)-Press.jpg",1223x1600
+"Pastéis de Belém",pasteis-de-belem,attract,"FAD-VID-250530__(006)__HiRes(LARGE)-Press.jpg",1227x1600
+"Pastéis de Belém",pasteis-de-belem,hero,"FAD-VID-250530__(003)__HiRes(LARGE)-Press.jpg",1600x1012
+"Porto Villa",porto-villa,01,"Viterbo Interior Design-Settes House_0066.jpg",1600x1067
+"Porto Villa",porto-villa,02,"Viterbo Interior Design-Settes House_0081.jpg",1600x1059
+"Porto Villa",porto-villa,03,"Viterbo Interior Design-Settes House_0087.jpg",1600x1065
+"Porto Villa",porto-villa,04,"Viterbo Interior Design-Settes House_0090.jpg",1065x1600
+"Porto Villa",porto-villa,attract,"Viterbo Interior Design-Settes House_0070.jpg",1065x1600
+"Porto Villa",porto-villa,hero,"Viterbo Interior Design-Settes House_0070.jpg",1065x1600
+"Quinta do Lago",quinta-do-lago,01,"CDQ Office - Print-21.jpg",1600x900
+"Quinta do Lago",quinta-do-lago,02,"CDQ Office - Print-37.jpg",1600x900
+"Seafront Apartment",rio-de-janeiro,01,"140320_VITERBO_027_Fran_Parente_8823.jpg",1600x1067
+"Seafront Apartment",rio-de-janeiro,02,"140320_VITERBO_003_Fran_Parente_8697.jpg",1600x1067
+"Seafront Apartment",rio-de-janeiro,03,"140320_VITERBO_040_Fran_Parente_8849.jpg",1067x1600
+"Seafront Apartment",rio-de-janeiro,04,"140320_VITERBO_044_Fran_Parente_8864.jpg",1067x1600
+"Seafront Apartment",rio-de-janeiro,hero,"140320_VITERBO_008_Fran_Parente_8716.jpg",1600x1066
+"Studio portrait",studio,gracinha-miguel,"Gracinha and Miguel Tuscany (3).jpg",1067x1600
+"Tuscany Estate",tuscany-estate,01,"ViterboID- Tuscany (22).jpg",1600x1066
+"Tuscany Estate",tuscany-estate,02,"ViterboID- Tuscany (38).jpg",1065x1600
+"Tuscany Estate",tuscany-estate,03,"ViterboID- Tuscany (46).jpg",1070x1600
+"Tuscany Estate",tuscany-estate,04,"ViterboID- Tuscany (70).jpg",1049x1600
+"Tuscany Estate",tuscany-estate,attract,"ViterboID- Tuscany (10).jpg",1067x1600
+"Tuscany Estate",tuscany-estate,hero,"ViterboID- Tuscany (18).jpg",1066x1600

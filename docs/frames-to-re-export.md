@@ -95,7 +95,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 
 ## Grouped by project
 
-### Bangkok Estate (`bangkok-estate`) — 6 frames · Sean Myers
+### Bangkok Estate (`bangkok-estate`) — 6 frames
 
 - `Viterbo_15_04_197085-finals Edit.jpg` — 01, 1068×1600
 - `Viterbo_16_04_197251-finals edit.jpg` — 02, 1600×1191
@@ -104,7 +104,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `Viterbo_15_04_197039-finals Edit.jpg` — attract, 1600×1068
 - `Viterbo_15_04_197039-finals Edit.jpg` — hero, 1600×1068
 
-### Birre House (`birre-house`) — 6 frames · Francisco Almeida Dias
+### Birre House (`birre-house`) — 6 frames
 
 - `FAD-ViD-2603__(048)__17--PRESS--HiResEdit.jpg` — 01, 1221×1600
 - `FAD-ViD-2603__(040)__17--PRESS--HiResEdit.jpg` — 02, 1280×1600
@@ -113,7 +113,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `FAD-ViD-2603__(051)__18--PRESS--HiResEdit.jpg` — attract, 1222×1600
 - `FAD-ViD-2603__(061)__18--PRESS--HiResEdit.jpg` — hero, 1222×1600
 
-### Birre Villa (`birre-villa`) — 6 frames · Francisco Nogueira
+### Birre Villa (`birre-villa`) — 6 frames
 
 - `GracinhaViterboBirre0324.jpg` — 01, 2048×2560
 - `GracinhaViterboBirre0501.jpg` — 02, 2048×2048
@@ -122,7 +122,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `GracinhaViterboBirre0203.jpg` — attract, 2048×2868
 - `GracinhaViterboBirre0438.jpg` — hero, 2048×1366
 
-### Cabana Sass (`cabana-sass`) — 6 frames · Francisco Almeida Dias
+### Cabana Sass (`cabana-sass`) — 6 frames
 
 - `FAD-VID-250929__(017)__HiRes(LARGE)-Press.jpg` — 01, 1222×1600
 - `FAD-VID-250929__(027)__HiRes(LARGE)-Press.jpg` — 02, 1223×1600
@@ -131,7 +131,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `FAD-VID-250929__(017)__HiRes(LARGE)-Press.jpg` — attract, 1222×1600
 - `FAD-VID-250929__(013)__HiRes(LARGE)-Press.jpg` — hero, 1284×1600
 
-### Cascais Estate (`cascais-estate`) — 6 frames · José Manuel Ferrão
+### Cascais Estate (`cascais-estate`) — 6 frames
 
 - `JoseManuelFerrão2022_043.jpg` — 01, 1600×1064
 - `JoseManuelFerrão2022_049.jpg` — 02, 1600×1065
@@ -140,25 +140,25 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `JoseManuelFerrão2022_048.jpg` — attract, 1066×1600
 - `JoseManuelFerrão2022_045.jpg` — hero, 1600×1065
 
-### Hotel Albatroz (`hotel-albatroz`) — 1 frame · Francisco Almeida Dias
+### Hotel Albatroz (`hotel-albatroz`) — 1 frame
 
 - `FAD-GV.1909__#049__17-HRL.jpg` — 02, 1600×1134
 
-### Ivens (`ivens`) — 4 frames · Francisco Nogueira
+### Ivens (`ivens`) — 4 frames
 
 - `ViterboIvens1538.jpg` — 01, 1600×1600
 - `ViterboIvens1688.jpg` — 02, 1600×1067
 - `ViterboIvens1811.jpg` — 03, 1500×1000
 - `ViterboIvens1601.jpg` — hero, 1600×1600
 
-### Lisbon Palace (`lisbon-palace`) — 4 frames · Francisco Nogueira
+### Lisbon Palace (`lisbon-palace`) — 4 frames
 
 - `ViterboIvens1572.jpg` — 01, 1600×1600
 - `ViterboIvens1688.jpg` — 03, 1600×1067
 - `ViterboIvens1891.jpg` — 04, 1500×1000
 - `ViterboIvens1601.jpg` — hero, 1600×1600
 
-### Lisbon Pied-à-Terre (`lisbon-pied-a-terre`) — 6 frames · Francisco Almeida Dias
+### Lisbon Pied-à-Terre (`lisbon-pied-a-terre`) — 6 frames
 
 - `2026 Lisbon Interior Design pied a terre (6).jpg` — 01, 1600×1259
 - `2026 Lisbon Interior Design pied a terre (4).jpg` — 02, 1222×1600
@@ -167,7 +167,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `2026 Lisbon Interior Design pied a terre (1).jpg` — attract, 1280×1600
 - `2026 Lisbon Interior Design pied a terre (7).jpg` — hero, 1222×1600
 
-### Pastéis de Belém (`pasteis-de-belem`) — 6 frames · Francisco Almeida Dias
+### Pastéis de Belém (`pasteis-de-belem`) — 6 frames
 
 - `FAD-VID-250530__(020)__HiRes(LARGE)-Press.jpg` — 01, 1245×1600
 - `FAD-VID-250530__(007)__HiRes(LARGE)-Press.jpg` — 02, 1600×1162
@@ -176,7 +176,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `FAD-VID-250530__(006)__HiRes(LARGE)-Press.jpg` — attract, 1227×1600
 - `FAD-VID-250530__(003)__HiRes(LARGE)-Press.jpg` — hero, 1600×1012
 
-### Porto Villa (`porto-villa`) — 6 frames · José Manuel Ferrão
+### Porto Villa (`porto-villa`) — 6 frames
 
 - `Viterbo Interior Design-Settes House_0066.jpg` — 01, 1600×1067
 - `Viterbo Interior Design-Settes House_0081.jpg` — 02, 1600×1059
@@ -202,7 +202,7 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 
 - `Gracinha and Miguel Tuscany (3).jpg` — gracinha-miguel, 1067×1600
 
-### Tuscany Estate (`tuscany-estate`) — 6 frames · José Manuel Ferrão
+### Tuscany Estate (`tuscany-estate`) — 6 frames
 
 - `ViterboID- Tuscany (22).jpg` — 01, 1600×1066
 - `ViterboID- Tuscany (38).jpg` — 02, 1065×1600
@@ -213,10 +213,9 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 
 ## Worth knowing
 
-- **"Seafront Apartment" is the Rio de Janeiro project** (`rio-de-janeiro`). Not to be
-  confused with **Seafront Pied-à-Terre** in Cascais (`cascais-seafront`), which was
-  fully upgraded and needs nothing.
-
+- **"Seafront Apartment" is the Rio de Janeiro project** (`rio-de-janeiro`). Not to
+  be confused with **Seafront Pied-à-Terre** in Cascais (`cascais-seafront`), which
+  was fully upgraded and needs nothing.
 - **Quinta do Lago** is the nearest miss. Its two remaining masters are 7.06 and
   7.24 MB — just over the limit. A single re-save at quality 80 clears it. Its
   other two frames already came through at 3500×1969.
