@@ -552,3 +552,16 @@ through the house rather than as the shoot was filed.
   angles on the kitchen 0528 covers); 0160, 0209, 0230, 0258, 0291, 0297, 0336,
   0369, 0381, 0789, 0903 and 0918 (quiet frames that would dilute a set of
   ten).
+- **Singapore Penthouse** — 4 → 9 gallery frames, ten images with the hero, and
+  that is the entire shoot. The folder holds exactly ten files; five were
+  already wired. All five remaining ones went in: a third angle on the Warhol
+  wall (the elephant and the frog above the nesting tables), the sofa corner of
+  the living room under its three-armed pendant, the sofa set into a niche
+  below a copper pendant, and two details — a damask chair on the spotted rug,
+  and a pale chair where the rug meets the dark crocodile-embossed floor.
+  Nothing was rejected because there was nothing left to reject. The third
+  angle on the print wall is a deliberate repeat of a corner already shown
+  twice: this is a job built around one collection, and three views of it
+  across ten images is proportionate rather than padding. This project cannot
+  reach ten gallery frames without photography that does not exist; it needs an
+  eleventh frame from the studio, not a better selection.
