@@ -94,7 +94,16 @@ export function Collection() {
                * Location sits at the same weight as the name, not as a
                * subtitle beneath it (§7a). Scrolling the list is the geography.
                */}
-              <div className="flex items-baseline gap-6">
+              {/*
+               * Capped so a name can never run into the bottom-right corner,
+               * where the full-screen control sits. "Cobertura em Singapura"
+               * is 874px set at the hero size and did exactly that on the card
+               * peeking below the fold — found by the occlusion check. 780px
+               * is the left margin to the near edge of that control. Longer
+               * names wrap to two lines, which the 11vh meta block has room
+               * for.
+               */}
+              <div className="flex max-w-[780px] items-baseline gap-6">
                 <span className="text-hero">{s(project.name)}</span>
               </div>
               <div className="mt-3 flex items-baseline justify-between">

@@ -53,6 +53,7 @@ export function NavBar() {
      */
     <nav
       data-chrome
+      data-occluder
       className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-12 backdrop-blur-[18px]"
       style={{ top: `${CHROME.barTop}%`, height: `${CHROME.barHeight}%` }}
     >

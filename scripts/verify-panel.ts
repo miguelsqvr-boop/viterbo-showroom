@@ -30,9 +30,9 @@ import sharp from 'sharp';
 import path from 'node:path';
 import { spawn, type ChildProcess } from 'node:child_process';
 import { PANEL, PHYSICAL } from '../config/panel';
-import { CHROME, PRIME } from '../config/layout';
+import { PRIME } from '../config/layout';
 import { COLLECTION } from '../config/layout';
-import { LOCALES, mediaPoster, type Locale, type Localized } from '../content/types';
+import { LOCALES, canFullBleed, mediaPoster, type Locale, type Localized } from '../content/types';
 import { PROJECTS_IN_ORDER } from '../content/projects';
 import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '../content/craft';
 import { SERVICES } from '../content/services';
@@ -136,35 +136,35 @@ type View = {
 };
 
 /**
- * The palest gallery frame in the archive, and which slide it is.
+ * The palest hero that takes the full frame, by slug.
  *
- * The full view lays white type straight onto a photograph, so whether that
- * type is legible depends entirely on which photograph. Testing one arbitrary
- * slide proves nothing — the first landscape project's first slide happens to
- * be dark, and passes whether or not the scrim behind the controls exists.
- * Sampling the actual files instead means the worst case is always the one
- * under test, and stays that way as the photography is replaced.
+ * A full-bleed hero lays the project's name straight onto a photograph, so
+ * whether that name is legible depends entirely on which photograph. Testing
+ * one arbitrary project proves nothing. Sampling the actual files means the
+ * worst case is always the one under test, and stays that way as the
+ * photography is replaced — which matters here more than anywhere, because
+ * every hero flips from a band to full bleed the moment a re-export clears
+ * 2160px, and that is exactly when the type lands on the picture.
  */
-async function palestSlide(): Promise<{ slug: string; index: number }> {
-  let worst = { slug: PROJECTS_IN_ORDER[1].slug, index: 1, mean: -1 };
+async function palestHero(): Promise<string | null> {
+  let worst: { slug: string; mean: number } | null = null;
   for (const project of PROJECTS_IN_ORDER) {
-    for (const [i, item] of project.gallery.entries()) {
-      const file = path.join(process.cwd(), 'public', mediaPoster(item).src);
-      const { data, info } = await sharp(file)
-        .resize({ width: 64 })
-        .raw()
-        .toBuffer({ resolveWithObject: true });
-      let sum = 0;
-      let count = 0;
-      for (let px = 0; px < data.length; px += info.channels) {
-        sum += 0.2126 * data[px] + 0.7152 * data[px + 1] + 0.0722 * data[px + 2];
-        count += 1;
-      }
-      const mean = sum / count;
-      if (mean > worst.mean) worst = { slug: project.slug, index: i + 1, mean };
+    if (!canFullBleed(project.hero)) continue;
+    const file = path.join(process.cwd(), 'public', mediaPoster(project.hero).src);
+    const { data, info } = await sharp(file)
+      .resize({ width: 64 })
+      .raw()
+      .toBuffer({ resolveWithObject: true });
+    let sum = 0;
+    let count = 0;
+    for (let px = 0; px < data.length; px += info.channels) {
+      sum += 0.2126 * data[px] + 0.7152 * data[px + 1] + 0.0722 * data[px + 2];
+      count += 1;
     }
+    const mean = sum / count;
+    if (!worst || mean > worst.mean) worst = { slug: project.slug, mean };
   }
-  return { slug: worst.slug, index: worst.index };
+  return worst?.slug ?? null;
 }
 
 async function views(): Promise<View[]> {
@@ -180,11 +180,20 @@ async function views(): Promise<View[]> {
       liveTargets: 1,
     },
   ];
+  /*
+   * A project is the hero, one screenful per gallery frame, then the closing
+   * screen that carries the narrative and the facts. Both a portrait hero and
+   * a landscape one, because they compose differently, and every frame of
+   * each, because a frame that fails to mount is invisible rather than broken
+   * — see the blank-slide check.
+   */
   for (const [label, slug] of [
     ['project · portrait hero', portrait],
     ['project · landscape hero', landscape],
   ] as const) {
-    ['hero', 'narrative', 'gallery', 'facts'].forEach((beat, i) =>
+    const project = PROJECTS_IN_ORDER.find((entry) => entry.slug === slug)!;
+    const beats = ['hero', ...project.gallery.map((_, i) => `frame ${i + 1}`), 'words'];
+    beats.forEach((beat, i) =>
       list.push({ name: `${label} · ${beat}`, path: `/projects/${slug}`, section: i }),
     );
   }
@@ -205,6 +214,11 @@ async function views(): Promise<View[]> {
   for (let i = 0; i < RECOGNITION_PAGES; i += 1) {
     list.push({ name: `recognition · page ${i + 1}`, path: '/recognition', section: i });
   }
+  const pale = await palestHero();
+  if (pale) {
+    list.push({ name: `project · palest full-bleed hero (${pale})`, path: `/projects/${pale}` });
+  }
+
   list.push({ name: 'contact', path: '/contact' });
   list.push({
     name: 'contact · form, text keys',
@@ -218,21 +232,6 @@ async function views(): Promise<View[]> {
       await tap(page, /details|dados/i);
       await tap(page, /^(Next|Seguinte)$/);
     },
-  });
-  list.push({
-    name: 'full view',
-    path: `/projects/${landscape}`,
-    section: 2,
-    // The first gallery slide, by its counter label — not the first tap target
-    // on the page, which is the navigation bar.
-    prepare: (page) => tap(page, undefined, '[data-tap-target][aria-label="1"]'),
-  });
-  const pale = await palestSlide();
-  list.push({
-    name: `full view · palest frame (${pale.slug} ${pale.index})`,
-    path: `/projects/${pale.slug}`,
-    section: 2,
-    prepare: (page) => tap(page, undefined, `[data-tap-target][aria-label="${pale.index}"]`),
   });
   return list;
 }
@@ -258,7 +257,7 @@ type AuditResult = {
 
 async function audit(page: Page): Promise<AuditResult> {
   return page.evaluate(
-    ({ envelope, typeFloor, minTarget, cssWidth, chrome }) => {
+    ({ envelope, typeFloor, minTarget, cssWidth }) => {
       const found: Array<{ rule: string; detail: string }> = [];
       const texts: string[] = [];
       const height = window.innerHeight;
@@ -303,9 +302,25 @@ async function audit(page: Page): Promise<AuditResult> {
         }
       });
 
-      // Text: font size floor, and nothing painted under the opaque nav bar.
-      const navTop = (chrome.barTop / 100) * height;
-      const navBottom = ((chrome.barTop + chrome.barHeight) / 100) * height;
+      /*
+       * Text: font size floor, and nothing painted under a floating control.
+       *
+       * Every control that floats over the page carries `data-occluder` — the
+       * navigation bar, the full-screen button, the back control on a project.
+       * Measuring their actual boxes rather than the bar's declared geometry is
+       * what makes this general: the first thing it found was the back control
+       * sitting squarely on top of the word PROJECT at the end of a project,
+       * which the old nav-only version could not have seen.
+       */
+      const occluders = Array.from(document.querySelectorAll<HTMLElement>('[data-occluder]'))
+        .map((el) => ({
+          label:
+            el.getAttribute('aria-label') ??
+            el.querySelector('[aria-label]')?.getAttribute('aria-label') ??
+            'chrome',
+          box: el.getBoundingClientRect(),
+        }))
+        .filter((item) => item.box.width > 0 && item.box.height > 0);
       document.querySelectorAll<HTMLElement>('body *').forEach((el) => {
         const ownText = Array.from(el.childNodes)
           .filter((node) => node.nodeType === Node.TEXT_NODE)
@@ -348,15 +363,20 @@ async function audit(page: Page): Promise<AuditResult> {
         }
 
         const insideChrome = el.closest('[data-chrome]') !== null;
-        const overlay = el.closest('.fixed, [data-full-view]') !== null;
+        const overlay = el.closest('.fixed') !== null;
         if (!insideChrome && !overlay) {
-          const overlap = Math.min(box.bottom, navBottom) - Math.max(box.top, navTop);
-          if (overlap > 4) {
-            found.push({
-              rule: 'occluded by nav',
-              detail: `"${ownText.slice(0, 40)}" overlaps the bar by ${Math.round(overlap)}px`,
-            });
-          }
+          occluders.forEach((occluder) => {
+            const down = Math.min(box.bottom, occluder.box.bottom) - Math.max(box.top, occluder.box.top);
+            const across = Math.min(box.right, occluder.box.right) - Math.max(box.left, occluder.box.left);
+            if (down > 4 && across > 4) {
+              found.push({
+                rule: 'occluded by chrome',
+                detail:
+                  `"${ownText.slice(0, 40)}" is under "${occluder.label}" ` +
+                  `by ${Math.round(down)}×${Math.round(across)}px`,
+              });
+            }
+          });
         }
       });
 
@@ -379,7 +399,6 @@ async function audit(page: Page): Promise<AuditResult> {
       typeFloor: TYPE_FLOOR,
       minTarget: PANEL.minTouchTarget,
       cssWidth: PHYSICAL.cssWidth,
-      chrome: CHROME,
     },
   );
 }
@@ -397,15 +416,15 @@ async function audit(page: Page): Promise<AuditResult> {
 async function blankSlides(page: Page): Promise<{ rule: string; detail: string }[]> {
   const empty = await page.evaluate(() => {
     /*
-     * Gallery slides only. The collection's cards carry the same tap-target
+     * Gallery frames only. The collection's cards carry the same tap-target
      * attribute, and one of them — Craft — is imageless on purpose, so a
      * broader selector reports a design decision as a defect.
      *
-     * And nothing at all while the full view is up. That overlay is opaque
-     * and covers the rail completely, so a slide behind it is invisible
-     * rather than empty — reporting it describes a viewport, not a visitor.
+     * A project frame that fails to mount leaves an empty screenful with
+     * nothing on it, which looks exactly like the end of the project. This is
+     * the check that caught the last frame never mounting when the gallery was
+     * a rail, and it matters more now that each frame is a whole screen.
      */
-    if (document.querySelector('[data-overlay="full-view"]')) return [];
     const slots = Array.from(document.querySelectorAll('[data-slide]'));
     return slots
       .filter((element) => {

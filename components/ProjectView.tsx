@@ -1,39 +1,47 @@
 'use client';
 
-import { AnimatePresence } from 'framer-motion';
 import { useRouter } from 'next/navigation';
-import { useEffect, useRef, useState } from 'react';
-import type { Project } from '@/content/types';
-import { canFullBleed } from '@/content/types';
+import { useEffect } from 'react';
+import { CHROME } from '@/config/layout';
+import { PHYSICAL } from '@/config/panel';
+import type { Media, Project } from '@/content/types';
+import { canFullBleed, mediaPoster } from '@/content/types';
 import { useLocale } from '@/lib/locale';
-import { FullView } from './FullView';
-import { Gallery } from './Gallery';
+import { panelVh } from '@/lib/panel';
 import { MediaFrame } from './MediaFrame';
 import { Mounted } from './Mounted';
-import { panelVh } from '@/lib/panel';
+import { TapTarget } from './TapTarget';
 
-/** Height of the swipe rail, in vh. It ends where the nav bar begins. */
-const RAIL_VH = 15;
+/** Everything below the navigation bar. */
+const TOP = CHROME.barTop + CHROME.barHeight;
+/** The band a gallery frame is centred in, leaving the counter its line. */
+const FRAME_TOP = TOP + 5;
+const FRAME_BOTTOM = 98;
 
 /**
  * A project (§8).
  *
- * Vertical scroll, but the first screenful is complete on its own: hero, name,
- * location and typology, and the narrative. Everything after it is a separate
- * snapped screenful so that whatever a flick lands on is composed rather than
- * halfway between two things.
+ * One thing to a screenful, scrolled vertically, and after the first screen
+ * that thing is a photograph. Miguel's brief for this screen was three
+ * sentences: seamless, big images each to scroll, very minimal text, easy to
+ * go back. So the sequence is hero, then one frame per flick at the largest
+ * size the file honestly supports, then a single closing screen carrying the
+ * narrative and the facts together.
+ *
+ * What this replaced was a 15vh horizontal rail of thumbnails that opened a
+ * lightbox. On a 43" panel those slides were postage stamps, the lightbox was
+ * a second way to get lost, and the photography — which is the whole argument
+ * this studio makes — was the smallest thing on the screen.
  */
 export function ProjectView({ project }: { project: Project }) {
   const router = useRouter();
   const { s, t } = useLocale();
-  const [openAt, setOpenAt] = useState<number | null>(null);
   /*
    * Full bleed is earned by composition AND resolution — see canFullBleed.
    * A vertical frame from an older shoot still gets the band treatment rather
    * than being stretched across 3840 physical pixels.
    */
   const heroIsPortrait = canFullBleed(project.hero);
-  const scrollerRef = useRef<HTMLDivElement | null>(null);
 
   // Edge-swipe from the left as a shortcut back — never the only route back.
   useEffect(() => {
@@ -69,7 +77,6 @@ export function ProjectView({ project }: { project: Project }) {
   return (
     <>
       <div
-        ref={scrollerRef}
         data-scroll-root
         data-scroll-reset
         className="snap-y-page no-scrollbar h-full w-full overflow-y-auto"
@@ -92,7 +99,10 @@ export function ProjectView({ project }: { project: Project }) {
              * typography breathes — which is what a print spread does with
              * the same problem (§4).
              */
-            <div className="absolute inset-x-0 top-0 w-full" style={{ height: panelVh(30) }}>
+            <div
+              className="absolute inset-x-0 w-full"
+              style={{ top: `${TOP}%`, height: panelVh(30) }}
+            >
               <MediaFrame media={project.hero} mode="band" priority className="h-full w-full" />
             </div>
           )}
@@ -103,7 +113,13 @@ export function ProjectView({ project }: { project: Project }) {
            * it is the only thing that reads over an image whose tone nobody
            * controls. A banded hero sits on the ground and takes ink.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '29%' : '32%' }}>
+          {/*
+           * A banded hero's name sits at 52%, below the back control at 44%.
+           * A full-bleed one sits at 29%, above it. Either way the name and the
+           * one persistent control on the screen do not fight for the same
+           * pixels — `npm run verify` measures the two against each other.
+           */}
+          <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '29%' : '52%' }}>
             <h1 className={`text-hero ${heroIsPortrait ? 'text-on-media' : 'text-ink'}`}>
               {s(project.name)}
             </h1>
@@ -114,46 +130,65 @@ export function ProjectView({ project }: { project: Project }) {
           </div>
         </section>
 
-        {/*
-         * ---- Screenful two: the narrative -----------------------------
-         *
-         * The narrative gets its own beat rather than being stacked under the
-         * hero. At 32px on a 34–40 character measure, sixty words is ten lines
-         * — which, added to a hero band and a title, runs straight through the
-         * navigation bar at 45%. Giving it the screen costs one flick and
-         * makes it a page in a book instead of a caption.
-         */}
+        {/* ---- One screenful per frame ---------------------------------- */}
+        {project.gallery.map((frame, i) => (
+          <section
+            key={mediaPoster(frame).src}
+            data-slide={String(i + 1)}
+            className="snap-start-page relative h-full w-full"
+          >
+            {canFullBleed(frame) ? (
+              <Mounted className="absolute inset-0" rootMargin="100% 0px">
+                <MediaFrame media={frame} mode="bleed" active className="h-full w-full" />
+              </Mounted>
+            ) : (
+              /*
+               * As wide as the panel and as tall as the file allows, centred in
+               * the space under the bar. No crop: an interior photographed in
+               * landscape is a room, and cropping it to a portrait frame throws
+               * away the half of the room the photographer chose to include.
+               * "Big" here means the largest the source supports without being
+               * upscaled, which on this panel is genuinely big — a 4:3 frame is
+               * 1080 × 810, a portrait one 1080 × 1440.
+               */
+              <Mounted
+                className="absolute inset-x-0 w-full"
+                rootMargin="100% 0px"
+                style={{ top: `${frameTop(frame)}%`, height: panelVh(frameHeight(frame)) }}
+              >
+                <MediaFrame media={frame} mode="band" active className="h-full w-full" />
+              </Mounted>
+            )}
+
+            {/*
+             * The only type on an image screenful, and the only thing that says
+             * how much further the project runs. Set on the ground above the
+             * frame rather than over it, so it never needs a scrim.
+             */}
+            <p
+              className="absolute inset-x-0 px-14 text-caption tracking-[0.3em] text-ink-faint"
+              style={{ top: `${TOP + 1.2}%` }}
+            >
+              {String(i + 1).padStart(2, '0')} / {String(project.gallery.length).padStart(2, '0')}
+            </p>
+          </section>
+        ))}
+
+        {/* ---- The closing screenful: the words, once -------------------- */}
         <section className="snap-start-page relative h-full w-full">
           <p
             className="absolute inset-x-0 px-14 text-body text-ink"
-            style={{ top: '20%', maxWidth: 700 }}
+            style={{ top: '14%', maxWidth: 760 }}
           >
             {s(project.narrative)}
           </p>
-        </section>
-
-        {/* ---- Screenful three: the swipe rail --------------------------- */}
-        <section className="snap-start-page relative h-full w-full">
           {/*
-           * The rail lands at 28.5%–43.5%, in the middle of the reach
-           * envelope. Slides are small for a 43" panel; inspecting an image is
-           * one tap into the full view.
-           */}
-          <div className="absolute inset-x-0" style={{ top: '24%' }}>
-            <Mounted className="w-full" rootMargin="50% 0px">
-              <Gallery
-                items={project.gallery}
-                heightVh={RAIL_VH}
-                label={t('gallery')}
-                onOpen={setOpenAt}
-              />
-            </Mounted>
-          </div>
-        </section>
-
-        {/* ---- Screenful four: the facts strip ---------------------------- */}
-        <section className="snap-start-page relative h-full w-full">
-          <div className="absolute inset-x-0 px-14" style={{ top: '18%' }}>
+             * 53%, not 46%: the back control is pinned at 44% and is 120px
+             * tall, and at 46% this heading sat underneath it. `npm run verify`
+             * now checks every floating control against the type behind it,
+             * which is how that was found.
+             */}
+          <div className="absolute inset-x-0 px-14" style={{ top: '53%' }}>
             <p className="mb-8 text-caption uppercase tracking-[0.2em] text-ink-faint">
               {t('facts')}
             </p>
@@ -172,11 +207,57 @@ export function ProjectView({ project }: { project: Project }) {
         </section>
       </div>
 
-      <AnimatePresence>
-        {openAt !== null ? (
-          <FullView items={project.gallery} startIndex={openAt} onClose={() => setOpenAt(null)} />
-        ) : null}
-      </AnimatePresence>
+      {/*
+       * The way out, on every screenful of the project.
+       *
+       * "Projects" in the navigation bar has always done this, but the bar is
+       * pinned to the top of a 181cm totem — around 175cm, above shoulder
+       * height — and after six flicks through photography a visitor should not
+       * have to reach for it. This sits at the left edge in the middle of the
+       * reach envelope, frosted like the bar so it stays legible over whatever
+       * photograph is behind it, and it is the one control that never moves.
+       */}
+      <div data-occluder className="fixed left-0 z-40" style={{ top: '44%' }}>
+        <TapTarget
+          label={t('backToProjects')}
+          onTap={() => router.push('/')}
+          className="justify-center rounded-r-[6px] border border-l-0 border-hairline bg-ground/70 pl-8 pr-9 backdrop-blur-[18px]"
+        >
+          <span className="flex items-center gap-4 text-meta text-ink-muted">
+            <svg width="30" height="18" viewBox="0 0 30 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+              <path d="M29 9 H2 M10 1 L2 9 L10 17" />
+            </svg>
+            {t('backToProjects')}
+          </span>
+        </TapTarget>
+      </div>
     </>
   );
+}
+
+/** How tall a frame may be, in panel heights, without being upscaled or cropped. */
+function frameHeight(frame: Media): number {
+  const poster = mediaPoster(frame);
+  const natural =
+    ((PHYSICAL.cssWidth / (poster.width / poster.height)) / PHYSICAL.cssHeight) * 100;
+  return Math.min(natural, FRAME_BOTTOM - FRAME_TOP);
+}
+
+/**
+ * Where a frame sits, in percent from the top.
+ *
+ * Centred on 47% rather than on the middle of the available band. The panel is
+ * 95cm of glass standing 82cm off the floor, so its middle is not where a
+ * standing visitor is looking: 47% is around 132cm, which is inside the
+ * comfortable gaze zone (§3). A frame hung there reads as hung rather than as
+ * floating, and the space it leaves is at the bottom, which is the part of a
+ * totem nobody looks at anyway. Clamped so it never rides up under the bar or
+ * off the end of the panel.
+ */
+const FRAME_CENTRE = 47;
+
+function frameTop(frame: Media): number {
+  const height = frameHeight(frame);
+  const centred = FRAME_CENTRE - height / 2;
+  return Math.min(Math.max(centred, FRAME_TOP), FRAME_BOTTOM - height);
 }

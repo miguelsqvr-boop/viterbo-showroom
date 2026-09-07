@@ -22,17 +22,19 @@ Look at it in a 1080 × 1920 window, not a desktop one. Better: look at it on th
 panel. Add `?overlay=1` to any route to draw the reach-zone bands, the frame
 rate, and a live audit of every tap target's position and size.
 
-**`npm run verify` is the gate.** It renders 31 screen states — every route,
-every beat of a project, every stage of Craft, every service, both pages of
-Recognition, the contact form in both keyboard modes, the full view — at
-1080 × 1920, in **both languages**, and fails on:
+**`npm run verify` is the gate.** It renders every route, every screenful of a
+project (the hero, each gallery frame, the closing words), every stage of
+Craft, every service, both pages of Recognition and the contact form in both
+keyboard modes — at 1080 × 1920, in **both languages** — and fails on:
 
 - a tap target outside 28%–72% of screen height, chrome excepted,
 - a tap target under 120px on its shortest side,
 - text rendered below 24px,
 - anything overflowing the pinned 1080 space,
-- **text painted underneath the navigation bar**, which is what catches a
-  narrative, a figures line or a city list growing into the chrome,
+- **text painted underneath a floating control** — the navigation bar, the
+  full-screen button, the back control on a project — measured against the
+  boxes those controls actually occupy, which is what catches a narrative, a
+  figures line or a project name growing into the chrome,
 - **text running off the bottom of a snapped page**, which is what catches a
   list that has quietly grown longer than the panel — the failure that took
   the last four marks off the Studio screen with nothing on screen to say so.
@@ -69,7 +71,7 @@ config/panel.ts      touch type, target size, debounce, idle timeout, attract ti
 config/layout.ts     the reach zone — cm → %, prime band, chrome position
 config/brand.ts      colour and type. The ONLY file that knows what the studio looks like
 content/*.ts         projects, craft, studio, contact, and every UI string, EN + PT
-components/          PrimeBand, TapTarget, MediaFrame, Gallery, FullView, Keyboard…
+components/          PrimeBand, TapTarget, MediaFrame, FullscreenButton, Keyboard…
 scripts/             image pipeline, QR generation, placeholder plates
 public/panel-diagnostics.html
 ```
@@ -210,10 +212,24 @@ has a card peeking below the fold whose name block lands around 90% of screen
 height — furniture, not interface. Off-band cards render as plain boxes with no
 handler at all.
 
-**The project screen is four snapped beats,** not one scroll. Sixty words at 32px
-on a 34–40 character measure is ten lines; stacked under a hero and a title it
-runs straight through the navigation bar. Giving the narrative its own screen
-costs one flick.
+**A project is a hero, then one photograph per flick, then the words once.**
+The photography is the argument this studio makes, so on a project screen it
+gets whole screenfuls: each frame is set as wide as the panel and as tall as
+the file honestly allows, hung on 47% of the height — around 132cm, inside the
+comfortable gaze zone — with no crop, because cropping an interior shot to a
+portrait frame throws away the half of the room the photographer chose to
+include. The narrative and the facts share one closing screen, so the sequence
+of images is uninterrupted.
+
+This replaced a 15vh horizontal rail of thumbnails that opened a lightbox. On a
+43" panel those slides were postage stamps, the lightbox was a second way for a
+visitor to get lost, and the photography was the smallest thing on the screen.
+
+**Back is a control, not a gesture.** The edge-swipe still works and "Projects"
+in the bar still works, but the bar is pinned around 175cm and after six flicks
+through photography nobody should have to reach for it. A frosted "All
+projects" sits at the left edge in the middle of the reach envelope on every
+screenful of a project, and never moves.
 
 **The navigation bar is pinned to the top, against the ergonomics.** §7 put it
 at 45%, which on a 181cm totem is about 130cm off the floor — where a hand goes

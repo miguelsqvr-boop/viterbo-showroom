@@ -15,7 +15,7 @@ import { TapTarget } from './TapTarget';
  * updated, or has fallen over, and that is exactly the morning when nobody
  * wants to hunt through a menu. One press here and the chrome is gone.
  *
- * Bottom-left, not in the navigation bar. Two reasons, both deliberate:
+ * Bottom-right, not in the navigation bar. Three reasons, all deliberate:
  *
  *   1. The bar is full. Six items overflow it, measured — see NavBar.
  *   2. This is a staff control, pressed once a day by someone standing at the
@@ -26,6 +26,14 @@ import { TapTarget } from './TapTarget';
  *      visitor must never need is the right trade. It carries `data-chrome`
  *      so `npm run verify` reads it as chrome rather than as a screen that
  *      has quietly grown a button below the line.
+ * The offset is on the fixed box rather than as padding inside it, so the
+ * element `npm run verify` measures is the chip a visitor can actually see. A
+ * padded wrapper reported a 275x184 obstruction where there is a 199x120 one.
+ *
+ *   3. Right, not left, because every line of type on this panel is set from
+ *      the left margin. On the left it sat on top of the next project's name
+ *      at the bottom of the collection — found by the occlusion check, which
+ *      measures floating controls against the type behind them.
  *
  * It sits above the attract loop (z-50) and the full view (z-60), because the
  * state the panel is in when the TV comes on in the morning is the attract
@@ -58,7 +66,7 @@ export function FullscreenButton() {
   if (!show) return null;
 
   return (
-    <div data-chrome className="fixed bottom-0 left-0 z-[70] p-8">
+    <div data-chrome data-occluder className="fixed bottom-8 right-8 z-[70]">
       <TapTarget
         label={t('fullScreen')}
         minSize={PANEL.minTouchTarget}
