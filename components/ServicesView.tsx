@@ -1,6 +1,10 @@
 'use client';
 
+import { CHROME } from '@/config/layout';
+import { PHYSICAL } from '@/config/panel';
 import { SERVICES } from '@/content/services';
+import { canFullBleed, mediaPoster, type Service } from '@/content/types';
+import { panelVh } from '@/lib/panel';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
 import { Mounted } from './Mounted';
@@ -18,6 +22,46 @@ import { Mounted } from './Mounted';
  * menu. Drawn, designed, documented, made, installed — the order is the
  * argument, and the last three are the ones almost nobody else owns.
  */
+/** True only when the type is set over the photograph rather than beside it. */
+function onMedia(service: Service): boolean {
+  return service.media !== undefined && canFullBleed(service.media);
+}
+
+/**
+ * Wider than 2:1 is a drawing, not a room. Read from the file rather than
+ * declared per service, so a replacement image changes the treatment with it.
+ */
+function isDrawing(service: Service): boolean {
+  if (!service.media) return false;
+  const poster = mediaPoster(service.media);
+  return poster.width / poster.height > 2;
+}
+
+/**
+ * How tall the band is, in panel heights.
+ *
+ * A photograph gets the 30% ProjectView gives a landscape hero. A drawing gets
+ * only what its own proportions need at the panel's width, because a contained
+ * image in a taller box is just a band with air above and below it.
+ */
+function bandHeight(service: Service): number {
+  if (!isDrawing(service)) return 30;
+  const poster = mediaPoster(service.media!);
+  return Math.round(((PHYSICAL.cssWidth / (poster.width / poster.height)) / PHYSICAL.cssHeight) * 100);
+}
+
+/**
+ * Where the type starts, in percent from the top.
+ *
+ * Under the photograph when there is one, at Craft's anchor when there is not.
+ * Derived from the band rather than written down twice, so a drawing — which
+ * takes a shorter band than a photograph — does not leave a hole.
+ */
+function textTop(service: Service): number {
+  if (!service.media || canFullBleed(service.media)) return 26;
+  return CHROME.barTop + CHROME.barHeight + bandHeight(service) + 5;
+}
+
 export function ServicesView() {
   const { s, t } = useLocale();
 
@@ -29,7 +73,18 @@ export function ServicesView() {
     >
       {SERVICES.map((service, i) => (
         <section key={service.id} className="snap-start-page relative h-full w-full">
-          {service.media ? (
+          {/*
+           * Three states, and the screen picks between them from the file it
+           * actually has rather than from what anyone hoped it would have.
+           *
+           * A portrait frame at 2160px or better takes the whole panel. None of
+           * the studio's service photography is that yet — all four are
+           * landscape — so they take a band under the navigation bar and leave
+           * the type on the ground below, the way ProjectView already handles
+           * a landscape hero. And a service with no photograph at all is set
+           * as type on the ground and looks deliberate, because it is.
+           */}
+          {service.media && canFullBleed(service.media) ? (
             <>
               <Mounted className="absolute inset-0" rootMargin="100% 0px">
                 <MediaFrame
@@ -42,6 +97,28 @@ export function ServicesView() {
               </Mounted>
               <div className="media-scrim absolute inset-0" />
             </>
+          ) : service.media ? (
+            <Mounted
+              className="absolute inset-x-0 w-full"
+              rootMargin="100% 0px"
+              style={{
+                top: `${CHROME.barTop + CHROME.barHeight}%`,
+                height: panelVh(bandHeight(service)),
+              }}
+            >
+              <MediaFrame
+                media={service.media}
+                /*
+                 * A drawing is contained, a photograph is cropped. Cover a
+                 * 2.35:1 elevation into a 1.9:1 band and the annotations down
+                 * both sides — which are the reason a visitor is looking at a
+                 * drawing at all — are the first thing cut off.
+                 */
+                mode={isDrawing(service) ? 'contain' : 'band'}
+                priority={i === 0}
+                className="h-full w-full"
+              />
+            </Mounted>
           ) : null}
 
           {/*
@@ -53,15 +130,29 @@ export function ServicesView() {
            * there; with the chrome pinned to the top the copy has the whole
            * panel below it and goes back to the size it should have been.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: '26%' }}>
+          <div className="absolute inset-x-0 px-14" style={{ top: `${textTop(service)}%` }}>
+            {/*
+             * The section label rides with the type rather than sitting at a
+             * fixed 12%, which is now inside the image band: set in ink over a
+             * dark kitchen it was very nearly invisible.
+             */}
+            {i === 0 ? (
+              <p
+                className={`mb-8 text-caption uppercase tracking-[0.2em] ${
+                  onMedia(service) ? 'text-on-media/70' : 'text-ink-faint'
+                }`}
+              >
+                {t('services')}
+              </p>
+            ) : null}
             <p
               className={`text-caption tracking-[0.3em] ${
-                service.media ? 'text-on-media/70' : 'text-ink-faint'
+                onMedia(service) ? 'text-on-media/70' : 'text-ink-faint'
               }`}
             >
               {String(service.index).padStart(2, '0')} / {String(SERVICES.length).padStart(2, '0')}
             </p>
-            <h2 className={`mt-5 text-hero ${service.media ? 'text-on-media' : 'text-ink'}`}>
+            <h2 className={`mt-5 text-hero ${onMedia(service) ? 'text-on-media' : 'text-ink'}`}>
               {s(service.title)}
             </h2>
             {/*
@@ -72,18 +163,14 @@ export function ServicesView() {
              */}
             <p
               className={`mt-6 max-w-[860px] text-body ${
-                service.media ? 'text-on-media' : 'text-ink-muted'
+                onMedia(service) ? 'text-on-media' : 'text-ink-muted'
               }`}
             >
               {s(service.line)}
             </p>
           </div>
 
-          {i === 0 ? (
-            <p className="absolute inset-x-0 px-14 text-caption uppercase tracking-[0.2em] text-ink-faint" style={{ top: '12%' }}>
-              {t('services')}
-            </p>
-          ) : null}
+
         </section>
       ))}
     </div>
