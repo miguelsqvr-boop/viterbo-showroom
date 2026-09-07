@@ -3,6 +3,7 @@
 import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '@/content/craft';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
+import { WorldMap } from './WorldMap';
 import { Mounted } from './Mounted';
 
 /**
@@ -73,6 +74,34 @@ export function CraftView() {
       ))}
 
       {/*
+       * The reach, drawn. Miguel asked for the map his own site carries, and it
+       * earns a screen: the list that follows says the names, and this says the
+       * shape — dense at home, then a scatter that runs to Luanda, Macau,
+       * Bangkok, Singapore and across to Brazil. Neither screen says what the
+       * other says, which is why there are two of them.
+       */}
+      <section className="snap-start-page relative h-full w-full">
+        {/*
+         * The label sits with the drawing rather than at the 12% every other
+         * screen starts at. Those screens have type running from the top; this
+         * one has a single graphic hung in the middle of the panel, and a lone
+         * 24px line 500px above it reads as something that has come adrift.
+         *
+         * The map is full width and centred on 47% — around 132cm on a 181cm
+         * totem, the same line the project frames are hung on.
+         */}
+        <p
+          className="absolute inset-x-0 px-14 text-caption uppercase tracking-[0.2em] text-ink-faint"
+          style={{ top: '26%' }}
+        >
+          {t('where')}
+        </p>
+        <div className="absolute inset-x-0 w-full" style={{ top: '32%' }}>
+          <WorldMap className="w-full" />
+        </div>
+      </section>
+
+      {/*
        * The closing frame of the journey (§8). After the workshop bench, the
        * warehouse and the crates, the list is proof rather than a boast — which
        * is why it lives here and not on the Studio screen.
@@ -95,8 +124,8 @@ export function CraftView() {
          */}
         <ul className="absolute inset-x-0 px-14" style={{ top: '12%' }}>
           {CITIES.map((city) => (
-            <li key={city} className="text-section leading-[1.2] text-ink">
-              {city}
+            <li key={city.name} className="text-section leading-[1.2] text-ink">
+              {city.name}
             </li>
           ))}
         </ul>

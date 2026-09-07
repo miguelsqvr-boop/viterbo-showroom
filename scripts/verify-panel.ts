@@ -95,7 +95,7 @@ function identicalByDesign(): Set<string> {
     allowed.add(award.mark);
     consider(award.note);
   });
-  CITIES.forEach((city) => allowed.add(city));
+  CITIES.forEach((city) => allowed.add(city.name));
   COLLABORATIONS.forEach((collaboration) => {
     allowed.add(collaboration.name);
     consider(collaboration.note);
@@ -202,8 +202,9 @@ async function views(): Promise<View[]> {
   CRAFT_STAGES.forEach((stage, i) =>
     list.push({ name: `craft · ${stage.id}`, path: '/craft', section: i }),
   );
-  list.push({ name: 'craft · cities', path: '/craft', section: CRAFT_STAGES.length });
-  list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length + 1 });
+  list.push({ name: 'craft · map', path: '/craft', section: CRAFT_STAGES.length });
+  list.push({ name: 'craft · cities', path: '/craft', section: CRAFT_STAGES.length + 1 });
+  list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length + 2 });
   SERVICES.forEach((service, i) =>
     list.push({ name: `services · ${service.id}`, path: '/services', section: i }),
   );

@@ -2,7 +2,7 @@
   "name": "viterbo-showroom",
   "version": "2.0.0",
   "private": true,
-  "description": "Viterbo showroom touchscreen — portrait kiosk app for a 43\" 2160x3840 totem.",
+  "description": "Viterbo showroom touchscreen \u2014 portrait kiosk app for a 43\" 2160x3840 totem.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -10,7 +10,8 @@
     "typecheck": "tsc --noEmit",
     "media:process": "tsx scripts/process-images.ts",
     "media:qr": "tsx scripts/generate-qr.ts",
-    "verify": "tsx scripts/verify-panel.ts"
+    "verify": "tsx scripts/verify-panel.ts",
+    "map:generate": "tsx scripts/generate-map.ts"
   },
   "dependencies": {
     "@fontsource-variable/cormorant-garamond": "^5.3.0",
@@ -23,16 +24,21 @@
   "devDependencies": {
     "@serwist/next": "^9.0.11",
     "@tailwindcss/postcss": "^4.0.0",
+    "@types/d3-geo": "^3.1.1",
     "@types/node": "^22.10.5",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.0.7",
     "@types/react-dom": "^19.0.3",
+    "@types/topojson-client": "^3.1.5",
+    "d3-geo": "^3.1.1",
     "playwright": "^1.62.1",
     "qrcode": "^1.5.4",
     "serwist": "^9.0.11",
     "sharp": "^0.33.5",
     "tailwindcss": "^4.0.0",
+    "topojson-client": "^3.1.0",
     "tsx": "^4.19.2",
-    "typescript": "^5.7.3"
+    "typescript": "^5.7.3",
+    "world-atlas": "^2.0.2"
   }
 }
