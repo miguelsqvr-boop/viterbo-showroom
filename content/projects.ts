@@ -260,10 +260,16 @@ export const PROJECTS: Project[] = [
     },
     hero: img('birre-house/hero', 'A library and dining table behind a burnt-orange curtain', 'Uma biblioteca e mesa de jantar atrás de um cortinado laranja-queimado'),
     gallery: [
+      img('birre-house/05', 'The sitting room through doors framed in red steel', 'A sala através de portas emolduradas a aço vermelho'),
       img('birre-house/01', 'A mirror set into botanical paper above a console of flowers', 'Um espelho embutido em papel botânico sobre uma consola de flores'),
-      img('birre-house/02', 'A marble bathroom with a red cantilever chair', 'Uma casa de banho em mármore com uma cadeira vermelha em consola'),
+      img('birre-house/06', 'The sitting room, yellow armchairs against burnt-orange curtains', 'A sala, cadeirões amarelos contra cortinados laranja-queimado'),
       img('birre-house/03', 'A convex mirror above an arched brass console', 'Um espelho convexo sobre uma consola de latão em arco'),
+      img('birre-house/07', 'The family room, plants in arched niches either side of the fire', 'A sala de família, plantas em nichos em arco de cada lado da lareira'),
+      img('birre-house/08', 'The dining table in green marble below a branching light', 'A mesa de jantar em mármore verde sob um candeeiro ramificado'),
       img('birre-house/04', 'Checkerboard tile behind a green cabinet', 'Azulejo em xadrez atrás de um armário verde'),
+      img('birre-house/09', 'A door carved in relief across its whole face', 'Uma porta esculpida em relevo em toda a face'),
+      img('birre-house/10', 'The main bedroom, a timber wall and a checked throw', 'O quarto principal, uma parede de madeira e uma manta axadrezada'),
+      img('birre-house/02', 'A marble bathroom with a red cantilever chair', 'Uma casa de banho em mármore com uma cadeira vermelha em consola'),
     ],
   },
   {

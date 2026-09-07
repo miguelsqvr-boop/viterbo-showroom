@@ -582,3 +582,22 @@ through the house rather than as the shoot was filed.
   masters in `1iOTkbMvmf2AsYTVmOt4GKHTOJ55ygViE` that are twice the connector
   ceiling. There is nothing in between. Rio needs a re-export, not a better
   selection; the six frames are named in docs/frames-to-re-export.md.
+- **Birre House** — 4 → 10, from the twenty-six frame FAD shoot, all at the same
+  1600px tier as the six already wired (checked before choosing, after Rio).
+  Added the sitting room seen through its red steel doors (052), the sitting
+  room itself with yellow armchairs against burnt-orange curtains (059), the
+  family room with plants in arched niches either side of the fire (010), the
+  dining table in green marble under the branching light (064), the door carved
+  in relief across its whole face (049), and the main bedroom with its timber
+  wall and checked throw (033). Ordered as an arrival: in through the doors,
+  the hall mirror, the sitting room and its table, the family room, dining,
+  kitchen, that door, the bedroom, the bathroom.
+  Not used: 053 and 055 (two more views of the red doors, which 052 says better
+  and once); 058 (the sitting room from closer in, without the room 059 shows);
+  063 (the dining room from a weaker position than 064); 072 (a checkerboard
+  detail — frame 04 is already that tile); 070 (the kitchen, which 04 covers);
+  047 (a bathroom, but frame 02 is already a bathroom and 01 is already the
+  botanical paper); 012, 013, 034, 035, 037, 050 and 068 (good frames — the
+  entrance with its palm mirror and the green dressing room especially — held
+  back only because ten is the count and the six above hit rooms none of them
+  repeat).
