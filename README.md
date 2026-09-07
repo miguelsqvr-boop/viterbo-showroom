@@ -237,11 +237,16 @@ the reward for scrolling to the bottom.
    a stage in `content/craft.ts` restores the full-bleed treatment with no
    other change. It is the studio's strongest argument and the one section the
    screen cannot currently make.
-2. **Images are the 1600px preview set.** The Drive connector this was built
-   through refuses files over 6 MB and the masters are 8–24 MB. See
-   `docs/image-selection.md`; `canFullBleed()` keeps under-resolution images
-   out of the full-bleed treatment, so nothing on screen is upscaled — but a
-   ~2560px export would let the portrait heroes take the whole frame.
+2. **Half the frames are still the 1600px preview set.** The Drive connector
+   this was built through refuses files somewhere between 6.2 and 6.6 MB, and
+   most masters are 8–29 MB. A sweep of every copy of every frame in the Drive
+   found a larger one under that ceiling for 41 of the 112 frames, and those
+   are now in `media-src/` — ten projects gained resolution, ten did not. See
+   `docs/image-selection.md` for the per-project result. `canFullBleed()` keeps
+   under-resolution images out of the full-bleed treatment, so nothing on
+   screen is upscaled; one hero (Singapore Penthouse, 2881×3840) now clears the
+   2160px gate and takes the whole frame. The remaining 71 frames need an
+   export from the studio — ~2560px short edge, JPEG q80, under 6 MB each.
 3. **Copy is draft.** Narratives were written from the photography and are
    deliberately unspecific where the archive does not support a claim. `area`
    and `scope` are absent on almost every project on purpose. The words have

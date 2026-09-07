@@ -322,17 +322,18 @@ places — and Birre House and Birre Villa are both genuinely in Birre, told
 apart on screen only by their year. If the studio knows the two streets,
 those are better names than these.
 
-## The transfer limit is about 6 MB, not 10
+## The transfer limit is about 6.2–6.6 MB, not 10
 
 Worth stating plainly because the earlier guidance in this file was wrong,
 and acting on it would produce another batch of files that still cannot be
 read.
 
-Measured across one session: a 5.95 MB file transferred. Files at 8.12,
-8.31, 8.82, 9.61, 9.68 and 9.84 MB all failed, the 8.12 MB one on three
-separate attempts an hour apart, while ordinary searches against the same
-folder kept working. So the ceiling sits somewhere between 6 and 8 MB, and
-6 MB is the number to design to.
+Measured across two sessions: 5.28, 5.95 and 6.24 MB files transferred.
+Files at 6.61, 6.75, 7.06, 7.24, 7.46, 8.12, 8.31, 8.82, 9.61, 9.68 and
+9.84 MB all failed, the 8.12 MB one on three separate attempts an hour
+apart, while ordinary searches against the same folder kept working. So the
+ceiling sits between 6.24 and 6.61 MB, and **6 MB is the number to design
+to**.
 
 The error it gives is misleading, which is what made this take three
 attempts to be sure of: an oversized download reports **"MCP server session
@@ -341,12 +342,55 @@ in the same breath, and a fresh session after a container restart fails
 identically on the same file. So if a transfer fails with that message, the
 file is too big — do not wait for the connector to come back.
 
-That does not cost any resolution worth having. The one master that came
-through is 2337x3500 at 5.68 MB — already past the 2160px threshold the
-panel wants, so it would render full-bleed rather than in a band. A JPEG
-around 2560px on the short edge at quality 80 lands near 2-4 MB, which
-clears the limit with room and still doubles what the screen has today.
+It costs real resolution, and an earlier draft of this file was wrong to
+say otherwise: the claim that "the one master that came through is 2337x3500
+at 5.68 MB, past the 2160px threshold" does not describe anything in the
+build. A JPEG around 2560px on the short edge at quality 80 lands near 2-4
+MB, which clears the limit with room and still doubles what most of the
+screen has today.
 
 The practical recipe, then: **~2560px on the short edge, JPEG quality 80,
 loose files, one folder per project.** Not the "under 10 MB" this file
 asked for before.
+
+
+## The resolution sweep, and what it found
+
+The frames in `media-src/` were harvested from the `_LOW-RES PREVIEWS`
+folder, which is 1600px on the long edge by design. But most frames exist in
+Drive several times over — a preview, sometimes an intermediate export in
+the studio's own project archive, and a master of 8–29 MB. Only the first
+two are readable through the connector.
+
+Every frame in the build was matched back to its original Drive filename by
+content hash, then every copy of that filename anywhere in the Drive was
+listed and the largest one under the ceiling pulled. **41 of 112 frames
+gained resolution.** Each swap was checked two ways before it landed: the
+aspect ratio had to match the frame it replaced within 2% (so a differently
+cropped export could not silently change a composition), and a 32×32
+greyscale signature had to match (so a different photograph filed under the
+same name could not slip in). The largest signature difference across all
+41 was 4.5/255 — encoding noise, not a different picture. Then the swapped
+frames were laid out as contact sheets and looked at.
+
+**Gained resolution.** Avenida da República (5 frames → 2048px), Castilho
+203 (5 → 2048), Cascais Seafront (5 → 2048), Estoril Estate (6 → 2048),
+Chelsea (6 → 1500–2666), Singapore Penthouse (5 → 4724), Hotel Albatroz
+(4 of 5 → 1801–3123), Quinta do Lago (2 of 4 → 3500), Ivens (2 of 6 →
+2048), Lisbon Palace (1 of 5 → 2048).
+
+**No larger copy exists under the ceiling.** Bangkok Estate, Birre House,
+Cabana Sass, Cascais Estate, Lisbon Pied-à-Terre, Pastéis de Belém, Porto
+Villa, Rio de Janeiro, Studio, Tuscany Estate. For these the Drive holds a
+preview and a master and nothing in between; every master is over the limit.
+Birre Villa was already at 2048px and has no larger readable copy.
+
+**Singapore Penthouse now full-bleeds.** Its hero came through at
+4724×6297, which the pipeline caps to 2881×3840 — the first frame on the
+panel to clear the 2160px `canFullBleed` gate. Every other portrait hero is
+still letterboxed.
+
+Two near misses worth knowing about, in case the studio would rather move a
+frame than re-export: Quinta do Lago's two remaining frames sit at 7.06 and
+7.24 MB, and Lisbon Pied-à-Terre's masters are 6.6–11.8 MB except frame (3)
+at 5.83 MB, which is readable but is not one of the six currently chosen.
