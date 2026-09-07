@@ -10,6 +10,12 @@ export const UI = {
   touchToExplore: { en: 'Touch to explore', pt: 'Toque para explorar' },
   projects: { en: 'Projects', pt: 'Projetos' },
   craft: { en: 'The art of craft', pt: 'A arte do ofício' },
+  /*
+   * The nav label is the short form. "The art of craft" is the studio's own
+   * name for the section and belongs on the card that opens it, but at 239px
+   * in Portuguese it will not sit in a five-item bar.
+   */
+  craftShort: { en: 'Craft', pt: 'Ofício' },
   studio: { en: 'Studio', pt: 'Estúdio' },
   contact: { en: 'Contact', pt: 'Contacto' },
   viewProject: { en: 'View project', pt: 'Ver projeto' },
@@ -27,6 +33,14 @@ export const UI = {
   collaborations: { en: 'Collaborations', pt: 'Colaborações' },
   scrollHint: { en: 'Scroll', pt: 'Deslize' },
   awards: { en: 'Recognition', pt: 'Reconhecimento' },
+  /*
+   * The nav label, short. "Reconhecimento" is 239px set in the bar, and with
+   * five items that puts Portuguese 56px over the 984px the bar has to give.
+   * The screen keeps the full word as its heading; only the bar abbreviates,
+   * the same way Craft does. PROVISIONAL — "Premios" reads as prizes and this
+   * list also carries press, so the studio should pick the word.
+   */
+  awardsShort: { en: 'Recognition', pt: 'Prémios' },
   visitUs: { en: 'Talk to the studio', pt: 'Fale com o estúdio' },
   leaveDetails: { en: 'Leave your details', pt: 'Deixe os seus dados' },
   followUs: { en: 'Instagram', pt: 'Instagram' },

@@ -24,10 +24,15 @@ export function NavBar() {
 
   const items = [
     { href: '/', label: t('projects'), match: (p: string) => p === '/' || p.startsWith('/projects') },
+    {
+      href: '/craft',
+      label: t('craftShort'),
+      match: (p: string) => p.startsWith('/craft'),
+    },
     { href: '/studio', label: t('studio'), match: (p: string) => p.startsWith('/studio') },
     {
       href: '/recognition',
-      label: t('awards'),
+      label: t('awardsShort'),
       match: (p: string) => p.startsWith('/recognition'),
     },
     { href: '/contact', label: t('contact'), match: (p: string) => p.startsWith('/contact') },
