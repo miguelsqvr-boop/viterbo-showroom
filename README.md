@@ -212,14 +212,15 @@ has a card peeking below the fold whose name block lands around 90% of screen
 height — furniture, not interface. Off-band cards render as plain boxes with no
 handler at all.
 
-**A project is a hero, then one photograph per flick, then the words once.**
-The photography is the argument this studio makes, so on a project screen it
-gets whole screenfuls: each frame is set as wide as the panel and as tall as
-the file honestly allows, hung on 47% of the height — around 132cm, inside the
-comfortable gaze zone — with no crop, because cropping an interior shot to a
-portrait frame throws away the half of the room the photographer chose to
-include. The narrative and the facts share one closing screen, so the sequence
-of images is uninterrupted.
+**A project is a hero carrying the short text, then a close stack of
+photographs.** The photography is the argument this studio makes, so each frame
+is set as wide as the panel and as tall as the file honestly allows, with no
+crop — cropping an interior shot to a portrait frame throws away the half of
+the room the photographer chose to include. A frame stops short of filling the
+panel on purpose: the next photograph is always already showing below it, and
+on a kiosk with no scrollbar that peek is the only thing that says the project
+continues. The place and the narrative appear once, on the hero; there is no
+text at all on a frame.
 
 This replaced a 15vh horizontal rail of thumbnails that opened a lightbox. On a
 43" panel those slides were postage stamps, the lightbox was a second way for a

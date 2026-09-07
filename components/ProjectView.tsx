@@ -14,19 +14,33 @@ import { TapTarget } from './TapTarget';
 
 /** Everything below the navigation bar. */
 const TOP = CHROME.barTop + CHROME.barHeight;
-/** The band a gallery frame is centred in, leaving the counter its line. */
-const FRAME_TOP = TOP + 5;
-const FRAME_BOTTOM = 98;
+/** Where a frame comes to rest when it snaps. */
+const FRAME_TOP = TOP + 3;
+/**
+ * How tall a frame may be. Short of the full panel on purpose: the point of the
+ * stack is that the next photograph is already showing at the bottom of the
+ * screen, and a frame that fills the panel hides it.
+ */
+const FRAME_MAX = 74;
+/** Ground between one frame and the next. Enough to separate, not to divide. */
+const FRAME_GAP = 5;
 
 /**
  * A project (§8).
  *
  * One thing to a screenful, scrolled vertically, and that thing is a
- * photograph. Miguel's brief arrived in two parts: "seamless, big images each
- * to scroll, very minimal text, easy to go back", and then "no text in the
- * projects, just the location". So a project is its hero carrying one line —
- * the place — and after that nothing but frames, each at the largest size the
- * file honestly supports.
+ * photograph. Miguel's brief arrived in three parts: "seamless, big images
+ * each to scroll, very minimal text, easy to go back"; then "no text in the
+ * projects, just the location"; then "put the short text in the beginning and
+ * the images from each project must be very close so the viewer knows he can
+ * scroll down for more images".
+ *
+ * So: the hero carries the place and the short text, once, at the start. After
+ * that nothing but frames, each at the largest size the file honestly supports,
+ * stacked close enough that the next one is always already showing at the
+ * bottom of the screen. That peek is the whole reason a frame stops short of
+ * filling the panel — on a kiosk with no scrollbar it is the only thing that
+ * says the project continues.
  *
  * What that removed, in order: a 15vh horizontal rail of thumbnails that
  * opened a lightbox (on a 43" panel those slides were postage stamps and the
@@ -78,6 +92,12 @@ export function ProjectView({ project }: { project: Project }) {
         data-scroll-root
         data-scroll-reset
         className="snap-y-page no-scrollbar h-full w-full overflow-y-auto"
+        /*
+         * Where a frame comes to rest: just under the navigation bar, with the
+         * next one already showing below. scrollPaddingTop is what puts it
+         * there on every snap after the first.
+         */
+        style={{ scrollPaddingTop: panelVh(FRAME_TOP) }}
       >
         {/* ---- Screenful one: hero, name, place ------------------------ */}
         <section className="snap-start-page relative h-full w-full">
@@ -112,55 +132,58 @@ export function ProjectView({ project }: { project: Project }) {
            * controls. A banded hero sits on the ground and takes ink.
            */}
           {/*
-           * The place, and nothing else. Set at the section size rather than
-           * the hero size: it is a caption on a photograph, not a title, and
-           * the project's name is on the card the visitor just tapped.
+           * The place and the short text, and this is the only screenful in the
+           * project that carries either. The place is set at the section size
+           * rather than the hero size: it is a caption on a photograph, and the
+           * project's name is on the card the visitor just tapped.
            *
-           * A banded hero's line sits at 52%, below the back control at 44%; a
-           * full-bleed one at 29%, above it. Either way the type and the one
-           * persistent control on the screen do not fight for the same pixels
-           * — `npm run verify` measures the two against each other.
+           * A banded hero's block sits at 55%, below the back control; a
+           * full-bleed one at 26%, above it. Either way the type and the one
+           * persistent control on the screen do not fight for the same pixels —
+           * `npm run verify` measures every floating control against the type
+           * behind it.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '29%' : '52%' }}>
+          <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '26%' : '55%' }}>
             <h1 className={`text-section ${heroIsPortrait ? 'text-on-media' : 'text-ink'}`}>
               {s(project.location)}
             </h1>
+            <p
+              className={`mt-6 text-body ${heroIsPortrait ? 'text-on-media/90' : 'text-ink-muted'}`}
+              style={{ maxWidth: 760 }}
+            >
+              {s(project.narrative)}
+            </p>
           </div>
         </section>
 
-        {/* ---- One screenful per frame ---------------------------------- */}
+        {/* ---- The stack: one frame after another, close ----------------- */}
         {project.gallery.map((frame, i) => (
           <section
             key={mediaPoster(frame).src}
             data-slide={String(i + 1)}
-            className="snap-start-page relative h-full w-full"
+            className="snap-start-page relative w-full"
+            style={{ height: panelVh(frameHeight(frame) + FRAME_GAP) }}
           >
-            {canFullBleed(frame) ? (
-              <Mounted className="absolute inset-0" rootMargin="100% 0px">
-                <MediaFrame media={frame} mode="bleed" active className="h-full w-full" />
-              </Mounted>
-            ) : (
-              /*
-               * As wide as the panel and as tall as the file allows, centred in
-               * the space under the bar. No crop: an interior photographed in
-               * landscape is a room, and cropping it to a portrait frame throws
-               * away the half of the room the photographer chose to include.
-               * "Big" here means the largest the source supports without being
-               * upscaled, which on this panel is genuinely big — a 4:3 frame is
-               * 1080 × 810, a portrait one 1080 × 1440.
-               */
-              <Mounted
-                className="absolute inset-x-0 w-full"
-                rootMargin="100% 0px"
-                style={{ top: `${frameTop(frame)}%`, height: panelVh(frameHeight(frame)) }}
-              >
-                <MediaFrame media={frame} mode="band" active className="h-full w-full" />
-              </Mounted>
-            )}
-
+            {/*
+             * The frame owns the top of its own section and the gap sits under
+             * it, so what shows below the fold is always the beginning of the
+             * next photograph rather than a band of empty ground.
+             *
+             * No crop: an interior photographed in landscape is a room, and
+             * cropping it to a portrait frame throws away the half of the room
+             * the photographer chose to include. "Big" here means the largest
+             * the source supports without being upscaled, which on this panel is
+             * genuinely big — a 4:3 frame is 1080 x 810.
+             */}
+            <Mounted
+              className="relative w-full"
+              rootMargin="100% 0px"
+              style={{ height: panelVh(frameHeight(frame)) }}
+            >
+              <MediaFrame media={frame} mode="band" active className="h-full w-full" />
+            </Mounted>
           </section>
         ))}
-
       </div>
 
       {/*
@@ -196,24 +219,5 @@ function frameHeight(frame: Media): number {
   const poster = mediaPoster(frame);
   const natural =
     ((PHYSICAL.cssWidth / (poster.width / poster.height)) / PHYSICAL.cssHeight) * 100;
-  return Math.min(natural, FRAME_BOTTOM - FRAME_TOP);
-}
-
-/**
- * Where a frame sits, in percent from the top.
- *
- * Centred on 47% rather than on the middle of the available band. The panel is
- * 95cm of glass standing 82cm off the floor, so its middle is not where a
- * standing visitor is looking: 47% is around 132cm, which is inside the
- * comfortable gaze zone (§3). A frame hung there reads as hung rather than as
- * floating, and the space it leaves is at the bottom, which is the part of a
- * totem nobody looks at anyway. Clamped so it never rides up under the bar or
- * off the end of the panel.
- */
-const FRAME_CENTRE = 47;
-
-function frameTop(frame: Media): number {
-  const height = frameHeight(frame);
-  const centred = FRAME_CENTRE - height / 2;
-  return Math.min(Math.max(centred, FRAME_TOP), FRAME_BOTTOM - height);
+  return Math.min(natural, FRAME_MAX);
 }

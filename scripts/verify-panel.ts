@@ -115,6 +115,16 @@ function languageless(text: string): boolean {
 type View = {
   name: string;
   path: string;
+  /**
+   * Scroll a numbered gallery frame to its resting position.
+   *
+   * The project stack no longer runs one frame to a screenful — frames are as
+   * tall as their files allow and sit close together — so a scroll expressed in
+   * viewport heights lands nowhere in particular. Asking the element itself to
+   * come to rest honours the scroll padding, which is the same thing a flick
+   * does.
+   */
+  slide?: number;
   /** Scroll offset in viewport heights, applied to the page's scroll root. */
   section?: number;
   /**
@@ -194,9 +204,9 @@ async function views(): Promise<View[]> {
     ['project · landscape hero', landscape],
   ] as const) {
     const project = PROJECTS_IN_ORDER.find((entry) => entry.slug === slug)!;
-    const beats = ['hero', ...project.gallery.map((_, i) => `frame ${i + 1}`)];
-    beats.forEach((beat, i) =>
-      list.push({ name: `${label} · ${beat}`, path: `/projects/${slug}`, section: i }),
+    list.push({ name: `${label} · hero`, path: `/projects/${slug}`, section: 0 });
+    project.gallery.forEach((_, i) =>
+      list.push({ name: `${label} · frame ${i + 1}`, path: `/projects/${slug}`, slide: i + 1 }),
     );
   }
   CRAFT_STAGES.forEach((stage, i) =>
@@ -554,6 +564,15 @@ async function run(
     // The attract loop owns the first touch; take it the way a visitor does.
     await page.mouse.click(PHYSICAL.cssWidth / 2, PHYSICAL.cssHeight * 0.2);
     await page.waitForTimeout(500);
+
+    if (view.slide !== undefined) {
+      await page.evaluate((slide) => {
+        document
+          .querySelector(`[data-slide="${slide}"]`)
+          ?.scrollIntoView({ block: 'start', behavior: 'instant' as ScrollBehavior });
+      }, view.slide);
+      await page.waitForTimeout(500);
+    }
 
     if (view.section !== undefined || view.cardIndex !== undefined) {
       await page.evaluate(

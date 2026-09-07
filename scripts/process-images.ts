@@ -55,6 +55,13 @@ const ROTATIONS: Record<string, number> = {
   'porto-villa/attract': 90,
   'porto-villa/02': 90,
   'porto-villa/03': 90,
+  /*
+   * Missed when the other four were caught, and it shipped: the marble
+   * bathroom went out on its side. Found by rendering all 117 processed frames
+   * as a contact sheet and looking at them, which is the only way — nothing in
+   * the file says which way is up.
+   */
+  'porto-villa/04': 90,
 };
 const EXTENSIONS = new Set(['.jpg', '.jpeg', '.png', '.tif', '.tiff', '.webp']);
 
