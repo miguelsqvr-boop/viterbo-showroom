@@ -517,3 +517,22 @@ through the house rather than as the shoot was filed.
   frame 02), (029) (the same hall as 030 from a weaker position), (025) and
   (035) (quiet frames that would dilute a strong set), (013)b (a near-repeat of
   (013)a).
+- **Cascais Seafront** — 4 → 10. The twelve frames harvested on the first pass
+  were not enough: five were already wired and the rest largely repeated them,
+  so the shoot folder (`1Fut407zhvkPfbP1DWPXV-1fK4BglT0oz`) was listed in full
+  and the other fifty-four frames pulled and looked at on two contact sheets.
+  Added the living room under its open rafters (0097), the same room read
+  through a doorway cut into the ikat paper (0278), the blue glass dining table
+  (0205), the papered snug under its pine ceiling (0079), the attic children's
+  room whose line-drawn menagerie runs up over the ceiling (0352), and the roof
+  terrace under festoon lights above the bay (0324). Ordered as a walk: entry,
+  living, dining, snug, corridor, attic, bedroom, still life, terrace — the
+  terrace last because it is the only frame that says seafront.
+  Not used: 0457/0469 (portraits of Gracinha); 0630, 0643, 0646 and 0649 (the
+  botanical bedroom, which is already the hero); 0661, 0664, 0665 and 0691 (the
+  yellow ikat bedroom, already frame 02); 0535 (already frame 04); 0028, 0043,
+  0094 and 0268 (weaker angles on the living room 0097 covers); 0202, 0214,
+  0235 and 0253 (the dining table from closer in, without the depth 0205 has);
+  0333 (the terrace by day, flatter than 0324); 0552 (a plain bathroom); 0334
+  and 0337 (a window seat that reads as corridor); the rest are near-repeats
+  inside the sets above.
