@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { CHROME } from '@/config/layout';
+import { panelVh } from '@/lib/panel';
 import { STUDIO } from '@/content/studio';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
@@ -35,7 +36,7 @@ export function StudioView() {
        */}
       <div
         className="absolute inset-x-0 w-full"
-        style={{ top: `${CHROME.barTop + CHROME.barHeight}%`, height: '24vh' }}
+        style={{ top: `${CHROME.barTop + CHROME.barHeight}%`, height: panelVh(24) }}
       >
         {/*
           * focus 15, not the 50 default: Gracinha and Miguel stand about a

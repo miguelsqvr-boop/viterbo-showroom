@@ -38,6 +38,11 @@ export const UI = {
   locationLabel: { en: 'Location', pt: 'Localização' },
   where: { en: 'Where we have worked', pt: 'Onde trabalhámos' },
   collaborations: { en: 'Collaborations', pt: 'Colaborações' },
+  /*
+   * The collection's scroll cue. "Deslize" rather than a literal translation of
+   * scroll: on a touch panel the gesture is a swipe, and that is the word for
+   * it. Written early, then left unused until the collection grew a cue.
+   */
   scrollHint: { en: 'Scroll', pt: 'Deslize' },
   awards: { en: 'Recognition', pt: 'Reconhecimento' },
   /*

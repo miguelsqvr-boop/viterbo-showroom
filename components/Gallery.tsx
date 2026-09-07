@@ -6,6 +6,7 @@ import type { Media } from '@/content/types';
 import { mediaPoster } from '@/content/types';
 import { PANEL } from '@/config/panel';
 import { MediaFrame } from './MediaFrame';
+import { panelVh } from '@/lib/panel';
 
 /**
  * The horizontal swipe rail (§8), positioned inside the reach zone.
@@ -75,7 +76,7 @@ export function Gallery({
         </span>
       </div>
       <div className="overflow-hidden" ref={emblaRef}>
-        <div className="flex touch-pan-y" style={{ height: `${heightVh}vh` }}>
+        <div className="flex touch-pan-y" style={{ height: panelVh(heightVh) }}>
           {items.map((media, index) => {
             const start = Math.min(
               Math.max(0, selected - 1),
@@ -89,7 +90,7 @@ export function Gallery({
              * being cropped to fit a portrait-shaped slot (§4), and the rail
              * shows the current image plus a peek of the next.
              */
-            const width = `calc(${heightVh}vh * ${(poster.width / poster.height).toFixed(4)})`;
+            const width = `calc(${panelVh(heightVh)} * ${(poster.width / poster.height).toFixed(4)})`;
             return (
               <div
                 key={`${media.kind}-${index}`}

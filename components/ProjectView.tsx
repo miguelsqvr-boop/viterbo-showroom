@@ -10,6 +10,7 @@ import { FullView } from './FullView';
 import { Gallery } from './Gallery';
 import { MediaFrame } from './MediaFrame';
 import { Mounted } from './Mounted';
+import { panelVh } from '@/lib/panel';
 
 /** Height of the swipe rail, in vh. It ends where the nav bar begins. */
 const RAIL_VH = 15;
@@ -91,7 +92,7 @@ export function ProjectView({ project }: { project: Project }) {
              * typography breathes — which is what a print spread does with
              * the same problem (§4).
              */
-            <div className="absolute inset-x-0 top-0 w-full" style={{ height: '30vh' }}>
+            <div className="absolute inset-x-0 top-0 w-full" style={{ height: panelVh(30) }}>
               <MediaFrame media={project.hero} mode="band" priority className="h-full w-full" />
             </div>
           )}
@@ -134,10 +135,9 @@ export function ProjectView({ project }: { project: Project }) {
         {/* ---- Screenful three: the swipe rail --------------------------- */}
         <section className="snap-start-page relative h-full w-full">
           {/*
-           * The rail lands at 28.5%–43.5%: inside the reach envelope, and
-           * clear of the navigation bar at 45%. Slides are small for a 43"
-           * panel and that is the honest cost of a bar in the middle of the
-           * screen — inspecting an image is one tap into the full view.
+           * The rail lands at 28.5%–43.5%, in the middle of the reach
+           * envelope. Slides are small for a 43" panel; inspecting an image is
+           * one tap into the full view.
            */}
           <div className="absolute inset-x-0" style={{ top: '24%' }}>
             <Mounted className="w-full" rootMargin="50% 0px">

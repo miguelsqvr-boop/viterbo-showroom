@@ -117,6 +117,19 @@ type View = {
   path: string;
   /** Scroll offset in viewport heights, applied to the page's scroll root. */
   section?: number;
+  /**
+   * Minimum number of visitor-facing tap targets this view must expose.
+   *
+   * The collection disables every card except the one resting in the prime
+   * band, and a disabled TapTarget renders as a plain box with no
+   * `data-tap-target` at all. That is correct, and it means every other check
+   * in this file goes quiet when the gating breaks: a collection where no card
+   * is live has no targets to find outside the envelope, no targets under the
+   * bar, and no targets under the size floor. It passes, and every "View
+   * project" on the panel is dead. So the collection states say out loud that
+   * they must have one.
+   */
+  liveTargets?: number;
   /** Collection cards snap on their own stride, not a whole screen. */
   cardIndex?: number;
   prepare?: (page: Page) => Promise<void>;
@@ -158,9 +171,14 @@ async function views(): Promise<View[]> {
   const portrait = PROJECTS_IN_ORDER[0].slug;
   const landscape = PROJECTS_IN_ORDER[1].slug;
   const list: View[] = [
-    { name: 'collection · first card', path: '/', cardIndex: 0 },
-    { name: 'collection · mid list', path: '/', cardIndex: 5 },
-    { name: 'collection · craft card', path: '/', cardIndex: PROJECTS_IN_ORDER.length },
+    { name: 'collection · first card', path: '/', cardIndex: 0, liveTargets: 1 },
+    { name: 'collection · mid list', path: '/', cardIndex: 5, liveTargets: 1 },
+    {
+      name: 'collection · craft card',
+      path: '/',
+      cardIndex: PROJECTS_IN_ORDER.length,
+      liveTargets: 1,
+    },
   ];
   for (const [label, slug] of [
     ['project · portrait hero', portrait],
@@ -542,8 +560,25 @@ async function run(
     const result = await audit(page);
     const blanks = await blankSlides(page);
     const faint = await lowContrastOnMedia(page);
+    const dead: Array<{ rule: string; detail: string }> = [];
+    if (view.liveTargets !== undefined) {
+      const live = await page.evaluate(
+        () =>
+          [...document.querySelectorAll<HTMLElement>('[data-tap-target]')].filter((el) => {
+            if (el.closest('[data-chrome]')) return false;
+            const box = el.getBoundingClientRect();
+            return box.width > 0 && box.height > 0 && box.bottom > 0 && box.top < window.innerHeight;
+          }).length,
+      );
+      if (live < view.liveTargets) {
+        dead.push({
+          rule: 'no live target',
+          detail: `${live} tappable element(s) outside the chrome, expected at least ${view.liveTargets}`,
+        });
+      }
+    }
     return {
-      violations: [...result.violations, ...blanks, ...faint].map((item) => ({
+      violations: [...result.violations, ...blanks, ...faint, ...dead].map((item) => ({
         view: view.name,
         locale,
         ...item,
@@ -560,6 +595,68 @@ async function run(
   } finally {
     await context.close();
   }
+}
+
+/**
+ * The panel, rendered in a window too small for it.
+ *
+ * Nothing in the showroom ever runs at this size — but Miguel reviews the app
+ * on a laptop, so the preview is where the work is judged, and it has now
+ * broken twice. First the percentage bands collapsed against absolute type;
+ * then, once globals.css started rendering the panel at true size and scaling
+ * it, every `vh` inside the scaled box went on measuring the browser window
+ * instead. A 58vh card became 545px inside a 1920px shell, four cards stacked
+ * where one belonged, and the card the reach band pointed at was not the card
+ * under your eye — so "View project" did nothing on the card you were reading.
+ *
+ * The check is the invariant that failure violates: inside the shell, one card
+ * to the next is exactly `cardStride` percent of 1920, whatever the window is.
+ */
+async function previewGeometry(browser: Browser, base: string): Promise<Violation[]> {
+  const windows: Array<[number, number]> = [
+    [1348, 940],
+    [1512, 860],
+  ];
+  const found: Violation[] = [];
+  for (const [width, height] of windows) {
+    const context = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1 });
+    const page = await context.newPage();
+    try {
+      await page.goto(base, { waitUntil: 'networkidle' });
+      await page.waitForTimeout(600);
+      const measured = await page.evaluate(() => {
+        const sections = document.querySelectorAll<HTMLElement>('[data-scroll-root] > section');
+        const shell = document.querySelector<HTMLElement>('.kiosk-shell');
+        return {
+          card: sections[0]?.offsetHeight ?? 0,
+          shell: shell?.offsetHeight ?? 0,
+        };
+      });
+      const want = (PHYSICAL.cssHeight * COLLECTION.cardStride) / 100;
+      if (Math.abs(measured.card - want) > 2) {
+        found.push({
+          view: `preview ${width}×${height}`,
+          locale: 'en',
+          rule: 'preview geometry',
+          detail:
+            `a collection card measures ${Math.round(measured.card)}px inside a ` +
+            `${Math.round(measured.shell)}px shell, expected ${Math.round(want)}px ` +
+            `(${COLLECTION.cardStride}% of ${PHYSICAL.cssHeight}) — a viewport unit has ` +
+            'escaped the panel box',
+        });
+      }
+    } catch (error) {
+      found.push({
+        view: `preview ${width}×${height}`,
+        locale: 'en',
+        rule: 'crashed',
+        detail: String(error).slice(0, 200),
+      });
+    } finally {
+      await context.close();
+    }
+  }
+  return found;
 }
 
 async function waitForServer(base: string, attempts = 60) {
@@ -656,6 +753,13 @@ async function main() {
         `  ${breaches === 0 ? '·' : '✗'} ${view.name}${breaches ? ` — ${breaches}` : ''}\n`,
       );
     }
+
+    const preview = await previewGeometry(browser, base);
+    violations.push(...preview);
+    process.stdout.write(
+      `  ${preview.length === 0 ? '·' : '✗'} preview windows` +
+        `${preview.length ? ` — ${preview.length}` : ''}\n`,
+    );
   } finally {
     await browser.close();
     server?.kill();

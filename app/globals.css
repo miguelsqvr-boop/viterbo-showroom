@@ -77,6 +77,17 @@
   .kiosk-shell {
     height: 100%;
     width: 100%;
+    /*
+     * The panel's own vertical unit. Every band in the app is expressed
+     * against this rather than against `vh`, because `vh` resolves against the
+     * browser viewport and the preview rule below renders the panel at its
+     * true 1080x1920 inside a smaller window. Left as `vh`, a 58vh card became
+     * 545px inside a 1920px-tall shell and four cards stacked where one
+     * belonged — which is what made "View project" appear dead on a laptop:
+     * the card the reach band was pointing at was not the card under your eye.
+     * On the panel this is exactly 1vh and nothing changes.
+     */
+    --panel-vh: 1vh;
   }
 
   html,
@@ -257,5 +268,39 @@
      */
     transform: scale(var(--kiosk-scale, 1));
     transform-origin: top center;
+    /* 1920px / 100. The shell is the panel here, so this is the panel's vh. */
+    --panel-vh: 19.2px;
+  }
+}
+
+/*
+ * The scroll cue on the collection.
+ *
+ * A showroom panel has no scrollbar, no mouse and no visible affordance that
+ * the list continues — Miguel watched people treat the first card as the whole
+ * collection. Motion is the cue that reads from three metres without adding a
+ * word or a control; it runs only until the visitor scrolls once, then never
+ * again for that session.
+ */
+@keyframes panel-nudge {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.6;
+  }
+  50% {
+    transform: translateY(14px);
+    opacity: 1;
+  }
+}
+
+.scroll-nudge {
+  animation: panel-nudge 2.6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-nudge {
+    animation: none;
+    opacity: 0.75;
   }
 }

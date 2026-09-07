@@ -2,6 +2,7 @@
 
 import { useRouter } from 'next/navigation';
 import { COLLECTION } from '@/config/layout';
+import { panelVh } from '@/lib/panel';
 import { PROJECTS_IN_ORDER } from '@/content/projects';
 import { useActiveCard } from '@/lib/useActiveCard';
 import { useLocale } from '@/lib/locale';
@@ -21,6 +22,18 @@ import { TapTarget } from './TapTarget';
  * sits above 28%, and the acceptance criteria put every interactive element
  * below that line — so the name-and-location block is the target, and the
  * photography is left alone to be photography.
+ *
+ * The band of ground between the resting card's rule and the next card's
+ * photograph carries the fact that the list continues, because on a panel with
+ * no scrollbar and no mouse a visitor will otherwise read the first card as
+ * the whole collection. On the first card it is a chevron nudging downward;
+ * once the visitor has moved it becomes a counter, which says both that there
+ * is more and how much.
+ *
+ * A rail down the right edge was the other candidate and was built and thrown
+ * away: the photography runs full-bleed to both edges, so any persistent rail
+ * draws a line across every picture in the collection. A mark in the ground
+ * gap costs the photography nothing.
  */
 export function Collection() {
   const router = useRouter();
@@ -42,24 +55,27 @@ export function Collection() {
        * with its first tap target 2% above the reach envelope.
        */
       style={{
-        paddingTop: `${COLLECTION.cardTop}vh`,
-        scrollPaddingTop: `${COLLECTION.cardTop}vh`,
+        paddingTop: panelVh(COLLECTION.cardTop),
+        scrollPaddingTop: panelVh(COLLECTION.cardTop),
       }}
     >
       {PROJECTS_IN_ORDER.map((project, i) => (
         <section
           key={project.slug}
           className="snap-start-page relative w-full"
-          style={{ height: `${stride}vh` }}
+          style={{ height: panelVh(stride) }}
         >
-          <Mounted className="relative w-full" rootMargin="100% 0px">
-            <MediaFrame
-              media={project.hero}
-              mode="band"
-              priority={i === 0}
-              className="w-full"
-              style={{ height: `${COLLECTION.imageHeight}vh` }}
-            />
+          {/*
+           * The height belongs to the wrapper, not to the image: an unmounted
+           * card has to occupy exactly the space a mounted one does, or every
+           * snap position below it is wrong. See Mounted.
+           */}
+          <Mounted
+            className="relative w-full"
+            rootMargin="100% 0px"
+            style={{ height: panelVh(COLLECTION.imageHeight) }}
+          >
+            <MediaFrame media={project.hero} mode="band" priority={i === 0} className="h-full w-full" />
           </Mounted>
 
           <TapTarget
@@ -72,7 +88,7 @@ export function Collection() {
             <div
               ref={register(i)}
               className="flex w-full flex-col justify-center border-b border-hairline"
-              style={{ height: `${COLLECTION.metaHeight}vh` }}
+              style={{ height: panelVh(COLLECTION.metaHeight) }}
             >
               {/*
                * Location sits at the same weight as the name, not as a
@@ -83,7 +99,18 @@ export function Collection() {
               </div>
               <div className="mt-3 flex items-baseline justify-between">
                 <span className="text-meta text-ink">{s(project.location)}</span>
-                <span className="text-caption text-ink-faint">{t('viewProject')}</span>
+                {/*
+                 * Only on the card that is actually tappable. Every card used
+                 * to carry this label while only the one resting in the prime
+                 * band had a handler, so most of them were an invitation to
+                 * press something that did nothing — which is exactly how it
+                 * was reported: "links to view project are not working well".
+                 * Now the label appears where the tap works, and doubles as
+                 * the mark of which card the panel is pointing at.
+                 */}
+                {active === i ? (
+                  <span className="text-caption text-ink-faint">{t('viewProject')}</span>
+                ) : null}
               </div>
             </div>
           </TapTarget>
@@ -95,13 +122,12 @@ export function Collection() {
        * only — but it is the strongest asset the studio has, so it earns the
        * place a visitor reaches by finishing the list.
        */}
-      <section className="snap-start-page relative w-full" style={{ height: `${stride}vh` }}>
-        <Mounted className="relative w-full">
+      <section className="snap-start-page relative w-full" style={{ height: panelVh(stride) }}>
+        <Mounted className="relative w-full" style={{ height: panelVh(COLLECTION.imageHeight) }}>
           <MediaFrame
             media={PROJECTS_IN_ORDER[0].hero}
             mode="band"
-            className="w-full opacity-70"
-            style={{ height: `${COLLECTION.imageHeight}vh` }}
+            className="h-full w-full opacity-70"
           />
         </Mounted>
         <TapTarget
@@ -114,19 +140,69 @@ export function Collection() {
           <div
             ref={register(PROJECTS_IN_ORDER.length)}
             className="flex w-full flex-col justify-center border-b border-hairline"
-            style={{ height: `${COLLECTION.metaHeight}vh` }}
+            style={{ height: panelVh(COLLECTION.metaHeight) }}
           >
             <span className="text-hero">{t('craft')}</span>
             <div className="mt-3 flex items-baseline justify-between">
               <span className="text-meta text-ink">Cascais · Lisboa</span>
-              <span className="text-caption text-ink-faint">{t('viewProject')}</span>
+              {active === PROJECTS_IN_ORDER.length ? (
+                <span className="text-caption text-ink-faint">{t('viewProject')}</span>
+              ) : null}
             </div>
           </div>
         </TapTarget>
       </section>
 
       {/* Tail spacer: just enough for the last card to reach its snap position. */}
-      <div style={{ height: `${Math.max(0, 100 - stride - COLLECTION.cardTop)}vh` }} aria-hidden />
+      <div style={{ height: panelVh(Math.max(0, 100 - stride - COLLECTION.cardTop)) }} aria-hidden />
+
+      <ScrollCue
+        active={active}
+        count={PROJECTS_IN_ORDER.length + 1}
+        label={t('scrollHint')}
+      />
+    </div>
+  );
+}
+
+/**
+ * The cue in the ground gap: there is more below this card.
+ *
+ * Aligned to the same left margin as the type and sitting between the resting
+ * card's rule and the top of the next card's photograph, so it never marks an
+ * image. On the first card it moves, because motion is what reads as "this
+ * continues" from three metres; after that it stops moving and counts, because
+ * a cue that keeps insisting after it has been understood is noise.
+ */
+function ScrollCue({ active, count, label }: { active: number; count: number; label: string }) {
+  return (
+    <div
+      aria-hidden
+      className="pointer-events-none fixed inset-x-0 z-30 flex items-center gap-5 px-14"
+      style={{ top: '55%' }}
+    >
+      {active === 0 ? (
+        <>
+          <svg
+            className="scroll-nudge"
+            width="52"
+            height="30"
+            viewBox="0 0 52 30"
+            fill="none"
+            stroke="var(--color-ink-muted)"
+            strokeWidth="2"
+          >
+            <path d="M2 2 L26 26 L50 2" />
+          </svg>
+          <span className="scroll-nudge text-caption uppercase tracking-[0.2em] text-ink-muted">
+            {label}
+          </span>
+        </>
+      ) : (
+        <span className="text-caption tracking-[0.3em] text-ink-faint">
+          {String(active + 1).padStart(2, '0')} / {String(count).padStart(2, '0')}
+        </span>
+      )}
     </div>
   );
 }
