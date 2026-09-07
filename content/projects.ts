@@ -46,10 +46,17 @@ export const PROJECTS: Project[] = [
       pt: 'Os pisos comuns de um edifício em Lisboa, tratados com o cuidado normalmente reservado a um apartamento privado. Madeira ripada, travertino e uma piscina interior serena; o átrio convida a ficar em vez de atravessar.',
     },
     hero: img('castilho-203/hero', 'The indoor pool, lined in travertine', 'A piscina interior, revestida a travertino'),
+    /* Ordered as an arrival: the building, the way in, the rooms, the water. */
     gallery: [
+      img('castilho-203/05', 'The building from the terrace, the pool cut into it', 'O edifício visto do terraço, com a piscina recortada nele'),
+      img('castilho-203/06', 'A timber-lined passage to a lit stone niche', 'Uma passagem forrada a madeira até um nicho de pedra iluminado'),
+      img('castilho-203/07', 'The lobby, a string of glass globes falling through it', 'O átrio, atravessado por um colar de globos de vidro'),
       img('castilho-203/01', 'A dried-flower installation over a brass console', 'Uma instalação de flores secas sobre uma consola de latão'),
       img('castilho-203/02', 'A curved sofa against ribbed timber, under copper pendants', 'Um sofá curvo contra madeira ripada, sob suspensões de cobre'),
+      img('castilho-203/08', 'A washroom in black marble, under a round mirror', 'Um lavabo em mármore negro, sob um espelho redondo'),
       img('castilho-203/03', 'The pool seen through full-height curtains', 'A piscina vista através de cortinados de pé-direito'),
+      img('castilho-203/09', 'Curtains falling to the water in a travertine bay', 'Cortinados que descem até à água num vão de travertino'),
+      img('castilho-203/10', 'Brass held against a wall of black marble', 'Latão contra uma parede de mármore negro'),
       img('castilho-203/04', 'A treatment room in the spa', 'Uma sala de tratamentos no spa'),
     ],
     featuredInAttract: true,
@@ -144,6 +151,7 @@ export const PROJECTS: Project[] = [
       img('chelsea/04', 'The principal bedroom, in dark green', 'O quarto principal, em verde escuro'),
       img('chelsea/08', 'The principal bathroom, a blue bath on a striped rug', 'A casa de banho principal, com banheira azul sobre um tapete às riscas'),
       img('chelsea/09', 'The cloakroom, lined in red floral paper around a marble basin', 'O lavabo, forrado a papel floral vermelho em torno de um lavatório em mármore'),
+      img('chelsea/10', 'The walled garden at dusk, a fire lit between the daybeds', 'O jardim murado ao anoitecer, com lume aceso entre as chaises'),
     ],
     featuredInAttract: true,
   },
@@ -368,10 +376,19 @@ export const PROJECTS: Project[] = [
       pt: 'Arcos pintados à mão iluminados por trás, um hall em laca azul sobre um lambril de azulejo e quartos em toile. O edifício é da Lisboa antiga e o apartamento não discute com ele — tudo se faz em marcenaria, cor e tecido, e não em estrutura.',
     },
     hero: img('ivens/hero', 'Hand-painted arched panels lit from behind', 'Painéis em arco pintados à mão, iluminados por trás'),
+    /* Ordered as a walk: the enfilade in, the reception rooms, the bedrooms one
+     * after another, then the bathrooms — closing on the azulejo, which is the
+     * one room in the apartment that stops people. */
     gallery: [
+      img('ivens/05', 'An enfilade of doorways, lamps burning on either side', 'Uma enfiada de vãos, com candeeiros acesos de ambos os lados'),
       img('ivens/01', 'A curved velvet sofa below the painted arches', 'Um sofá curvo em veludo sob os arcos pintados'),
       img('ivens/02', 'Yellow silk curtains drawn back from a window seat', 'Cortinados de seda amarela abertos sobre um assento de janela'),
+      img('ivens/06', 'Twin beds against a green botanical paper', 'Duas camas contra um papel botânico verde'),
       img('ivens/03', 'A twin bedroom papered in pink toile', 'Um quarto de duas camas forrado a toile rosa'),
+      img('ivens/07', 'Buttoned headboards against a floral ground', 'Cabeceiras capitonadas sobre um fundo florido'),
+      img('ivens/08', 'A bedroom in blue florals, the window arched', 'Um quarto em florais azuis, com a janela em arco'),
+      img('ivens/09', 'A washstand between paired sconces', 'Um lavatório entre apliques emparelhados'),
+      img('ivens/10', 'A glazed passage running the depth of the apartment', 'Uma passagem envidraçada a toda a profundidade do apartamento'),
       img('ivens/04', 'A bathroom under a stone arch, tiled in blue azulejo', 'Uma casa de banho sob um arco de pedra, revestida a azulejo azul'),
     ],
   },
