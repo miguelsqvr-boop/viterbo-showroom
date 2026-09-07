@@ -280,8 +280,12 @@ curation, which is arguable, but making the cut silently. Nineteen
 projects ship now, and every folder below is either used or excluded for a
 stated reason.
 
+> Since revised: Quinta do Lago was taken off the panel on 7 September at the
+> studio's request, so it has moved from the used list to the excluded one
+> below. Nineteen projects ship, which is where this count started.
+
 **Used.** Castilho 203, Porto Villa (filed as "Settes House"), Avenida da
-República, Quinta do Lago, Chelsea, Singapore Penthouse, Rio de Janeiro,
+República, Chelsea, Singapore Penthouse, Rio de Janeiro,
 Estoril Estate (filed as "Patino"), Cascais Seafront, Birre House (filed
 as "Birger e Jeni"), Cascais Estate (filed as "RMCAS"), Lisbon
 Pied-à-Terre, Bangkok Estate (three folders — Penthouse 1, Penthouse 2,
@@ -290,6 +294,14 @@ as "Sonia Regina"), Pastéis de Belém, Tuscany Estate, Cabana Sass (two
 folders, one project). Plus "Miguel and Gracinha" for the Studio portrait.
 
 **Excluded, with reasons.**
+
+*Quinta do Lago Q Hub, 2020.* Used, then withdrawn. It shipped as "Hospitality
+pavilion", was renamed "Quinta do Lago Concierge" on the evidence of the Drive
+folders, deepened to three frames, and then removed from the panel entirely at
+the studio's request the same day. There is nothing wrong with the photography
+— five good frames of the guest services office — so this is an editorial call
+about what the panel shows, not a judgement on the material. The folder is
+1pC0dibmds7bQQcz94VQBl-Q8JddLQZIV if it is ever wanted back.
 
 *Lisbon Arts & Antiques Fair 2025.* A stand, not a commission, and the
 photography is six near-identical views of one small room under a heavy
@@ -390,7 +402,7 @@ frames were laid out as contact sheets and looked at.
 **Gained resolution.** Avenida da República (5 frames → 2048px), Castilho
 203 (5 → 2048), Cascais Seafront (5 → 2048), Estoril Estate (6 → 2048),
 Chelsea (6 → 1500–2666), Singapore Penthouse (5 → 4724), Hotel Albatroz
-(4 of 5 → 1801–3123), Quinta do Lago (2 of 4 → 3500), Ivens (2 of 6 →
+(4 of 5 → 1801–3123), Ivens (2 of 6 →
 2048), Lisbon Palace (1 of 5 → 2048).
 
 **No larger copy exists under the ceiling.** Bangkok Estate, Birre House,
@@ -404,10 +416,10 @@ Birre Villa was already at 2048px and has no larger readable copy.
 panel to clear the 2160px `canFullBleed` gate. Every other portrait hero is
 still letterboxed.
 
-Two near misses worth knowing about, in case the studio would rather move a
-frame than re-export: Quinta do Lago's two remaining frames sit at 7.06 and
-7.24 MB, and Lisbon Pied-à-Terre's masters are 6.6–11.8 MB except frame (3)
-at 5.83 MB, which is readable but is not one of the six currently chosen.
+One near miss worth knowing about, in case the studio would rather move a
+frame than re-export: Lisbon Pied-à-Terre's masters are 6.6–11.8 MB except
+frame (3) at 5.83 MB, which is readable but is not one of the six currently
+chosen.
 
 ## Deepening the galleries
 
@@ -437,8 +449,12 @@ through the house rather than as the shoot was filed.
   through the glass in frame 01), Library9 and Drawing8 (too close to the
   library and drawing room already wired), Office1 and DressRm1 (quiet frames
   that would dilute a strong set).
-- **Quinta do Lago Concierge** — 2 → 3, which is all five photographs the Q Hub
-  shoot contains. Nothing further exists.
+- **Quinta do Lago Concierge** — removed from the panel entirely on 7 September
+  at the studio's request, after being renamed and deepened earlier the same
+  day. Its five photographs, the project entry and the whole `quinta-do-lago`
+  media folder are gone; nothing was left behind for a later pass to trip over.
+  The Q Hub shoot and the Concierge job folder are still in the Drive if it is
+  ever wanted back.
 - **Pastéis de Belém** — 4 → 10, from the twenty-frame Francisco Almeida Dias
   shoot. Added the name cut into stone, the nested oak doorways, the long
   counter, the serving hall under its full azulejo ceiling, a vitrine of tins

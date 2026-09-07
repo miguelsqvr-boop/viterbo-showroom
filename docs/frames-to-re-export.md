@@ -1,6 +1,11 @@
 # Frames still needing a higher-resolution export
 
-**71 of the 112 frames** on the showroom panel have not been upgraded — 66 unique files, since a few frames are used twice (hero and attract).
+**69 of the 110 frames** on the showroom panel have not been upgraded — 64 unique files, since a few frames are used twice (hero and attract).
+
+> Revised 7 September: Quinta do Lago was taken off the panel at the studio's
+> request, so its two frames (58 and 59 in the original list) are gone from this
+> list and the numbering below closes over them. If you are working from a
+> printed copy of the earlier version, those are the only two rows that changed.
 
 For every one of these the Drive holds a low-res preview and a master and nothing in between, and every master is over the ~6 MB the connector will transfer. Sixty-five are 1600px on the long edge; the six Birre Villa frames are 2048px, which is 112px short of the threshold where a portrait hero takes the whole screen.
 
@@ -78,20 +83,18 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 | 55 | Porto Villa | 04 | `Viterbo Interior Design-Settes House_0090.jpg` | 1065×1600 |
 | 56 | Porto Villa | attract | `Viterbo Interior Design-Settes House_0070.jpg` | 1065×1600 |
 | 57 | Porto Villa | hero | `Viterbo Interior Design-Settes House_0070.jpg` | 1065×1600 |
-| 58 | Quinta do Lago | 01 | `CDQ Office - Print-21.jpg` | 1600×900 |
-| 59 | Quinta do Lago | 02 | `CDQ Office - Print-37.jpg` | 1600×900 |
-| 60 | Seafront Apartment | 01 | `140320_VITERBO_027_Fran_Parente_8823.jpg` | 1600×1067 |
-| 61 | Seafront Apartment | 02 | `140320_VITERBO_003_Fran_Parente_8697.jpg` | 1600×1067 |
-| 62 | Seafront Apartment | 03 | `140320_VITERBO_040_Fran_Parente_8849.jpg` | 1067×1600 |
-| 63 | Seafront Apartment | 04 | `140320_VITERBO_044_Fran_Parente_8864.jpg` | 1067×1600 |
-| 64 | Seafront Apartment | hero | `140320_VITERBO_008_Fran_Parente_8716.jpg` | 1600×1066 |
-| 65 | Studio portrait | gracinha-miguel | `Gracinha and Miguel Tuscany (3).jpg` | 1067×1600 |
-| 66 | Tuscany Estate | 01 | `ViterboID- Tuscany (22).jpg` | 1600×1066 |
-| 67 | Tuscany Estate | 02 | `ViterboID- Tuscany (38).jpg` | 1065×1600 |
-| 68 | Tuscany Estate | 03 | `ViterboID- Tuscany (46).jpg` | 1070×1600 |
-| 69 | Tuscany Estate | 04 | `ViterboID- Tuscany (70).jpg` | 1049×1600 |
-| 70 | Tuscany Estate | attract | `ViterboID- Tuscany (10).jpg` | 1067×1600 |
-| 71 | Tuscany Estate | hero | `ViterboID- Tuscany (18).jpg` | 1066×1600 |
+| 58 | Seafront Apartment | 01 | `140320_VITERBO_027_Fran_Parente_8823.jpg` | 1600×1067 |
+| 59 | Seafront Apartment | 02 | `140320_VITERBO_003_Fran_Parente_8697.jpg` | 1600×1067 |
+| 60 | Seafront Apartment | 03 | `140320_VITERBO_040_Fran_Parente_8849.jpg` | 1067×1600 |
+| 61 | Seafront Apartment | 04 | `140320_VITERBO_044_Fran_Parente_8864.jpg` | 1067×1600 |
+| 62 | Seafront Apartment | hero | `140320_VITERBO_008_Fran_Parente_8716.jpg` | 1600×1066 |
+| 63 | Studio portrait | gracinha-miguel | `Gracinha and Miguel Tuscany (3).jpg` | 1067×1600 |
+| 64 | Tuscany Estate | 01 | `ViterboID- Tuscany (22).jpg` | 1600×1066 |
+| 65 | Tuscany Estate | 02 | `ViterboID- Tuscany (38).jpg` | 1065×1600 |
+| 66 | Tuscany Estate | 03 | `ViterboID- Tuscany (46).jpg` | 1070×1600 |
+| 67 | Tuscany Estate | 04 | `ViterboID- Tuscany (70).jpg` | 1049×1600 |
+| 68 | Tuscany Estate | attract | `ViterboID- Tuscany (10).jpg` | 1067×1600 |
+| 69 | Tuscany Estate | hero | `ViterboID- Tuscany (18).jpg` | 1066×1600 |
 
 ## Grouped by project
 
@@ -185,11 +188,6 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - `Viterbo Interior Design-Settes House_0070.jpg` — attract, 1065×1600
 - `Viterbo Interior Design-Settes House_0070.jpg` — hero, 1065×1600
 
-### Quinta do Lago (`quinta-do-lago`) — 2 frames
-
-- `CDQ Office - Print-21.jpg` — 01, 1600×900
-- `CDQ Office - Print-37.jpg` — 02, 1600×900
-
 ### Seafront Apartment (`rio-de-janeiro`) — 5 frames
 
 - `140320_VITERBO_027_Fran_Parente_8823.jpg` — 01, 1600×1067
@@ -216,9 +214,6 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 - **"Seafront Apartment" is the Rio de Janeiro project** (`rio-de-janeiro`). Not to
   be confused with **Seafront Pied-à-Terre** in Cascais (`cascais-seafront`), which
   was fully upgraded and needs nothing.
-- **Quinta do Lago** is the nearest miss. Its two remaining masters are 7.06 and
-  7.24 MB — just over the limit. A single re-save at quality 80 clears it. Its
-  other two frames already came through at 3500×1969.
 - **Lisbon Pied-à-Terre** frame `(3)` already sits at 5.83 MB and is readable, but
   it is not one of the six frames chosen for that project. If you would rather swap
   a frame than re-export, that one is free.

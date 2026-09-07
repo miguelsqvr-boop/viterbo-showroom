@@ -230,32 +230,6 @@ export const PROJECTS: Project[] = [
     ],
   },
   {
-    slug: 'quinta-do-lago',
-    order: 5,
-    style: 'contemporary',
-    /*
-     * Named as Miguel names it. The Drive folders behind these frames are
-     * "2020 Quinta do Lago Q Hub" and "2020-7 Quinta do Lago Concierge", the
-     * files are "CDQ Office" — Clube da Quinta — and the drawing set inside is
-     * titled "Guest services office". Same year, same client, same building;
-     * the panel now calls it what the studio calls it.
-     */
-    name: { en: 'Quinta do Lago Concierge', pt: 'Concierge Quinta do Lago' },
-    location: { en: 'Algarve', pt: 'Algarve' },
-    typology: { en: 'Concierge and guest services', pt: 'Concierge e apoio ao cliente' },
-    year: 2020,
-    narrative: {
-      en: 'A pavilion on the golf, white and low against the pines, and inside a single blue room built around one enormous dried arrangement. Not a house — the studio does commercial work too, and it is drawn the same way.',
-      pt: 'Um pavilhão sobre o campo de golfe, branco e baixo contra os pinheiros, e lá dentro uma única sala azul construída à volta de um enorme arranjo seco. Não é uma casa — o estúdio também faz trabalho comercial, e desenha-o da mesma maneira.',
-    },
-    hero: img('quinta-do-lago/hero', 'A low white pavilion in the pines, flags at the entrance', 'Um pavilhão branco e baixo entre os pinheiros, com bandeiras à entrada'),
-    gallery: [
-      img('quinta-do-lago/01', 'The blue interior below a large dried arrangement', 'O interior azul sob um grande arranjo seco'),
-      img('quinta-do-lago/02', 'A fluted reception desk on a striped rug', 'Um balcão de recepção caneludo sobre um tapete às riscas'),
-      img('quinta-do-lago/03', 'The lounge, arched screens and a long window onto the course', 'A sala de estar, biombos em arco e uma janela longa sobre o campo'),
-    ],
-  },
-  {
     slug: 'cascais-estate',
     order: 12,
     style: 'contemporary-twist',
