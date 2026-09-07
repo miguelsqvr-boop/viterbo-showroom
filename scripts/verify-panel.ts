@@ -181,18 +181,20 @@ async function views(): Promise<View[]> {
     },
   ];
   /*
-   * A project is the hero, one screenful per gallery frame, then the closing
-   * screen that carries the narrative and the facts. Both a portrait hero and
-   * a landscape one, because they compose differently, and every frame of
-   * each, because a frame that fails to mount is invisible rather than broken
-   * — see the blank-slide check.
+   * A project is the hero and then one screenful per gallery frame — there is
+   * no closing screen any more, and no text on a frame at all. Both a portrait
+   * hero and a landscape one, because they compose differently, and every
+   * frame of each, because a frame that fails to mount is now a blank
+   * screenful rather than a gap in a rail — see the blank-slide check, which
+   * is the only thing standing between a missing file and a visitor scrolling
+   * onto nothing.
    */
   for (const [label, slug] of [
     ['project · portrait hero', portrait],
     ['project · landscape hero', landscape],
   ] as const) {
     const project = PROJECTS_IN_ORDER.find((entry) => entry.slug === slug)!;
-    const beats = ['hero', ...project.gallery.map((_, i) => `frame ${i + 1}`), 'words'];
+    const beats = ['hero', ...project.gallery.map((_, i) => `frame ${i + 1}`)];
     beats.forEach((beat, i) =>
       list.push({ name: `${label} · ${beat}`, path: `/projects/${slug}`, section: i }),
     );

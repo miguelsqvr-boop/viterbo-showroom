@@ -21,17 +21,23 @@ const FRAME_BOTTOM = 98;
 /**
  * A project (§8).
  *
- * One thing to a screenful, scrolled vertically, and after the first screen
- * that thing is a photograph. Miguel's brief for this screen was three
- * sentences: seamless, big images each to scroll, very minimal text, easy to
- * go back. So the sequence is hero, then one frame per flick at the largest
- * size the file honestly supports, then a single closing screen carrying the
- * narrative and the facts together.
+ * One thing to a screenful, scrolled vertically, and that thing is a
+ * photograph. Miguel's brief arrived in two parts: "seamless, big images each
+ * to scroll, very minimal text, easy to go back", and then "no text in the
+ * projects, just the location". So a project is its hero carrying one line —
+ * the place — and after that nothing but frames, each at the largest size the
+ * file honestly supports.
  *
- * What this replaced was a 15vh horizontal rail of thumbnails that opened a
- * lightbox. On a 43" panel those slides were postage stamps, the lightbox was
- * a second way to get lost, and the photography — which is the whole argument
- * this studio makes — was the smallest thing on the screen.
+ * What that removed, in order: a 15vh horizontal rail of thumbnails that
+ * opened a lightbox (on a 43" panel those slides were postage stamps and the
+ * lightbox was a second way to get lost); then the project name, the typology
+ * and year line, the narrative and the facts strip. The name and place are on
+ * the card the visitor tapped to get here, and the words are still in
+ * content/projects.ts if the studio wants them back — nothing was deleted from
+ * the content model, only from the screen.
+ *
+ * The counter went with them. It was five characters of wayfinding, and five
+ * characters is text.
  */
 export function ProjectView({ project }: { project: Project }) {
   const router = useRouter();
@@ -65,14 +71,6 @@ export function ProjectView({ project }: { project: Project }) {
       window.removeEventListener('pointerup', up);
     };
   }, [router]);
-
-  const facts: Array<[string, string]> = [
-    [t('locationLabel'), s(project.location)],
-    ...(project.year ? [[t('year'), String(project.year)] as [string, string]] : []),
-    ...(project.area ? [[t('area'), project.area] as [string, string]] : []),
-    ...(project.scope ? [[t('scopeLabel'), s(project.scope)] as [string, string]] : []),
-    ...(project.architect ? [[t('architect'), project.architect] as [string, string]] : []),
-  ];
 
   return (
     <>
@@ -114,19 +112,19 @@ export function ProjectView({ project }: { project: Project }) {
            * controls. A banded hero sits on the ground and takes ink.
            */}
           {/*
-           * A banded hero's name sits at 52%, below the back control at 44%.
-           * A full-bleed one sits at 29%, above it. Either way the name and the
-           * one persistent control on the screen do not fight for the same
-           * pixels — `npm run verify` measures the two against each other.
+           * The place, and nothing else. Set at the section size rather than
+           * the hero size: it is a caption on a photograph, not a title, and
+           * the project's name is on the card the visitor just tapped.
+           *
+           * A banded hero's line sits at 52%, below the back control at 44%; a
+           * full-bleed one at 29%, above it. Either way the type and the one
+           * persistent control on the screen do not fight for the same pixels
+           * — `npm run verify` measures the two against each other.
            */}
           <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '29%' : '52%' }}>
-            <h1 className={`text-hero ${heroIsPortrait ? 'text-on-media' : 'text-ink'}`}>
-              {s(project.name)}
+            <h1 className={`text-section ${heroIsPortrait ? 'text-on-media' : 'text-ink'}`}>
+              {s(project.location)}
             </h1>
-            <p className={`mt-4 text-meta ${heroIsPortrait ? 'text-on-media/80' : 'text-ink-muted'}`}>
-              {s(project.location)} · {s(project.typology)}
-              {project.year ? ` · ${project.year}` : ''}
-            </p>
           </div>
         </section>
 
@@ -160,51 +158,9 @@ export function ProjectView({ project }: { project: Project }) {
               </Mounted>
             )}
 
-            {/*
-             * The only type on an image screenful, and the only thing that says
-             * how much further the project runs. Set on the ground above the
-             * frame rather than over it, so it never needs a scrim.
-             */}
-            <p
-              className="absolute inset-x-0 px-14 text-caption tracking-[0.3em] text-ink-faint"
-              style={{ top: `${TOP + 1.2}%` }}
-            >
-              {String(i + 1).padStart(2, '0')} / {String(project.gallery.length).padStart(2, '0')}
-            </p>
           </section>
         ))}
 
-        {/* ---- The closing screenful: the words, once -------------------- */}
-        <section className="snap-start-page relative h-full w-full">
-          <p
-            className="absolute inset-x-0 px-14 text-body text-ink"
-            style={{ top: '14%', maxWidth: 760 }}
-          >
-            {s(project.narrative)}
-          </p>
-          {/*
-             * 53%, not 46%: the back control is pinned at 44% and is 120px
-             * tall, and at 46% this heading sat underneath it. `npm run verify`
-             * now checks every floating control against the type behind it,
-             * which is how that was found.
-             */}
-          <div className="absolute inset-x-0 px-14" style={{ top: '53%' }}>
-            <p className="mb-8 text-caption uppercase tracking-[0.2em] text-ink-faint">
-              {t('facts')}
-            </p>
-            <dl>
-              {facts.map(([label, value]) => (
-                <div
-                  key={label}
-                  className="flex items-baseline justify-between border-b border-hairline py-5"
-                >
-                  <dt className="text-caption text-ink-faint">{label}</dt>
-                  <dd className="text-meta text-ink">{value}</dd>
-                </div>
-              ))}
-            </dl>
-          </div>
-        </section>
       </div>
 
       {/*
