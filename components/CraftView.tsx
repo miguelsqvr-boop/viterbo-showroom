@@ -83,14 +83,19 @@ export function CraftView() {
        */}
       <section className="snap-start-page relative h-full w-full">
         {/*
-         * No heading, tight leading, and the whole block above the navigation
-         * bar. Nineteen lines at the body measure is 38% of the panel — set
-         * any looser and the bar at 45% cuts three cities out of the middle of
-         * the sweep, which is the one thing this list cannot survive.
+         * No heading, tight leading, one column, read as a sweep.
+         *
+         * Set at the section size rather than the body size. It was body size
+         * because the bar at 45% cut three cities out of the middle of the
+         * sweep at anything larger — the one thing this list cannot survive.
+         * With the bar at the top the whole panel is free, and this is the
+         * screen Miguel asked to carry the studio's international reach: a
+         * list nobody can read from three metres was not carrying it.
+         * Nineteen lines at 1.2 leading end at 78% of the panel.
          */}
-        <ul className="absolute inset-x-0 px-14" style={{ top: '5.5%' }}>
+        <ul className="absolute inset-x-0 px-14" style={{ top: '12%' }}>
           {CITIES.map((city) => (
-            <li key={city} className="text-body leading-[1.2] text-ink">
+            <li key={city} className="text-section leading-[1.2] text-ink">
               {city}
             </li>
           ))}
@@ -98,7 +103,12 @@ export function CraftView() {
       </section>
 
       <section className="snap-start-page relative h-full w-full">
-        <div className="absolute inset-x-0 px-14" style={{ top: '9%' }}>
+        {/*
+         * 12%, matching every other block on this screen. At 9% the heading sat
+         * flush against the bottom edge of the bar, which now starts at the top
+         * of the panel.
+         */}
+        <div className="absolute inset-x-0 px-14" style={{ top: '12%' }}>
           <p className="mb-10 text-caption uppercase tracking-[0.2em] text-ink-faint">
             {t('collaborations')}
           </p>

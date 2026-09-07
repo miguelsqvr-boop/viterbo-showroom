@@ -3,6 +3,7 @@
 import { Suspense, useEffect } from 'react';
 import { AttractLoop } from '@/components/AttractLoop';
 import { DevOverlay } from '@/components/DevOverlay';
+import { FullscreenButton } from '@/components/FullscreenButton';
 import { NavBar } from '@/components/NavBar';
 import { IdleProvider } from '@/lib/idle';
 import { LocaleProvider } from '@/lib/locale';
@@ -20,6 +21,7 @@ export function Providers({ children }: { children: React.ReactNode }) {
           {children}
           <NavBar />
           <AttractLoop />
+          <FullscreenButton />
           <Suspense fallback={null}>
             <DevOverlay />
           </Suspense>

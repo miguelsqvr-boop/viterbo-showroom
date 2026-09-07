@@ -13,12 +13,14 @@ import { useLocale } from '@/lib/locale';
  *
  * Two pages, snap-scrolled, the same mechanism Craft uses: twenty-four entries
  * do not fit on one panel at a size anyone would read, and a free-scrolling
- * list on a kiosk has no resting state. Twelve to a page, six above the
- * navigation bar and six below it — the bar becomes the divider rather than
- * something the list has to dodge.
+ * list on a kiosk has no resting state.
+ *
+ * Twelve to a page, in one run. They used to be split six and six so the
+ * navigation bar at 45% could act as the divider; with the bar pinned to the
+ * top that split left a hole in the middle of the list where nothing had been
+ * removed, which reads as a missing entry rather than as a rest.
  */
-const PER_BLOCK = 6;
-const PER_PAGE = PER_BLOCK * 2;
+const PER_PAGE = 12;
 
 type Award = (typeof STUDIO.awards)[number];
 type Group = { mark: string; entries: Award[] };
@@ -60,17 +62,12 @@ export function RecognitionView() {
       {pages.map((page, index) => (
         <section key={index} className="snap-start-page relative h-full w-full">
           {/*
-           * 5.5%, matching the Cities list in Craft: the highest a block can
-           * start and still leave the top of the panel breathing, and the only
-           * way six entries clear the bar at 45%.
-           *
-           * The gap below is 24px rather than 28px for the same reason. The
-           * first page carries the CNN pair, which is a mark with two notes
-           * under it and the tallest block in the set; at 28px it ran four
-           * pixels into the bar. Measured, not guessed — see the fit check in
-           * the commit that added this screen.
+           * 12%, matching the Cities list in Craft: clear of the bar, and high
+           * enough that twelve entries and a heading finish inside the panel.
+           * `npm run verify` fails on type that crosses the bottom edge of a
+           * snapped page, so the fit is checked rather than assumed.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: '5.5%' }}>
+          <div className="absolute inset-x-0 px-14" style={{ top: '12%' }}>
             {index === 0 ? (
               <p className="mb-8 text-caption uppercase tracking-[0.2em] text-ink-faint">
                 {t('awards')}
@@ -85,11 +82,7 @@ export function RecognitionView() {
                 {String(index + 1).padStart(2, '0')} / {String(pages.length).padStart(2, '0')}
               </p>
             )}
-            <Entries items={page.slice(0, PER_BLOCK)} s={s} />
-          </div>
-
-          <div className="absolute inset-x-0 px-14" style={{ top: '57%' }}>
-            <Entries items={page.slice(PER_BLOCK)} s={s} />
+            <Entries items={page} s={s} />
           </div>
         </section>
       ))}

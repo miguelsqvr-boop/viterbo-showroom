@@ -45,14 +45,15 @@ export function ServicesView() {
           ) : null}
 
           {/*
-           * 19%, where Craft anchors at 26%. Craft's stages are one short line
-           * each; these are the studio's own sentences and the longest of them
-           * runs to five lines in Portuguese, which at 26% put the last line
-           * 32px inside the bar — caught by `npm run verify`, not by eye. The
-           * prime band is a rule about where targets go, and there are none on
-           * this screen, so the text is free to sit higher.
+           * 26%, the same anchor Craft uses, so the two sequences read as one
+           * family. It sat at 19% for a while with the sentence dropped to the
+           * meta size, because the longest of these paragraphs runs to five
+           * lines in Portuguese and at 26% the last line landed 32px inside the
+           * bar at 45%. That was a workaround for a bar that is no longer
+           * there; with the chrome pinned to the top the copy has the whole
+           * panel below it and goes back to the size it should have been.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: '19%' }}>
+          <div className="absolute inset-x-0 px-14" style={{ top: '26%' }}>
             <p
               className={`text-caption tracking-[0.3em] ${
                 service.media ? 'text-on-media/70' : 'text-ink-faint'
@@ -70,7 +71,7 @@ export function ServicesView() {
              * should be the words they will hear in the showroom.
              */}
             <p
-              className={`mt-6 max-w-[860px] text-meta ${
+              className={`mt-6 max-w-[860px] text-body ${
                 service.media ? 'text-on-media' : 'text-ink-muted'
               }`}
             >
@@ -79,7 +80,7 @@ export function ServicesView() {
           </div>
 
           {i === 0 ? (
-            <p className="absolute inset-x-0 px-14 text-caption uppercase tracking-[0.2em] text-ink-faint" style={{ top: '5.5%' }}>
+            <p className="absolute inset-x-0 px-14 text-caption uppercase tracking-[0.2em] text-ink-faint" style={{ top: '12%' }}>
               {t('services')}
             </p>
           ) : null}

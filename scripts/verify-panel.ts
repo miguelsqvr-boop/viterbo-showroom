@@ -253,7 +253,25 @@ async function audit(page: Page): Promise<AuditResult> {
         const label = el.getAttribute('aria-label') || el.textContent?.trim().slice(0, 40) || el.tagName;
         const top = (box.top / height) * 100;
         const bottom = (box.bottom / height) * 100;
-        if (top < envelope.top - 0.5 || bottom > envelope.bottom + 0.5) {
+        /*
+         * Chrome is exempt from the reach envelope, and only chrome — two
+         * elements, both marked `data-chrome`, both outside the envelope on
+         * purpose:
+         *
+         *   · the navigation bar, which Miguel moved to the top after testing
+         *     the panel in the showroom. That puts it around 175cm, above the
+         *     envelope and knowingly so; see CHROME in config/layout.ts.
+         *   · the full-screen control, which is staff-only and deliberately
+         *     parked in the dead zone at the bottom of the panel.
+         *
+         * Exempting the elements that were placed outside the envelope on
+         * purpose keeps the rule live for every visitor-facing target, rather
+         * than turning the check off to make it pass.
+         *
+         * The touch-target floor below still applies to both.
+         */
+        const isChrome = el.closest('[data-chrome]') !== null;
+        if (!isChrome && (top < envelope.top - 0.5 || bottom > envelope.bottom + 0.5)) {
           found.push({
             rule: 'reach envelope',
             detail: `"${label}" at ${top.toFixed(1)}%–${bottom.toFixed(1)}% (allowed ${envelope.top}–${envelope.bottom}%)`,
@@ -287,6 +305,28 @@ async function audit(page: Page): Promise<AuditResult> {
         const size = parseFloat(style.fontSize);
         if (size < typeFloor - 0.01) {
           found.push({ rule: 'type floor', detail: `${size}px on "${ownText.slice(0, 40)}"` });
+        }
+
+        /*
+         * Type that runs off the bottom of a full-height snapped page.
+         *
+         * This is the failure that has actually bitten: twenty-two marks set
+         * at the section size ran 92px past the bottom of the Studio screen
+         * and were simply gone, with nothing on screen to say so. A snapped
+         * page is the whole panel and does not scroll within itself, so
+         * anything crossing the bottom edge there is content the visitor will
+         * never see.
+         *
+         * Scoped to sections that are a full panel tall, which is what
+         * distinguishes them from the collection's 55vh cards — those are a
+         * continuous list and are meant to run past the fold.
+         */
+        const page = el.closest<HTMLElement>('.snap-start-page');
+        if (page && page.clientHeight >= height - 2 && box.bottom > height + 2) {
+          found.push({
+            rule: 'clipped by the panel',
+            detail: `"${ownText.slice(0, 40)}" ends ${Math.round(box.bottom - height)}px below the screen`,
+          });
         }
 
         const insideChrome = el.closest('[data-chrome]') !== null;

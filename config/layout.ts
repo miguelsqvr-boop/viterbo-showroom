@@ -44,12 +44,30 @@ export const PRIME = {
 } as const;
 
 /**
- * Fixed chrome (nav bar) — §7 puts the bar at roughly 45%
- * from the top, inside the prime band rather than pinned to the bottom edge.
- * On a 181cm totem a bottom-pinned bar lands at 85cm off the floor.
+ * Fixed chrome (nav bar).
+ *
+ * §7 put the bar at 45% — inside the prime band, roughly 130cm off the floor
+ * on a 181cm totem, which is where a hand goes without thinking. That is still
+ * the ergonomically correct answer and it is not what is here.
+ *
+ * Miguel tested the panel in the showroom and the mid-screen bar reads as an
+ * interruption: it crosses every photograph at the waist, and a visitor does
+ * not look for navigation in the middle of a picture. Pinned to the top it
+ * reads as chrome, which is what it is. That judgement came from standing in
+ * front of the thing, which beats the geometry argument.
+ *
+ * The cost is real and worth writing down: the top of the glass sits around
+ * 175cm, so the bar is now above shoulder height for most people and out of
+ * comfortable reach from a wheelchair. If that bites on site, put it back to
+ * 45 — but that is not a one-number change. The bar is the only thing these
+ * two values position; the blocks on each screen carry their own anchors,
+ * tuned by measurement to whatever the bar was doing at the time, and moving
+ * the bar back means re-tuning them. `npm run verify` will tell you which
+ * ones: it fails on type under the bar and on type off the bottom of a
+ * snapped page, which between them catch the collisions.
  */
 export const CHROME = {
-  barTop: 45,
+  barTop: 0,
   barHeight: 9,
 } as const;
 
@@ -58,8 +76,13 @@ export const CHROME = {
  * panel rather than with an assumed pixel height (§5).
  */
 export const COLLECTION = {
-  /** Where a snapped card's image band begins. */
-  cardTop: 6,
+  /**
+   * Where a snapped card's image band begins. 12%, not 6%: the bar is pinned
+   * to the top now and occupies the first 9%, so a card resting at 6% put the
+   * previous card's name under it — `npm run verify` caught "Chelsea"
+   * overlapping by 22px in the middle of the list.
+   */
+  cardTop: 12,
   imageHeight: 26,
   metaHeight: 11,
   /** Distance from one snap position to the next. Leaves the next card peeking. */

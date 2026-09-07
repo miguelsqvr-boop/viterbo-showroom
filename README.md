@@ -22,16 +22,20 @@ Look at it in a 1080 × 1920 window, not a desktop one. Better: look at it on th
 panel. Add `?overlay=1` to any route to draw the reach-zone bands, the frame
 rate, and a live audit of every tap target's position and size.
 
-**`npm run verify` is the gate.** It renders 25 screen states — every route,
-every beat of a project, every stage of Craft, the contact form in both keyboard
-modes, the full view — at 1080 × 1920, in **both languages**, and fails on:
+**`npm run verify` is the gate.** It renders 31 screen states — every route,
+every beat of a project, every stage of Craft, every service, both pages of
+Recognition, the contact form in both keyboard modes, the full view — at
+1080 × 1920, in **both languages**, and fails on:
 
-- a tap target outside 28%–72% of screen height,
+- a tap target outside 28%–72% of screen height, chrome excepted,
 - a tap target under 120px on its shortest side,
 - text rendered below 24px,
 - anything overflowing the pinned 1080 space,
 - **text painted underneath the navigation bar**, which is what catches a
-  narrative, a figures line or a city list growing into the chrome.
+  narrative, a figures line or a city list growing into the chrome,
+- **text running off the bottom of a snapped page**, which is what catches a
+  list that has quietly grown longer than the panel — the failure that took
+  the last four marks off the Studio screen with nothing on screen to say so.
 
 Portuguese is checked because Portuguese runs longer than English almost
 everywhere, and a label that fits in one language is not evidence. Run it after
@@ -183,8 +187,8 @@ Two consequences of a light ground worth knowing:
   light-ground app still puts light type on a photograph, because it is the only
   thing that reads over an image whose tone nobody controls.
 - **The navigation bar is frosted, not solid.** On the light ground it is
-  invisible; over a full-bleed photograph at 45% an opaque band would cut the
-  image in half.
+  invisible; over a full-bleed photograph an opaque band would crop the top off
+  the frame.
 
 One thing to watch on site: the panel is glossy at 300–350 nits, and a light
 screen is the state most likely to mirror the showroom back at the visitor. The
@@ -211,9 +215,31 @@ on a 34–40 character measure is ten lines; stacked under a hero and a title it
 runs straight through the navigation bar. Giving the narrative its own screen
 costs one flick.
 
-**The cities list has no heading and tight leading.** Nineteen lines at the body
-measure is 38% of the panel. Any looser and the bar at 45% cuts three cities out
-of the middle of a list whose whole point is an uninterrupted sweep.
+**The navigation bar is pinned to the top, against the ergonomics.** §7 put it
+at 45%, which on a 181cm totem is about 130cm off the floor — where a hand goes
+without thinking, and inside the reach envelope. Miguel tested the panel in the
+showroom and it read as an interruption: a band across the middle of every
+photograph, in a place nobody looks for navigation. Standing in front of the
+thing beats the geometry argument, so the bar moved. The cost is written down in
+`CHROME` in `config/layout.ts`: the bar now sits around 175cm, above shoulder
+height and out of comfortable reach from a wheelchair. Putting it back is a
+change to one number plus a re-tune of the blocks on each screen, and `npm run
+verify` names the ones that need it.
+
+**There is a full-screen button, and it is not for visitors.** Whoever opens the
+showroom may find the panel running in a plain browser rather than Fully Kiosk —
+during setup, after an update, or when the kiosk app has fallen over — and a URL
+bar across the top of the picture is the first thing they see. One press in the
+bottom-left corner and it is gone. It sits in the dead zone deliberately: the
+bottom of the panel is the easiest corner to reach and the least valuable place
+to display anything, which is the right trade for the one control a visitor must
+never need. It never renders under Fully Kiosk, and it removes itself the moment
+it has been used.
+
+**The cities list has no heading and tight leading.** Nineteen lines at the
+section measure end at 78% of the panel. It was set at the body measure while
+the bar was at 45%, because anything larger let the bar cut three cities out of
+the middle of a list whose whole point is an uninterrupted sweep.
 
 **The contact form advances rather than letting you pick a field.** Two tappable
 field rows plus a 120px keyboard plus an actions row is 1010px of content in the

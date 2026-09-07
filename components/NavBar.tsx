@@ -8,15 +8,19 @@ import { TapTarget } from './TapTarget';
 import { Wordmark } from './Wordmark';
 
 /**
- * The navigation bar sits at roughly 45% from the top (§7).
+ * The navigation bar is pinned to the top of the panel.
  *
- * This is unusual and it is correct: on a 181cm totem a bottom-pinned bar
- * lands at 85cm off the floor, below both the natural gaze line and
- * comfortable reach. Five items and the language toggle, which is the hard
- * ceiling: six needs 1101px of bar in English and 1090px in Portuguese
- * against the 984px there is, measured. Recognition therefore sits one tap
- * inside Studio rather than here — it is a fact about the practice, which is
- * what that screen is for. No hamburger, no dropdowns, no breadcrumbs.
+ * It used to float at 45%, which put it in the middle of the reach envelope
+ * on a 181cm totem. Ergonomically that was the better place; in the showroom
+ * it read as an interruption — a band across the middle of every photograph —
+ * so it moved to the top. See CHROME in config/layout.ts for what that costs
+ * and how to put it back.
+ *
+ * Five items and the language toggle, which is the hard ceiling: six needs
+ * 1101px of bar in English and 1090px in Portuguese against the 984px there
+ * is, measured. Recognition therefore sits one tap inside Studio rather than
+ * here — it is a fact about the practice, which is what that screen is for.
+ * No hamburger, no dropdowns, no breadcrumbs.
  */
 export function NavBar() {
   const router = useRouter();
@@ -42,9 +46,9 @@ export function NavBar() {
   return (
     /*
      * Frosted rather than solid. On a light ground the bar is invisible, which
-     * is the point — but on the Craft stages and portrait heroes it crosses a
-     * full-bleed photograph at 45%, and an opaque band there cuts the image in
-     * half. Blur keeps the type legible over any tone without the chrome
+     * is the point — but on the Craft stages and portrait heroes it lies over
+     * a full-bleed photograph, and an opaque band there crops the top off the
+     * frame. Blur keeps the type legible over any tone without the chrome
      * becoming the thing you look at.
      */
     <nav

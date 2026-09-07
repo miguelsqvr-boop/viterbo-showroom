@@ -19,6 +19,12 @@ export const UI = {
   studio: { en: 'Studio', pt: 'Estúdio' },
   services: { en: 'Services', pt: 'Serviços' },
   contact: { en: 'Contact', pt: 'Contacto' },
+  /*
+   * Staff-facing, and the only string in here that a visitor is not meant to
+   * read. It is still localized: whoever opens the showroom in the morning
+   * reads Portuguese.
+   */
+  fullScreen: { en: 'Full screen', pt: 'Ecrã inteiro' },
   viewProject: { en: 'View project', pt: 'Ver projeto' },
   back: { en: 'Back', pt: 'Voltar' },
   backToProjects: { en: 'All projects', pt: 'Todos os projetos' },

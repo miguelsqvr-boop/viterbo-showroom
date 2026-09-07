@@ -1,6 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
+import { CHROME } from '@/config/layout';
 import { STUDIO } from '@/content/studio';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
@@ -23,8 +24,19 @@ export function StudioView() {
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      {/* One image. Not a team grid, not a world map. */}
-      <div className="absolute inset-x-0 top-0 w-full" style={{ height: '24vh' }}>
+      {/*
+       * One image. Not a team grid, not a world map.
+       *
+       * It starts where the navigation bar ends rather than at the top of the
+       * panel. Running it up behind the frosted bar is right for a full-bleed
+       * hero, where the photograph is the screen; here it is a band with a hard
+       * bottom edge, and putting a third of that band behind chrome just makes
+       * the band look badly cropped.
+       */}
+      <div
+        className="absolute inset-x-0 w-full"
+        style={{ top: `${CHROME.barTop + CHROME.barHeight}%`, height: '24vh' }}
+      >
         {/*
           * focus 15, not the 50 default: Gracinha and Miguel stand about a
           * quarter of the way down a portrait source, so a centred crop of a
@@ -35,11 +47,12 @@ export function StudioView() {
       </div>
 
       {/*
-        * 24%, not 27%: the figures line has to clear the bar at 45% with the
-        * longer of the two languages set in it. Portuguese is the binding
-        * constraint here, as it usually is.
-        */}
-      <div className="absolute inset-x-0 px-14" style={{ top: '24%' }}>
+       * Directly under the image band, which now ends at 33%. The old anchor
+       * was 24%, chosen so the figures line cleared the bar at 45% with the
+       * longer of the two languages set in it; with the bar gone from the
+       * middle the text can simply follow the picture.
+       */}
+      <div className="absolute inset-x-0 px-14" style={{ top: '35%' }}>
         <p className="max-w-[900px] text-body text-ink">{s(STUDIO.body)}</p>
         <p className="mt-6 text-body text-ink-muted">{s(STUDIO.figures)}</p>
       </div>
@@ -49,13 +62,13 @@ export function StudioView() {
        * bulleted awards read as insecurity. The notes stay in content/studio.ts
        * for the studio's own reference and are intentionally not rendered.
        */}
-      <div className="absolute inset-x-0 px-14" style={{ top: '58%' }}>
+      <div className="absolute inset-x-0 px-14" style={{ top: '56%' }}>
         {/*
          * The way into the full list, now that Recognition is not in the bar.
          * The heading is the target and the marks below it are not: the marks
-         * run to 73% of the panel and anything below 72% is display-only, so a
-         * block-sized target here would break the reach rule rather than bend
-         * it. The heading sits at 58%, well inside.
+         * run past 72% of the panel and anything below that is display-only, so
+         * a block-sized target here would break the reach rule rather than bend
+         * it. The heading sits at 56%, well inside.
          */}
         <TapTarget
           label={t('awards')}
