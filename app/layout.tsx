@@ -31,7 +31,28 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="en">
       <body className="h-full w-full">
-        <Providers>{children}</Providers>
+        {/*
+         * Named, because the preview rule in globals.css scales this box and
+         * needs something stable to hold on to. On the panel it is an ordinary
+         * full-size wrapper and does nothing.
+         */}
+        <div className="kiosk-shell">
+          <Providers>{children}</Providers>
+        </div>
+        {/*
+         * Feeds --kiosk-scale to the preview rule in globals.css. Inline and
+         * before hydration so a laptop never paints the unscaled layout first.
+         * Clamped at 1: the panel is never scaled up, and at 1080 x 1920 the
+         * media query that consumes this does not match at all.
+         */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html:
+              '(function(){function k(){var s=Math.min(innerWidth/1080,innerHeight/1920);' +
+              "document.documentElement.style.setProperty('--kiosk-scale',s<1?String(s):'1')}" +
+              "k();addEventListener('resize',k,{passive:true})})()",
+          }}
+        />
       </body>
     </html>
   );

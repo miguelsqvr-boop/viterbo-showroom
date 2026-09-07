@@ -74,6 +74,11 @@
  * panel in a showroom.
  */
 @layer base {
+  .kiosk-shell {
+    height: 100%;
+    width: 100%;
+  }
+
   html,
   body {
     height: 100%;
@@ -200,5 +205,57 @@
       rgba(12, 10, 8, 0.12) 42%,
       rgba(12, 10, 8, 0.72) 100%
     );
+  }
+}
+
+/*
+ * ---- Preview outside the panel ----------------------------------------
+ *
+ * Every screen is positioned in percentages of the 1080 × 1920 CSS space the
+ * viewport meta pins (§5): the Studio image band is 24vh, its body copy sits
+ * at 24%, the bar at 45%, the marks at 58%. The type inside those bands is set
+ * in absolute sizes, because on the panel it has to be a known number of
+ * millimetres tall. That combination is only coherent at one geometry — open
+ * the app in a short browser window and the bands collapse into each other
+ * while the type stays put, and the Studio screen in particular piles its
+ * paragraph, the bar and the marks on the same pixels.
+ *
+ * The totem is right and the browser is wrong, but the browser is where this
+ * gets shown to people, so it cannot be left looking broken. Rather than
+ * reflow the layout — which would mean giving up the fixed geometry the whole
+ * app is verified against — the panel is rendered at its true size and scaled
+ * down to fit the window. A laptop then shows exactly what the totem shows,
+ * smaller.
+ *
+ * Scoped so it can NEVER apply at panel geometry: at 1080 × 1920 neither
+ * condition matches and not one property below is in play. `npm run verify`
+ * renders at exactly that size, so what it checks is the unscaled layout.
+ */
+@media (max-width: 1079px), (max-height: 1919px) {
+  html,
+  body {
+    overflow: hidden;
+  }
+
+  body {
+    display: flex;
+    justify-content: center;
+  }
+
+  .kiosk-shell {
+    flex: none;
+    width: 1080px;
+    height: 1920px;
+    /*
+     * The ratio has to come from script: CSS cannot divide two lengths into
+     * the unitless number `scale()` needs, and `min(100vw/1080, 100vh/1920)`
+     * quietly evaluates to a length, which drops the whole declaration. The
+     * inline script in layout.tsx sets --kiosk-scale from both axes, so a
+     * wide-and-short window scales by height and a narrow one by width.
+     * `top center` keeps the head of the screen against the top of the
+     * window, which is where a viewer looks first.
+     */
+    transform: scale(var(--kiosk-scale, 1));
+    transform-origin: top center;
   }
 }

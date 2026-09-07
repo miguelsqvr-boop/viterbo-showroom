@@ -46,10 +46,21 @@ export function StudioView() {
        */}
       <div className="absolute inset-x-0 px-14" style={{ top: '58%' }}>
         <p className="mb-7 text-caption uppercase tracking-[0.2em] text-ink-faint">{t('awards')}</p>
-        <div className="flex flex-wrap gap-x-12 gap-y-6">
-          {STUDIO.awards.map((award) => (
-            <span key={award.id} className="text-section text-ink-muted">
-              {award.mark}
+        <div className="flex flex-wrap gap-x-8 gap-y-3">
+          {/*
+           * One line per mark, not per recognition. CNN and Condé Nast each
+           * recognised two hotels, and repeating a name to say so reads as
+           * padding rather than as twice the credit.
+           *
+           * Body weight rather than the 56px section size the six-mark version
+           * used: twenty-two marks at 56px run 92px past the bottom of the
+           * screen and the tail is silently clipped by the overflow. At 32px
+           * they all fit above the fold and are still ~16mm tall on the panel,
+           * which reads at three metres.
+           */}
+          {Array.from(new Set(STUDIO.awards.map((award) => award.mark))).map((mark) => (
+            <span key={mark} className="text-body text-ink-muted">
+              {mark}
             </span>
           ))}
         </div>
