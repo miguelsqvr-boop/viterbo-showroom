@@ -414,11 +414,23 @@ export const PROJECTS: Project[] = [
       pt: 'A mais antiga casa de pastéis de Lisboa, aberta desde 1837, e uma sala onde quase toda a cidade já esteve. O trabalho não era torná-la nova — era tornar o restauro invisível e deixar o azulejo, o carvalho e o chão de xadrez lerem-se como sempre se leram.',
     },
     hero: img('pasteis-de-belem/hero', 'The tiled arch onto the street, a yellow tram passing', 'O arco azulejado sobre a rua, com um elétrico amarelo a passar'),
+    /*
+     * Ordered as an arrival: the incised sign, the corridor in, the rooms, and
+     * then the two details the whole interior is built out of — the azulejo
+     * ceiling and the marble floor. Ending on materials rather than on another
+     * room is deliberate; this is a job about surfaces.
+     */
     gallery: [
-      img('pasteis-de-belem/01', 'The counter under brass pendants, tiled in blue and white', 'O balcão sob candeeiros de latão, revestido a azul e branco'),
+      img('pasteis-de-belem/05', 'The name cut into stone and studded in brass', 'O nome gravado na pedra e cravejado a latão'),
       img('pasteis-de-belem/02', 'An oak-lined corridor over a checkerboard marble floor', 'Um corredor forrado a carvalho sobre um chão de mármore em xadrez'),
-      img('pasteis-de-belem/03', 'The coffered ceiling in azulejo and gilt', 'O tecto de caixotões em azulejo e dourado'),
+      img('pasteis-de-belem/06', 'Oak doorways set one inside the next', 'Vãos de carvalho enfiados uns nos outros'),
       img('pasteis-de-belem/04', 'Oak cabinetry set against the blue tilework', 'Marcenaria de carvalho contra o azulejo azul'),
+      img('pasteis-de-belem/07', 'The long counter, tiled from floor to ceiling', 'O balcão comprido, revestido do chão ao tecto'),
+      img('pasteis-de-belem/01', 'The counter under brass pendants, tiled in blue and white', 'O balcão sob candeeiros de latão, revestido a azul e branco'),
+      img('pasteis-de-belem/08', 'The serving hall beneath its full azulejo ceiling', 'A sala de serviço sob o tecto integralmente azulejado'),
+      img('pasteis-de-belem/09', 'A vitrine of tins and bottles against the tile', 'Uma vitrina de latas e garrafas contra o azulejo'),
+      img('pasteis-de-belem/03', 'The coffered ceiling in azulejo and gilt', 'O tecto de caixotões em azulejo e dourado'),
+      img('pasteis-de-belem/10', 'Where the checkerboard marble meets the blue tile, on a line of brass', 'Onde o mármore em xadrez encontra o azulejo azul, sobre uma linha de latão'),
     ],
   },
   {

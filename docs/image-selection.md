@@ -439,3 +439,13 @@ through the house rather than as the shoot was filed.
   that would dilute a strong set).
 - **Quinta do Lago Concierge** — 2 → 3, which is all five photographs the Q Hub
   shoot contains. Nothing further exists.
+- **Pastéis de Belém** — 4 → 10, from the twenty-frame Francisco Almeida Dias
+  shoot. Added the name cut into stone, the nested oak doorways, the long
+  counter, the serving hall under its full azulejo ceiling, a vitrine of tins
+  and bottles, and the floor detail where the checkerboard marble meets the
+  blue tile on a line of brass. Ordered as an arrival and closing on the two
+  details the interior is built out of, because this is a job about surfaces.
+  Not used: (007) and (026)/(028) (the same corridor and arcade already read in
+  frame 02), (029) (the same hall as 030 from a weaker position), (025) and
+  (035) (quiet frames that would dilute a strong set), (013)b (a near-repeat of
+  (013)a).
