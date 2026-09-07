@@ -39,12 +39,14 @@ export function StudioView() {
         style={{ top: `${CHROME.barTop + CHROME.barHeight}%`, height: panelVh(24) }}
       >
         {/*
-          * focus 15, not the 50 default: Gracinha and Miguel stand about a
-          * quarter of the way down a portrait source, so a centred crop of a
-          * 24vh band cuts both their heads off and a top-anchored one fills
-          * the band with the ceiling. 15 puts their faces in the band.
+          * focus 25, not the 50 default: a centred crop of a 24vh band cuts
+          * both their heads off and a top-anchored one fills the band with the
+          * ceiling. 25 puts their faces in the band with air above and below —
+          * measured against 15 and 35 by cropping the source three ways and
+          * looking, because this is a photograph of two people and getting it
+          * wrong is not a layout bug, it is a portrait with a chin cut off.
           */}
-        <MediaFrame media={STUDIO.image} mode="band" focus={15} priority className="h-full w-full" />
+        <MediaFrame media={STUDIO.image} mode="band" focus={25} priority className="h-full w-full" />
       </div>
 
       {/*

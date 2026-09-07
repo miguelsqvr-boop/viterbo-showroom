@@ -63,12 +63,17 @@ export const STUDIO = {
    * Gracinha and Miguel photographed inside their own work rather than against
    * a backdrop — the brief asks for one image and not a team grid, and a
    * portrait taken on site says more about the studio than a studio portrait.
+   *
+   * Replaced on 7 September with the frame the studio sent for this screen. It
+   * is a different photograph, not a bigger copy of the old one, so the swap
+   * guards for re-exports do not apply and did not run: this is a content
+   * decision, made by the studio.
    */
   image: asMedia({
     ...media('studio/gracinha-miguel'),
     alt: {
-      en: 'Gracinha Viterbo and Miguel Vieira da Rocha at the Tuscan estate',
-      pt: 'Gracinha Viterbo e Miguel Vieira da Rocha na propriedade na Toscana',
+      en: 'Gracinha Viterbo and Miguel Vieira da Rocha in a dining room of their own design',
+      pt: 'Gracinha Viterbo e Miguel Vieira da Rocha numa sala de jantar de sua autoria',
     },
   }),
 } as const;
