@@ -663,8 +663,18 @@ async function previewGeometry(browser: Browser, base: string): Promise<Violatio
     const context = await browser.newContext({ viewport: { width, height }, deviceScaleFactor: 1 });
     const page = await context.newPage();
     try {
-      await page.goto(base, { waitUntil: 'networkidle' });
-      await page.waitForTimeout(600);
+      // Not networkidle. The collection mounts cards as its window advances, so
+      // it fetches an image every few seconds for as long as it is open and the
+      // network never goes quiet — measured at ninety seconds, still one new
+      // request every five to ten. It only looked settled with a warm image
+      // cache, where each response came back inside the idle window; clear
+      // .next/cache/images and the wait runs forever. What this check measures
+      // is a card's offsetHeight, which is CSS and does not wait on pixels, so
+      // load plus a settle is the honest wait. The generous timeout is for the
+      // cold cache: these are the only scenarios at DPR 1, so they are the ones
+      // that make Next generate the 1x variant of every card.
+      await page.goto(base, { waitUntil: 'load', timeout: 120_000 });
+      await page.waitForTimeout(1_500);
       const measured = await page.evaluate(() => {
         const sections = document.querySelectorAll<HTMLElement>('[data-scroll-root] > section');
         const shell = document.querySelector<HTMLElement>('.kiosk-shell');

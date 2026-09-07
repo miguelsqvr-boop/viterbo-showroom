@@ -536,3 +536,19 @@ through the house rather than as the shoot was filed.
   0333 (the terrace by day, flatter than 0324); 0552 (a plain bathroom); 0334
   and 0337 (a window seat that reads as corridor); the rest are near-repeats
   inside the sets above.
+- **Birre Villa** — 4 → 10, from the sixty-odd frame Francisco Nogueira shoot
+  in `Bruna- Birre/final` (the note above said thirty; the folder is larger
+  than that). Added the gilt mirror over the printed-marble console (0396), the
+  living room (0014) — the panel had no living room at all — the curved bouclé
+  sofa and ottoman in the arched room the narrative already names (0179), the
+  kitchen island (0528, where the wired frame 02 is the range wall), the
+  abstract painting against the lacquered cabinet (0831), and the pink child's
+  room whose pattern carries over the ceiling (0978).
+  Not used: 0069, 0100 and 0132 (Gracinha on the sofa — this project is
+  unpeopled, as decided above); 0405 and 0741 (the entrance hall, already frame
+  04); 0270 and 0285 (the dressing room, already frame 01); 0552 (the range,
+  already frame 02); 0194 (the same bedroom as frame 03); 0032, 0348, 0606,
+  0651 and 0669 (the dining room, which is the hero); 0453 and 0468 (weaker
+  angles on the kitchen 0528 covers); 0160, 0209, 0230, 0258, 0291, 0297, 0336,
+  0369, 0381, 0789, 0903 and 0918 (quiet frames that would dilute a set of
+  ten).
