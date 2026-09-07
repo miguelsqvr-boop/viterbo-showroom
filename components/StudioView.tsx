@@ -1,8 +1,10 @@
 'use client';
 
+import { useRouter } from 'next/navigation';
 import { STUDIO } from '@/content/studio';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
+import { TapTarget } from './TapTarget';
 
 /**
  * Studio (§8) — one screen, no scroll, 90 words maximum.
@@ -17,6 +19,7 @@ const MARKS_ON_STUDIO = 8;
 
 export function StudioView() {
   const { s, t } = useLocale();
+  const router = useRouter();
 
   return (
     <div className="relative h-full w-full overflow-hidden">
@@ -47,7 +50,22 @@ export function StudioView() {
        * for the studio's own reference and are intentionally not rendered.
        */}
       <div className="absolute inset-x-0 px-14" style={{ top: '58%' }}>
-        <p className="mb-7 text-caption uppercase tracking-[0.2em] text-ink-faint">{t('awards')}</p>
+        {/*
+         * The way into the full list, now that Recognition is not in the bar.
+         * The heading is the target and the marks below it are not: the marks
+         * run to 73% of the panel and anything below 72% is display-only, so a
+         * block-sized target here would break the reach rule rather than bend
+         * it. The heading sits at 58%, well inside.
+         */}
+        <TapTarget
+          label={t('awards')}
+          onTap={() => router.push('/recognition')}
+          className="mb-1 -ml-4 px-4"
+        >
+          <span className="text-caption uppercase tracking-[0.2em] text-ink-faint underline decoration-hairline underline-offset-[10px]">
+            {t('awards')}
+          </span>
+        </TapTarget>
         <div className="flex flex-wrap gap-x-12 gap-y-6">
           {/*
            * Eight, not all twenty-two. The full list has its own screen now,

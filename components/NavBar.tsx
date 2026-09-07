@@ -12,10 +12,11 @@ import { Wordmark } from './Wordmark';
  *
  * This is unusual and it is correct: on a 181cm totem a bottom-pinned bar
  * lands at 85cm off the floor, below both the natural gaze line and
- * comfortable reach. Four items and the language toggle — Recognition was
- * added on request, and four is the ceiling: a fifth will not clear the 120px
- * IR touch floor across the bar with the Portuguese labels set in it. No
- * hamburger, no dropdowns, no breadcrumbs.
+ * comfortable reach. Five items and the language toggle, which is the hard
+ * ceiling: six needs 1101px of bar in English and 1090px in Portuguese
+ * against the 984px there is, measured. Recognition therefore sits one tap
+ * inside Studio rather than here — it is a fact about the practice, which is
+ * what that screen is for. No hamburger, no dropdowns, no breadcrumbs.
  */
 export function NavBar() {
   const router = useRouter();
@@ -31,9 +32,9 @@ export function NavBar() {
     },
     { href: '/studio', label: t('studio'), match: (p: string) => p.startsWith('/studio') },
     {
-      href: '/recognition',
-      label: t('awardsShort'),
-      match: (p: string) => p.startsWith('/recognition'),
+      href: '/services',
+      label: t('services'),
+      match: (p: string) => p.startsWith('/services'),
     },
     { href: '/contact', label: t('contact'), match: (p: string) => p.startsWith('/contact') },
   ];

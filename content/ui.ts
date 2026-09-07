@@ -17,6 +17,7 @@ export const UI = {
    */
   craftShort: { en: 'Craft', pt: 'Ofício' },
   studio: { en: 'Studio', pt: 'Estúdio' },
+  services: { en: 'Services', pt: 'Serviços' },
   contact: { en: 'Contact', pt: 'Contacto' },
   viewProject: { en: 'View project', pt: 'Ver projeto' },
   back: { en: 'Back', pt: 'Voltar' },

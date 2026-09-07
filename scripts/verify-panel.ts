@@ -35,6 +35,7 @@ import { COLLECTION } from '../config/layout';
 import { LOCALES, mediaPoster, type Locale, type Localized } from '../content/types';
 import { PROJECTS_IN_ORDER } from '../content/projects';
 import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '../content/craft';
+import { SERVICES } from '../content/services';
 import { STUDIO } from '../content/studio';
 import { CONTACT } from '../content/contact';
 import { UI } from '../content/ui';
@@ -79,6 +80,10 @@ function identicalByDesign(): Set<string> {
     if (project.scope) consider(project.scope);
     if (project.area) allowed.add(project.area);
     if (project.architect) allowed.add(project.architect);
+  });
+  SERVICES.forEach((service) => {
+    consider(service.title);
+    consider(service.line);
   });
   CRAFT_STAGES.forEach((stage) => {
     consider(stage.title);
@@ -170,6 +175,9 @@ async function views(): Promise<View[]> {
   );
   list.push({ name: 'craft · cities', path: '/craft', section: CRAFT_STAGES.length });
   list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length + 1 });
+  SERVICES.forEach((service, i) =>
+    list.push({ name: `services · ${service.id}`, path: '/services', section: i }),
+  );
   list.push({ name: 'studio', path: '/studio' });
   /*
    * Both pages, because the second is the one that can silently break: it

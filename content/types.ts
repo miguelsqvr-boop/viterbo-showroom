@@ -110,6 +110,20 @@ export type CraftStage = {
   media?: Media;
 };
 
+/**
+ * A service (§8). Same shape and same rule as CraftStage: `media` is optional,
+ * and a service without it is set as type on the ground rather than standing a
+ * placeholder where a photograph belongs. Add `media` and it goes full-bleed
+ * behind a scrim, with nothing else to change.
+ */
+export type Service = {
+  id: string;
+  index: number;
+  title: Localized;
+  line: Localized;
+  media?: Media;
+};
+
 export type Collaboration = { name: string; note: Localized };
 
 /** An attract-loop frame carries a place name and nothing else (§8). */
