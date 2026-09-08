@@ -213,16 +213,14 @@ async function views(): Promise<View[]> {
   CRAFT_STAGES.forEach((stage, i) =>
     list.push({ name: `craft · ${stage.id}`, path: '/craft', section: i }),
   );
-  list.push({ name: 'craft · map', path: '/craft', section: CRAFT_STAGES.length });
-  list.push({ name: 'craft · cities', path: '/craft', section: CRAFT_STAGES.length + 1 });
-  list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length + 2 });
+  list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length });
   SERVICES.forEach((service, i) =>
     list.push({ name: `services · ${service.id}`, path: '/services', section: i }),
   );
   /*
-   * Studio is three pages now, not one: the portrait and the words, then the
-   * recognitions in full, which the studio asked to have at the end of this
-   * screen rather than one tap away. Every page gets measured — the list pages
+   * Studio is five pages now, not one: the portrait and the words, the
+   * recognitions in full, then the map and the cities. The studio asked for
+   * all of it on this screen. Every page gets measured — the recognition pages
    * are the ones that can silently break, since the last carries whatever is
    * left after the first twelve and adding a recognition changes its length
    * without changing anything visible on page one.
@@ -231,6 +229,9 @@ async function views(): Promise<View[]> {
   for (let i = 0; i < RECOGNITION_PAGES; i += 1) {
     list.push({ name: `studio · recognition ${i + 1}`, path: '/studio', section: i + 1 });
   }
+  // The map and the list of cities close the screen — they used to close Craft.
+  list.push({ name: 'studio · map', path: '/studio', section: RECOGNITION_PAGES + 1 });
+  list.push({ name: 'studio · cities', path: '/studio', section: RECOGNITION_PAGES + 2 });
   // The same list on its own route, which stays a working deep link.
   for (let i = 0; i < RECOGNITION_PAGES; i += 1) {
     list.push({ name: `recognition · page ${i + 1}`, path: '/recognition', section: i });

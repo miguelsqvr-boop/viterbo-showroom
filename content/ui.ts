@@ -15,7 +15,6 @@ export const UI = {
    * name for the section and belongs on the card that opens it, but at 239px
    * in Portuguese it will not sit in a five-item bar.
    */
-  craftShort: { en: 'Craft', pt: 'Ofício' },
   studio: { en: 'Studio', pt: 'Estúdio' },
   services: { en: 'Services', pt: 'Serviços' },
   contact: { en: 'Contact', pt: 'Contacto' },

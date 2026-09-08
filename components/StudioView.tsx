@@ -6,15 +6,17 @@ import { STUDIO } from '@/content/studio';
 import { useLocale } from '@/lib/locale';
 import { MediaFrame } from './MediaFrame';
 import { RecognitionSections, recognitionPageCount } from './Recognition';
+import { ReachSections } from './Reach';
 
 /**
  * Studio (§8) — the portrait and ninety words, then the recognitions in full.
  *
- * It was one screen with no scroll, and the awards lived on their own route one
- * tap away. The studio asked for them at the end of Studio, so the screen now
- * snap-scrolls: the portrait and the words, then the twenty-four recognitions
- * with what each one was actually for. Same mechanism as Craft and the
- * collection, so it behaves the way the rest of the panel already taught.
+ * It was one screen with no scroll, and the awards lived on their own route
+ * one tap away while the map and the list of cities closed Craft. The studio
+ * asked for all of it here, so the screen snap-scrolls: the portrait and the
+ * words, the twenty-four recognitions with what each was actually for, then
+ * where the studio has worked — the shape, then the names. Same mechanism as
+ * the collection, so it behaves the way the rest of the panel already taught.
  *
  * The Recognition link is gone from the first page, and with it the constraint
  * that held the portrait to a third of the screen: nothing on this page is
@@ -23,7 +25,8 @@ import { RecognitionSections, recognitionPageCount } from './Recognition';
  */
 export function StudioView() {
   const { s, t } = useLocale();
-  const pages = 1 + recognitionPageCount();
+  /** The portrait, the recognitions, then the map and the list of cities. */
+  const pages = 1 + recognitionPageCount() + 2;
 
   return (
     <div
@@ -99,6 +102,8 @@ export function StudioView() {
       </section>
 
       <RecognitionSections pageOffset={1} pageTotal={pages} />
+
+      <ReachSections />
     </div>
   );
 }

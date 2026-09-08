@@ -816,3 +816,30 @@ two that drift apart. Nothing in the UI points at it any more.
 The suite follows: it renders `studio` at all three pages now, not one, and
 still renders the standalone route. Five screens measured where there were
 three.
+
+## Craft leaves the bar, the reach moves to Studio — 8 September
+
+Two instructions from the studio, in one change. Craft comes out of the
+navigation bar, and the world map and the list of cities — which used to close
+Craft — move to the bottom of Studio, after the recognitions.
+
+Studio is five pages now: the portrait and the ninety words, the twenty-four
+recognitions twelve to a page, then the reach — the map, then the names. Both
+of those pages stay and in that order, because neither says what the other
+says. The drawing shows a scatter running from Cascais to Luanda, Macau,
+Bangkok, Singapore and across to Brazil; the list says which places those are.
+A map alone is a claim nobody can check from three metres, and nineteen lines
+of type alone have no shape.
+
+Craft still exists and still has a way in: the card that closes the collection,
+which is where it was reached from before it was ever in the bar. It keeps its
+five stages and the collaborations. Nothing was deleted — if the studio wants
+the section gone altogether, that is one more instruction, not a rebuild.
+
+The bar is four items now. Five fitted and six never did (1101px needed against
+984px available, measured), so the ceiling stands even with a slot free.
+`craftShort` came out of content/ui.ts with the bar item; `t('craft')` stays,
+since the collection card still uses it.
+
+The suite follows: `studio · map` and `studio · cities` replace `craft · map`
+and `craft · cities`, and Studio is rendered at all five pages.

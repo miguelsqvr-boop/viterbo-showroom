@@ -24,7 +24,7 @@ rate, and a live audit of every tap target's position and size.
 
 **`npm run verify` is the gate.** It renders every route, every screenful of a
 project (the hero, each gallery frame, the closing words), every stage of
-Craft, every service, all three pages of Studio and the contact form in both
+Craft, every service, all five pages of Studio and the contact form in both
 keyboard modes — at 1080 × 1920, in **both languages** — and fails on:
 
 - a tap target outside 28%–72% of screen height, chrome excepted,
@@ -281,9 +281,11 @@ size on an IR panel — so the fields are display, and one forward button moves
 name → email → send. With two fields in an obvious order this costs nothing and
 buys back 240px.
 
-**Craft is reached from the end of the collection,** not from the nav. The brief
-allows three nav items and Craft is not one of them, so it closes the stack —
-the reward for scrolling to the bottom.
+**Craft is reached from the end of the collection,** not from the nav — the
+studio took it out of the bar on 8 September. It closes the stack instead, the
+reward for scrolling to the bottom. The map and the list of cities that used to
+end it are now the bottom of Studio, where the studio asked for them; Craft
+keeps its five stages and the collaborations.
 
 ## 10. Open — needs the studio or the panel
 

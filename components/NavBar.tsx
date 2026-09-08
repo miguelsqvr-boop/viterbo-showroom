@@ -16,11 +16,15 @@ import { Wordmark } from './Wordmark';
  * so it moved to the top. See CHROME in config/layout.ts for what that costs
  * and how to put it back.
  *
- * Five items and the language toggle, which is the hard ceiling: six needs
- * 1101px of bar in English and 1090px in Portuguese against the 984px there
- * is, measured. Recognition therefore is not here: it is the end of Studio,
- * two pages down from the portrait — a fact about the practice, on the screen
- * that is about the practice. No hamburger, no dropdowns, no breadcrumbs.
+ * Four items and the language toggle. Five fitted and six never did — six
+ * needs 1101px of bar in English and 1090px in Portuguese against the 984px
+ * there is, measured — so the ceiling still stands even with a slot free.
+ *
+ * Craft came out of the bar on the studio's instruction. Its way in is the
+ * card that closes the collection. Recognition is not here either: it is the
+ * end of Studio, along with the map and the cities — facts about the practice,
+ * on the screen that is about the practice. No hamburger, no dropdowns, no
+ * breadcrumbs.
  */
 export function NavBar() {
   const router = useRouter();
@@ -29,11 +33,6 @@ export function NavBar() {
 
   const items = [
     { href: '/', label: t('projects'), match: (p: string) => p === '/' || p.startsWith('/projects') },
-    {
-      href: '/craft',
-      label: t('craftShort'),
-      match: (p: string) => p.startsWith('/craft'),
-    },
     { href: '/studio', label: t('studio'), match: (p: string) => p.startsWith('/studio') },
     {
       href: '/services',
