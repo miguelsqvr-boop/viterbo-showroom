@@ -38,6 +38,8 @@ keyboard modes — at 1080 × 1920, in **both languages** — and fails on:
 - **text running off the bottom of a snapped page**, which is what catches a
   list that has quietly grown longer than the panel — the failure that took
   the last four marks off the Studio screen with nothing on screen to say so.
+- **the re-export inventory drifting from `media-src/`**, so the list the
+  studio shoots from cannot silently fall behind the panel again.
 
 Portuguese is checked because Portuguese runs longer than English almost
 everywhere, and a label that fits in one language is not evidence. Run it after
@@ -98,12 +100,26 @@ npm run media:process -- --variants  # also emit 1080/1620/2160 in AVIF and WebP
 `next/image` is configured to emit exactly 1080 / 1620 / 2160 and nothing else,
 so a collection thumbnail can never be handed a 2160px file.
 
-All thirteen projects, all ten attract frames and the Studio portrait now run
-on the studio's own photography, pulled from the Drive archive and selected
-frame by frame — see `docs/image-selection.md` for what was chosen and why.
-The placeholder generator (`npm run media:placeholders`) still exists for
-sections that have no photography yet; its plates are labelled `PLACEHOLDER`
-on purpose, and Craft deliberately renders type instead of using them.
+All nineteen projects, all ten attract frames and the Studio portrait run on
+the studio's own photography, pulled from the Drive archive and selected frame
+by frame — 173 gallery frames, fifteen projects at the ten Miguel asked for.
+See `docs/image-selection.md` for what was chosen and why, including the four
+that fall short and the reason for each.
+
+Two more commands work on that photography:
+
+```bash
+npm run media:audit                # regenerate the re-export inventory
+npm run media:shoot -- <slug>      # render a project's frames at panel size
+```
+
+`media:shoot` is the eyeball pass: the verification suite renders every screen
+and measures it, but it cannot see a photograph, so a rotated frame or a
+repeated one passes every check. It tiles a project's whole frame stack into
+one sheet to be looked at.
+
+There is no placeholder generator. Craft has no photography and deliberately
+renders type on the ground rather than a plate that says `PLACEHOLDER`.
 
 **Video** is supported in the content model (`Media` union) but no clips ship
 yet. The rules are strict: silent with no audio track at all, 8–20s seamless
@@ -280,16 +296,21 @@ the reward for scrolling to the bottom.
    a stage in `content/craft.ts` restores the full-bleed treatment with no
    other change. It is the studio's strongest argument and the one section the
    screen cannot currently make.
-2. **Half the frames are still the 1600px preview set.** The Drive connector
-   this was built through refuses files somewhere between 6.2 and 6.6 MB, and
-   most masters are 8–29 MB. A sweep of every copy of every frame in the Drive
-   found a larger one under that ceiling for 41 of the 112 frames, and those
-   are now in `media-src/` — ten projects gained resolution, ten did not. See
-   `docs/image-selection.md` for the per-project result. `canFullBleed()` keeps
-   under-resolution images out of the full-bleed treatment, so nothing on
-   screen is upscaled; one hero (Singapore Penthouse, 2881×3840) now clears the
-   2160px gate and takes the whole frame. The remaining 71 frames need an
-   export from the studio — ~2560px short edge, JPEG q80, under 6 MB each.
+2. **Nearly every frame is still the preview set.** The Drive connector this was
+   built through refuses files somewhere between 6.2 and 6.6 MB, and most
+   masters are 8–29 MB. A sweep of every copy of every frame found a larger one
+   under that ceiling where it existed, and those are in `media-src/` — but
+   **204 of the 209 frames are still under the 2560px short edge** the studio
+   has been asked for. That number grew because the galleries went from four
+   frames to ten in early September, not because anything got worse.
+   `canFullBleed()` keeps under-resolution images out of the full-bleed
+   treatment, so nothing on screen is upscaled; the Singapore Penthouse hero
+   (4724×6297) is the only portrait frame that clears the 2160px width gate and
+   takes the whole screen. **21 of the shortfalls are worth doing first** —
+   portrait heroes and attract frames under that gate, where a bigger file
+   changes the layout rather than only the sharpness. `npm run media:audit`
+   regenerates `docs/frames-to-re-export.md` and its CSV from `media-src/`;
+   `npm run verify` fails with an `inventory` violation if they drift.
 3. **Copy is draft.** Narratives were written from the photography and are
    deliberately unspecific where the archive does not support a claim. `area`
    and `scope` are absent on almost every project on purpose. The words have
