@@ -10,6 +10,7 @@
     "typecheck": "tsc --noEmit",
     "media:process": "tsx scripts/process-images.ts",
     "media:qr": "tsx scripts/generate-qr.ts",
+    "media:shoot": "tsx scripts/shoot-project.ts",
     "verify": "tsx scripts/verify-panel.ts",
     "map:generate": "tsx scripts/generate-map.ts"
   },

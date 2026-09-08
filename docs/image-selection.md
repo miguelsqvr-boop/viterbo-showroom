@@ -680,3 +680,34 @@ through the house rather than as the shoot was filed.
   023 and 044 (the dining room from two more angles, where 01, 04, 020 and 045
   already give four); 029 (cushions on a banquette, quiet); 035 (a window corner
   weaker than the frames around it).
+
+## The eyeball pass, 8 September
+
+Every frame added on 7-8 September was chosen from a contact sheet of the
+source files. That is not the same picture the visitor sees: a frame is chosen
+as a whole photograph and shown as a band, and a crop can ruin one without the
+source ever looking wrong. So all nine deepened projects were rendered at true
+panel size — `npm run media:shoot -- <slug>` — and every screen looked at.
+
+**Nothing was wrong.** No sideways frame, no frame that failed to mount, no
+crop that breaks a photograph, and the peek at the bottom of each frame reads
+as intended throughout. The galleries are in the order they were wired.
+
+Two things worth writing down rather than changing:
+
+- **Birre Villa 04**, the curved bouclé sofa in the arched room, renders with a
+  lot of empty wall above it. The source is a tall portrait and the band takes
+  its middle. It is quiet rather than broken, and quiet is what that project
+  says it is — "almost no colour, and no need for any" — so it stays.
+- **Singapore Penthouse** is the only project whose hero clears the
+  `canFullBleed` gate, so its place and narrative sit over the photograph
+  instead of on the ground below it. That is the design working as written; it
+  is also the busiest ground any hero text has on the panel, and the
+  `palest hero` check in the suite is what stops it drifting past legible.
+
+Method note for whoever runs this next: the panel shows the attract loop until
+it is touched and returns to it after ninety seconds idle, and programmatic
+scrolling is not a touch. The first run of this pass screenshotted the attract
+carousel eleven times per project and, at a glance, looked like nine projects
+full of the wrong photographs. scripts/shoot-project.ts now pokes the panel
+awake and keeps it awake; the comment at the top of that file says how.
