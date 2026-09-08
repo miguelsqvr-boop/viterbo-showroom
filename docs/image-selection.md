@@ -666,3 +666,17 @@ through the house rather than as the shoot was filed.
   the wired frames rather than 0.00) because five of the six were re-exported
   at slightly different crops. That is inside the 4.5/255 band established for
   a legitimate same-image difference; a non-match still reads about 56.
+- **Cabana Sass** — 4 → 10, from seventeen unique frames across the two folders
+  (`1f_H5EhngUoXFGUUf_qAlLaTpOscKMNj3` and the `Restaurante` subfolder of
+  `1pg1rZDjoP8S9QnEy4-EkCOASjHKEXhMU`, which overlap almost completely — the
+  subfolder adds only 051 and 177). Five were wired. Added the way in with the
+  name cut into a panel above the bar (005), the long table laid along the
+  windows (020), three woven pendants against a linen blind (018), the bar with
+  earthenware racked above the bottles (049), the room at dusk with lamps lit
+  against the blue (045), and the washroom basin cut from stone beside a woven
+  door (007).
+  Not used: 051 and 177 (portraits of the owners — every project on the panel is
+  unpeopled rooms, the same call made for Birre Villa and Cascais Seafront);
+  023 and 044 (the dining room from two more angles, where 01, 04, 020 and 045
+  already give four); 029 (cushions on a banquette, quiet); 035 (a window corner
+  weaker than the frames around it).
