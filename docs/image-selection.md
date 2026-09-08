@@ -869,3 +869,30 @@ more said about them than the collaborations list managed.
 This also closes the longest-standing gap in the project: the craft photography
 the studio owed — workshop bench, sewing machine, warehouse, transit,
 installation. There is nothing left for it to fill.
+
+### Ivens and Lisbon Palace were one apartment — 8 September
+
+Reported on 7 September, settled by the studio today: keep Lisbon Palace.
+
+They were the same apartment entered twice. Every photograph Lisbon Palace
+carried was already an Ivens frame — `hero`, `02`, `03` and `04` byte-identical
+to `ivens/hero`, `04`, `02` and `07`, and its `01` the same curved velvet sofa
+re-cropped. Both folders held nothing but `ViterboIvens####.jpg`. Ivens had ten
+frames of those rooms; Lisbon Palace had four of the same ones.
+
+So the entry that survives carries the studio's chosen name and the fuller set:
+`media-src/ivens/` moved wholesale to `media-src/lisbon-palace/`, and the
+gallery is the ten frames in the order they were already walking — the enfilade
+in, the reception rooms, the bedrooms, then the azulejo bathroom that stops
+people. The words are the ones written for those frames, because they describe
+what is on screen; the single change is "apartment" to "interior", since the
+typology line above them says palace.
+
+Two things the merge could not settle and did not guess at. The entries
+disagreed on the year — 2020 against 2024 — and this keeps Lisbon Palace's own
+2020. And the typology, palace against private apartment, is Lisbon Palace's
+too. Both are the studio's to correct.
+
+The panel is eighteen projects and 169 gallery frames now. Lisbon Palace joins
+the fifteen at ten; three are still short and all three need photography that
+does not exist rather than a decision.

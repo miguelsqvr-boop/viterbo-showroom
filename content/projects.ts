@@ -351,6 +351,21 @@ export const PROJECTS: Project[] = [
     ],
     featuredInAttract: true,
   },
+  /*
+   * Ivens and Lisbon Palace were the same apartment entered twice. Every
+   * photograph Lisbon Palace carried was already an Ivens frame — four of the
+   * five byte-identical, the fifth the same shot re-cropped — and the files in
+   * both folders were named ViterboIvens####.jpg. The studio settled it on 8
+   * September: keep Lisbon Palace.
+   *
+   * So the name here is the studio's choice and the photography is the fuller
+   * set, ten frames of the same rooms rather than four. The words are the ones
+   * written for those frames, since they describe what is actually on screen —
+   * "apartment" reads "interior" because the typology above says palace.
+   *
+   * Unresolved and not guessed at: the two entries disagreed on the year, 2020
+   * against 2024. This keeps 2020, which was Lisbon Palace's own.
+   */
   {
     slug: 'lisbon-palace',
     order: 15,
@@ -360,15 +375,24 @@ export const PROJECTS: Project[] = [
     typology: { en: 'Palace', pt: 'Palácio' },
     year: 2020,
     narrative: {
-      en: 'A palace restored rather than reinterpreted, and then lived in.',
-      pt: 'Um palácio restaurado e não reinterpretado — e depois habitado.',
+      en: 'Hand-painted arches lit from behind, a blue lacquered hall over an azulejo dado, and bedrooms in toile. The building is old Lisbon and the interior does not argue with it — every intervention is joinery, colour and cloth rather than structure.',
+      pt: 'Arcos pintados à mão iluminados por trás, um hall em laca azul sobre um lambril de azulejo e quartos em toile. O edifício é da Lisboa antiga e o interior não discute com ele — tudo se faz em marcenaria, cor e tecido, e não em estrutura.',
     },
-    hero: img('lisbon-palace/hero', 'Lit arched niches lined with hand-painted chinoiserie', 'Nichos em arco, iluminados e forrados a chinoiserie pintada à mão'),
+    hero: img('lisbon-palace/hero', 'Hand-painted arched panels lit from behind', 'Painéis em arco pintados à mão, iluminados por trás'),
+    /* Ordered as a walk: the enfilade in, the reception rooms, the bedrooms one
+     * after another, then the bathrooms — closing on the azulejo, which is the
+     * one room in the apartment that stops people. */
     gallery: [
-      img('lisbon-palace/01', 'A curved velvet sofa in front of the painted panels', 'Um sofá curvo de veludo diante dos painéis pintados'),
-      img('lisbon-palace/02', 'A bathroom framed in azulejo', 'Uma casa de banho emoldurada a azulejo'),
-      img('lisbon-palace/03', 'Striped curtains at the window', 'Cortinados às riscas na janela'),
-      img('lisbon-palace/04', 'A bedroom in floral paper', 'Um quarto em papel floral'),
+      img('lisbon-palace/05', 'An enfilade of doorways, lamps burning on either side', 'Uma enfiada de vãos, com candeeiros acesos de ambos os lados'),
+      img('lisbon-palace/01', 'A curved velvet sofa below the painted arches', 'Um sofá curvo em veludo sob os arcos pintados'),
+      img('lisbon-palace/02', 'Yellow silk curtains drawn back from a window seat', 'Cortinados de seda amarela abertos sobre um assento de janela'),
+      img('lisbon-palace/06', 'Twin beds against a green botanical paper', 'Duas camas contra um papel botânico verde'),
+      img('lisbon-palace/03', 'A twin bedroom papered in pink toile', 'Um quarto de duas camas forrado a toile rosa'),
+      img('lisbon-palace/07', 'Buttoned headboards against a floral ground', 'Cabeceiras capitonadas sobre um fundo florido'),
+      img('lisbon-palace/08', 'A bedroom in blue florals, the window arched', 'Um quarto em florais azuis, com a janela em arco'),
+      img('lisbon-palace/09', 'A washstand between paired sconces', 'Um lavatório entre apliques emparelhados'),
+      img('lisbon-palace/10', 'A glazed passage running the depth of the apartment', 'Uma passagem envidraçada a toda a profundidade do apartamento'),
+      img('lisbon-palace/04', 'A bathroom under a stone arch, tiled in blue azulejo', 'Uma casa de banho sob um arco de pedra, revestida a azulejo azul'),
     ],
   },
   {
@@ -424,35 +448,6 @@ export const PROJECTS: Project[] = [
       img('estoril-estate/09', 'A bed set into a painted arch', 'Uma cama encaixada num arco pintado'),
       img('estoril-estate/04', 'The lacquered island in the dressing room', 'A ilha lacada no closet'),
       img('estoril-estate/10', 'A cloakroom in blue, around a stone basin', 'Um lavabo em azul, em torno de um lavatório de pedra'),
-    ],
-  },
-  {
-    slug: 'ivens',
-    order: 17,
-    style: 'classic',
-    name: { en: 'Ivens', pt: 'Ivens' },
-    location: { en: 'Lisboa', pt: 'Lisboa' },
-    typology: { en: 'Private apartment', pt: 'Apartamento privado' },
-    year: 2024,
-    narrative: {
-      en: 'Hand-painted arches lit from behind, a blue lacquered hall over an azulejo dado, and bedrooms in toile. The building is old Lisbon and the apartment does not argue with it — every intervention is joinery, colour and cloth rather than structure.',
-      pt: 'Arcos pintados à mão iluminados por trás, um hall em laca azul sobre um lambril de azulejo e quartos em toile. O edifício é da Lisboa antiga e o apartamento não discute com ele — tudo se faz em marcenaria, cor e tecido, e não em estrutura.',
-    },
-    hero: img('ivens/hero', 'Hand-painted arched panels lit from behind', 'Painéis em arco pintados à mão, iluminados por trás'),
-    /* Ordered as a walk: the enfilade in, the reception rooms, the bedrooms one
-     * after another, then the bathrooms — closing on the azulejo, which is the
-     * one room in the apartment that stops people. */
-    gallery: [
-      img('ivens/05', 'An enfilade of doorways, lamps burning on either side', 'Uma enfiada de vãos, com candeeiros acesos de ambos os lados'),
-      img('ivens/01', 'A curved velvet sofa below the painted arches', 'Um sofá curvo em veludo sob os arcos pintados'),
-      img('ivens/02', 'Yellow silk curtains drawn back from a window seat', 'Cortinados de seda amarela abertos sobre um assento de janela'),
-      img('ivens/06', 'Twin beds against a green botanical paper', 'Duas camas contra um papel botânico verde'),
-      img('ivens/03', 'A twin bedroom papered in pink toile', 'Um quarto de duas camas forrado a toile rosa'),
-      img('ivens/07', 'Buttoned headboards against a floral ground', 'Cabeceiras capitonadas sobre um fundo florido'),
-      img('ivens/08', 'A bedroom in blue florals, the window arched', 'Um quarto em florais azuis, com a janela em arco'),
-      img('ivens/09', 'A washstand between paired sconces', 'Um lavatório entre apliques emparelhados'),
-      img('ivens/10', 'A glazed passage running the depth of the apartment', 'Uma passagem envidraçada a toda a profundidade do apartamento'),
-      img('ivens/04', 'A bathroom under a stone arch, tiled in blue azulejo', 'Uma casa de banho sob um arco de pedra, revestida a azulejo azul'),
     ],
   },
   {

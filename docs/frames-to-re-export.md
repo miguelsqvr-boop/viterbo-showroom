@@ -4,8 +4,8 @@
      version of this file was maintained by hand, said 110 frames while the
      panel carried 209, and listed six frames for projects that had twelve. -->
 
-**204 of the 209 frames** on the panel are below 2560px on the short
-edge, and of the 120 portrait frames only one is wide enough to take the
+**199 of the 204 frames** on the panel are below 2560px on the short
+edge, and of the 119 portrait frames only one is wide enough to take the
 whole screen (singapore-penthouse/hero).
 
 This is a much longer list than the sixty-nine it replaces, and the reason is
@@ -27,7 +27,7 @@ different amounts in different slots:
   position.**
 - **A landscape hero or attract frame will never full-bleed**, at any
   resolution — the check is on orientation first. A bigger export sharpens it
-  and nothing else. If any of these 9 projects should open full-bleed, what
+  and nothing else. If any of these 8 projects should open full-bleed, what
   they need is a *portrait* frame from the same shoot, which is a re-crop or a different
   selection rather than a re-export.
 - **Every other frame just gets sharper.** Worth having, not urgent.
@@ -62,7 +62,7 @@ These 21 are the frames where a bigger file changes what the panel does.
 | estoril-estate | `attract` | 2048×3072 | — |
 | estoril-estate | `hero` | 2048×3072 | — |
 | hotel-albatroz | `hero` | 1801×2358 | — |
-| ivens | `attract` | 2048×3072 | — |
+| lisbon-palace | `attract` | 2048×3072 | — |
 | lisbon-pied-a-terre | `attract` | 1280×1600 | `2026 Lisbon Interior Design pied a terre (1).jpg` |
 | lisbon-pied-a-terre | `hero` | 1222×1600 | `2026 Lisbon Interior Design pied a terre (7).jpg` |
 | pasteis-de-belem | `attract` | 1227×1600 | `FAD-VID-250530__(006)__HiRes(LARGE)-Press.jpg` |
@@ -71,7 +71,7 @@ These 21 are the frames where a bigger file changes what the panel does.
 | tuscany-estate | `attract` | 1067×1600 | `ViterboID- Tuscany (10).jpg` |
 | tuscany-estate | `hero` | 1066×1600 | `ViterboID- Tuscany (18).jpg` |
 
-The other 9 hero and attract frames are landscape (bangkok-estate, birre-villa, cascais-estate, castilho-203, ivens, lisbon-palace, pasteis-de-belem, rio-de-janeiro). They open in a band whatever resolution they arrive at; a portrait frame from the same shoot is what would change that.
+The other 8 hero and attract frames are landscape (bangkok-estate, birre-villa, cascais-estate, castilho-203, lisbon-palace, pasteis-de-belem, rio-de-janeiro). They open in a band whatever resolution they arrive at; a portrait frame from the same shoot is what would change that.
 
 ## Then: everything else, by project
 
@@ -258,14 +258,14 @@ The other 9 hero and attract frames are landscape (bangkok-estate, birre-villa, 
 | `10` | 1473×1600 | `FAD-GV.1911__#007__19-HRL.jpg` |
 | `hero` | 1801×2358 | — |
 
-### `ivens` — 12 frames
+### `lisbon-palace` — 12 frames
 
 | Slot | Current | Drive file |
 |---|---|---|
 | `01` | 1600×1600 | `ViterboIvens1538.jpg` |
 | `02` | 1600×1067 | `ViterboIvens1688.jpg` |
 | `03` | 1500×1000 | `ViterboIvens1811.jpg` |
-| `04` | 2048×2560 | — |
+| `04` | 2048×2560 | `ViterboIvens1891.jpg` |
 | `05` | 1356×1500 | `ViterboIvens1712.jpg` |
 | `06` | 1317×1500 | `ViterboIvens1640.jpg` |
 | `07` | 1500×1000 | `ViterboIvens1891.jpg` |
@@ -273,16 +273,6 @@ The other 9 hero and attract frames are landscape (bangkok-estate, birre-villa, 
 | `09` | 1500×1000 | `ViterboIvens1775.jpg` |
 | `10` | 1600×1067 | `ViterboIvens1931.jpg` |
 | `attract` | 2048×3072 | — |
-| `hero` | 1600×1600 | `ViterboIvens1601.jpg` |
-
-### `lisbon-palace` — 5 frames
-
-| Slot | Current | Drive file |
-|---|---|---|
-| `01` | 1600×1600 | `ViterboIvens1572.jpg` |
-| `02` | 2048×2560 | — |
-| `03` | 1600×1067 | `ViterboIvens1688.jpg` |
-| `04` | 1500×1000 | `ViterboIvens1891.jpg` |
 | `hero` | 1600×1600 | `ViterboIvens1601.jpg` |
 
 ### `lisbon-pied-a-terre` — 8 frames
