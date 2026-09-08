@@ -282,6 +282,33 @@
  * word or a control; it runs only until the visitor scrolls once, then never
  * again for that session.
  */
+/*
+ * The sheen that runs along the filled part of the loading bar.
+ *
+ * Progress alone is not enough on a 43-inch panel: a bar that has stalled at
+ * forty per cent because one large frame is still on the wire looks identical
+ * to a bar that has crashed there. Something has to move.
+ */
+@keyframes panel-sheen {
+  from {
+    transform: translateX(-120%);
+  }
+  to {
+    transform: translateX(420%);
+  }
+}
+
+.load-sheen {
+  animation: panel-sheen 1.5s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .load-sheen {
+    animation: none;
+    opacity: 0;
+  }
+}
+
 @keyframes panel-nudge {
   0%,
   100% {

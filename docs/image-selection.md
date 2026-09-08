@@ -952,3 +952,27 @@ Three things this got wrong first, all worth keeping written down:
   per screenful. That showed up as frames arriving late and the suite reporting
   blank slides, which is what sent me looking. Two contexts now: frames take
   the callbacks, which never change identity; only the bar watches the numbers.
+
+### The loading bar, again — 8 September
+
+The studio looked at the first version and said people could not tell it meant
+loading. Both halves of that are true and they are different faults.
+
+**It was too small to see.** Four CSS pixels is eight device pixels on a
+2160-wide screen read from three metres. It is ten now, with a faint track
+behind it so it reads as a measure rather than a stray gold line.
+
+**It was in the one place nobody looks.** The very top edge of a 181cm totem is
+above eye level and against the bezel. It sits directly under the navigation
+bar now, on the edge where the content actually begins.
+
+**Nothing moved.** A bar stalled at forty per cent while one large frame is on
+the wire looks exactly like a bar that has died there. The filled part carries
+a sheen that runs along it, on the same argument as the scroll cue: motion is
+what reads as "working" from three metres.
+
+**And it says the word.** LOADING, in both languages, on a frosted plate flush
+to the left edge — the same treatment as the back control on a project, and for
+the same reason: on a full-bleed hero the content starts under the bar, so the
+label lands straight on someone's living room. Faint ink there is not type, it
+is a smudge. Frosted, it reads over any tone.

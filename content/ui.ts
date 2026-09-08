@@ -55,6 +55,12 @@ export const UI = {
   next: { en: 'Next', pt: 'Seguinte' },
   spaceKey: { en: 'space', pt: 'espaço' },
   sending: { en: 'Sending', pt: 'A enviar' },
+  /*
+   * Said out loud rather than implied by a moving line. The studio watched a
+   * visitor wait through a cold cache and could not tell the screen was
+   * working, which is the whole argument for a word.
+   */
+  loading: { en: 'Loading', pt: 'A carregar' },
   sent: { en: 'Thank you. The studio will be in touch.', pt: 'Obrigado. O estúdio entrará em contacto.' },
   queued: { en: 'Saved. It will send when the screen is back online.', pt: 'Guardado. Será enviado quando o ecrã voltar a estar online.' },
   formInvalid: { en: 'A name and a valid email, please.', pt: 'Um nome e um email válido, por favor.' },
