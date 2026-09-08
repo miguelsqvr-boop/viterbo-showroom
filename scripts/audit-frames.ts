@@ -1,0 +1,279 @@
+/**
+ * What is actually on the panel, at what resolution, and where each frame
+ * came from.
+ *
+ * docs/frames-to-re-export.md was written by hand when the panel carried 110
+ * frames. The galleries then went to ten frames each and it said 110 for
+ * weeks while the truth was 209 — a hand-maintained inventory of a directory
+ * is a promise to update it every time the directory changes, and that promise
+ * was not kept. So the inventory is generated now:
+ *
+ *   npm run media:audit            # rewrite docs/frames-to-re-export.{md,csv}
+ *   npm run media:audit -- --check # fail if the committed docs are stale
+ *
+ * Every frame is matched back to its Drive filename by MD5 against /tmp/drive,
+ * the harvest cache. Frames pulled before that cache existed do not match and
+ * are listed without a filename — they are still identified by project and
+ * slot, which is what the studio needs to re-export them.
+ */
+import sharp from 'sharp';
+import { createHash } from 'node:crypto';
+import { readFileSync, readdirSync, statSync, writeFileSync, existsSync } from 'node:fs';
+import path from 'node:path';
+import { PHYSICAL } from '../config/panel';
+import { FULL_BLEED_MIN_WIDTH } from '../content/types';
+
+/** What the studio is being asked for: short edge, in pixels. */
+const ASK = 2560;
+/**
+ * canFullBleed asks for portrait AND width >= this. Width, not short edge: a
+ * landscape frame is never full-bleed on a portrait panel however large it is.
+ */
+const FULL_BLEED = FULL_BLEED_MIN_WIDTH;
+
+type Frame = {
+  slug: string;
+  slot: string;
+  width: number;
+  height: number;
+  short: number;
+  portrait: boolean;
+  drive: string;
+};
+
+/**
+ * Drive filenames already recorded in the committed CSV, keyed slug/slot.
+ *
+ * The md5 index below only resolves a name when the harvest cache is on disk,
+ * and that cache lives in /tmp — it does not survive a container. Seeding from
+ * the CSV means running the audit on a fresh machine keeps every name it has
+ * already learnt instead of blanking the column, which is what makes `--check`
+ * mean "the inventory is stale" rather than "the cache is cold".
+ */
+function recordedNames(csvPath: string): Map<string, string> {
+  const names = new Map<string, string>();
+  if (!existsSync(csvPath)) return names;
+  for (const line of readFileSync(csvPath, 'utf8').split('\n').slice(1)) {
+    const match = /^([^,]+),([^,]+),[^,]*,[^,]*,[^,]*,"(.*)"$/.exec(line);
+    if (match && match[3]) names.set(`${match[1]}/${match[2]}`, match[3]);
+  }
+  return names;
+}
+
+function driveIndex(dir: string): Map<string, string> {
+  const index = new Map<string, string>();
+  if (!existsSync(dir)) return index;
+  for (const name of readdirSync(dir)) {
+    const p = path.join(dir, name);
+    if (!statSync(p).isFile()) continue;
+    const hash = createHash('md5').update(readFileSync(p)).digest('hex');
+    if (!index.has(hash)) index.set(hash, name);
+  }
+  return index;
+}
+
+async function collect(csvPath: string): Promise<Frame[]> {
+  const drive = driveIndex(process.env.DRIVE_CACHE ?? '/tmp/drive');
+  const recorded = recordedNames(csvPath);
+  const frames: Frame[] = [];
+  for (const slug of readdirSync('media-src').sort()) {
+    const dir = path.join('media-src', slug);
+    if (!statSync(dir).isDirectory()) continue;
+    for (const file of readdirSync(dir).sort()) {
+      if (!/\.jpe?g$/i.test(file)) continue;
+      const buf = readFileSync(path.join(dir, file));
+      const meta = await sharp(buf).metadata();
+      const width = meta.width ?? 0;
+      const height = meta.height ?? 0;
+      frames.push({
+        slug,
+        slot: file.replace(/\.jpe?g$/i, ''),
+        width,
+        height,
+        short: Math.min(width, height),
+        portrait: height > width,
+        drive:
+          drive.get(createHash('md5').update(buf).digest('hex')) ??
+          recorded.get(`${slug}/${file.replace(/\.jpe?g$/i, '')}`) ??
+          '',
+      });
+    }
+  }
+  return frames;
+}
+
+function render(frames: Frame[]): { md: string; csv: string } {
+  const short = frames.filter((f) => f.short < ASK);
+  const bleed = frames.filter((f) => f.portrait && f.width >= FULL_BLEED);
+  const isKey = (f: Frame) => f.slot === 'hero' || f.slot === 'attract';
+  /** A bigger export of these changes the layout. */
+  const winnable = short.filter((f) => isKey(f) && f.portrait && f.width < FULL_BLEED);
+  /** These are landscape: a bigger export sharpens them and nothing more. */
+  const landscapeKey = short.filter((f) => isKey(f) && !f.portrait);
+  const byProject = new Map<string, Frame[]>();
+  for (const f of short) byProject.set(f.slug, [...(byProject.get(f.slug) ?? []), f]);
+
+  const rows = (list: Frame[]) =>
+    list
+      .map((f) => `| \`${f.slot}\` | ${f.width}×${f.height} | ${f.drive ? `\`${f.drive}\`` : '—'} |`)
+      .join('\n');
+
+  const md = `# Frames still needing a higher-resolution export
+
+<!-- Generated by \`npm run media:audit\`. Do not edit by hand: the previous
+     version of this file was maintained by hand, said 110 frames while the
+     panel carried 209, and listed six frames for projects that had twelve. -->
+
+**${short.length} of the ${frames.length} frames** on the panel are below ${ASK}px on the short
+edge, and of the ${frames.filter((f) => f.portrait).length} portrait frames only ${bleed.length === 1 ? 'one is' : `${bleed.length} are`} wide enough to take the
+whole screen${bleed.length ? ` (${bleed.map((f) => `${f.slug}/${f.slot}`).join(', ')})` : ''}.
+
+This is a much longer list than the sixty-nine it replaces, and the reason is
+not a new problem: the galleries went from four frames each to ten in early
+September, and everything added came from the same preview tier as everything
+already there. Nothing on the panel got worse. There is simply more of it.
+
+## Why it matters, and where it matters most
+
+The panel is ${PHYSICAL.cssWidth * 2} device pixels across. Any frame narrower than that is being
+enlarged to fill the width. But \`canFullBleed\` asks for two things — **portrait
+orientation and ${FULL_BLEED}px of width** — and that makes the export worth
+different amounts in different slots:
+
+- **A portrait hero or attract frame under ${FULL_BLEED}px wide is the one worth doing
+  first.** Crossing that width changes the layout, not just the sharpness: the
+  frame stops being a band with the place and the text below it and becomes a
+  full-bleed photograph with the type over it. **${winnable.length} frames are in this
+  position.**
+- **A landscape hero or attract frame will never full-bleed**, at any
+  resolution — the check is on orientation first. A bigger export sharpens it
+  and nothing else. If any of these ${landscapeKey.length} projects should open full-bleed, what
+  they need is a *portrait* frame from the same shoot, which is a re-crop or a different
+  selection rather than a re-export.
+- **Every other frame just gets sharper.** Worth having, not urgent.
+
+## What to export
+
+- **~${ASK}px on the short edge** (the panel is ${PHYSICAL.cssWidth * 2}×${PHYSICAL.cssHeight * 2}, so this leaves headroom)
+- **JPEG, quality 80**
+- **loose files, not zipped** — a zip cannot be read through the connector
+- **under 6 MB each** — measured ceiling is between 6.24 and 6.61 MB
+
+Into the shared **"05 - Project images"** folder. Filenames do not matter: the
+table below gives the project and the slot each file belongs to, and a frame is
+matched back to its slot by eye, not by name.
+
+## First: the portrait heroes and attract frames
+
+These ${winnable.length} are the frames where a bigger file changes what the panel does.
+
+| Project | Slot | Current | Drive file |
+|---|---|---|---|
+${winnable
+  .map(
+    (f) =>
+      `| ${f.slug} | \`${f.slot}\` | ${f.width}×${f.height} | ${f.drive ? `\`${f.drive}\`` : '—'} |`,
+  )
+  .join('\n')}
+
+${
+  landscapeKey.length
+    ? `The other ${landscapeKey.length} hero and attract frames are landscape (${[...new Set(landscapeKey.map((f) => f.slug))].join(', ')}). They open in a band whatever resolution they arrive at; a portrait frame from the same shoot is what would change that.`
+    : ''
+}
+
+## Then: everything else, by project
+
+${[...byProject]
+  .sort(([a], [b]) => a.localeCompare(b))
+  .map(
+    ([slug, list]) =>
+      `### \`${slug}\` — ${list.length} frame${list.length === 1 ? '' : 's'}\n\n| Slot | Current | Drive file |\n|---|---|---|\n${rows(list)}`,
+  )
+  .join('\n\n')}
+
+## Worth knowing
+
+- **Rio de Janeiro cannot be deepened without six more exports.** It is stuck at
+  four gallery frames. The rest of the shoot is in the Drive, under SEO
+  filenames in \`1WMDOvaNkr8gNYl1o8VSxpjUhaUAen87L\`, but every file there is
+  667×1000 — a quarter the resolution of the frames already on the panel, and
+  visibly so at 43 inches. The masters beside them are 12–18 MB. Six frames
+  were chosen from that folder and would go straight in at ~${ASK}px:
+
+  | Slot | Drive filename |
+  |---|---|
+  | 05 | \`decoraçao de interiores contemporanea 7.jpg\` (entrance, three oval mirrors) |
+  | 06 | \`decoraçao de interiores contemporanea 4a.jpg\` (open shelves, soft-outlined table) |
+  | 07 | \`decoraçao de interiores contemporanea 20.jpg\` (main bedroom in a timber wall) |
+  | 08 | \`decoraçao de interiores contemporanea 14.jpg\` (curtain printed with a hill) |
+  | 09 | \`140320_VITERBO_047_Fran_Parente_8876.jpg\` (bedroom, yellow half-wall) |
+  | 10 | \`decoraçao de interiores contemporanea 24.jpg\` (desk and surfboard) |
+
+- **Two projects are short and need a shoot, not an export.** Singapore
+  Penthouse's folder holds exactly ten files, all used. Lisbon Pied-à-Terre's
+  holds eight, all used — the full-size folder was checked too.
+
+- **Lisbon Palace is the Ivens apartment.** Four of its five images are
+  byte-identical to Ivens frames. It needs the studio's decision, not a
+  re-export.
+
+- **Craft has no photography at all.** Its five stages — the Cascais atelier,
+  the workshops, the Port of Lisbon warehouse, crates in transit, an
+  installation on site — do not exist anywhere in the archive. That is a shoot,
+  not an export, and it is the one section the screen cannot currently make.
+`;
+
+  const csv = [
+    'project,slot,width,height,short_edge,drive_filename',
+    ...short.map((f) => `${f.slug},${f.slot},${f.width},${f.height},${f.short},"${f.drive}"`),
+  ].join('\n');
+
+  return { md, csv };
+}
+
+export const MD_PATH = 'docs/frames-to-re-export.md';
+export const CSV_PATH = 'docs/frames-to-re-export.csv';
+
+async function build() {
+  const frames = await collect(CSV_PATH);
+  return { frames, ...render(frames) };
+}
+
+/**
+ * Whether the committed inventory still matches media-src. Returns null when
+ * there is nothing to compare against — media-src is gitignored, so a clone
+ * without the photographs cannot answer the question and must not fail on it.
+ */
+export async function inventoryDrift(): Promise<string | null> {
+  if (!existsSync('media-src') || !existsSync(MD_PATH)) return null;
+  const { md, csv } = await build();
+  if (readFileSync(MD_PATH, 'utf8') === md && readFileSync(CSV_PATH, 'utf8') === `${csv}\n`) {
+    return null;
+  }
+  return `${MD_PATH} no longer matches media-src — run \`npm run media:audit\``;
+}
+
+async function main() {
+  if (process.argv.includes('--check')) {
+    const drift = await inventoryDrift();
+    if (drift) {
+      process.stderr.write(`${drift}\n`);
+      process.exit(1);
+    }
+    process.stdout.write('frame inventory is current\n');
+    return;
+  }
+  const { frames, md, csv } = await build();
+  writeFileSync(MD_PATH, md);
+  writeFileSync(CSV_PATH, `${csv}\n`);
+  const short = frames.filter((f) => f.short < ASK).length;
+  process.stdout.write(`${frames.length} frames, ${short} below ${ASK}px -> ${MD_PATH}\n`);
+}
+
+if (require.main === module) {
+  main().catch((error) => {
+    console.error(error);
+    process.exit(1);
+  });
+}

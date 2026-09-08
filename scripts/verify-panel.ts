@@ -33,6 +33,7 @@ import { PANEL, PHYSICAL } from '../config/panel';
 import { PRIME } from '../config/layout';
 import { COLLECTION } from '../config/layout';
 import { LOCALES, canFullBleed, mediaPoster, type Locale, type Localized } from '../content/types';
+import { inventoryDrift } from './audit-frames';
 import { PROJECTS_IN_ORDER } from '../content/projects';
 import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '../content/craft';
 import { SERVICES } from '../content/services';
@@ -811,6 +812,14 @@ async function main() {
       `  ${preview.length === 0 ? '·' : '✗'} preview windows` +
         `${preview.length ? ` — ${preview.length}` : ''}\n`,
     );
+
+    // The re-export list is what the studio shoots from. It was hand-written,
+    // and it spent weeks claiming 110 frames while the panel carried 209 —
+    // wrong in the direction that quietly under-orders. It is generated now,
+    // and checked here so it cannot fall behind media-src again.
+    const drift = await inventoryDrift();
+    if (drift) violations.push({ view: 'docs', locale: 'en', rule: 'inventory', detail: drift });
+    process.stdout.write(`  ${drift ? '✗' : '·'} frame inventory\n`);
   } finally {
     await browser.close();
     server?.kill();

@@ -711,3 +711,53 @@ scrolling is not a touch. The first run of this pass screenshotted the attract
 carousel eleven times per project and, at a glance, looked like nine projects
 full of the wrong photographs. scripts/shoot-project.ts now pokes the panel
 awake and keeps it awake; the comment at the top of that file says how.
+
+## An audit of every wired frame, 8 September
+
+Two hundred and nine frames are on the panel. I hashed all of them and measured
+all of them, expecting to write down some resolution numbers, and found a
+defect instead: `pasteis-de-belem/01.jpg` and `07.jpg` were the same file, byte
+for byte, and they were wired at gallery positions five and six. The panel
+showed one photograph twice in a row. Nobody would have called it a bug — they
+would have thought the screen had stuttered.
+
+07 is now `FAD-VID-250530__(035)__HiRes(LARGE)-Press.jpg`, 1600×1149, the long
+counter running away from camera and tiled floor to ceiling. It matches the alt
+text already written for that slot, which described a photograph the slot did
+not contain. Rendered on the panel to confirm: frames five and six are two
+different views of the same room now, which is what the sequence intended.
+
+Every other duplicate on the panel is deliberate and stays: a hero repeated as
+its own attract frame (Bangkok Estate, Estoril Estate, Porto Villa, Cabana
+Sass), and `cascais-estate/08` shared with `services/interior-design`. The four
+Ivens ↔ Lisbon Palace pairs are the known overlap, already reported and still
+waiting on the studio.
+
+### What the measurements say
+
+Of the 209 frames, 204 are below the 2560px short edge the studio has been
+asked for. That is a much bigger number than the 69 the re-export list claimed,
+and the reason is arithmetic rather than decay: the galleries went from four
+frames to ten in early September and the new frames came from the same preview
+tier as the old ones. Nothing got worse; there is just more of it.
+
+The number that actually matters is smaller. `canFullBleed` wants portrait
+orientation *and* 2160px of width, so only **21 frames** — portrait heroes and
+attract frames currently under that width — would change the layout if they
+came back bigger. Everything else would only get sharper. Nine projects have
+landscape heroes, which will open in a band at any resolution; those need a
+portrait frame from the same shoot, not a re-export, and that is a different
+ask to put to the studio.
+
+### The list is generated now
+
+`docs/frames-to-re-export.md` was maintained by hand and was wrong in the
+direction that quietly under-orders: it said 110 frames while the panel carried
+209, and listed six frames for projects that had twelve. Handing that to a
+photographer means getting back half of what the screen needs.
+
+It is written by `npm run media:audit` now, from media-src, with a companion
+CSV. `npm run verify` checks it on every run and reports `inventory` as a
+violation when it drifts, so it cannot go stale again without the suite saying
+so. Drive filenames survive a cold cache because the script reads back the
+names already recorded in the committed CSV rather than blanking the column.
