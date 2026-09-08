@@ -620,3 +620,12 @@ through the house rather than as the shoot was filed.
   where frames 03, 07 and 08 already make three); 029 and 030 (dark wardrobe
   and dressing corridor, quiet); 041 and 044 (the gym from angles 01 and 042
   cover); 047 (a hall console).
+- **Lisbon Pied-à-Terre** — 4 → 6 gallery frames, eight images with the hero
+  and the attract frame, and that is the entire shoot. The preview folder holds
+  eight files and the full-size folder
+  (`1UWO0av3lYwHHGN-4Vg4UrkNwloSzZeML`) holds the same eight at 6-12 MB, so
+  there is no ninth frame anywhere. Six were already wired; both that were left
+  went in — the living room seen from the hall with the stripes fanning across
+  the ceiling, and the gilt vessel of flowers beside the shower. Nothing was
+  rejected because there was nothing left to reject. Like Singapore Penthouse,
+  this one needs more photography, not a better selection.

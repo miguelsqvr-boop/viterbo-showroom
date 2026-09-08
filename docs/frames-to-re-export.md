@@ -233,9 +233,12 @@ Into the shared **"05 - Project images"** folder. One subfolder per project is t
 
   These are additions, so the filenames above are the source, not the slot — name
   the exports whatever is convenient and the table says where each one goes.
-- **Lisbon Pied-à-Terre** frame `(3)` already sits at 5.83 MB and is readable, but
-  it is not one of the six frames chosen for that project. If you would rather swap
-  a frame than re-export, that one is free.
+- **Lisbon Pied-à-Terre** is now the whole shoot: all eight frames are on the
+  panel (six gallery, plus hero and attract). It cannot go past eight without
+  more photography. Frame `(3)`, previously noted here as spare, is wired.
+  Two projects are now short for the same reason and both need a shoot rather
+  than an export: this one, and **Singapore Penthouse**, whose folder holds
+  exactly ten files, all of them used.
 - **Birre Villa** is the least urgent: at 2048px it is already close, and a 2560px
   export would tip its portrait heroes into the full-screen treatment.
 - **Craft has no photography at all.** Its five stages — the Cascais atelier, the

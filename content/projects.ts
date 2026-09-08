@@ -312,10 +312,12 @@ export const PROJECTS: Project[] = [
     },
     hero: img('lisbon-pied-a-terre/hero', 'A dining room under a striped ceiling, chairs in orange', 'Uma sala de jantar sob um tecto às riscas, com cadeiras em laranja'),
     gallery: [
-      img('lisbon-pied-a-terre/01', 'A living room in green and yellow beneath the stripes', 'Uma sala de estar em verde e amarelo sob as riscas'),
-      img('lisbon-pied-a-terre/02', 'A bedroom with a scalloped headboard painted on the wall', 'Um quarto com cabeceira recortada pintada na parede'),
-      img('lisbon-pied-a-terre/03', 'A terrazzo kitchen with wave-legged stools', 'Uma cozinha em terrazzo com bancos de pernas onduladas'),
       img('lisbon-pied-a-terre/04', 'The painted mural seen through an open door', 'O mural pintado visto através de uma porta aberta'),
+      img('lisbon-pied-a-terre/06', 'The living room from the hall, stripes fanning across the ceiling', 'A sala vista do corredor, riscas a abrir em leque no tecto'),
+      img('lisbon-pied-a-terre/01', 'A living room in green and yellow beneath the stripes', 'Uma sala de estar em verde e amarelo sob as riscas'),
+      img('lisbon-pied-a-terre/03', 'A terrazzo kitchen with wave-legged stools', 'Uma cozinha em terrazzo com bancos de pernas onduladas'),
+      img('lisbon-pied-a-terre/02', 'A bedroom with a scalloped headboard painted on the wall', 'Um quarto com cabeceira recortada pintada na parede'),
+      img('lisbon-pied-a-terre/05', 'A gilt vessel of flowers beside the shower', 'Um vaso dourado com flores ao lado do duche'),
     ],
   },
   {
