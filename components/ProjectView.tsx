@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { useEffect } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { CHROME } from '@/config/layout';
 import { PHYSICAL } from '@/config/panel';
 import type { Media, Project } from '@/content/types';
@@ -24,6 +24,16 @@ const FRAME_TOP = TOP + 3;
 const FRAME_MAX = 74;
 /** Ground between one frame and the next. Enough to separate, not to divide. */
 const FRAME_GAP = 5;
+/**
+ * How tall the opening screenful is.
+ *
+ * Short of the panel for the same reason every frame in the stack is: what
+ * shows below the fold has to be the beginning of the next photograph. At 100
+ * the hero filled the screen and the project looked like one picture and a
+ * caption — the studio said so, and it was right. 88 leaves a hand's width of
+ * the first gallery frame showing at the bottom.
+ */
+const HERO_HEIGHT = 88;
 
 /**
  * A project (§8).
@@ -57,6 +67,22 @@ export function ProjectView({ project }: { project: Project }) {
   const router = useRouter();
   const { s, t } = useLocale();
   /*
+   * The cue belongs to the opening screenful and to nothing else. Left in the
+   * DOM it scrolls up with the hero and comes to rest behind the navigation
+   * bar — "Scroll" sitting under "Projects", which the suite reports as type
+   * under chrome and which is exactly what it looks like. So it is unmounted
+   * the moment the visitor does the thing it asks for.
+   */
+  const scroller = useRef<HTMLDivElement | null>(null);
+  const [atTop, setAtTop] = useState(true);
+  useEffect(() => {
+    const element = scroller.current;
+    if (!element) return;
+    const onScroll = () => setAtTop(element.scrollTop < 24);
+    element.addEventListener('scroll', onScroll, { passive: true });
+    return () => element.removeEventListener('scroll', onScroll);
+  }, []);
+  /*
    * Full bleed is earned by composition AND resolution — see canFullBleed.
    * A vertical frame from an older shoot still gets the band treatment rather
    * than being stretched across 3840 physical pixels.
@@ -89,6 +115,7 @@ export function ProjectView({ project }: { project: Project }) {
   return (
     <>
       <div
+        ref={scroller}
         data-scroll-root
         data-scroll-reset
         className="snap-y-page no-scrollbar h-full w-full overflow-y-auto"
@@ -100,7 +127,21 @@ export function ProjectView({ project }: { project: Project }) {
         style={{ scrollPaddingTop: panelVh(FRAME_TOP) }}
       >
         {/* ---- Screenful one: hero, name, place ------------------------ */}
-        <section className="snap-start-page relative h-full w-full">
+        {/*
+         * Not the full panel: HERO_HEIGHT leaves the top of the first gallery
+         * frame showing under it.
+         *
+         * The studio said it was not obvious you can scroll here, and it was
+         * right. Every other screenful in the project already ends short so the
+         * next photograph peeks — that peek is the only thing on a kiosk with
+         * no scrollbar that says the project continues — but the hero was
+         * exactly one panel tall and had nothing behind it. A visitor who did
+         * not flick saw one photograph and a line of text and left.
+         */}
+        <section
+          className="snap-start-page relative w-full"
+          style={{ height: panelVh(HERO_HEIGHT) }}
+        >
           {heroIsPortrait ? (
             <>
               {/* A hero with genuine vertical composition earns the full frame. */}
@@ -119,7 +160,7 @@ export function ProjectView({ project }: { project: Project }) {
              */
             <div
               className="absolute inset-x-0 w-full"
-              style={{ top: `${TOP}%`, height: panelVh(30) }}
+              style={{ top: panelVh(TOP), height: panelVh(30) }}
             >
               <MediaFrame media={project.hero} mode="band" priority className="h-full w-full" />
             </div>
@@ -143,7 +184,16 @@ export function ProjectView({ project }: { project: Project }) {
            * `npm run verify` measures every floating control against the type
            * behind it.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: heroIsPortrait ? '26%' : '55%' }}>
+          {/*
+           * Panel units, not a percentage of this section. The section is
+           * HERO_HEIGHT tall rather than the whole panel, so a plain "55%" is
+           * 55% of 88 — it slid the place name up under the back control at
+           * 44%, which is exactly the collision the suite exists to catch.
+           */}
+          <div
+            className="absolute inset-x-0 px-14"
+            style={{ top: panelVh(heroIsPortrait ? 26 : 55) }}
+          >
             <h1 className={`text-section ${heroIsPortrait ? 'text-on-media' : 'text-ink'}`}>
               {s(project.location)}
             </h1>
@@ -154,6 +204,44 @@ export function ProjectView({ project }: { project: Project }) {
               {s(project.narrative)}
             </p>
           </div>
+
+          {/*
+           * And the cue in words, because the peek alone is quiet on a
+           * photograph that happens to be pale at its bottom edge. It moves —
+           * motion is what reads as "this continues" from three metres — and
+           * it is on the hero only: once a visitor has scrolled once, the
+           * stack teaches itself.
+           *
+           * Non-interactive on purpose. It sits at 78%, below the reach
+           * envelope, and anything tappable there would fail the suite rather
+           * than bend it.
+           */}
+          {atTop ? (
+            <div
+              aria-hidden
+              className="pointer-events-none absolute inset-x-0 flex items-center gap-5 px-14"
+              style={{ top: panelVh(78) }}
+            >
+              <svg
+                className="scroll-nudge"
+                width="52"
+                height="30"
+                viewBox="0 0 52 30"
+                fill="none"
+                stroke={heroIsPortrait ? 'var(--color-on-media)' : 'var(--color-ink-muted)'}
+                strokeWidth="2"
+              >
+                <path d="M2 2 L26 26 L50 2" />
+              </svg>
+              <span
+                className={`scroll-nudge text-caption uppercase tracking-[0.2em] ${
+                  heroIsPortrait ? 'text-on-media' : 'text-ink-muted'
+                }`}
+              >
+                {t('scrollHint')}
+              </span>
+            </div>
+          ) : null}
         </section>
 
         {/* ---- The stack: one frame after another, close ----------------- */}
@@ -203,7 +291,14 @@ export function ProjectView({ project }: { project: Project }) {
           className="justify-center rounded-r-[6px] border border-l-0 border-hairline bg-ground/70 pl-8 pr-9 backdrop-blur-[18px]"
         >
           <span className="flex items-center gap-4 text-meta text-ink-muted">
-            <svg width="30" height="18" viewBox="0 0 30 18" fill="none" stroke="currentColor" strokeWidth="1.5">
+            <svg
+              width="30"
+              height="18"
+              viewBox="0 0 30 18"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="1.5"
+            >
               <path d="M29 9 H2 M10 1 L2 9 L10 17" />
             </svg>
             {t('backToProjects')}
@@ -217,7 +312,6 @@ export function ProjectView({ project }: { project: Project }) {
 /** How tall a frame may be, in panel heights, without being upscaled or cropped. */
 function frameHeight(frame: Media): number {
   const poster = mediaPoster(frame);
-  const natural =
-    ((PHYSICAL.cssWidth / (poster.width / poster.height)) / PHYSICAL.cssHeight) * 100;
+  const natural = (PHYSICAL.cssWidth / (poster.width / poster.height) / PHYSICAL.cssHeight) * 100;
   return Math.min(natural, FRAME_MAX);
 }

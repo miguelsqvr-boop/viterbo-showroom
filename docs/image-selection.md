@@ -896,3 +896,59 @@ too. Both are the studio's to correct.
 The panel is eighteen projects and 169 gallery frames now. Lisbon Palace joins
 the fifteen at ten; three are still short and all three need photography that
 does not exist rather than a decision.
+
+## Making the project screen say it continues — 8 September
+
+The studio: "when loading the first page of a project it's not obvious we have
+to scroll down to see more images."
+
+It was right, and the reason was a gap in a rule the rest of the app already
+follows. Every frame in a project stack stops short of the panel so the next
+photograph is already showing at the bottom — on a kiosk with no scrollbar that
+peek is the only thing that says there is more. The opening screenful was the
+one exception: exactly one panel tall, with nothing behind it. A visitor who
+did not flick saw one photograph and a line of text.
+
+Two changes, both cheap:
+
+**The hero is 88vh, not 100.** A hand's width of the first gallery frame now
+shows under it. That is the same signal the stack uses, so nothing new has to
+be learnt.
+
+**An arrow and the word SCROLL** sit at 78% of the panel, under the words. It
+moves, because motion is what reads as "this continues" from three metres, and
+it is unmounted the moment the visitor scrolls — left in place it rides up
+behind the navigation bar, which the suite caught and reported as type under
+chrome.
+
+One trap worth recording: the hero's type is positioned in panel units now, not
+as a percentage of its section. The section is 88vh, so a plain "55%" is 55% of
+88 — it slid the place name up under the back control at 44%. The suite caught
+that too.
+
+## A loading bar — 8 September
+
+Also asked for: something to show while photographs are arriving. Most frames
+are 300–600KB and the panel is on a showroom network, so there is a real second
+or three where a visitor is looking at a blur placeholder with no way to tell
+whether the screen is working.
+
+Four pixels of accent gold along the top of the panel, above the navigation
+bar, keyed to real progress: every MediaFrame registers the image it is about
+to fetch and reports when it lands, so the bar measures what has actually
+arrived rather than running a timer that pretends. It waits 180ms before
+appearing — a warm cache settles a screenful well inside that, and a bar that
+flashes on every navigation reads as a fault.
+
+Three things this got wrong first, all worth keeping written down:
+
+- **Registering during render** sets state on the provider from inside another
+  component's render pass, which React refuses. It happens in a layout effect.
+- **A cached photograph fires its load event before that effect runs**, so it
+  would be counted as outstanding with nothing left to settle it. The effect
+  checks `complete` on the image and settles immediately if so.
+- **One context for both the callbacks and the numbers** re-rendered every
+  frame on screen each time any image landed — twelve frames, dozens of times
+  per screenful. That showed up as frames arriving late and the suite reporting
+  blank slides, which is what sent me looking. Two contexts now: frames take
+  the callbacks, which never change identity; only the bar watches the numbers.

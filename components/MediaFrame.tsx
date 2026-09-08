@@ -2,6 +2,7 @@
 
 import Image from 'next/image';
 import { useEffect, useRef } from 'react';
+import { useLoadingActions } from '@/lib/loading';
 import type { Media } from '@/content/types';
 import { mediaPoster } from '@/content/types';
 import { useLocale } from '@/lib/locale';
@@ -66,6 +67,30 @@ export function MediaFrame({
   const poster = mediaPoster(media);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
+  /*
+   * What feeds the loading bar.
+   *
+   * Registering happens in a layout effect rather than during render: a frame
+   * counting itself while it renders would set state on the provider from
+   * inside another component's render pass, which React refuses outright. The
+   * effect runs before paint and the browser has only just been handed the
+   * <img>, so nothing is missed by waiting for it.
+   *
+   * The `complete` check is the case that would otherwise hang the bar for
+   * ever: a cached photograph fires its load event before this effect runs, so
+   * it would be counted as outstanding with nothing left to settle it.
+   */
+  const loading = useLoadingActions();
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const settle = () => loading?.settle(poster.src);
+  useEffect(() => {
+    if (!loading) return;
+    loading.register(poster.src);
+    if (imageRef.current?.complete) loading.settle(poster.src);
+    // Only the src matters: the provider keys everything by it.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [poster.src]);
+
   useEffect(() => {
     const element = videoRef.current;
     if (!element || media.kind !== 'video') return;
@@ -103,6 +128,8 @@ export function MediaFrame({
             blurDataURL={poster.blurDataURL}
             priority={priority}
             loading={priority ? undefined : eager ? 'eager' : undefined}
+            onLoad={settle}
+            onError={settle}
             className={fit}
             style={{ objectPosition }}
           />
@@ -129,6 +156,8 @@ export function MediaFrame({
           blurDataURL={media.blurDataURL}
           priority={priority}
           loading={priority ? undefined : eager ? 'eager' : undefined}
+          onLoad={settle}
+          onError={settle}
           className={fit}
           style={{ objectPosition }}
         />
