@@ -24,7 +24,7 @@ rate, and a live audit of every tap target's position and size.
 
 **`npm run verify` is the gate.** It renders every route, every screenful of a
 project (the hero, each gallery frame, the closing words), every stage of
-Craft, every service, both pages of Recognition and the contact form in both
+Craft, every service, all three pages of Studio and the contact form in both
 keyboard modes — at 1080 × 1920, in **both languages** — and fails on:
 
 - a tap target outside 28%–72% of screen height, chrome excepted,

@@ -60,9 +60,9 @@ type Violation = { view: string; locale: Locale; rule: string; detail: string };
  * through the locale layer.
  */
 /**
- * Mirrors RecognitionView: marks are grouped where they repeat, then paged
- * twelve groups at a time. Derived rather than hard-coded so the suite follows
- * the content instead of going stale next to it.
+ * Mirrors components/Recognition.tsx: marks are grouped where they repeat, then
+ * paged twelve groups at a time. Derived rather than hard-coded so the suite
+ * follows the content instead of going stale next to it.
  */
 const RECOGNITION_PAGES = Math.ceil(
   STUDIO.awards.filter((award, i) => i === 0 || STUDIO.awards[i - 1].mark !== award.mark).length /
@@ -219,12 +219,19 @@ async function views(): Promise<View[]> {
   SERVICES.forEach((service, i) =>
     list.push({ name: `services · ${service.id}`, path: '/services', section: i }),
   );
-  list.push({ name: 'studio', path: '/studio' });
   /*
-   * Both pages, because the second is the one that can silently break: it
-   * carries whatever is left after the first twelve, so adding a recognition
-   * changes its length without changing anything visible on page one.
+   * Studio is three pages now, not one: the portrait and the words, then the
+   * recognitions in full, which the studio asked to have at the end of this
+   * screen rather than one tap away. Every page gets measured — the list pages
+   * are the ones that can silently break, since the last carries whatever is
+   * left after the first twelve and adding a recognition changes its length
+   * without changing anything visible on page one.
    */
+  list.push({ name: 'studio', path: '/studio', section: 0 });
+  for (let i = 0; i < RECOGNITION_PAGES; i += 1) {
+    list.push({ name: `studio · recognition ${i + 1}`, path: '/studio', section: i + 1 });
+  }
+  // The same list on its own route, which stays a working deep link.
   for (let i = 0; i < RECOGNITION_PAGES; i += 1) {
     list.push({ name: `recognition · page ${i + 1}`, path: '/recognition', section: i });
   }

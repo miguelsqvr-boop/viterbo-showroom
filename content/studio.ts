@@ -1,4 +1,11 @@
-/** Studio (§8) — one screen, no scroll, 90 words maximum. */
+/**
+ * Studio (§8) — the portrait and 90 words, then the recognitions in full.
+ *
+ * The brief said one screen and no scroll, and it was one screen for as long
+ * as the awards lived on their own route. The studio asked for them at the end
+ * of this screen, so it snap-scrolls into them: three pages, the same
+ * mechanism as Craft.
+ */
 import type { Localized } from './types';
 import { asMedia } from './types';
 import { media } from './generated/media';
@@ -22,12 +29,12 @@ export const STUDIO = {
   /**
    * The studio's recognitions, as published on viterbo-id.com.
    *
-   * `mark` is what the screen shows — the publication or awarding body, which
-   * reads in a second from three metres. `note` is the recognition itself and
-   * is held as data rather than rendered: a mark carries authority, a caption
-   * under every mark reads as a case being argued. The notes are here so the
-   * studio has them in one place, and so a future screen with room for them
-   * does not have to go back to the website.
+   * `mark` is the publication or awarding body, which reads in a second from
+   * three metres; `note` is what it was actually for. Both are rendered now —
+   * the notes were held as data for a while, on the argument that a caption
+   * under every mark reads as a case being argued, and the studio has since
+   * asked for the full list on the screen. It is at the end of Studio, past
+   * the portrait, which is where a visitor who wants the detail will be.
    *
    * Several bodies appear twice — CNN and Condé Nast each recognised two
    * different hotels. Both are kept, and StudioView renders each mark once.

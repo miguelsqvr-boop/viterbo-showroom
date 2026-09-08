@@ -784,3 +784,35 @@ line: measured, its box now ends at 71.3. At 37vh it is out of reach and the
 suite fails the screen. The body moved 35% → 44% and the marks 56% → 65%;
 checked in both languages, since Portuguese sets longer and a collision there
 would not show up in English.
+
+## Recognition moves to the end of Studio — 8 September
+
+The studio sent the full awards list and asked for it at the end of Studio.
+Every one of the twenty-four entries was already in `content/studio.ts` — mark
+and note both — and the notes were already rendered, on the /recognition route,
+one tap inside Studio. What was missing was having them where the studio asked
+for them: at the end of the screen about the practice.
+
+Studio snap-scrolls now. Three pages: the portrait and the ninety words, then
+the recognitions twelve to a page. Same mechanism as Craft and the collection,
+so it behaves the way the rest of the panel already taught, and the first page
+carries the arrow and the word RECOGNITION so a visitor knows the screen
+continues — a snapped page is a clean edge with nothing peeking behind it.
+
+Two things fell out of the change and are worth recording:
+
+**The portrait grew.** It was held to 33vh because the Recognition link sat
+below the text and had to stay above the 72% reach line. With the link gone —
+the list is right there now — nothing on that page is tappable, so nothing has
+to stay in reach, and the picture is 50vh: 768px wide, still the whole 4:5
+frame, nothing cut off. Measured on the panel; the figures line finishes at 80%
+and the full-screen control starts at 92%.
+
+**/recognition still works.** It renders the same pages from the same
+component, `components/Recognition.tsx`, so a deep link — a QR code, a printed
+card, browser history — lands somewhere real, and there is one list rather than
+two that drift apart. Nothing in the UI points at it any more.
+
+The suite follows: it renders `studio` at all three pages now, not one, and
+still renders the standalone route. Five screens measured where there were
+three.

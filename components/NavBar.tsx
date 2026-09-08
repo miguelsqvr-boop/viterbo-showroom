@@ -18,9 +18,9 @@ import { Wordmark } from './Wordmark';
  *
  * Five items and the language toggle, which is the hard ceiling: six needs
  * 1101px of bar in English and 1090px in Portuguese against the 984px there
- * is, measured. Recognition therefore sits one tap inside Studio rather than
- * here — it is a fact about the practice, which is what that screen is for.
- * No hamburger, no dropdowns, no breadcrumbs.
+ * is, measured. Recognition therefore is not here: it is the end of Studio,
+ * two pages down from the portrait — a fact about the practice, on the screen
+ * that is about the practice. No hamburger, no dropdowns, no breadcrumbs.
  */
 export function NavBar() {
   const router = useRouter();
