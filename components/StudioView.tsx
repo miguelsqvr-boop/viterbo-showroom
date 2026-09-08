@@ -26,36 +26,41 @@ export function StudioView() {
   return (
     <div className="relative h-full w-full overflow-hidden">
       {/*
-       * One image. Not a team grid, not a world map.
+       * One image, whole.
        *
        * It starts where the navigation bar ends rather than at the top of the
        * panel. Running it up behind the frosted bar is right for a full-bleed
-       * hero, where the photograph is the screen; here it is a band with a hard
-       * bottom edge, and putting a third of that band behind chrome just makes
-       * the band look badly cropped.
+       * hero, where the photograph is the screen; here it is a plate with a
+       * hard bottom edge, and putting a third of that plate behind chrome just
+       * makes it look badly cropped.
+       *
+       * `contain`, not a cover crop. The source is 1080×1350 — a 4:5 portrait
+       * — and the screen it sits on is 9:16, so no honest crop shows all of
+       * it: at full width the whole frame is 70vh tall and there is no room
+       * left for the words or for a Recognition link a visitor can reach.
+       * Fitted instead, the photograph is 634px tall and 507 wide with ground
+       * either side, and nothing is cut off. That is the studio's own portrait
+       * and the studio asked to see all of it.
+       *
+       * 33vh is the ceiling, not a taste: everything below shifts down with
+       * the plate, and the Recognition link has to stay inside the 72% reach
+       * line (§15). At 33 it lands near 69; at 37 it is out of reach and the
+       * suite fails the screen.
        */}
       <div
         className="absolute inset-x-0 w-full"
-        style={{ top: `${CHROME.barTop + CHROME.barHeight}%`, height: panelVh(24) }}
+        style={{ top: `${CHROME.barTop + CHROME.barHeight}%`, height: panelVh(33) }}
       >
-        {/*
-          * focus 25, not the 50 default: a centred crop of a 24vh band cuts
-          * both their heads off and a top-anchored one fills the band with the
-          * ceiling. 25 puts their faces in the band with air above and below —
-          * measured against 15 and 35 by cropping the source three ways and
-          * looking, because this is a photograph of two people and getting it
-          * wrong is not a layout bug, it is a portrait with a chin cut off.
-          */}
-        <MediaFrame media={STUDIO.image} mode="band" focus={25} priority className="h-full w-full" />
+        <MediaFrame media={STUDIO.image} mode="contain" priority className="h-full w-full" />
       </div>
 
       {/*
-       * Directly under the image band, which now ends at 33%. The old anchor
-       * was 24%, chosen so the figures line cleared the bar at 45% with the
-       * longer of the two languages set in it; with the bar gone from the
-       * middle the text can simply follow the picture.
+       * Directly under the picture, which ends at 42%. The anchor has moved
+       * twice: 24% when the bar still sat in the middle of the screen, 35%
+       * when it went to the top, and 44% now that the portrait is shown whole
+       * rather than cropped to a band.
        */}
-      <div className="absolute inset-x-0 px-14" style={{ top: '35%' }}>
+      <div className="absolute inset-x-0 px-14" style={{ top: '44%' }}>
         <p className="max-w-[900px] text-body text-ink">{s(STUDIO.body)}</p>
         <p className="mt-6 text-body text-ink-muted">{s(STUDIO.figures)}</p>
       </div>
@@ -65,13 +70,14 @@ export function StudioView() {
        * bulleted awards read as insecurity. The notes stay in content/studio.ts
        * for the studio's own reference and are intentionally not rendered.
        */}
-      <div className="absolute inset-x-0 px-14" style={{ top: '56%' }}>
+      <div className="absolute inset-x-0 px-14" style={{ top: '65%' }}>
         {/*
          * The way into the full list, now that Recognition is not in the bar.
          * The heading is the target and the marks below it are not: the marks
          * run past 72% of the panel and anything below that is display-only, so
          * a block-sized target here would break the reach rule rather than bend
-         * it. The heading sits at 56%, well inside.
+         * it. The heading sits at 65%, and its box ends near 69 — inside, with
+         * the margin the picture above it left over.
          */}
         <TapTarget
           label={t('awards')}

@@ -761,3 +761,26 @@ CSV. `npm run verify` checks it on every run and reports `inventory` as a
 violation when it drifts, so it cannot go stale again without the suite saying
 so. Drive filenames survive a cold cache because the script reads back the
 names already recorded in the committed CSV rather than blanking the column.
+
+## The Studio portrait, shown whole — 8 September
+
+Miguel sent a photograph of the Studio screen and asked for the full image. The
+portrait was running as a 24vh band with a cover crop at focus 25, which is a
+crop tuned to keep their faces out of the trim — but a crop all the same: it
+threw away the pendant sculpture above them, the table, and everything below
+the knee.
+
+It is now `contain`, and the whole 1080×1350 frame is on screen. That has a
+cost worth writing down, because the next person to look at this will wonder
+why it is not full width. The source is 4:5 and the panel is 9:16, so there is
+no crop that shows all of it *and* fills the width: at 1080 wide the frame is
+1350px tall, 70vh, and nothing is left for the words or for a Recognition link
+a visitor can reach. Fitted instead, the picture is 507×634 with ground either
+side and the screen keeps its three parts.
+
+33vh is the ceiling and it is arithmetic, not taste. Everything below shifts
+down with the picture, and the Recognition link has to stay above the 72% reach
+line: measured, its box now ends at 71.3. At 37vh it is out of reach and the
+suite fails the screen. The body moved 35% → 44% and the marks 56% → 65%;
+checked in both languages, since Portuguese sets longer and a collision there
+would not show up in English.
