@@ -629,3 +629,24 @@ through the house rather than as the shoot was filed.
   the ceiling, and the gilt vessel of flowers beside the shower. Nothing was
   rejected because there was nothing left to reject. Like Singapore Penthouse,
   this one needs more photography, not a better selection.
+- **Bangkok Estate** — 4 → 10, from thirty-six frames spread across three
+  folders (`1kAd5T9tVwV0e59PpGzgXxuomtc7Hg4GJ`,
+  `1cBmRpV8ZV8IeTuBn8PPxlmH0fs36vn1Y`, `1fevfFWrmaO9hl4shVwMr-6cA46_r81WZ`),
+  five already wired, all 1600px. Added the entrance hall with the painted stair
+  curling through it (18-197964), the double-height room with birds painted up
+  the wall (17-197691), the curved blue sofas under the mezzanine (18-198042),
+  the panelled room with the red sofa under a cluster of lamps (18-198227), a
+  pair of doors inlaid with a broken line (18-197957), and the bath framed by
+  mirrored doors and figured marble (17-197876). The doors earn their place on
+  the text: the narrative says every threshold was drawn, made in the workshops
+  and shipped from the Port of Lisbon, and the panel showed none of them.
+  Not used: 18-197967 (the same hall as 197964 from a weaker side); 17-197677
+  and 17-197785 (the mural room from angles 197691 covers); 17-197884, 17-197900
+  and 18-198212 (dressing rooms of handbags and shoes in vitrines — impressive,
+  but they read as retail); 18-198079 (a DJ console in black lacquer — a
+  memorable object that reads nightclub); 18-198265 (a second door, where one is
+  the point); 18-198253 and 18-198196 (two more bathrooms behind frame 10);
+  15-197193, 15-197198, 16-197238, 16-197263, 16-197275 and 16-197540 (gold-leaf
+  and brass surfaces the hero and frames 01 and 03 already carry); 17-197793,
+  17-197820, 17-197834, 18-197952, 18-198029, 18-198179 and 18-198246 (quiet
+  frames that would dilute a set of ten).
