@@ -843,3 +843,29 @@ since the collection card still uses it.
 
 The suite follows: `studio · map` and `studio · cities` replace `craft · map`
 and `craft · cities`, and Studio is rendered at all five pages.
+
+### Craft comes off the panel entirely — 8 September
+
+An hour after taking Craft out of the navigation bar, the studio asked for the
+section gone altogether, and gave the reason: the card that opened it repeated
+Castilho 203. It did — the card had no photography of its own, so it borrowed
+the first project's hero as its band. A visitor scrolling the collection saw
+the same photograph twice, once as a project and once as a section.
+
+Gone: the route, the view, the five stages, the collaborations list, the card
+that closed the collection, and the strings that named them. The collection
+ends on the last project now, and the scroll counter counts one fewer screen —
+it would otherwise have pointed at a card nobody could reach.
+
+Kept: the cities. They were in `content/craft.ts` and are now
+`content/reach.ts`, feeding the map and the list at the bottom of Studio. That
+array carries coordinates as well as names because both screens read it, which
+is what stops a place being added to the list and quietly missing from the map.
+
+The collaborations went with the section — de Gournay, Nespresso, Star Alliance
+and Pastéis de Belém. All four are still on the panel, in the recognitions, with
+more said about them than the collaborations list managed.
+
+This also closes the longest-standing gap in the project: the craft photography
+the studio owed — workshop bench, sewing machine, warehouse, transit,
+installation. There is nothing left for it to fill.

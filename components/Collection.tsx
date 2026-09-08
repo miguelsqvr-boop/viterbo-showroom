@@ -40,8 +40,14 @@ export function Collection() {
   const { s, t } = useLocale();
 
   const stride = COLLECTION.cardStride;
-  // Projects plus the closing "art of craft" card.
-  const { active, register } = useActiveCard(PROJECTS_IN_ORDER.length + 1);
+  /*
+   * One card per project and nothing after them. The stack used to close with
+   * an "art of craft" card; Craft came off the panel on 8 September at the
+   * studio's request, so the last project is now the last card — which is what
+   * the counter in the cue has to agree with, or it counts a screen nobody can
+   * reach.
+   */
+  const { active, register } = useActiveCard(PROJECTS_IN_ORDER.length);
 
   return (
     <div
@@ -126,48 +132,12 @@ export function Collection() {
         </section>
       ))}
 
-      {/*
-       * The art of craft closes the stack. It is not in the nav — three items
-       * only — but it is the strongest asset the studio has, so it earns the
-       * place a visitor reaches by finishing the list.
-       */}
-      <section className="snap-start-page relative w-full" style={{ height: panelVh(stride) }}>
-        <Mounted className="relative w-full" style={{ height: panelVh(COLLECTION.imageHeight) }}>
-          <MediaFrame
-            media={PROJECTS_IN_ORDER[0].hero}
-            mode="band"
-            className="h-full w-full opacity-70"
-          />
-        </Mounted>
-        <TapTarget
-          full
-          enabled={active === PROJECTS_IN_ORDER.length}
-          label={t('craft')}
-          onTap={() => router.push('/craft')}
-          className="w-full px-14"
-        >
-          <div
-            ref={register(PROJECTS_IN_ORDER.length)}
-            className="flex w-full flex-col justify-center border-b border-hairline"
-            style={{ height: panelVh(COLLECTION.metaHeight) }}
-          >
-            <span className="text-hero">{t('craft')}</span>
-            <div className="mt-3 flex items-baseline justify-between">
-              <span className="text-meta text-ink">Cascais · Lisboa</span>
-              {active === PROJECTS_IN_ORDER.length ? (
-                <span className="text-caption text-ink-faint">{t('viewProject')}</span>
-              ) : null}
-            </div>
-          </div>
-        </TapTarget>
-      </section>
-
       {/* Tail spacer: just enough for the last card to reach its snap position. */}
       <div style={{ height: panelVh(Math.max(0, 100 - stride - COLLECTION.cardTop)) }} aria-hidden />
 
       <ScrollCue
         active={active}
-        count={PROJECTS_IN_ORDER.length + 1}
+        count={PROJECTS_IN_ORDER.length}
         label={t('scrollHint')}
       />
     </div>

@@ -24,7 +24,7 @@ rate, and a live audit of every tap target's position and size.
 
 **`npm run verify` is the gate.** It renders every route, every screenful of a
 project (the hero, each gallery frame, the closing words), every stage of
-Craft, every service, all five pages of Studio and the contact form in both
+every service, all five pages of Studio and the contact form in both
 keyboard modes — at 1080 × 1920, in **both languages** — and fails on:
 
 - a tap target outside 28%–72% of screen height, chrome excepted,
@@ -118,8 +118,9 @@ and measures it, but it cannot see a photograph, so a rotated frame or a
 repeated one passes every check. It tiles a project's whole frame stack into
 one sheet to be looked at.
 
-There is no placeholder generator. Craft has no photography and deliberately
-renders type on the ground rather than a plate that says `PLACEHOLDER`.
+There is no placeholder generator. A section without photography sets type on
+the ground rather than standing a plate that says `PLACEHOLDER` — `media` is
+optional on `Service` in `content/types.ts` for exactly that reason.
 
 **Video** is supported in the content model (`Media` union) but no clips ship
 yet. The rules are strict: silent with no audio track at all, 8–20s seamless
@@ -200,7 +201,7 @@ Serif the whole time.
 
 Two consequences of a light ground worth knowing:
 
-- **Type over photography stays light.** Full-bleed heroes, the Craft stages and
+- **Type over photography stays light.** Full-bleed heroes, the services and
   the attract loop set their type in `--color-on-media` over `.media-scrim`. A
   light-ground app still puts light type on a photograph, because it is the only
   thing that reads over an image whose tone nobody controls.
@@ -281,24 +282,15 @@ size on an IR panel — so the fields are display, and one forward button moves
 name → email → send. With two fields in an obvious order this costs nothing and
 buys back 240px.
 
-**Craft is reached from the end of the collection,** not from the nav — the
-studio took it out of the bar on 8 September. It closes the stack instead, the
-reward for scrolling to the bottom. The map and the list of cities that used to
-end it are now the bottom of Studio, where the studio asked for them; Craft
-keeps its five stages and the collaborations.
+**Craft is gone.** The studio took it off the panel on 8 September — first out
+of the navigation bar, then altogether, because the card that opened it repeated
+Castilho 203's photograph and the section had no photography of its own. The map
+and the list of cities it closed with are now the bottom of Studio; the cities
+live in `content/reach.ts`. The collection ends on the last project.
 
 ## 10. Open — needs the studio or the panel
 
-1. **Craft has no photography.** Its five stages — the Cascais atelier, the
-   workshops, the 2,000 m² Port of Lisbon warehouse, crates in transit, an
-   installation on site — do not exist anywhere in the archive, and searching
-   the wider Drive turns up only carpentry drawings and material from 2014–17.
-   This needs a shoot, not a search. Until then each stage renders as
-   typography on the ground rather than a placeholder plate; adding `media` to
-   a stage in `content/craft.ts` restores the full-bleed treatment with no
-   other change. It is the studio's strongest argument and the one section the
-   screen cannot currently make.
-2. **Nearly every frame is still the preview set.** The Drive connector this was
+1. **Nearly every frame is still the preview set.** The Drive connector this was
    built through refuses files somewhere between 6.2 and 6.6 MB, and most
    masters are 8–29 MB. A sweep of every copy of every frame found a larger one
    under that ceiling where it existed, and those are in `media-src/` — but
@@ -313,24 +305,24 @@ keeps its five stages and the collaborations.
    changes the layout rather than only the sharpness. `npm run media:audit`
    regenerates `docs/frames-to-re-export.md` and its CSV from `media-src/`;
    `npm run verify` fails with an `inventory` violation if they drift.
-3. **Copy is draft.** Narratives were written from the photography and are
+2. **Copy is draft.** Narratives were written from the photography and are
    deliberately unspecific where the archive does not support a claim. `area`
    and `scope` are absent on almost every project on purpose. The words have
    not been through the studio.
-4. **One project name is unconfirmed.** The folder says "Lisbon Palace" but
+3. **One project name is unconfirmed.** The folder says "Lisbon Palace" but
    every file is named `ViterboIvens` and the shoot is guest rooms. See
    `docs/image-selection.md`.
-5. **The palette is matched, not sampled.** The accent gold is taken from the
+4. **The palette is matched, not sampled.** The accent gold is taken from the
    studio's own logo, but viterbointeriordesign.com is unreachable from the
    build environment, so ground and ink were matched to a reference. If the
    studio licenses its own face, drop the files in `public/fonts/`, add the
    @font-face rules, and change `typeface.stack` in `config/brand.ts`.
-6. **Phase 0 confirms rather than decides.** The app is built to the brief's
+5. **Phase 0 confirms rather than decides.** The app is built to the brief's
    figures and `npm run verify` holds it to them. `/panel-diagnostics.html`
    still exists to check them against the real panel — frame rate and the
    AVIF/WebP choice in particular can only be answered by the SoC — and any
    figure it contradicts is a one-line edit in `config/panel.ts` or
    `config/layout.ts` followed by one command.
-7. **The plinth.** The unit ships as a black signage totem on visible castors.
+6. **The plinth.** The unit ships as a black signage totem on visible castors.
    It does not affect this code, and it is cheaper to plan before the screen is
    standing next to the cabinet of curiosities.

@@ -9,12 +9,6 @@ import type { Locale, Localized } from './types';
 export const UI = {
   touchToExplore: { en: 'Touch to explore', pt: 'Toque para explorar' },
   projects: { en: 'Projects', pt: 'Projetos' },
-  craft: { en: 'The art of craft', pt: 'A arte do ofício' },
-  /*
-   * The nav label is the short form. "The art of craft" is the studio's own
-   * name for the section and belongs on the card that opens it, but at 239px
-   * in Portuguese it will not sit in a five-item bar.
-   */
   studio: { en: 'Studio', pt: 'Estúdio' },
   services: { en: 'Services', pt: 'Serviços' },
   contact: { en: 'Contact', pt: 'Contacto' },
@@ -36,7 +30,6 @@ export const UI = {
   architect: { en: 'Architect', pt: 'Arquitetura' },
   locationLabel: { en: 'Location', pt: 'Localização' },
   where: { en: 'Where we have worked', pt: 'Onde trabalhámos' },
-  collaborations: { en: 'Collaborations', pt: 'Colaborações' },
   /*
    * The collection's scroll cue. "Deslize" rather than a literal translation of
    * scroll: on a touch panel the gesture is a swipe, and that is the word for

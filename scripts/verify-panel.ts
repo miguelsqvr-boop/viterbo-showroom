@@ -35,7 +35,7 @@ import { COLLECTION } from '../config/layout';
 import { LOCALES, canFullBleed, mediaPoster, type Locale, type Localized } from '../content/types';
 import { inventoryDrift } from './audit-frames';
 import { PROJECTS_IN_ORDER } from '../content/projects';
-import { CITIES, COLLABORATIONS, CRAFT_STAGES } from '../content/craft';
+import { CITIES } from '../content/reach';
 import { SERVICES } from '../content/services';
 import { STUDIO } from '../content/studio';
 import { CONTACT } from '../content/contact';
@@ -86,10 +86,6 @@ function identicalByDesign(): Set<string> {
     consider(service.title);
     consider(service.line);
   });
-  CRAFT_STAGES.forEach((stage) => {
-    consider(stage.title);
-    consider(stage.line);
-  });
   consider(STUDIO.body);
   consider(STUDIO.figures);
   STUDIO.awards.forEach((award) => {
@@ -97,10 +93,6 @@ function identicalByDesign(): Set<string> {
     consider(award.note);
   });
   CITIES.forEach((city) => allowed.add(city.name));
-  COLLABORATIONS.forEach((collaboration) => {
-    allowed.add(collaboration.name);
-    consider(collaboration.note);
-  });
   CONTACT.address.forEach((line) => allowed.add(line));
   [CONTACT.phone, CONTACT.email, BRAND.wordmark, 'EN', 'PT'].forEach((value) =>
     allowed.add(value),
@@ -185,9 +177,9 @@ async function views(): Promise<View[]> {
     { name: 'collection · first card', path: '/', cardIndex: 0, liveTargets: 1 },
     { name: 'collection · mid list', path: '/', cardIndex: 5, liveTargets: 1 },
     {
-      name: 'collection · craft card',
+      name: 'collection · last card',
       path: '/',
-      cardIndex: PROJECTS_IN_ORDER.length,
+      cardIndex: PROJECTS_IN_ORDER.length - 1,
       liveTargets: 1,
     },
   ];
@@ -210,10 +202,6 @@ async function views(): Promise<View[]> {
       list.push({ name: `${label} · frame ${i + 1}`, path: `/projects/${slug}`, slide: i + 1 }),
     );
   }
-  CRAFT_STAGES.forEach((stage, i) =>
-    list.push({ name: `craft · ${stage.id}`, path: '/craft', section: i }),
-  );
-  list.push({ name: 'craft · collaborations', path: '/craft', section: CRAFT_STAGES.length });
   SERVICES.forEach((service, i) =>
     list.push({ name: `services · ${service.id}`, path: '/services', section: i }),
   );

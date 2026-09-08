@@ -89,32 +89,10 @@ export type Project = {
 };
 
 /**
- * A single stage of the Craft journey (§8): one line of text, one image.
- *
- * `media` is optional, and that is deliberate. The studio's archive currently
- * holds no photography of the atelier, the workshops, the Port of Lisbon
- * warehouse, the crates or an installation — the five things this section
- * exists to show. A stage without its image renders as typography on the
- * ground rather than as a stand-in picture: the screen would rather say less
- * than show a placeholder, and the cities list two screens later proves the
- * type can carry a screen on its own.
- *
- * Add `media` and the stage becomes full-bleed with a scrim. Nothing else
- * needs to change.
- */
-export type CraftStage = {
-  id: string;
-  index: number;
-  title: Localized;
-  line: Localized;
-  media?: Media;
-};
-
-/**
- * A service (§8). Same shape and same rule as CraftStage: `media` is optional,
- * and a service without it is set as type on the ground rather than standing a
- * placeholder where a photograph belongs. Add `media` and it goes full-bleed
- * behind a scrim, with nothing else to change.
+ * A service (§8). `media` is optional, and a service without it is set as type
+ * on the ground rather than standing a placeholder where a photograph belongs.
+ * Add `media` and it goes full-bleed behind a scrim, with nothing else to
+ * change.
  */
 export type Service = {
   id: string;
@@ -123,8 +101,6 @@ export type Service = {
   line: Localized;
   media?: Media;
 };
-
-export type Collaboration = { name: string; note: Localized };
 
 /** An attract-loop frame carries a place name and nothing else (§8). */
 export type AttractFrame = {

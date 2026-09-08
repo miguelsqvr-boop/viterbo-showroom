@@ -1,6 +1,6 @@
 'use client';
 
-import { CITIES } from '@/content/craft';
+import { CITIES } from '@/content/reach';
 import { useLocale } from '@/lib/locale';
 import { WorldMap } from './WorldMap';
 

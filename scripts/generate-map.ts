@@ -8,7 +8,7 @@
  *
  *   npm run map:generate
  *
- * Re-run it after adding a city to CITIES in content/craft.ts — the points are
+ * Re-run it after adding a city to CITIES in content/reach.ts — the points are
  * projected from the same array the list is set from, so the two screens can
  * never disagree about where the studio has worked.
  */
@@ -16,7 +16,7 @@ import { readFileSync, writeFileSync } from 'node:fs';
 import path from 'node:path';
 import * as topojson from 'topojson-client';
 import { geoEquirectangular, geoPath } from 'd3-geo';
-import { CITIES } from '../content/craft';
+import { CITIES } from '../content/reach';
 
 /** The drawing's own coordinate space. Scaled to the panel by the component. */
 const WIDTH = 1080;
