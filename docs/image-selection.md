@@ -650,3 +650,19 @@ through the house rather than as the shoot was filed.
   and brass surfaces the hero and frames 01 and 03 already carry); 17-197793,
   17-197820, 17-197834, 18-197952, 18-198029, 18-198179 and 18-198246 (quiet
   frames that would dilute a set of ten).
+- **Hotel Albatroz** — 4 → 10, and that is the whole shoot: the folder holds
+  eleven frames, five were wired, and all six that remained went in. The
+  reception desk below a wall of faceted blue tile (1909-002), the point where
+  that tile meets fluted plaster on a line of brass (1909-004), the stair seen
+  from directly above with its navy runner on tiled stone (1909-034), the door
+  to the bar with its curtains held back by tasselled rope (1909-037), a
+  painted settee between two blue lantern sconces (1911-013), and a bathroom in
+  teal tile over a chequerboard floor (1911-007). Nothing was rejected — there
+  was nothing left to reject, and nothing in the six is filler: this is a
+  hotel, so corridors, thresholds and a staircase are the building, not padding
+  between rooms. Ordered as an arrival: in past reception, up the stair, into
+  the bar, the restaurant, a salon, a bedroom and its bathroom.
+  Worth knowing: the signature match ran warm on this shoot (2.3-4.5 against
+  the wired frames rather than 0.00) because five of the six were re-exported
+  at slightly different crops. That is inside the 4.5/255 band established for
+  a legitimate same-image difference; a non-match still reads about 56.
