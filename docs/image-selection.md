@@ -601,3 +601,22 @@ through the house rather than as the shoot was filed.
   entrance with its palm mirror and the green dressing room especially — held
   back only because ten is the count and the six above hit rooms none of them
   repeat).
+- **Cascais Estate** — 4 → 10, from the fifty-seven frame José Manuel Ferrão
+  shoot, all 1600px like the six already wired. The shoot covers the whole
+  house — entrance, living rooms, a dining room behind an abstract mural, the
+  kitchen, the laundry, an office — but this project is written as *a master
+  floor*, so the six additions were taken from that floor only rather than
+  broadening the project and leaving the narrative describing something else.
+  Added the blue corridor with its striped runner (025), the bouclé chair
+  against a blue wall of drawings (026), the cloakroom papered in blue foliage
+  (023) and its rust-marble basin (024), the second bedroom under gold-leafed
+  panels (028), and the gym interior with the weights racked (042). Ordered as
+  a walk down the corridor and through to the gym at the far end.
+  Not used, though good: 001-021 and 033-040 (the entrance, living rooms,
+  dining room, kitchen, laundry and office — a different project from the one
+  written, see above); 022 (the cloakroom from further out, weaker than 023);
+  046 and 050 (the hero's own bedroom again); 027 (the gold-panelled bedroom
+  from closer in, without the room 028 shows); 031 and 032 (two more bathrooms,
+  where frames 03, 07 and 08 already make three); 029 and 030 (dark wardrobe
+  and dressing corridor, quiet); 041 and 044 (the gym from angles 01 and 042
+  cover); 047 (a hall console).

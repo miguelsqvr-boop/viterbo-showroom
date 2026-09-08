@@ -286,10 +286,16 @@ export const PROJECTS: Project[] = [
     },
     hero: img('cascais-estate/hero', 'A bedroom below a brass line drawing that spans the wall', 'Um quarto sob um desenho em latão que atravessa a parede'),
     gallery: [
-      img('cascais-estate/01', 'A gym behind dark screens, hung with a blue work', 'Um ginásio atrás de biombos escuros, com uma obra azul'),
+      img('cascais-estate/05', 'The corridor in blue, a striped runner down its length', 'O corredor em azul, com um passadeira listrada a toda a extensão'),
+      img('cascais-estate/06', 'A bouclé chair against a blue wall hung with drawings', 'Uma poltrona em bouclé contra uma parede azul com desenhos'),
+      img('cascais-estate/07', 'A cloakroom papered in blue foliage', 'Um lavabo forrado a folhagem azul'),
+      img('cascais-estate/08', 'Its basin cut from a single block of rust marble', 'O lavatório talhado num único bloco de mármore ferrugem'),
+      img('cascais-estate/09', 'A second bedroom below panels leafed in gold', 'Um segundo quarto sob painéis folheados a ouro'),
       img('cascais-estate/02', 'The bed in teal and sand, seen from the seating end', 'A cama em azul-petróleo e areia, vista do lado da sala'),
-      img('cascais-estate/03', 'A marble bathroom behind a smoked glass wall', 'Uma casa de banho em mármore atrás de uma parede de vidro fumado'),
       img('cascais-estate/04', 'A dressing table lit from behind the mirror', 'Um toucador iluminado por trás do espelho'),
+      img('cascais-estate/03', 'A marble bathroom behind a smoked glass wall', 'Uma casa de banho em mármore atrás de uma parede de vidro fumado'),
+      img('cascais-estate/01', 'A gym behind dark screens, hung with a blue work', 'Um ginásio atrás de biombos escuros, com uma obra azul'),
+      img('cascais-estate/10', 'Inside the gym, weights racked along a dark wall', 'Dentro do ginásio, pesos alinhados ao longo de uma parede escura'),
     ],
   },
   {
