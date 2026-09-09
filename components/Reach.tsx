@@ -1,6 +1,7 @@
 'use client';
 
 import { CITIES } from '@/content/reach';
+import { panelVh } from '@/lib/panel';
 import { useLocale } from '@/lib/locale';
 import { WorldMap } from './WorldMap';
 
@@ -44,27 +45,58 @@ export function ReachSections() {
       </section>
 
       {/*
-       * Non-interactive, so it may span the full height of the panel including
-       * the dead zones. Ordered as a sweep outward from home: never
-       * alphabetically, never grouped by country.
+       * The names, alphabetical, in two columns.
+       *
+       * It was one column of nineteen lines swept outward from Cascais, and
+       * the sweep was the argument: the European corridor, the Asia practice
+       * and the lusophone world emerged without a label on them. The studio
+       * looked at it on the panel and asked for something better looking —
+       * alphabetical, in columns — so that is what it is. What the order used
+       * to say, the map on the page before now says better anyway, and it says
+       * it in one glance rather than nineteen lines.
+       *
+       * Down the first column, then the second: `grid-flow-col` over ten fixed
+       * rows, which is what a reader expects of a list in columns and what
+       * `columns-2` would also give. Ten rows because nineteen names split
+       * ten and nine, and the odd one belongs at the bottom of the first
+       * column rather than the top of the second.
+       *
+       * Non-interactive, so it may use the full height of the panel including
+       * the dead zones.
        */}
       <section className="snap-start-page relative h-full w-full">
-        {/*
-         * No heading, tight leading, one column, read as a sweep.
-         *
-         * Set at the section size rather than the body size. It was body size
-         * because the bar at 45% cut three cities out of the middle of the
-         * sweep at anything larger — the one thing this list cannot survive.
-         * With the bar at the top the whole panel is free, and a list nobody
-         * can read from three metres was not carrying the studio's reach.
-         * Nineteen lines at 1.2 leading end at 78% of the panel.
-         */}
-        <ul className="absolute inset-x-0 px-14" style={{ top: '12%' }}>
-          {CITIES.map((city) => (
-            <li key={city.name} className="text-section leading-[1.2] text-ink">
-              {city.name}
-            </li>
-          ))}
+        <p
+          className="absolute inset-x-0 px-14 text-caption uppercase tracking-[0.2em] text-ink-faint"
+          style={{ top: '12%' }}
+        >
+          {t('where')}
+        </p>
+
+        <ul
+          className="absolute inset-x-0 grid grid-flow-col px-14"
+          style={{
+            top: panelVh(20),
+            height: panelVh(58),
+            gridTemplateRows: 'repeat(10, minmax(0, 1fr))',
+          }}
+        >
+          {[...CITIES]
+            .sort((a, b) => a.name.localeCompare(b.name, 'pt'))
+            .map((city) => (
+              <li key={city.name} className="flex items-center gap-6">
+                {/*
+                 * The same gold as the points on the map, at the same size, so
+                 * the two pages read as one thought: the shape, then the names
+                 * of the marks that made it.
+                 */}
+                <span
+                  aria-hidden
+                  className="inline-block shrink-0 rounded-full bg-accent"
+                  style={{ width: 14, height: 14 }}
+                />
+                <span className="text-section leading-[1.1] text-ink">{city.name}</span>
+              </li>
+            ))}
         </ul>
       </section>
     </>

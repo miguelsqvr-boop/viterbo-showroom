@@ -976,3 +976,18 @@ to the left edge — the same treatment as the back control on a project, and fo
 the same reason: on a full-bleed hero the content starts under the bar, so the
 label lands straight on someone's living room. Faint ink there is not type, it
 is a smudge. Frosted, it reads over any tone.
+
+### The cities, alphabetical and in two columns — 9 September
+
+The studio looked at the list on the panel and asked for something better
+looking: alphabetical, in columns. It was nineteen names in one column swept
+outward from Cascais, and the sweep was doing real work — the European
+corridor, the Asia practice and the lusophone world emerged from the order
+without a label on them.
+
+That argument is weaker than it sounds now, because the map is on the page
+before it and says the same thing in one glance. So the list is alphabetical,
+in two columns, down the first then the second, ten names and nine. Each name
+carries a gold mark the size and colour of the points on the map, which is what
+ties the two pages together: the shape, then the names of the marks that made
+it.
