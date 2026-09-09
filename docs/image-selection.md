@@ -1080,3 +1080,67 @@ file is not a compromise, it is the right size.
 `content/specialties.ts` already accepts `media` on each entry, and Sequence
 chooses full-bleed, band or type-on-ground from whatever file exists. When the
 eight land, wiring them is one line apiece and no other edit.
+
+## Specialties, photographed from the panel's own archive
+
+Miguel settled it: use what is already here. So each of the eight now carries
+one frame, and the eight come from eight different projects — Pastéis de Belém,
+Bangkok Estate, Tuscany Estate, Estoril Estate, Birre Villa, Castilho 203,
+Cascais Estate and Porto Villa — so no project speaks twice.
+
+| Specialty | Frame |
+| --- | --- |
+| Historic Renovations | `pasteis-de-belem/02` — vaulted oak arcade, azulejo, checkerboard |
+| In-House Joinery and Furniture | `bangkok-estate/02` — red lacquer cabinet on a painted blossom wall |
+| Kitchen Design | `tuscany-estate/08` — hand-painted kitchen, brick vault, long island |
+| Bathroom Design | `estoril-estate/10` — deep blue lacquer, convex mirror, dark marble |
+| Closets | `birre-villa/01` — open oak wardrobe carcasses around a glass-topped island |
+| Spa Design | `castilho-203/03` — travertine indoor pool under three curtained bays |
+| Gym Design | `cascais-estate/01` — black lacquer gym, wall bars, mirrored wall |
+| Office Design | `porto-villa/08` — study behind a steel-framed glass wall |
+
+### How they were chosen, and what that threw out
+
+All 169 gallery frames were rendered as nine labelled contact sheets and looked
+at, then every candidate was rendered again at 1080×576 — the crop the screen
+actually shows — because a filename does not tell you whether a photograph
+survives a band.
+
+Three rules, each of which rejected something good:
+
+**No heroes, no attract frames.** Those are the pictures a visitor meets on the
+collection and in the idle loop; reusing one is exactly the repetition the
+studio objected to when the Craft card borrowed Castilho 203's hero. All eight
+are gallery frames, reached only by opening that project and scrolling.
+
+**No photograph that is already somewhere else.** The best bathroom on the
+panel is `cascais-estate/08`, a powder room in blue painted foliage — and it is
+byte-identical to the picture on Interior Design, one section away. An md5 pass
+over all 205 processed frames caught it; reading the two entries would not
+have, because they are declared under different names. `estoril-estate/10` took
+the slot. This is the second time a hash pass has caught a duplicate that
+nothing else would: the first was Pastéis de Belém 01 and 07.
+
+**Landscape, because none of these full-bleeds.** `canFullBleed` needs portrait
+and 2160px of width; the widest of the eight is 2048. So every one renders as
+the same 30% band the Services take, and that band is nearly two to one — a
+portrait frame cropped into it keeps a horizontal slice and loses the room. The
+carved timber door at `birre-house/09` and the pink lacquer dressing room at
+`estoril-estate/04` are both better photographs than what replaced them, and
+both fall apart in the crop.
+
+Closets is the one place the rule bent. `birre-villa/01` is portrait, but it is
+the only frame on the panel that shows a wardrobe as joinery rather than as the
+corner of a bedroom, and its band crop holds both the shelving and the island.
+It was rendered at band size and looked at before it was wired.
+
+### What this costs
+
+A visitor who opens Porto Villa and scrolls to the eighth frame will meet the
+study again on Specialties. That is a real cost and it is smaller than the one
+Miguel rejected: these are eight photographs a visitor has to go looking for,
+not eight covers. If the studio ever sends the website's own eight, swapping
+them in is one line each and no other edit.
+
+All eight screens were rendered at panel size and looked at. `npm run verify`
+ends on the single expected `CONTACT.verified` violation.
