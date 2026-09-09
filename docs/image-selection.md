@@ -1030,3 +1030,53 @@ Portuguese. Measured, not assumed: the item padding went from px-7 to px-5 and
 the bar's own from px-12 to px-10, which brings the toggle's right edge to
 1040px in both languages. The tap targets did not shrink — TapTarget holds
 every one to the 120px minimum regardless of how little padding it is given.
+
+## Why Specialties still carries no photographs
+
+Miguel asked for the studio page's own images. They are not reachable from this
+machine and they are not in the Drive. Both halves of that were established, not
+assumed.
+
+The site is blocked at the network edge, not by a bad URL. `WebFetch` returns
+`EGRESS_BLOCKED` for viterbointeriordesign.com and curl returns
+`CONNECT tunnel failed, response 403`. It is not specific to the studio's domain:
+web.archive.org and www.google.com answer the same way, so there is no cached
+copy, no mirror and no search route either. Nothing on the open web can be
+fetched from here.
+
+That left the Drive, which was searched five ways and does not hold them:
+
+- **New Website 2026 / Images** — seven files: portraits of Miguel and Gracinha,
+  one kitchen render, three José Manuel Ferrão frames and Upholstery.JPG.
+- **01 — Indigocraft Website / site** — a complete site export, but of
+  indigo-crafts.com, a different brand. Its categories are Wardrobes, Libraries,
+  Panelling, Doors, Kitchens, Bathrooms, Curtains, Metalworks, Decorative
+  painting, Upholstery — adjacent to the eight specialties but not them, and its
+  assets are web-optimised at 165–370 KB, well under the 2160px the panel wants.
+- **7 - Viterbo Book 2026** — HTML drafts, no image library of its own.
+- **05 Project Images** — the archive the panel already draws on. None of the
+  eight appear in the 204 frames, which were inspected frame by frame as contact
+  sheets during the rotation check.
+- **Filename searches** for closet, joinery, gym, spa, specialties and
+  especialidades — only MEP engineering drawings, which is what ESPECIALIDADES
+  means in Portuguese construction.
+
+So the eight photographs — the azulejo staircase, the timber joinery island, the
+fish-splashback kitchen, the marble bathroom, the handbag vitrines, the gilded
+pool, the dark gym, the timber office — come from projects outside this archive.
+They have to come from Miguel.
+
+### A second thing the same search turned up
+
+Every image Miguel hand-picked into `05 Project Images / Showroom presentation`
+on 7 September is too large to pull through the Drive connector: Upholstery.JPG
+at 11.8 MB and the three JoseManuelFerrão2022 frames at 10.7, 12.2 and 13.7 MB,
+against a hard limit of 10 MB and a practical one nearer 6. This is the same
+wall that has held Upholstery.JPG since the beginning; it now affects four
+files, not one. A re-export at 2160px on the long edge and quality 85 lands
+around 2–4 MB, and 2160px is exactly the panel's native width — so the smaller
+file is not a compromise, it is the right size.
+
+`content/specialties.ts` already accepts `media` on each entry, and Sequence
+chooses full-bleed, band or type-on-ground from whatever file exists. When the
+eight land, wiring them is one line apiece and no other edit.
