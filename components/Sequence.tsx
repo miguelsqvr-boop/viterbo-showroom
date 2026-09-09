@@ -40,6 +40,23 @@ function isDrawing(service: Service): boolean {
 }
 
 /**
+ * How tall a screen is, in panel heights.
+ *
+ * Not the whole panel, so the next photograph shows below the fold. Miguel
+ * said the same thing about a project screen on 8 September — that it was not
+ * obvious you could scroll — and the answer there was HERO_HEIGHT at 88. This
+ * needs to be lower than 88 for the same peek, because a project's hero starts
+ * at the top of its section and a band here starts a bar-height down: the next
+ * band lands at SECTION_HEIGHT * 1.09, so 80 puts it at 87% and leaves 13% of
+ * the panel — about 250px — showing.
+ *
+ * Everything on the screen is positioned in PANEL units below rather than in
+ * section percentages, for the reason the hero learned the hard way: a plain
+ * "44%" inside a section that is no longer the full panel means 44% of 80.
+ */
+const SECTION_HEIGHT = 80;
+
+/**
  * How tall the band is, in panel heights.
  *
  * A photograph gets the 30% ProjectView gives a landscape hero. A drawing gets
@@ -74,7 +91,11 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
       className="snap-y-page no-scrollbar h-full w-full overflow-y-auto"
     >
       {items.map((service, i) => (
-        <section key={service.id} className="snap-start-page relative h-full w-full">
+        <section
+          key={service.id}
+          className="snap-start-page relative w-full"
+          style={{ height: panelVh(SECTION_HEIGHT) }}
+        >
           {/*
            * Three states, and the screen picks between them from the file it
            * actually has rather than from what anyone hoped it would have.
@@ -105,7 +126,7 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
               className="absolute inset-x-0 w-full"
               rootMargin="100% 0px"
               style={{
-                top: `${CHROME.barTop + CHROME.barHeight}%`,
+                top: panelVh(CHROME.barTop + CHROME.barHeight),
                 height: panelVh(bandHeight(service)),
               }}
             >
@@ -133,7 +154,7 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
            * there; with the chrome pinned to the top the copy has the whole
            * panel below it and goes back to the size it should have been.
            */}
-          <div className="absolute inset-x-0 px-14" style={{ top: `${textTop(service)}%` }}>
+          <div className="absolute inset-x-0 px-14" style={{ top: panelVh(textTop(service)) }}>
             {/*
              * The section label rides with the type rather than sitting at a
              * fixed 12%, which is now inside the image band: set in ink over a
@@ -176,6 +197,18 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
 
         </section>
       ))}
+
+      {/*
+       * The tail the shortened screens need, and the suite found it: at 80%
+       * each, eight screens are 640% of the panel and a 100% viewport can only
+       * scroll to 540, so the eighth screen — which starts at 560 — could
+       * never reach the top. The seventh stopped short with its sentence under
+       * the navigation bar, reported as "occluded by chrome" on two views in
+       * both languages. This makes up the difference so the last screen snaps
+       * like every other one; it is the only screen with nothing to peek
+       * below it, which is correct, because there is nothing after it.
+       */}
+      <div aria-hidden style={{ height: panelVh(100 - SECTION_HEIGHT) }} />
     </div>
   );
 }

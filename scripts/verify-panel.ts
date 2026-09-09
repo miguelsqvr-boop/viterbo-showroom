@@ -584,11 +584,29 @@ async function run(
         ({ section, cardIndex, stride, pad }) => {
           const root = document.querySelector('[data-scroll-root]');
           if (!root) return;
+          if (cardIndex !== undefined) {
+            root.scrollTo({
+              top: (cardIndex * stride * window.innerHeight) / 100,
+              behavior: 'instant' as ScrollBehavior,
+            });
+            return;
+          }
+          /*
+           * Scroll to the section itself rather than to section * viewport.
+           * Those were the same number while every snap page was a full panel
+           * tall, and stopped being on 9 September: a Sequence screen is 80%
+           * so the next photograph shows below the fold, and multiplying by
+           * the viewport overshot into the following screen. The suite then
+           * reported the *previous* screen's sentence sitting under the
+           * navigation bar — a real occlusion, at a scroll position the app
+           * never actually rests at. Measuring the element works whatever any
+           * screen's height is, which is what this should have done first.
+           */
+          const target = root.querySelectorAll(':scope > section')[section ?? 0];
+          if (!target) return;
           const top =
-            cardIndex !== undefined
-              ? (cardIndex * stride * window.innerHeight) / 100
-              : (section ?? 0) * window.innerHeight;
-          root.scrollTo({ top: top + (cardIndex !== undefined ? 0 : 0) * pad, behavior: 'instant' as ScrollBehavior });
+            root.scrollTop + (target.getBoundingClientRect().top - root.getBoundingClientRect().top);
+          root.scrollTo({ top, behavior: 'instant' as ScrollBehavior });
         },
         {
           section: view.section,

@@ -1144,3 +1144,75 @@ them in is one line each and no other edit.
 
 All eight screens were rendered at panel size and looked at. `npm run verify`
 ends on the single expected `CONTACT.verified` violation.
+
+## The bar, and making the sequence obviously scrollable
+
+Three things Miguel asked for on 9 September.
+
+### The next photograph now shows below the fold
+
+He said the Specialties images should be close enough together that a visitor
+knows to scroll. This is the same complaint he made about a project screen on
+8 September, and it gets the same answer: the screen is no longer the whole
+panel. `SECTION_HEIGHT` is 80, so the next band lands at 87% and about 250px of
+the following photograph is visible under the current one.
+
+80 rather than the project hero's 88, because the two do not start in the same
+place: a hero begins at the top of its section, a band begins a bar-height
+down, so the next band lands at `SECTION_HEIGHT × 1.09` and 88 would have left
+a 4% sliver. Everything on the screen moved from section percentages to panel
+units at the same time — the trap the hero already fell into, where a plain
+"44%" silently becomes 44% of 80.
+
+Services shares the component, so Services got this too. That is deliberate:
+`Sequence` exists because the two are meant to read as one family, and a
+visitor who learns the gesture on one should not have to relearn it.
+
+**Two failures the suite caught, both real.** First, eight screens at 80% are
+640% of the panel and a 100% viewport only scrolls to 540, so the eighth screen
+could never reach the top and the seventh rested with its sentence under the
+navigation bar. A tail after the last section makes up the difference.
+
+Second — and this one was the check being wrong rather than the app — the suite
+scrolled to a screen with `section × window.innerHeight`. That was the same
+number as the section's own top for as long as every snap page was a full panel
+tall, and stopped being true here. It now measures the section element, which
+holds whatever any screen's height is.
+
+Worth writing down: `npm run verify` spawns `next start`, so it audits `.next`,
+not the working tree. Two of the runs above were reading a build from before
+the edit and reporting a fault that was already fixed. Build first.
+
+### The bar carries the studio's logo
+
+`BRAND.logo` had pointed at `public/brand/viterbo_logo_charcoal.png` since the
+brand file was written, and nothing rendered it — the mark was the word
+"Viterbo" set in Cormorant. It is the real artwork now.
+
+It is the wordmark line of that logo, not the whole lockup, and that is
+arithmetic rather than taste. The full mark is three stacked lines: GRACINHA
+VITERBO at 116px of a 736px file, VITERBO at 340, and INTERIOR DESIGN |
+INTERIOR ARCHITECTURE at 80. A bar 173px tall fits the lockup at about 120px,
+which sets those two lines at ten and seven pixels — under half the 24px floor
+this panel holds every other piece of type to. `viterbo_wordmark_charcoal.png`
+is rows 210–566 of the same file, cropped and not redrawn.
+
+### The menu is 32px
+
+`text-body`, up from `text-meta` at 28 — the next step on the scale rather than
+a number invented between two of them. Paying for it took the item padding from
+px-5 to px-2, the gap from 8px to 4px and the bar's own padding from 40px to
+24px, and the mark sits at 26px rather than 30.
+
+Every one of those numbers came off a measurement. In Portuguese the bar
+carries "Especialidades" at 196px, and mark plus items plus the language toggle
+plus padding came to 1078 of the panel's 1080 — the mark finished one pixel
+before "Projetos" began. It now ends 16px clear in Portuguese and 47px in
+English, with the right edge at 1056.
+
+The measurement also caught something worse than an overflow. The mark is
+6.742 wide for every 1 tall; in the Portuguese bar it was rendering 147×26,
+which is 5.65 — flexbox held the height and took the width, narrowing the
+letterforms. `shrink-0` fixes it, and nothing but measuring the rendered box
+would have found it: a squashed logo is a worse fault than a small one and it
+does not look obviously wrong until you know the number.

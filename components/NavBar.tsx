@@ -59,18 +59,25 @@ export function NavBar() {
     <nav
       data-chrome
       data-occluder
-      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-10 backdrop-blur-[18px]"
+      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-6 backdrop-blur-[18px]"
       style={{ top: `${CHROME.barTop}%`, height: `${CHROME.barHeight}%` }}
     >
       {/*
-       * The mark stays put so the five-tap maintenance gesture is always in
-       * the same place. Back-to-collection is the "Projects" item: it is
+       * The studio's logo, and the mark stays put so the five-tap maintenance
+       * gesture is always in the same place.
+       *
+       * 26px tall, which is a measured ceiling and not a taste. The bar in
+       * Portuguese carries "Especialidades" at 196px, and mark plus items plus
+       * the language toggle plus the bar's own padding came to 1078 of the
+       * panel's 1080 — the mark finished one pixel before "Projetos" began.
+       * The bar's padding came in from 32px to 24px and the mark down from 28,
+       * which between them leave a real gap on either side of it. Back-to-collection is the "Projects" item: it is
        * persistent, inside the reach zone, and one tap from anywhere — which
        * is what §8 asks for without adding a fifth thing to this bar.
        */}
-      <Wordmark className="text-meta tracking-[0.14em] text-ink-faint" />
+      <Wordmark height={26} />
 
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-1">
         {items.map((item) => {
           const current = item.match(pathname);
           return (
@@ -79,18 +86,22 @@ export function NavBar() {
               label={item.label}
               onTap={() => router.push(item.href)}
               /*
-               * px-5, not px-7. "Especialidades" is the longest word this bar
-               * has ever carried and at the old padding it pushed the language
-               * toggle 33px past the right edge of the panel — measured, not
-               * guessed. The tap targets do not get smaller: TapTarget holds
-               * them to minTouchTarget, so a short label like Studio still
-               * fills 120px however little padding is asked for.
+               * px-2, not px-5. Miguel asked for a bigger menu on 9 September
+               * and the labels went from 28px to 32px, which is 4px on ten
+               * edges and more than the bar had spare. The padding pays for
+               * it. The tap targets do not get smaller: TapTarget holds them
+               * to minTouchTarget, so a short label like Studio still fills
+               * 120px however little padding is asked for, and the bar is
+               * measured on every run — `npm run verify` fails on horizontal
+               * overflow, which is what caught the last version of this. The
+               * gap went 8px to 4px in the same pass; between them they buy
+               * back the 44px the logo and the larger type cost.
                */
-              className="justify-center px-5"
+              className="justify-center px-2"
               minSize={PANEL.minTouchTarget}
             >
               <span
-                className="text-meta"
+                className="text-body"
                 style={{
                   color: current ? 'var(--color-ink)' : 'var(--color-ink-muted)',
                   borderBottom: current ? '1px solid var(--color-accent)' : '1px solid transparent',
@@ -110,7 +121,7 @@ export function NavBar() {
         className="justify-center"
         minSize={PANEL.minTouchTarget}
       >
-        <span className="text-meta text-ink-muted">
+        <span className="text-body text-ink-muted">
           <span style={{ color: locale === 'en' ? 'var(--color-ink)' : undefined }}>EN</span>
           <span className="px-2 text-ink-faint">/</span>
           <span style={{ color: locale === 'pt' ? 'var(--color-ink)' : undefined }}>PT</span>

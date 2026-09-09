@@ -17,8 +17,14 @@
 
 export type Brand = {
   id: 'viterbo' | 'indigo';
+  /** Read by screen readers, and the alt text on the mark. */
   wordmark: string;
+  /** The full three-line lockup. Only for surfaces with room for it. */
   logo: string;
+  /** The wordmark line of that lockup, for the bar. See components/Wordmark. */
+  wordmarkImage: string;
+  /** Width over height of `wordmarkImage`, so callers size it by height alone. */
+  wordmarkAspect: number;
   color: {
     /**
      * Warm off-white rather than pure white. The panel is glossy at 300–350
@@ -57,6 +63,12 @@ export const VITERBO: Brand = {
    * for the light ground; gold and white are alongside it for other surfaces.
    */
   logo: '/brand/viterbo_logo_charcoal.png',
+  /**
+   * Cropped from the file above, not redrawn: rows 210-566 of 736, which is
+   * the VITERBO line on its own. 2400x356, so 6.742 wide for every 1 tall.
+   */
+  wordmarkImage: '/brand/viterbo_wordmark_charcoal.png',
+  wordmarkAspect: 2400 / 356,
   color: {
     ground: '#faf8f3',
     groundRaised: '#f1ede4',
