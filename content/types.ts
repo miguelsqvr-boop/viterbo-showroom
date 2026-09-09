@@ -102,6 +102,18 @@ export type Service = {
   media?: Media;
 };
 
+/**
+ * A specialty (§8) — the same shape as a Service and rendered by the same
+ * component, because a visitor reads them the same way: a number, a name and
+ * one paragraph, one to a screen.
+ *
+ * Kept as its own name rather than an alias so the two lists can part company
+ * later without a rename: services are what the studio sells, specialties are
+ * what it is expert at, and the studio may well want them to look different
+ * one day.
+ */
+export type Specialty = Service;
+
 /** An attract-loop frame carries a place name and nothing else (§8). */
 export type AttractFrame = {
   media: Media;

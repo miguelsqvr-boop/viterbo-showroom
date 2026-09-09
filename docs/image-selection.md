@@ -991,3 +991,42 @@ in two columns, down the first then the second, ten names and nine. Each name
 carries a gold mark the size and colour of the points on the map, which is what
 ties the two pages together: the shape, then the names of the marks that made
 it.
+
+## Specialties — 9 September
+
+The studio asked for a new section called Specialties, pointing at
+viterbointeriordesign.com/our-studio. Eight items: historic renovations,
+in-house joinery and furniture, kitchens, bathrooms, closets, spas, gyms,
+offices. The English is theirs, transcribed from that page.
+
+**The Portuguese is mine and should be checked.** The site has a Portuguese
+edition, but this container cannot reach viterbointeriordesign.com — the
+network policy blocks the domain — so the eight translations were written here
+to match the English rather than lifted from the studio's own PT copy. That is
+the first Portuguese on the panel not written by the studio, and it is noted at
+the top of content/specialties.ts so it does not quietly become permanent.
+
+**None of the eight carries a photograph, on purpose.** The website runs a
+picture over each, but those are web-sized against a 2160px panel; and the
+obvious shortcut — lending a specialty a frame from a project that happens to
+show a kitchen — is the exact repetition the studio objected to when the Craft
+card borrowed Castilho 203's hero. So each renders as type on the ground, the
+state the Service model already has for In-house Upholstery. Adding `media` to
+an entry turns it into a band or a full-bleed with nothing else to change.
+
+Services and Specialties are now one component. A visitor who has scrolled one
+numbered sequence knows how to read the other, and the layout logic — full
+bleed, band, drawing, or type on the ground, chosen from the file that actually
+exists — was already written once in ServicesView. It is `components/Sequence.tsx`
+now; both views are three lines each.
+
+### The bar is full
+
+Specialties took the slot Craft left, so the navigation is five items again:
+Projects, Specialties, Studio, Services, Contact. It is also the longest label
+the bar has ever carried — "Especialidades" sets at 197px — and at the old
+padding it pushed the language toggle 33px past the right edge of the panel in
+Portuguese. Measured, not assumed: the item padding went from px-7 to px-5 and
+the bar's own from px-12 to px-10, which brings the toggle's right edge to
+1040px in both languages. The tap targets did not shrink — TapTarget holds
+every one to the 120px minimum regardless of how little padding it is given.

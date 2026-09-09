@@ -11,6 +11,11 @@ export const UI = {
   projects: { en: 'Projects', pt: 'Projetos' },
   studio: { en: 'Studio', pt: 'Estúdio' },
   services: { en: 'Services', pt: 'Serviços' },
+  /*
+   * The studio's own spelling, from viterbointeriordesign.com/our-studio: the
+   * page is headed "Specialties", not "Specialities".
+   */
+  specialties: { en: 'Specialties', pt: 'Especialidades' },
   contact: { en: 'Contact', pt: 'Contacto' },
   /*
    * Staff-facing, and the only string in here that a visitor is not meant to

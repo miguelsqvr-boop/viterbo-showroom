@@ -16,15 +16,16 @@ import { Wordmark } from './Wordmark';
  * so it moved to the top. See CHROME in config/layout.ts for what that costs
  * and how to put it back.
  *
- * Four items and the language toggle. Five fitted and six never did — six
- * needs 1101px of bar in English and 1090px in Portuguese against the 984px
- * there is, measured — so the ceiling still stands even with a slot free.
+ * Five items and the language toggle, which is the ceiling: six never fitted,
+ * and five only fits because the words are short. Specialties took the slot
+ * Craft left on 8 September, and it is the longest label in the bar —
+ * "Especialidades" is 200px set in Portuguese — so the bar is measured on
+ * every run rather than assumed; `npm run verify` fails on horizontal
+ * overflow.
  *
- * Craft came out of the bar on the studio's instruction. Its way in is the
- * card that closes the collection. Recognition is not here either: it is the
- * end of Studio, along with the map and the cities — facts about the practice,
- * on the screen that is about the practice. No hamburger, no dropdowns, no
- * breadcrumbs.
+ * Recognition is not here: it is the end of Studio, along with the map and the
+ * cities — facts about the practice, on the screen that is about the practice.
+ * No hamburger, no dropdowns, no breadcrumbs.
  */
 export function NavBar() {
   const router = useRouter();
@@ -33,6 +34,11 @@ export function NavBar() {
 
   const items = [
     { href: '/', label: t('projects'), match: (p: string) => p === '/' || p.startsWith('/projects') },
+    {
+      href: '/specialties',
+      label: t('specialties'),
+      match: (p: string) => p.startsWith('/specialties'),
+    },
     { href: '/studio', label: t('studio'), match: (p: string) => p.startsWith('/studio') },
     {
       href: '/services',
@@ -53,7 +59,7 @@ export function NavBar() {
     <nav
       data-chrome
       data-occluder
-      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-12 backdrop-blur-[18px]"
+      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-10 backdrop-blur-[18px]"
       style={{ top: `${CHROME.barTop}%`, height: `${CHROME.barHeight}%` }}
     >
       {/*
@@ -72,7 +78,15 @@ export function NavBar() {
               key={item.href}
               label={item.label}
               onTap={() => router.push(item.href)}
-              className="justify-center px-7"
+              /*
+               * px-5, not px-7. "Especialidades" is the longest word this bar
+               * has ever carried and at the old padding it pushed the language
+               * toggle 33px past the right edge of the panel — measured, not
+               * guessed. The tap targets do not get smaller: TapTarget holds
+               * them to minTouchTarget, so a short label like Studio still
+               * fills 120px however little padding is asked for.
+               */
+              className="justify-center px-5"
               minSize={PANEL.minTouchTarget}
             >
               <span

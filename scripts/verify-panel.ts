@@ -37,6 +37,7 @@ import { inventoryDrift } from './audit-frames';
 import { PROJECTS_IN_ORDER } from '../content/projects';
 import { CITIES } from '../content/reach';
 import { SERVICES } from '../content/services';
+import { SPECIALTIES } from '../content/specialties';
 import { STUDIO } from '../content/studio';
 import { CONTACT } from '../content/contact';
 import { UI } from '../content/ui';
@@ -85,6 +86,10 @@ function identicalByDesign(): Set<string> {
   SERVICES.forEach((service) => {
     consider(service.title);
     consider(service.line);
+  });
+  SPECIALTIES.forEach((specialty) => {
+    consider(specialty.title);
+    consider(specialty.line);
   });
   consider(STUDIO.body);
   consider(STUDIO.figures);
@@ -204,6 +209,9 @@ async function views(): Promise<View[]> {
   }
   SERVICES.forEach((service, i) =>
     list.push({ name: `services · ${service.id}`, path: '/services', section: i }),
+  );
+  SPECIALTIES.forEach((specialty, i) =>
+    list.push({ name: `specialties · ${specialty.id}`, path: '/specialties', section: i }),
   );
   /*
    * Studio is five pages now, not one: the portrait and the words, the
