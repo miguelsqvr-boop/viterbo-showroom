@@ -54,7 +54,7 @@ export const SPECIALTIES: Specialty[] = [
     title: { en: 'Historic Renovations', pt: 'Renovações Históricas' },
     line: {
       en: 'Restoring what deserves to remain, and reinventing everything else. We work with the fabric of listed and period buildings, preserving tilework, plaster and stone while bringing structure and services up to contemporary standards.',
-      pt: 'Restaurar o que merece permanecer e reinventar tudo o resto. Trabalhamos sobre a matéria de edifícios classificados e de época, preservando azulejo, estuque e pedra, enquanto levamos a estrutura e as infraestruturas aos padrões contemporâneos.',
+      pt: 'Restaurar o que merece permanecer e reinventar tudo o resto. Trabalhamos com a matéria construída de edifícios classificados e de época, preservando azulejo, estuque e pedra, enquanto levamos a estrutura e as infraestruturas aos padrões contemporâneos.',
     },
     media: asMedia({
       ...media('pasteis-de-belem/02'),
@@ -70,13 +70,13 @@ export const SPECIALTIES: Specialty[] = [
     title: { en: 'In-House Joinery and Furniture', pt: 'Marcenaria e Mobiliário Próprios' },
     line: {
       en: 'Designed in the studio, made in our own atelier, fitted to the millimetre. Our own joinery workshop lets us design furniture and cabinetry specific to each room, controlling detail, finish and timing from drawing to installation.',
-      pt: 'Desenhado no estúdio, feito no nosso atelier, ajustado ao milímetro. A nossa oficina de marcenaria permite-nos desenhar mobiliário e carpintaria específicos para cada divisão, controlando detalhe, acabamento e prazos do desenho à instalação.',
+      pt: 'Desenhado no estúdio, feito no nosso atelier, ajustado ao milímetro. A nossa oficina de marcenaria permite-nos desenhar mobiliário e armários à medida de cada divisão, controlando detalhe, acabamento e prazos do desenho à instalação.',
     },
     media: asMedia({
       ...media('bangkok-estate/02'),
       alt: {
         en: 'A red lacquer cabinet standing open against a hand-painted blossom wall',
-        pt: 'Um armário em laca vermelha aberto contra uma parede de flores pintada à mão',
+        pt: 'Um armário em laca vermelha, de portas abertas, sobre uma parede de flores pintada à mão',
       },
     }),
   },
@@ -132,10 +132,10 @@ export const SPECIALTIES: Specialty[] = [
   {
     id: 'spa-design',
     index: 6,
-    title: { en: 'Spa Design', pt: 'Design de Spa' },
+    title: { en: 'Spa Design', pt: 'Design de Spas' },
     line: {
       en: 'Wellness spaces built on silence, temperature and touch. Private spas designed around the sequence of the experience, integrating pool, sauna, hammam and treatment areas with the acoustics and materials they require.',
-      pt: 'Espaços de bem-estar construídos sobre o silêncio, a temperatura e o toque. Spas privados desenhados em torno da sequência da experiência, integrando piscina, sauna, hammam e zonas de tratamento com a acústica e os materiais que exigem.',
+      pt: 'Espaços de bem-estar assentes no silêncio, na temperatura e no toque. Spas privados desenhados em torno da sequência da experiência, integrando piscina, sauna, hammam e zonas de tratamento com a acústica e os materiais que exigem.',
     },
     media: asMedia({
       ...media('castilho-203/03'),
@@ -148,7 +148,7 @@ export const SPECIALTIES: Specialty[] = [
   {
     id: 'gym-design',
     index: 7,
-    title: { en: 'Gym Design', pt: 'Design de Ginásio' },
+    title: { en: 'Gym Design', pt: 'Design de Ginásios' },
     line: {
       en: 'Performance space that belongs to the house, not to a hotel basement. Home gyms designed with the same rigour as the living spaces, resolving ventilation, acoustics, flooring and equipment without sacrificing the architecture.',
       pt: 'Um espaço de treino que pertence à casa e não à cave de um hotel. Ginásios privados desenhados com o mesmo rigor das zonas de estar, resolvendo ventilação, acústica, pavimento e equipamento sem sacrificar a arquitetura.',
@@ -164,7 +164,7 @@ export const SPECIALTIES: Specialty[] = [
   {
     id: 'office-design',
     index: 8,
-    title: { en: 'Office Design', pt: 'Design de Escritório' },
+    title: { en: 'Office Design', pt: 'Design de Escritórios' },
     line: {
       en: 'Workspaces with the composure of a private residence. Private studies and workspaces designed for concentration and for being seen, from the ergonomics of the desk to the discipline of the lighting.',
       pt: 'Espaços de trabalho com a compostura de uma residência privada. Escritórios e salas de trabalho desenhados para a concentração e para serem vistos, da ergonomia da secretária à disciplina da iluminação.',

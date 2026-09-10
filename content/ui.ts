@@ -68,7 +68,7 @@ export const UI = {
   loading: { en: 'Loading', pt: 'A carregar' },
   sent: { en: 'Thank you. The studio will be in touch.', pt: 'Obrigado. O estúdio entrará em contacto.' },
   queued: { en: 'Saved. It will send when the screen is back online.', pt: 'Guardado. Será enviado quando o ecrã voltar a estar online.' },
-  formInvalid: { en: 'A name and a valid email, please.', pt: 'Um nome e um email válido, por favor.' },
+  formInvalid: { en: 'A name and a valid email, please.', pt: 'Um nome e um email válidos, por favor.' },
   zoomHint: { en: 'Double tap to zoom', pt: 'Toque duas vezes para ampliar' },
   offline: { en: 'Showing the last saved version', pt: 'A mostrar a última versão guardada' },
   updating: { en: 'Updating', pt: 'A atualizar' },

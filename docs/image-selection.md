@@ -1183,6 +1183,21 @@ Worth writing down: `npm run verify` spawns `next start`, so it audits `.next`,
 not the working tree. Two of the runs above were reading a build from before
 the edit and reporting a fault that was already fixed. Build first.
 
+The same trap has a second mouth, and it cost an hour on 10 September. If
+anything is already listening on the port, `next start` exits 1 and the suite
+audits *that* server instead — which may be a `next-server` left over from an
+earlier run, serving a build from before the edit. It reported 25 violations,
+including a contact heading occluded by exactly the 38px the bar had grown,
+after the run that fixed it. A clean `rm -rf .next && npm run build` on a free
+port returned the expected single violation and nothing else.
+
+Two things follow. Kill the port, not the wrapper: `kill` on the `npx next
+start` process leaves its `next-server` child holding the socket, so use
+`fuser -k 3000/tcp` and confirm with `curl` before trusting a run. And never
+`pkill -f "next start"` from a shell whose own command line contains that
+string — `pkill` matches the shell and kills the command that issued it, which
+returns a bare exit 1 and no output.
+
 ### The bar carries the studio's logo
 
 `BRAND.logo` had pointed at `public/brand/viterbo_logo_charcoal.png` since the
@@ -1216,3 +1231,37 @@ which is 5.65 — flexbox held the height and took the width, narrowing the
 letterforms. `shrink-0` fixes it, and nothing but measuring the rendered box
 would have found it: a squashed logo is a worse fault than a small one and it
 does not look obviously wrong until you know the number.
+
+### The Portuguese is European, and two words are not interchangeable
+
+Miguel asked for the vocabulary to be pt-PT rather than pt-BR. Most of it
+already was — `equipa`, `planeamento`, `ecrã`, `telemóvel`, `casa de banho`,
+`cave`, `secretária`, `estofo`, `roupeiro`, `lavabo`, `azulejo`, `estuque`,
+`Contacto`, `A carregar`. A sweep for the usual Brazilian markers, for the
+`estar a` + infinitive versus gerund split, and for `você`, found none.
+
+What it did find was six faults of our own making:
+
+- `directamente` and `tectos` in the Alvalade narrative were pre-AO90
+  spellings sitting next to `tetos` elsewhere in the same file. The 1990
+  agreement is in force in Portugal, so the silent consonant goes:
+  `diretamente`, `tetos`. `Contacto` keeps its `c` — that one is pronounced.
+- `Um nome e um email válido` agreed with only the second of two nouns.
+  `válidos`.
+- `Trabalhamos sobre a matéria` reads as working *about* the fabric rather
+  than upon it; `construídos sobre o silêncio` and `aberto contra uma parede`
+  are calques of "built on" and "standing open against".
+- Three specialty titles were singular against five plural ones: Spa,
+  Ginásio, Escritório.
+
+And one correction had to be taken back. `Marcenaria` was changed to
+`Carpintaria` on the grounds that the services screen says `Carpintaria`, which
+was wrong: both are European Portuguese and they are different trades.
+Marcenaria is fine cabinetmaking — the right word for "joinery", and the word
+the project narratives already use for "cabinetry". Carpintaria is structural
+carpentry, and it appears on the services screen because the English there
+says "Carpentry". The two screens are translating two different words. What
+was actually wrong in that sentence was `desenhar mobiliário e carpintaria`,
+since one does not design carpentry; it is `mobiliário e armários à medida`.
+
+Gracinha should still read it. This is an audit, not a native ear.

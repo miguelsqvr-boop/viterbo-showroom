@@ -16,12 +16,22 @@ import { Wordmark } from './Wordmark';
  * so it moved to the top. See CHROME in config/layout.ts for what that costs
  * and how to put it back.
  *
- * Five items and the language toggle, which is the ceiling: six never fitted,
- * and five only fits because the words are short. Specialties took the slot
- * Craft left on 8 September, and it is the longest label in the bar —
- * "Especialidades" is 200px set in Portuguese — so the bar is measured on
- * every run rather than assumed; `npm run verify` fails on horizontal
- * overflow.
+ * Two rows: the studio's mark, and under it the five items with the language
+ * toggle. It was one row until 10 September, when Miguel asked for a bigger
+ * and more legible menu. 40px labels do not fit beside the mark — measured in
+ * Portuguese, where "Especialidades" alone sets at 245px, the single row came
+ * to more than the panel is wide. Stacking gives the menu the whole 1080.
+ *
+ * Five items and the toggle is still the ceiling: six never fitted, and five
+ * only fits because the words are short. The bar is measured on every run
+ * rather than assumed; `npm run verify` fails on horizontal overflow.
+ *
+ * Every label is set in full ink, not the muted grey it used to be. That grey
+ * measures 5.56:1 against this ground — enough for AA, short of AAA, and this
+ * is a 43-inch panel read from across a showroom rather than a page held at
+ * arm's length. Full ink is 16.69:1. The current item is still marked, by the
+ * accent rule under it and by a heavier stroke, so it does not depend on
+ * colour alone to be findable.
  *
  * Recognition is not here: it is the end of Studio, along with the map and the
  * cities — facts about the practice, on the screen that is about the practice.
@@ -59,7 +69,7 @@ export function NavBar() {
     <nav
       data-chrome
       data-occluder
-      className="fixed inset-x-0 z-40 flex items-center justify-between border-y border-hairline bg-ground/70 px-6 backdrop-blur-[18px]"
+      className="fixed inset-x-0 z-40 flex flex-col items-center justify-center gap-4 border-y border-hairline bg-ground/70 px-6 backdrop-blur-[18px]"
       style={{ top: `${CHROME.barTop}%`, height: `${CHROME.barHeight}%` }}
     >
       {/*
@@ -77,7 +87,11 @@ export function NavBar() {
        */}
       <Wordmark height={26} />
 
-      <div className="flex items-center gap-1">
+      {/*
+       * Items and the language toggle on one row, the toggle set off by a
+       * wider gap so it reads as a control rather than a sixth destination.
+       */}
+      <div className="flex items-center gap-2">
         {items.map((item) => {
           const current = item.match(pathname);
           return (
@@ -86,26 +100,30 @@ export function NavBar() {
               label={item.label}
               onTap={() => router.push(item.href)}
               /*
-               * px-2, not px-5. Miguel asked for a bigger menu on 9 September
-               * and the labels went from 28px to 32px, which is 4px on ten
-               * edges and more than the bar had spare. The padding pays for
-               * it. The tap targets do not get smaller: TapTarget holds them
-               * to minTouchTarget, so a short label like Studio still fills
-               * 120px however little padding is asked for, and the bar is
-               * measured on every run — `npm run verify` fails on horizontal
-               * overflow, which is what caught the last version of this. The
-               * gap went 8px to 4px in the same pass; between them they buy
-               * back the 44px the logo and the larger type cost.
+               * px-2. The labels are 40px now and the mark has moved to its
+               * own line, which gave the row back the 175px the mark was
+               * taking — but not enough of it to be generous with the
+               * padding. At px-3 the Portuguese row measured 1066 of the
+               * panel's 1080 and ran to seven pixels from the glass on the
+               * left, outside the bar's own 24px. px-2 pulls it back to a
+               * real margin on both sides.
+               * The tap targets do not get smaller either way: TapTarget
+               * holds them to minTouchTarget, so a short label like Studio
+               * still fills 120px however little padding is asked for, and
+               * the bar is measured on every run — `npm run verify` fails on
+               * horizontal overflow, which is what caught the version of this
+               * where the mark and the menu shared a line.
                */
               className="justify-center px-2"
               minSize={PANEL.minTouchTarget}
             >
               <span
-                className="text-body"
+                className="text-nav"
                 style={{
-                  color: current ? 'var(--color-ink)' : 'var(--color-ink-muted)',
-                  borderBottom: current ? '1px solid var(--color-accent)' : '1px solid transparent',
-                  paddingBottom: 6,
+                  color: 'var(--color-ink)',
+                  fontWeight: current ? 500 : 400,
+                  borderBottom: current ? '2px solid var(--color-accent)' : '2px solid transparent',
+                  paddingBottom: 8,
                 }}
               >
                 {item.label}
@@ -113,20 +131,40 @@ export function NavBar() {
             </TapTarget>
           );
         })}
-      </div>
 
-      <TapTarget
-        label={locale === 'en' ? 'Mudar para português' : 'Switch to English'}
-        onTap={toggle}
-        className="justify-center"
-        minSize={PANEL.minTouchTarget}
-      >
-        <span className="text-body text-ink-muted">
-          <span style={{ color: locale === 'en' ? 'var(--color-ink)' : undefined }}>EN</span>
-          <span className="px-2 text-ink-faint">/</span>
-          <span style={{ color: locale === 'pt' ? 'var(--color-ink)' : undefined }}>PT</span>
-        </span>
-      </TapTarget>
+        <TapTarget
+          label={locale === 'en' ? 'Mudar para português' : 'Switch to English'}
+          onTap={toggle}
+          className="ml-6 justify-center"
+          minSize={PANEL.minTouchTarget}
+        >
+          {/*
+           * The language not in use is muted rather than faint. Faint is
+           * 2.82:1 on this ground, which is below every threshold there is;
+           * it was carrying the separator and the inactive half of a control
+           * a visitor has to read before they can use it.
+           */}
+          <span className="text-nav">
+            <span
+              style={{
+                color: 'var(--color-ink)',
+                fontWeight: locale === 'en' ? 500 : 400,
+              }}
+            >
+              EN
+            </span>
+            <span className="px-3 text-ink-muted">/</span>
+            <span
+              style={{
+                color: 'var(--color-ink)',
+                fontWeight: locale === 'pt' ? 500 : 400,
+              }}
+            >
+              PT
+            </span>
+          </span>
+        </TapTarget>
+      </div>
     </nav>
   );
 }

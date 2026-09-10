@@ -68,7 +68,18 @@ export const PRIME = {
  */
 export const CHROME = {
   barTop: 0,
-  barHeight: 9,
+  /*
+   * 11%, not 9%. The bar carries two rows now — the studio's mark above, the
+   * five items and the language toggle below — because Miguel asked for a
+   * bigger, more legible menu on 10 September and 40px labels do not fit
+   * beside the mark on one line: in Portuguese the row alone measures wider
+   * than the panel. Stacking frees the whole 1080 for the menu.
+   *
+   * 11% is 211px, which is what the two rows actually need: a 26px mark, 16px
+   * of air, and a 120px tap target, leaving about 24px above and below. It is
+   * not a free number — COLLECTION.cardTop moved with it, below.
+   */
+  barHeight: 11,
 } as const;
 
 /**
@@ -77,12 +88,14 @@ export const CHROME = {
  */
 export const COLLECTION = {
   /**
-   * Where a snapped card's image band begins. 12%, not 6%: the bar is pinned
-   * to the top now and occupies the first 9%, so a card resting at 6% put the
+   * Where a snapped card's image band begins. 14%, not 6%: the bar is pinned
+   * to the top and occupies the first 11%, so a card resting at 6% put the
    * previous card's name under it — `npm run verify` caught "Chelsea"
-   * overlapping by 22px in the middle of the list.
+   * overlapping by 22px in the middle of the list. It was 12 while the bar was
+   * 9% tall; both moved by 2 on 10 September so the clearance below the bar
+   * stays the 58px that was working.
    */
-  cardTop: 12,
+  cardTop: 14,
   imageHeight: 26,
   metaHeight: 11,
   /** Distance from one snap position to the next. Leaves the next card peeking. */

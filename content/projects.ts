@@ -256,7 +256,7 @@ export const PROJECTS: Project[] = [
     year: 2026,
     narrative: {
       en: 'Pattern used as material rather than decoration — checkerboard tile run floor to ceiling, botanical paper behind a mirror, a convex glass over an arched brass console. Nothing is quiet and nothing shouts over anything else.',
-      pt: 'O padrão usado como material e não como decoração — azulejo em xadrez do chão ao tecto, papel botânico atrás de um espelho, um vidro convexo sobre uma consola de latão em arco. Nada é discreto e nada se sobrepõe ao resto.',
+      pt: 'O padrão usado como material e não como decoração — azulejo em xadrez do chão ao teto, papel botânico atrás de um espelho, um vidro convexo sobre uma consola de latão em arco. Nada é discreto e nada se sobrepõe ao resto.',
     },
     hero: img('birre-house/hero', 'A library and dining table behind a burnt-orange curtain', 'Uma biblioteca e mesa de jantar atrás de um cortinado laranja-queimado'),
     gallery: [
@@ -308,7 +308,7 @@ export const PROJECTS: Project[] = [
     year: 2026,
     narrative: {
       en: 'A small apartment that refuses to behave like one. Colour is painted straight onto the walls and ceilings — a mural down the hall, stripes overhead, a scalloped headboard drawn on the plaster — so the rooms feel larger than their plan.',
-      pt: 'Um apartamento pequeno que se recusa a comportar-se como tal. A cor é pintada directamente nas paredes e nos tectos — um mural no corredor, riscas por cima, uma cabeceira recortada desenhada no reboco — e as divisões parecem maiores do que a planta.',
+      pt: 'Um apartamento pequeno que se recusa a comportar-se como tal. A cor é pintada diretamente nas paredes e nos tetos — um mural no corredor, riscas por cima, uma cabeceira recortada desenhada no reboco — e as divisões parecem maiores do que a planta.',
     },
     hero: img('lisbon-pied-a-terre/hero', 'A dining room under a striped ceiling, chairs in orange', 'Uma sala de jantar sob um tecto às riscas, com cadeiras em laranja'),
     gallery: [

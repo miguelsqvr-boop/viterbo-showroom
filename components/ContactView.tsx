@@ -2,14 +2,23 @@
 
 import { AnimatePresence, motion } from 'framer-motion';
 import { useEffect, useState } from 'react';
+import { CHROME } from '@/config/layout';
 import { CONTACT } from '@/content/contact';
 import { QR_INSTAGRAM, QR_PRIMARY } from '@/content/generated/qr';
 import { useLocale } from '@/lib/locale';
+import { panelVh } from '@/lib/panel';
 import { submit, watchForReconnect } from '@/lib/queue';
 import { Keyboard } from './Keyboard';
 import { TapTarget } from './TapTarget';
 
 const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+
+// Measured from the bar rather than written as a literal, so the heading
+// keeps its clearance whenever the bar's height changes. 3 panel units is
+// ~58px, matching COLLECTION.cardTop.
+const HEADING_TOP = CHROME.barTop + CHROME.barHeight + 3;
+// The QR keeps the 8-unit gap below the heading it has always had.
+const QR_TOP = HEADING_TOP + 8;
 
 /**
  * Contact (§8).
@@ -27,12 +36,12 @@ export function ContactView() {
 
   return (
     <div className="relative h-full w-full overflow-hidden">
-      <div className="absolute inset-x-0 px-14" style={{ top: '9%' }}>
+      <div className="absolute inset-x-0 px-14" style={{ top: panelVh(HEADING_TOP) }}>
         <h1 className="text-section">{t('visitUs')}</h1>
       </div>
 
       {/* The QR is display, not a target — it is read by a phone, not a finger. */}
-      <div className="absolute inset-x-0 flex flex-col items-center" style={{ top: '17%' }}>
+      <div className="absolute inset-x-0 flex flex-col items-center" style={{ top: panelVh(QR_TOP) }}>
         <div
           className="bg-transparent"
           style={{ width: 400, height: 400 }}

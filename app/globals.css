@@ -50,6 +50,20 @@
   --text-body--line-height: 1.46;
   --text-body--font-weight: 400;
 
+  /*
+   * The navigation bar, and only the bar.
+   *
+   * It sits off the top of the type scale on purpose. Miguel asked twice for
+   * a bigger menu — 28px, then 32 — and the next step up the scale is the 56px
+   * section size, which is a headline and would carry five words across a
+   * 1080px panel. 40px is the largest the bar takes with the mark above it and
+   * the language toggle beside it, measured in Portuguese where the labels are
+   * longest.
+   */
+  --text-nav: 40px;
+  --text-nav--line-height: 1.1;
+  --text-nav--font-weight: 400;
+
   --text-meta: 28px;
   --text-meta--line-height: 1.32;
   --text-meta--font-weight: 400;
