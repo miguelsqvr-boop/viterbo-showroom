@@ -120,6 +120,7 @@ export function MediaFrame({
         <>
           {/* The poster is a still of frame one, so entering playback is invisible. */}
           <Image
+            ref={imageRef}
             src={poster.src}
             alt={s(poster.alt)}
             fill
@@ -148,6 +149,7 @@ export function MediaFrame({
         </>
       ) : (
         <Image
+          ref={imageRef}
           src={media.src}
           alt={s(media.alt)}
           fill

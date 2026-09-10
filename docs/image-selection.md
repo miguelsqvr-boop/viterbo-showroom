@@ -1265,3 +1265,42 @@ was actually wrong in that sentence was `desenhar mobiliário e carpintaria`,
 since one does not design carpentry; it is `mobiliário e armários à medida`.
 
 Gracinha should still read it. This is an audit, not a native ear.
+
+### The loading bar hung on every Sequence screen
+
+Rendering the eight specialties to look at them turned up a LOADING plate
+stamped on seven of the eight. It was not a screenshot artefact: the bar never
+settled, at eight seconds or at any point after.
+
+`Mounted` mounts a frame within one screen of the viewport (`rootMargin="100%
+0px"`). `MediaFrame` registers with the loading provider from its layout
+effect the moment it mounts. But `Sequence` never passed `eager`, so the frame
+below the fold was left on the browser's own lazy loading and simply was not
+fetched — registered, outstanding, nothing to settle it, and the provider only
+resets when `settled.size === seen.size`. One frame pending held the bar open
+for ever. Listing every `<img>` showed it exactly: `tuscany-estate/08` mounted
+at y=3283 in a 1920 viewport, `loading=lazy`, `complete` false.
+
+`ProjectView` had passed `eager` on its band frames since the day the prop was
+written — the prop's own comment says laziness inside `Mounted` is "not only
+redundant but harmful". `Sequence` was the caller that never got it. It went
+unnoticed because until the specialties gained photographs this session, the
+screen registered nothing at all; /services had the same fault for as long as
+its four frames have existed.
+
+Second fault in the same path: `imageRef` in `MediaFrame` was declared and
+tested — `if (imageRef.current?.complete)` — but never attached to either
+`<Image>`. The guard against a cached photograph firing `load` before the
+effect runs was dead code from the start. It is on both branches now.
+
+Measured before and after with the same detector, since the bar lives in the
+DOM at `opacity: 0` and a text match on "LOADING" always passes:
+
+    pre-fix   /specialties  opacity 1   1 img pending
+    pre-fix   /services     opacity 1   1 img pending
+    post-fix  /specialties  opacity 0   0 pending
+    post-fix  /services     opacity 0   0 pending
+    post-fix  /projects/castilho-203  opacity 0  0 pending
+
+The suite does not check this and still does not; it is a thing you can only
+see by looking, which is the fourth time that has been true on this panel.

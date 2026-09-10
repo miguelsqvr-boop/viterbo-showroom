@@ -108,6 +108,16 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
            * set as type on the ground and looks deliberate, because it is:
            * every specialty is in that state today.
            */}
+          {/*
+           * `eager` on both frames, because `Mounted` has already decided the
+           * frame is within a screen of the viewport and the browser's own
+           * laziness then waits again. That second wait is what hung the
+           * loading bar: a mounted-but-offscreen frame registers with the
+           * provider from its layout effect and is never fetched, so nothing
+           * ever settles it and the bar reads LOADING for ever. It only
+           * surfaced when the specialties gained photographs — before that
+           * this screen registered nothing at all.
+           */}
           {service.media && canFullBleed(service.media) ? (
             <>
               <Mounted className="absolute inset-0" rootMargin="100% 0px">
@@ -115,6 +125,7 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
                   media={service.media}
                   mode="bleed"
                   priority={i === 0}
+                  eager
                   active={i === 0}
                   className="h-full w-full"
                 />
@@ -140,6 +151,7 @@ export function SequenceView({ items, label }: { items: Service[]; label: UIKey 
                  */
                 mode={isDrawing(service) ? 'contain' : 'band'}
                 priority={i === 0}
+                eager
                 className="h-full w-full"
               />
             </Mounted>
