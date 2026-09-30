@@ -11,9 +11,12 @@ export const CONTACT = {
    *
    * Still open, and the reason this stays false:
    *
-   *   - `primaryUrl` points at /showroom, a dedicated landing page that has to
-   *     exist before the QR is worth printing. It does not yet. Either create
-   *     it or point the QR at the live contacts page.
+   *   - `primaryUrl` pointed at /showroom, a dedicated landing page that was
+   *     never created: Miguel scanned the panel on 30 Sept and the phone got
+   *     the site's 404 ("Nada encontrado"). It now points at the homepage,
+   *     which exists, and carries ?utm_source=showroom so the visits are
+   *     still attributable to the panel. If the studio ever builds a real
+   *     /showroom page, move the URL back and re-run `npm run qr`.
    *   - the panel stands beside the Cabinet of Curiosities, which is the
    *     Estoril shop (Av. de Nice 68) rather than the Cascais studio. Decide
    *     which address a visitor standing in front of the screen should see.
@@ -22,8 +25,8 @@ export const CONTACT = {
    */
   verified: false,
 
-  /** NOT the homepage — a dedicated page, so showroom traffic is attributable. */
-  primaryUrl: 'https://viterbointeriordesign.com/showroom',
+  /** The homepage, tagged: a dead landing page costs more than a lost segment. */
+  primaryUrl: 'https://viterbointeriordesign.com/?utm_source=showroom',
   instagramUrl: 'https://instagram.com/viterbo_interior_design',
   address: ['Rua das Papoilas 422, armazém B', '2750-757 Cascais', 'Portugal'],
   phone: '+351 21 464 6240',

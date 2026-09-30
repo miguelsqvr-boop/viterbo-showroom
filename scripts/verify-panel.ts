@@ -771,11 +771,11 @@ async function main() {
       locale: 'en',
       rule: 'unverified content',
       detail:
-        'CONTACT.verified is false. Address, phone, email and the Instagram handle now ' +
-        'carry the studio\'s published details, but two things are still open: primaryUrl ' +
-        'points at a /showroom landing page that does not exist yet, and the screen shows ' +
-        'the Cascais studio address while the panel stands in the Estoril shop. Settle both, ' +
-        'confirm the fields, then set it true.',
+        'CONTACT.verified is false. Address, phone, email, the Instagram handle and the ' +
+        'QR target now carry the studio\'s published details — the QR pointed at a ' +
+        '/showroom page that 404s and was moved to the tagged homepage on 30 Sept. One ' +
+        'thing is still open: the screen shows the Cascais studio address while the panel ' +
+        'stands in the Estoril shop. Settle that, confirm the fields, then set it true.',
     });
   }
 
