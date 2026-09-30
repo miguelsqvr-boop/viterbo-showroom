@@ -80,16 +80,28 @@ export function LoadingBar() {
       </div>
 
       {/*
-       * The word on a frosted plate, flush to the left edge, the same
-       * treatment as the back control on a project. It has to be, because on a
-       * full-bleed hero the content starts under the bar and this label lands
-       * straight on the photograph — faint ink on someone's living room is not
-       * type, it is a smudge. Frosted, it reads over any tone.
+       * The word on a frosted plate, the same treatment as the back control on
+       * a project. It has to be frosted, because on a full-bleed hero the
+       * content starts under the bar and this label lands straight on the
+       * photograph — faint ink on someone's living room is not type, it is a
+       * smudge. Frosted, it reads over any tone.
+       *
+       * It hangs off the RIGHT edge, not the left. Flush left it sat on the
+       * heading: Miguel photographed the contact screen mid-load on 30 Sept
+       * with LOADING printed across "Talk to the studio". The plate runs
+       * 237-296px down the panel and every view's heading starts at 14%, which
+       * is 269 — 28px of collision on contact, 26 on recognition, and the two
+       * are flush left together so they overlap horizontally as well. Headings
+       * are left-aligned on every screen, so the right edge is the one place a
+       * full-width strip under the bar can carry a label without landing on
+       * type. Checked on all seven routes with the images held back.
        */}
-      <div className="mt-4 inline-flex rounded-r-[6px] border border-l-0 border-hairline bg-ground/70 px-8 py-3 backdrop-blur-[18px]">
-        <span className="text-caption uppercase tracking-[0.2em] text-ink-muted">
-          {t('loading')}
-        </span>
+      <div className="mt-4 flex justify-end">
+        <div className="inline-flex rounded-l-[6px] border border-r-0 border-hairline bg-ground/70 px-8 py-3 backdrop-blur-[18px]">
+          <span className="text-caption uppercase tracking-[0.2em] text-ink-muted">
+            {t('loading')}
+          </span>
+        </div>
       </div>
     </div>
   );
